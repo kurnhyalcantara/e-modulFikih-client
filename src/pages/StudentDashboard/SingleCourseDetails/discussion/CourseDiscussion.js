@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState } from 'react';
 import {
   Box,
   Button,
@@ -10,12 +10,12 @@ import {
   ListSubheader,
   TextareaAutosize,
   Typography,
-} from "@mui/material";
-import StarBorder from "@mui/icons-material/StarBorder";
-import { Link, useParams } from "react-router-dom";
-import { toast } from "react-toastify";
-import axios from "axios";
-import { GlobalState } from "../../../../GlobalState";
+} from '@mui/material';
+import StarBorder from '@mui/icons-material/StarBorder';
+import { Link, useParams } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import axios from 'axios';
+import { GlobalState } from '../../../../GlobalState';
 
 const CourseDiscussion = ({ discussion, getData }) => {
   const state = useContext(GlobalState);
@@ -24,12 +24,12 @@ const CourseDiscussion = ({ discussion, getData }) => {
   const [value, setValue] = useState(false);
 
   const { courseId } = useParams();
-  const [question, setQuestion] = useState("");
+  const [question, setQuestion] = useState('');
 
   const submitDiscussion = async () => {
     try {
       await axios.post(
-        `https://e-learn-bd.herokuapp.com/api/discussion/${courseId}`,
+        `https://e-modulfikih.herokuapp.com/api/discussion/${courseId}`,
         {
           question: question,
           user: user,
@@ -39,7 +39,7 @@ const CourseDiscussion = ({ discussion, getData }) => {
         }
       );
       await getData();
-      toast.success("Disscussion Created");
+      toast.success('Disscussion Created');
     } catch (error) {
       toast.error(error.response.data.msg);
     }
@@ -47,18 +47,18 @@ const CourseDiscussion = ({ discussion, getData }) => {
 
   return (
     <div>
-      <Box sx={{ display: "flex", justifyContent: "right", mb: 4 }}>
+      <Box sx={{ display: 'flex', justifyContent: 'right', mb: 4 }}>
         <Button
           onClick={() => {
             setValue(!value);
           }}
-          sx={{ color: "#eb5252" }}
+          sx={{ color: '#eb5252' }}
         >
           Ask Question
         </Button>
       </Box>
       <Collapse in={value} timeout="auto" unmountOnExit sx={{ mb: 5 }}>
-        <Box sx={{ bgcolor: "#fff", p: 5, borderRadius: "6px" }}>
+        <Box sx={{ bgcolor: '#fff', p: 5, borderRadius: '6px' }}>
           <Typography variant="h6" sx={{ pb: 3 }}>
             Ask Your Question
           </Typography>
@@ -66,7 +66,7 @@ const CourseDiscussion = ({ discussion, getData }) => {
             minRows={6}
             aria-label="maximum height"
             placeholder="Ask Your Question"
-            style={{ width: "100%" }}
+            style={{ width: '100%' }}
             onChange={(e) => {
               setQuestion(e.target.value);
             }}
@@ -74,10 +74,10 @@ const CourseDiscussion = ({ discussion, getData }) => {
           <Button
             fullWidth
             sx={{
-              color: "#fff",
-              bgcolor: "#eb5252",
-              ":hover": {
-                bgcolor: "#eb5252",
+              color: '#fff',
+              bgcolor: '#eb5252',
+              ':hover': {
+                bgcolor: '#eb5252',
               },
             }}
             onClick={submitDiscussion}
@@ -90,7 +90,7 @@ const CourseDiscussion = ({ discussion, getData }) => {
       {discussion && discussion?.length > 0 && (
         <Box>
           <List
-            sx={{ width: "100%", bgcolor: "background.paper" }}
+            sx={{ width: '100%', bgcolor: 'background.paper' }}
             component="nav"
             aria-labelledby="nested-list-subheader"
             subheader={
@@ -118,8 +118,8 @@ const CourseDiscussion = ({ discussion, getData }) => {
                   />
                   <ListItemText
                     sx={{
-                      display: "flex",
-                      justifyContent: "end",
+                      display: 'flex',
+                      justifyContent: 'end',
                     }}
                     primary={`${item?.submissions?.length} Reply`}
                   />

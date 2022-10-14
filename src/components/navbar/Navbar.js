@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import MenuIcon from "@mui/icons-material/Menu";
+import MenuIcon from '@mui/icons-material/Menu';
 import {
   AppBar,
   Box,
@@ -11,14 +11,14 @@ import {
   MenuItem,
   Toolbar,
   Typography,
-} from "@mui/material";
-import axios from "axios";
-import React, { Fragment, useContext, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { GlobalState } from "../../GlobalState";
-import AccountMenu from "../account_menu/AccountMenu";
-import Sidebar from "../sidebar/Sidebar";
-import { useStyle } from "./styles";
+} from '@mui/material';
+import axios from 'axios';
+import React, { Fragment, useContext, useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { GlobalState } from '../../GlobalState';
+import AccountMenu from '../account_menu/AccountMenu';
+import Sidebar from '../sidebar/Sidebar';
+import { useStyle } from './styles';
 
 const Navbar = () => {
   const classes = useStyle();
@@ -47,10 +47,10 @@ const Navbar = () => {
   // };
 
   const logOut = async () => {
-    await axios.get("https://e-learn-bd.herokuapp.com/api/logout");
+    await axios.get('https://e-modulfikih.herokuapp.com/api/logout');
     localStorage.clear();
     setIsLogged(false);
-    window.location.href = "/";
+    window.location.href = '/';
     // closeMobileMenu();
   };
 
@@ -60,8 +60,8 @@ const Navbar = () => {
 
   const toggleDrawer = (anchor, open) => (event) => {
     if (
-      event.type === "keydown" &&
-      (event.key === "Tab" || event.key === "Shift")
+      event.type === 'keydown' &&
+      (event.key === 'Tab' || event.key === 'Shift')
     ) {
       return;
     }
@@ -70,7 +70,7 @@ const Navbar = () => {
   };
 
   const handleChange = (e) => {
-    history("/courses");
+    history('/courses');
     setSearch(e.target.value);
   };
 
@@ -79,7 +79,7 @@ const Navbar = () => {
       <AppBar elevation={0} color="inherit" position="static">
         <Container className={classes.root} maxWidth="xl">
           <Toolbar disableGutters>
-            <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
+            <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
               <IconButton
                 size="large"
                 aria-label="account of current user"
@@ -94,18 +94,18 @@ const Navbar = () => {
                 id="menu-appbar"
                 anchorEl={anchorElNav}
                 anchorOrigin={{
-                  vertical: "bottom",
-                  horizontal: "left",
+                  vertical: 'bottom',
+                  horizontal: 'left',
                 }}
                 keepMounted
                 transformOrigin={{
-                  vertical: "top",
-                  horizontal: "left",
+                  vertical: 'top',
+                  horizontal: 'left',
                 }}
                 open={Boolean(anchorElNav)}
                 onClose={handleCloseNavMenu}
                 sx={{
-                  display: { xs: "block", md: "none" },
+                  display: { xs: 'block', md: 'none' },
                 }}
               >
                 <MenuItem onClick={handleCloseNavMenu}>
@@ -143,8 +143,8 @@ const Navbar = () => {
             <Box
               sx={{
                 flexGrow: 1,
-                alignItems: "center",
-                display: { xs: "none", md: "flex" },
+                alignItems: 'center',
+                display: { xs: 'none', md: 'flex' },
               }}
             >
               {/* <Link to="/">
@@ -199,14 +199,14 @@ const Navbar = () => {
             {isLogged ? (
               <Fragment>
                 <AccountMenu logOut={logOut} />
-                {user.type === "instructor" && user.status === true ? (
+                {user.type === 'instructor' && user.status === true ? (
                   <Sidebar drawer={drawer} toggleDrawer={toggleDrawer} />
                 ) : null}
               </Fragment>
             ) : (
               <Box
                 className={classes.signin}
-                sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}
+                sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}
               >
                 <Button color="inherit" component={Link} to="/login">
                   Sign In

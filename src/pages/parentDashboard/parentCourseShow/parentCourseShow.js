@@ -1,10 +1,10 @@
-import { Container, Grid, Typography } from "@mui/material";
-import axios from "axios";
-import React, { useContext, useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-import Cards from "../../../components/Cards/Card";
-import { GlobalState } from "../../../GlobalState";
-import { useStyle } from "./styles";
+import { Container, Grid, Typography } from '@mui/material';
+import axios from 'axios';
+import React, { useContext, useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
+import Cards from '../../../components/Cards/Card';
+import { GlobalState } from '../../../GlobalState';
+import { useStyle } from './styles';
 
 const ParentCourseShow = ({ course }) => {
   const classes = useStyle();
@@ -20,7 +20,7 @@ const ParentCourseShow = ({ course }) => {
         setLoading(true);
         axios
           .get(
-            `https://e-learn-bd.herokuapp.com/api/parent/child/${studentId}`,
+            `https://e-modulfikih.herokuapp.com/api/parent/child/${studentId}`,
             {
               headers: { Authorization: token },
             }
@@ -38,7 +38,7 @@ const ParentCourseShow = ({ course }) => {
   }, [studentId, token]);
 
   return (
-    <div style={{ background: "#fff5f6" }}>
+    <div style={{ background: '#fff5f6' }}>
       {loading ? (
         <div className="loading">Loading&#8230;</div>
       ) : (

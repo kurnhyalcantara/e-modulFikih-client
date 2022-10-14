@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import TextField from "@mui/material/TextField";
+import React, { useState } from 'react';
+import TextField from '@mui/material/TextField';
 import {
   Button,
   FormControl,
@@ -7,61 +7,61 @@ import {
   MenuItem,
   Select,
   Typography,
-} from "@mui/material";
-import { Link } from "react-router-dom";
-import axios from "axios";
-import { toast } from "react-toastify";
+} from '@mui/material';
+import { Link } from 'react-router-dom';
+import axios from 'axios';
+import { toast } from 'react-toastify';
 
-import { useStyle } from "./styles";
+import { useStyle } from './styles';
 
 const Login = () => {
   const classes = useStyle();
 
-  const [role, setRole] = useState("student");
-  const [userName, setUserName] = useState("");
-  const [mobile, setMobile] = useState("");
-  const [password, setPassword] = useState("");
+  const [role, setRole] = useState('student');
+  const [userName, setUserName] = useState('');
+  const [mobile, setMobile] = useState('');
+  const [password, setPassword] = useState('');
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      if (role === "student") {
+      if (role === 'student') {
         await axios
-          .post("https://e-learn-bd.herokuapp.com/api/student/login", {
+          .post('https://e-modulfikih.herokuapp.com/api/student/login', {
             userName: userName,
             password: password,
           })
           .then((res) => {
             if (res.status === 200) {
               const { data } = res;
-              window.location.href = "/student_dashboard";
-              localStorage.setItem("AUTH", JSON.stringify(data));
+              window.location.href = '/student_dashboard';
+              localStorage.setItem('AUTH', JSON.stringify(data));
             }
           });
-      } else if (role === "parent") {
+      } else if (role === 'parent') {
         await axios
-          .post("https://e-learn-bd.herokuapp.com/api/parent/login", {
+          .post('https://e-modulfikih.herokuapp.com/api/parent/login', {
             mobile: mobile,
             password: password,
           })
           .then((res) => {
             if (res.status === 200) {
               const { data } = res;
-              window.location.href = "/parent_dashboard";
-              localStorage.setItem("AUTH", JSON.stringify(data));
+              window.location.href = '/parent_dashboard';
+              localStorage.setItem('AUTH', JSON.stringify(data));
             }
           });
-      } else if (role === "instructor") {
+      } else if (role === 'instructor') {
         await axios
-          .post("https://e-learn-bd.herokuapp.com/api/instructor/login", {
+          .post('https://e-modulfikih.herokuapp.com/api/instructor/login', {
             userName: userName,
             password: password,
           })
           .then((res) => {
             if (res.status === 200) {
               const { data } = res;
-              window.location.href = "/instructor_dashboard";
-              localStorage.setItem("AUTH", JSON.stringify(data));
+              window.location.href = '/instructor_dashboard';
+              localStorage.setItem('AUTH', JSON.stringify(data));
             }
           });
       }
@@ -90,12 +90,12 @@ const Login = () => {
             }}
             value={role}
           >
-            <MenuItem value={"student"}>Student</MenuItem>
-            <MenuItem value={"parent"}>Parent</MenuItem>
-            <MenuItem value={"instructor"}>Instructor</MenuItem>
+            <MenuItem value={'student'}>Student</MenuItem>
+            <MenuItem value={'parent'}>Parent</MenuItem>
+            <MenuItem value={'instructor'}>Instructor</MenuItem>
           </Select>
         </FormControl>
-        {role === "parent" ? (
+        {role === 'parent' ? (
           <TextField
             fullWidth
             id="outlined-basic"
@@ -140,9 +140,9 @@ const Login = () => {
         />
         <Button
           style={{
-            backgroundColor: "#EA5252",
-            padding: "18px 36px",
-            fontSize: "18px",
+            backgroundColor: '#EA5252',
+            padding: '18px 36px',
+            fontSize: '18px',
           }}
           className={classes.btn}
           fullWidth
@@ -152,7 +152,7 @@ const Login = () => {
           sign in
         </Button>
         <Typography className={classes.msg}>
-          Don't have an account?{" "}
+          Don't have an account?{' '}
           <Link className={classes.link} to="/registration">
             Sign Up
           </Link>

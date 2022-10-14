@@ -1,21 +1,21 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import CheckIcon from "@mui/icons-material/Check";
-import CreateIcon from "@mui/icons-material/Create";
-import GroupsOutlinedIcon from "@mui/icons-material/GroupsOutlined";
-import TabContext from "@mui/lab/TabContext";
-import TabList from "@mui/lab/TabList";
-import TabPanel from "@mui/lab/TabPanel";
-import { Box, Button, Container, Grid, Typography } from "@mui/material";
-import Tab from "@mui/material/Tab";
-import axios from "axios";
-import React, { useContext, useEffect, useState } from "react";
-import { Link, useNavigate, useParams } from "react-router-dom";
-import Swal from "sweetalert2";
-import { GlobalState } from "../../../GlobalState";
-import CourseDiscussion from "./discussion/CourseDiscussion";
-import Lesson from "./lessons/Lesson";
-import { useStyle } from "./styles";
-import Task from "./tasks/Task";
+import CheckIcon from '@mui/icons-material/Check';
+import CreateIcon from '@mui/icons-material/Create';
+import GroupsOutlinedIcon from '@mui/icons-material/GroupsOutlined';
+import TabContext from '@mui/lab/TabContext';
+import TabList from '@mui/lab/TabList';
+import TabPanel from '@mui/lab/TabPanel';
+import { Box, Button, Container, Grid, Typography } from '@mui/material';
+import Tab from '@mui/material/Tab';
+import axios from 'axios';
+import React, { useContext, useEffect, useState } from 'react';
+import { Link, useNavigate, useParams } from 'react-router-dom';
+import Swal from 'sweetalert2';
+import { GlobalState } from '../../../GlobalState';
+import CourseDiscussion from './discussion/CourseDiscussion';
+import Lesson from './lessons/Lesson';
+import { useStyle } from './styles';
+import Task from './tasks/Task';
 
 const SingleCourse = () => {
   const classes = useStyle();
@@ -34,7 +34,7 @@ const SingleCourse = () => {
   const getData = async () => {
     setLoading(true);
     await axios
-      .get(`https://e-learn-bd.herokuapp.com/api/course_details/${courseId}`)
+      .get(`https://e-modulfikih.herokuapp.com/api/course_details/${courseId}`)
       .then((res) => {
         if (res.status === 200) {
           setCourse(res.data);
@@ -56,38 +56,38 @@ const SingleCourse = () => {
 
   const deleteCourse = async () => {
     Swal.fire({
-      title: "Are you sure?",
-      text: "to delete this course",
-      icon: "warning",
+      title: 'Are you sure?',
+      text: 'to delete this course',
+      icon: 'warning',
       showCancelButton: true,
-      confirmButtonColor: "#3085d6",
-      cancelButtonColor: "#d33",
-      confirmButtonText: "Yes, delete it!",
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!',
     }).then(async (result) => {
       if (result.isConfirmed) {
         await axios
           .delete(
-            `https://e-learn-bd.herokuapp.com/api/course_details/${courseId}`,
+            `https://e-modulfikih.herokuapp.com/api/course_details/${courseId}`,
             {
               headers: { Authorization: token },
             }
           )
           .then((res) => {
             if (res.status === 200) {
-              Swal.fire("Deleted!", "Your file has been deleted.", "success");
-              history("/instructor_dashboard");
+              Swal.fire('Deleted!', 'Your file has been deleted.', 'success');
+              history('/instructor_dashboard');
             } else {
               Swal.fire({
-                icon: "error",
-                title: "Oops...",
-                text: "Something went wrong!",
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Something went wrong!',
               });
             }
           });
       }
     });
   };
-  const [value, setValue] = React.useState("lesson");
+  const [value, setValue] = React.useState('lesson');
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -105,7 +105,7 @@ const SingleCourse = () => {
               <h3 className={classes.linktxt}>
                 <Button
                   style={{
-                    textTransform: "none",
+                    textTransform: 'none',
                   }}
                   onClick={deleteCourse}
                   color="error"
@@ -120,7 +120,7 @@ const SingleCourse = () => {
                 <h3 className={classes.linktxt}>
                   <Button
                     style={{
-                      textTransform: "none",
+                      textTransform: 'none',
                     }}
                     color="secondary"
                   >
@@ -134,7 +134,7 @@ const SingleCourse = () => {
                 <h3 className={classes.linktxt}>
                   <Button
                     style={{
-                      textTransform: "none",
+                      textTransform: 'none',
                     }}
                     color="secondary"
                   >
@@ -148,7 +148,7 @@ const SingleCourse = () => {
                 <h3 className={classes.linktxt}>
                   <Button
                     style={{
-                      textTransform: "none",
+                      textTransform: 'none',
                     }}
                     color="secondary"
                   >
@@ -162,7 +162,7 @@ const SingleCourse = () => {
                 <h3 className={classes.linktxt}>
                   <Button
                     style={{
-                      textTransform: "none",
+                      textTransform: 'none',
                     }}
                     color="secondary"
                   >
@@ -190,12 +190,12 @@ const SingleCourse = () => {
               <Typography
                 component="p"
                 style={{
-                  display: "flex",
-                  alignItems: "center",
-                  marginTop: "25px",
+                  display: 'flex',
+                  alignItems: 'center',
+                  marginTop: '25px',
                 }}
               >
-                <GroupsOutlinedIcon className={classes.icon} /> Total enrolled :{" "}
+                <GroupsOutlinedIcon className={classes.icon} /> Total enrolled :{' '}
                 {course?.courseDetails?.enrolled}
               </Typography>
             </Grid>
@@ -213,13 +213,13 @@ const SingleCourse = () => {
                     sm={12}
                     md={6}
                     lg={6}
-                    style={{ display: "flex", alignItems: "center" }}
+                    style={{ display: 'flex', alignItems: 'center' }}
                   >
                     <Typography
                       component="p"
-                      style={{ display: "flex", alignItems: "center" }}
+                      style={{ display: 'flex', alignItems: 'center' }}
                     >
-                      <CheckIcon className={classes.icon} />{" "}
+                      <CheckIcon className={classes.icon} />{' '}
                       {objective.objective}
                     </Typography>
                   </Grid>
@@ -234,7 +234,7 @@ const SingleCourse = () => {
                   <Grid item xs={12} md={6} lg={6}>
                     <Typography
                       component="p"
-                      style={{ display: "flex", alignItems: "center" }}
+                      style={{ display: 'flex', alignItems: 'center' }}
                     >
                       <CreateIcon className={classes.icon} /> {req?.requrement}
                     </Typography>
@@ -250,30 +250,30 @@ const SingleCourse = () => {
 
           {/* tab  */}
           {task.length !== 0 ? (
-            <Box sx={{ width: "100%", typography: "body1" }}>
+            <Box sx={{ width: '100%', typography: 'body1' }}>
               <TabContext value={value}>
-                <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
+                <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
                   <TabList
                     onChange={handleChange}
                     className={classes.tabcontainer}
                     TabIndicatorProps={{
-                      style: { background: "red" },
+                      style: { background: 'red' },
                     }}
                   >
                     <Tab
                       label="Lessons"
                       value="lesson"
-                      style={{ minWidth: "33%" }}
+                      style={{ minWidth: '33%' }}
                     />
                     <Tab
                       label="Task"
                       value="task"
-                      style={{ minWidth: "34%" }}
+                      style={{ minWidth: '34%' }}
                     />
                     <Tab
                       label="Discussion"
                       value="discussion"
-                      style={{ minWidth: "33%" }}
+                      style={{ minWidth: '33%' }}
                     />
                   </TabList>
                 </Box>

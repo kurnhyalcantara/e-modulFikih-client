@@ -1,9 +1,9 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import CheckIcon from "@mui/icons-material/Check";
-import CreateIcon from "@mui/icons-material/Create";
-import GroupsOutlinedIcon from "@mui/icons-material/GroupsOutlined";
-import TabContext from "@mui/lab/TabContext";
-import TabPanel from "@mui/lab/TabPanel";
+import CheckIcon from '@mui/icons-material/Check';
+import CreateIcon from '@mui/icons-material/Create';
+import GroupsOutlinedIcon from '@mui/icons-material/GroupsOutlined';
+import TabContext from '@mui/lab/TabContext';
+import TabPanel from '@mui/lab/TabPanel';
 import {
   AppBar,
   Box,
@@ -13,17 +13,17 @@ import {
   Tab,
   Tabs,
   Typography,
-} from "@mui/material";
-import axios from "axios";
-import PropTypes from "prop-types";
-import React, { useContext, useEffect, useState } from "react";
-import { Link, useNavigate, useParams } from "react-router-dom";
-import Swal from "sweetalert2";
-import { GlobalState } from "../../../GlobalState";
-import CourseDiscussion from "./discussion/CourseDiscussion";
-import CourseLesson from "./lesson/CourseLesson";
-import { useStyle } from "./styles";
-import StudentTask from "./task/task";
+} from '@mui/material';
+import axios from 'axios';
+import PropTypes from 'prop-types';
+import React, { useContext, useEffect, useState } from 'react';
+import { Link, useNavigate, useParams } from 'react-router-dom';
+import Swal from 'sweetalert2';
+import { GlobalState } from '../../../GlobalState';
+import CourseDiscussion from './discussion/CourseDiscussion';
+import CourseLesson from './lesson/CourseLesson';
+import { useStyle } from './styles';
+import StudentTask from './task/task';
 
 TabPanel.propTypes = {
   children: PropTypes.node,
@@ -34,7 +34,7 @@ TabPanel.propTypes = {
 function a11yProps(index) {
   return {
     id: `full-width-tab-${index}`,
-    "aria-controls": `full-width-tabpanel-${index}`,
+    'aria-controls': `full-width-tabpanel-${index}`,
   };
 }
 
@@ -55,7 +55,7 @@ const SingleCourseDetails = () => {
 
   const fetchList = async (list) => {
     await axios.patch(
-      "https://e-learn-bd.herokuapp.com/api/course/enroll",
+      'https://e-modulfikih.herokuapp.com/api/course/enroll',
       { enrolled: list },
       {
         headers: { Authorization: token },
@@ -66,7 +66,7 @@ const SingleCourseDetails = () => {
   const getData = async () => {
     setLoading(true);
     await axios
-      .get(`https://e-learn-bd.herokuapp.com/api/course_details/${courseId}`)
+      .get(`https://e-modulfikih.herokuapp.com/api/course_details/${courseId}`)
       .then((res) => {
         if (res.status === 200) {
           setCourse(res.data);
@@ -95,13 +95,13 @@ const SingleCourseDetails = () => {
 
   const removeCourse = () => {
     Swal.fire({
-      title: "Are you sure?",
-      text: "to unenroll this course",
-      icon: "warning",
+      title: 'Are you sure?',
+      text: 'to unenroll this course',
+      icon: 'warning',
       showCancelButton: true,
-      confirmButtonColor: "#3085d6",
-      cancelButtonColor: "#d33",
-      confirmButtonText: "Yes, unenroll it!",
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, unenroll it!',
     }).then(async (result) => {
       if (result.isConfirmed) {
         list.forEach((item, index) => {
@@ -111,8 +111,8 @@ const SingleCourseDetails = () => {
         });
         setList([...list]);
         await fetchList(list);
-        Swal.fire("Unenrolled!", "You unenroll in this course.", "success");
-        history("/student_dashboard");
+        Swal.fire('Unenrolled!', 'You unenroll in this course.', 'success');
+        history('/student_dashboard');
       }
     });
   };
@@ -146,7 +146,7 @@ const SingleCourseDetails = () => {
           <Grid className={classes.contains} container spacing={2}>
             <Grid item xs={12} md={7}>
               <Typography variant="h4">
-                {" "}
+                {' '}
                 {course?.courseDetails?.title}
               </Typography>
               <Typography variant="h6">
@@ -157,12 +157,12 @@ const SingleCourseDetails = () => {
               <Typography
                 component="p"
                 style={{
-                  display: "flex",
-                  alignItems: "center",
-                  marginTop: "15px",
+                  display: 'flex',
+                  alignItems: 'center',
+                  marginTop: '15px',
                 }}
               >
-                <GroupsOutlinedIcon className={classes.icon} /> Total enrolled :{" "}
+                <GroupsOutlinedIcon className={classes.icon} /> Total enrolled :{' '}
                 {course?.courseDetails?.enrolled}+
               </Typography>
             </Grid>
@@ -184,13 +184,13 @@ const SingleCourseDetails = () => {
                       md={6}
                       lg={6}
                       key={i}
-                      style={{ display: "flex", alignItems: "center" }}
+                      style={{ display: 'flex', alignItems: 'center' }}
                     >
                       <Typography
                         component="p"
-                        style={{ display: "flex", alignItems: "center" }}
+                        style={{ display: 'flex', alignItems: 'center' }}
                       >
-                        <CheckIcon className={classes.icon} />{" "}
+                        <CheckIcon className={classes.icon} />{' '}
                         {objective?.objective}
                       </Typography>
                     </Grid>
@@ -207,9 +207,9 @@ const SingleCourseDetails = () => {
                     <Grid item xs={12} md={6} lg={6} key={i}>
                       <Typography
                         component="p"
-                        style={{ display: "flex", alignItems: "center" }}
+                        style={{ display: 'flex', alignItems: 'center' }}
                       >
-                        <CreateIcon className={classes.icon} />{" "}
+                        <CreateIcon className={classes.icon} />{' '}
                         {req?.requrement}
                       </Typography>
                     </Grid>
@@ -230,7 +230,7 @@ const SingleCourseDetails = () => {
             </Grid>
           </Grid>
           {/* tab  */}
-          <Box sx={{ width: "100%", typography: "body1" }}>
+          <Box sx={{ width: '100%', typography: 'body1' }}>
             <AppBar position="static">
               <Tabs
                 value={value}

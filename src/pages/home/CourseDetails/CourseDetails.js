@@ -1,9 +1,9 @@
-import AllInclusiveIcon from "@mui/icons-material/AllInclusive";
-import BuildIcon from "@mui/icons-material/Build";
-import CreateIcon from "@mui/icons-material/Create";
-import FindInPageIcon from "@mui/icons-material/FindInPage";
-import PhoneAndroidIcon from "@mui/icons-material/PhoneAndroid";
-import VerifiedUserIcon from "@mui/icons-material/VerifiedUser";
+import AllInclusiveIcon from '@mui/icons-material/AllInclusive';
+import BuildIcon from '@mui/icons-material/Build';
+import CreateIcon from '@mui/icons-material/Create';
+import FindInPageIcon from '@mui/icons-material/FindInPage';
+import PhoneAndroidIcon from '@mui/icons-material/PhoneAndroid';
+import VerifiedUserIcon from '@mui/icons-material/VerifiedUser';
 import {
   Avatar,
   Box,
@@ -18,16 +18,16 @@ import {
   Rating,
   TextareaAutosize,
   Typography,
-} from "@mui/material";
-import Tab from "@mui/material/Tab";
-import Tabs from "@mui/material/Tabs";
-import axios from "axios";
-import PropTypes from "prop-types";
-import React, { useContext, useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
-import { toast } from "react-toastify";
-import { GlobalState } from "../../../GlobalState";
-import { useStyle } from "./styles";
+} from '@mui/material';
+import Tab from '@mui/material/Tab';
+import Tabs from '@mui/material/Tabs';
+import axios from 'axios';
+import PropTypes from 'prop-types';
+import React, { useContext, useEffect, useState } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import { GlobalState } from '../../../GlobalState';
+import { useStyle } from './styles';
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -58,7 +58,7 @@ TabPanel.propTypes = {
 function a11yProps(index) {
   return {
     id: `simple-tab-${index}`,
-    "aria-controls": `simple-tabpanel-${index}`,
+    'aria-controls': `simple-tabpanel-${index}`,
   };
 }
 
@@ -79,7 +79,7 @@ const CourseDetails = () => {
   const [isLogging] = state.userAPI.isLogged;
 
   const [rating, setRating] = useState(0);
-  const [review, setReview] = useState("");
+  const [review, setReview] = useState('');
   const [loading, setLoading] = useState(false);
 
   const navigate = useNavigate();
@@ -87,7 +87,7 @@ const CourseDetails = () => {
   const submitReview = async () => {
     try {
       await axios.put(
-        `https://e-learn-bd.herokuapp.com/api/course/review/${courseId}`,
+        `https://e-modulfikih.herokuapp.com/api/course/review/${courseId}`,
         {
           rating: rating,
           comment: review,
@@ -96,9 +96,9 @@ const CourseDetails = () => {
           headers: { Authorization: token },
         }
       );
-      toast.success("Successfully Comment");
+      toast.success('Successfully Comment');
       setRating(0);
-      setReview("");
+      setReview('');
     } catch (error) {
       toast.error(error.response.data.msg);
     }
@@ -110,7 +110,7 @@ const CourseDetails = () => {
         setLoading(true);
         await axios
           .get(
-            `https://e-learn-bd.herokuapp.com/api/course_details/${courseId}`
+            `https://e-modulfikih.herokuapp.com/api/course_details/${courseId}`
           )
           .then((res) => {
             if (res.status === 200) {
@@ -137,8 +137,8 @@ const CourseDetails = () => {
         <Container maxWidth="xl" className={classes.root}>
           <Grid container spacing={3}>
             <Grid item md={9} sm={12} xs={12}>
-              <Box sx={{ width: "100%" }}>
-                <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
+              <Box sx={{ width: '100%' }}>
+                <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
                   <Tabs
                     value={value}
                     onChange={handleChange}
@@ -146,7 +146,7 @@ const CourseDetails = () => {
                     className={classes.tabcontainer}
                     TabIndicatorProps={{
                       style: {
-                        backgroundColor: "#EA5252",
+                        backgroundColor: '#EA5252',
                       },
                     }}
                     aria-label="basic tabs example"
@@ -231,7 +231,7 @@ const CourseDetails = () => {
                           src={
                             course?.instructor?.image
                               ? course?.instructor?.image?.url
-                              : "https://monstar-lab.com/global/wp-content/uploads/sites/11/2019/04/male-placeholder-image.jpeg"
+                              : 'https://monstar-lab.com/global/wp-content/uploads/sites/11/2019/04/male-placeholder-image.jpeg'
                           }
                           alt=""
                           className={classes.img}
@@ -243,12 +243,12 @@ const CourseDetails = () => {
                           {course?.instructor?.name}
                         </Typography>
                         <br />
-                        <b className={classes.instructor}>Mobile</b>{" "}
+                        <b className={classes.instructor}>Mobile</b>{' '}
                         <Typography variant="h6">
                           {course?.courseDetails?.instructor?.mobile}
                         </Typography>
                         <br />
-                        <b className={classes.instructor}>Address</b>{" "}
+                        <b className={classes.instructor}>Address</b>{' '}
                         <Typography variant="h6">
                           {course?.courseDetails?.instructor?.address}
                         </Typography>
@@ -262,7 +262,7 @@ const CourseDetails = () => {
                     {isLogging && (
                       <Box>
                         <Box
-                          sx={{ display: "flex", alignItems: "center", mb: 3 }}
+                          sx={{ display: 'flex', alignItems: 'center', mb: 3 }}
                         >
                           <FormLabel sx={{ mr: 5 }}>Give Rating: </FormLabel>
                           <Rating
@@ -280,16 +280,16 @@ const CourseDetails = () => {
                           aria-label="maximum height"
                           placeholder="Give Review"
                           value={review}
-                          style={{ width: "100%", marginTop: "10px" }}
+                          style={{ width: '100%', marginTop: '10px' }}
                           onChange={(e) => {
                             setReview(e.target.value);
                           }}
                         />
                         <Button
                           sx={{
-                            background: "#eb5252",
-                            ":hover": {
-                              background: "#eb5252",
+                            background: '#eb5252',
+                            ':hover': {
+                              background: '#eb5252',
                             },
                           }}
                           variant="contained"
@@ -306,14 +306,14 @@ const CourseDetails = () => {
                           <Box
                             key={item?._id}
                             sx={{
-                              border: "1px solid #eee",
-                              padding: "10px",
-                              margin: "15px 0",
+                              border: '1px solid #eee',
+                              padding: '10px',
+                              margin: '15px 0',
                             }}
                           >
-                            <Box sx={{ display: "flex" }}>
+                            <Box sx={{ display: 'flex' }}>
                               <Avatar src="/broken-image.jpg" sx={{ mr: 3 }} />
-                              <Typography sx={{ fontSize: "20px", mr: 3 }}>
+                              <Typography sx={{ fontSize: '20px', mr: 3 }}>
                                 {item?.author}
                               </Typography>
                               <Rating
@@ -348,10 +348,10 @@ const CourseDetails = () => {
                 <CardActions>
                   <Button
                     style={{
-                      backgroundColor: "#EA5252",
-                      padding: "18px 36px",
-                      fontSize: "18px",
-                      textTransform: "none",
+                      backgroundColor: '#EA5252',
+                      padding: '18px 36px',
+                      fontSize: '18px',
+                      textTransform: 'none',
                     }}
                     className={classes.button}
                     variant="contained"

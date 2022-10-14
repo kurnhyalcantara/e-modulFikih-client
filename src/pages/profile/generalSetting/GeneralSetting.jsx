@@ -1,12 +1,12 @@
-import { Button, Container, Grid, TextField } from "@mui/material";
-import React, { useContext, useEffect, useState } from "react";
-import ProfileLayout from "../ProfileLayout";
-import SaveIcon from "@mui/icons-material/Save";
-import SettingsIcon from "@mui/icons-material/Settings";
-import { GlobalState } from "../../../GlobalState";
-import axios from "axios";
-import Swal from "sweetalert2";
-import { toast } from "react-toastify";
+import { Button, Container, Grid, TextField } from '@mui/material';
+import React, { useContext, useEffect, useState } from 'react';
+import ProfileLayout from '../ProfileLayout';
+import SaveIcon from '@mui/icons-material/Save';
+import SettingsIcon from '@mui/icons-material/Settings';
+import { GlobalState } from '../../../GlobalState';
+import axios from 'axios';
+import Swal from 'sweetalert2';
+import { toast } from 'react-toastify';
 
 const GeneralSetting = () => {
   const state = useContext(GlobalState);
@@ -14,9 +14,9 @@ const GeneralSetting = () => {
   const [user] = state.userAPI.user;
   const userName = user.userName;
 
-  const [currentPassword, setCurrentPassword] = useState("");
-  const [password, setPassword] = useState("");
-  const [rePassword, setRePassword] = useState("");
+  const [currentPassword, setCurrentPassword] = useState('');
+  const [password, setPassword] = useState('');
+  const [rePassword, setRePassword] = useState('');
 
   const [image, setImage] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -26,14 +26,14 @@ const GeneralSetting = () => {
     try {
       const file = e.target.files[0];
       let formData = new FormData();
-      formData.append("file", file);
+      formData.append('file', file);
       setLoading(true);
       const res = await axios.post(
-        "https://e-learn-bd.herokuapp.com/api/upload",
+        'https://e-modulfikih.herokuapp.com/api/upload',
         formData,
         {
           headers: {
-            "content-type": "multipart/form-data",
+            'content-type': 'multipart/form-data',
             Authorization: token,
           },
         }
@@ -49,7 +49,7 @@ const GeneralSetting = () => {
     try {
       setLoading(true);
       await axios.post(
-        "https://e-learn-bd.herokuapp.com/api/destroy",
+        'https://e-modulfikih.herokuapp.com/api/destroy',
         { public_id: image.public_id },
         {
           headers: { Authorization: token },
@@ -63,10 +63,10 @@ const GeneralSetting = () => {
   };
 
   const handleSubmit = async () => {
-    if (user.type === "student") {
+    if (user.type === 'student') {
       axios
         .put(
-          `https://e-learn-bd.herokuapp.com/api/student/update_password/${user._id}`,
+          `https://e-modulfikih.herokuapp.com/api/student/update_password/${user._id}`,
           {
             userName: userName,
             currentPassword: currentPassword,
@@ -79,16 +79,16 @@ const GeneralSetting = () => {
         )
         .then((res) => {
           if (res.status === 200) {
-            Swal.fire("Good job!", "You change Your Password", "success");
+            Swal.fire('Good job!', 'You change Your Password', 'success');
           }
         })
         .catch((error) => {
           toast.error(error.response.data.msg);
         });
-    } else if (user.type === "instructor") {
+    } else if (user.type === 'instructor') {
       axios
         .put(
-          `https://e-learn-bd.herokuapp.com/api/instructor/update_password/${user._id}`,
+          `https://e-modulfikih.herokuapp.com/api/instructor/update_password/${user._id}`,
           {
             userName: userName,
             currentPassword: currentPassword,
@@ -101,17 +101,17 @@ const GeneralSetting = () => {
         )
         .then((res) => {
           if (res.status === 200) {
-            Swal.fire("Good job!", "You change Your Password", "success");
+            Swal.fire('Good job!', 'You change Your Password', 'success');
           }
         })
         .catch((error) => {
           toast.error(error.response.data.msg);
         });
     }
-    if (user.type === "parent") {
+    if (user.type === 'parent') {
       axios
         .put(
-          `https://e-learn-bd.herokuapp.com/api/parent/update_password/${user._id}`,
+          `https://e-modulfikih.herokuapp.com/api/parent/update_password/${user._id}`,
           {
             nid: user.nid,
             currentPassword: currentPassword,
@@ -124,7 +124,7 @@ const GeneralSetting = () => {
         )
         .then((res) => {
           if (res.status === 200) {
-            Swal.fire("Good job!", "You change Your Password", "success");
+            Swal.fire('Good job!', 'You change Your Password', 'success');
           }
         })
         .catch((error) => {
@@ -134,7 +134,7 @@ const GeneralSetting = () => {
   };
 
   const styleUpload = {
-    display: image ? "block" : "none",
+    display: image ? 'block' : 'none',
   };
 
   useEffect(() => {
@@ -155,7 +155,7 @@ const GeneralSetting = () => {
     >
       <Container>
         <div
-          style={{ color: "#645A53", display: "flex", alignItems: "center" }}
+          style={{ color: '#645A53', display: 'flex', alignItems: 'center' }}
         >
           <SettingsIcon />
           <h2> Change Password</h2>
@@ -207,8 +207,8 @@ const GeneralSetting = () => {
           fullWidth
           variant="contained"
           style={{
-            backgroundColor: "#EA5252",
-            textTransform: "none",
+            backgroundColor: '#EA5252',
+            textTransform: 'none',
           }}
           sx={{ mt: 5 }}
         >

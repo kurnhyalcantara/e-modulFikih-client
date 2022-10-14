@@ -1,16 +1,16 @@
-import { Button, Container, TextField } from "@mui/material";
-import React, { useContext, useEffect, useState } from "react";
-import { useStyle } from "./styles";
-import Accordion from "@mui/material/Accordion";
-import AccordionSummary from "@mui/material/AccordionSummary";
-import AccordionDetails from "@mui/material/AccordionDetails";
-import Typography from "@mui/material/Typography";
-import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import { GlobalState } from "../../../../../GlobalState";
-import { useParams } from "react-router-dom";
-import parse from "html-react-parser";
-import axios from "axios";
-import { toast } from "react-toastify";
+import { Button, Container, TextField } from '@mui/material';
+import React, { useContext, useEffect, useState } from 'react';
+import { useStyle } from './styles';
+import Accordion from '@mui/material/Accordion';
+import AccordionSummary from '@mui/material/AccordionSummary';
+import AccordionDetails from '@mui/material/AccordionDetails';
+import Typography from '@mui/material/Typography';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import { GlobalState } from '../../../../../GlobalState';
+import { useParams } from 'react-router-dom';
+import parse from 'html-react-parser';
+import axios from 'axios';
+import { toast } from 'react-toastify';
 
 const AllSubmission = () => {
   const classes = useStyle();
@@ -24,7 +24,7 @@ const AllSubmission = () => {
 
   const getTask = async () => {
     await axios
-      .get(`https://e-learn-bd.herokuapp.com/api/task_update/${taskId}`, {
+      .get(`https://e-modulfikih.herokuapp.com/api/task_update/${taskId}`, {
         headers: { Authorization: token },
       })
       .then((res) => {
@@ -38,7 +38,7 @@ const AllSubmission = () => {
   const handleMarking = async (id) => {
     try {
       await axios.put(
-        `https://e-learn-bd.herokuapp.com/api/mark_upload/${id}`,
+        `https://e-modulfikih.herokuapp.com/api/mark_upload/${id}`,
         {
           marks: mark,
         },
@@ -46,7 +46,7 @@ const AllSubmission = () => {
           headers: { Authorization: token },
         }
       );
-      toast.success("Uploaded");
+      toast.success('Uploaded');
       await getTask();
     } catch (error) {
       toast.error(error.response.data.msg);
@@ -57,7 +57,7 @@ const AllSubmission = () => {
     if (taskId) {
       const getTask = async () => {
         await axios
-          .get(`https://e-learn-bd.herokuapp.com/api/task_update/${taskId}`, {
+          .get(`https://e-modulfikih.herokuapp.com/api/task_update/${taskId}`, {
             headers: { Authorization: token },
           })
           .then((res) => {
@@ -85,7 +85,7 @@ const AllSubmission = () => {
             submissions?.map((item, i) => (
               <Accordion
                 key={i}
-                style={{ marginBottom: "6px", borderRadius: "5px" }}
+                style={{ marginBottom: '6px', borderRadius: '5px' }}
               >
                 <AccordionSummary expandIcon={<ExpandMoreIcon />}>
                   <div className={classes.headingWrapper}>
@@ -112,9 +112,9 @@ const AllSubmission = () => {
                     />
                     <Button
                       style={{
-                        backgroundColor: "#EA5252",
-                        padding: "18px 36px",
-                        fontSize: "18px",
+                        backgroundColor: '#EA5252',
+                        padding: '18px 36px',
+                        fontSize: '18px',
                       }}
                       className={classes.btn}
                       variant="contained"

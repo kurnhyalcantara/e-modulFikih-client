@@ -1,7 +1,12 @@
 {
-  "name": "student",
+  "name": "fiki-mtsbontouse-client",
   "version": "0.1.0",
   "private": true,
+  "description": "Project Web App for School Learning Purpose with Fikih Consentration in MTs As'adiyah Bontouse",
+  "author": {
+    "name": "Kurniawan",
+    "email": "kurnhyalcantara@gmail.com"
+  },
   "dependencies": {
     "@date-io/date-fns": "1.x",
     "@emotion/react": "^11.7.0",

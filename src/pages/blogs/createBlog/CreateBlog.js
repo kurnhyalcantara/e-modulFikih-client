@@ -7,13 +7,13 @@ import {
   MenuItem,
   Select,
   TextField,
-} from "@mui/material";
-import axios from "axios";
-import React, { useContext, useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
-import { toast } from "react-toastify";
-import Editor from "../../../components/editor/Editor";
-import { GlobalState } from "../../../GlobalState";
+} from '@mui/material';
+import axios from 'axios';
+import React, { useContext, useEffect, useState } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import Editor from '../../../components/editor/Editor';
+import { GlobalState } from '../../../GlobalState';
 
 const CreateBlog = () => {
   const global = useContext(GlobalState);
@@ -22,9 +22,9 @@ const CreateBlog = () => {
   const [loading, setLoading] = useState(false);
   const [blogCategory] = global.blogCategoryAPI.blogCategories;
 
-  const [title, setTitle] = useState("");
-  const [category, setCategory] = useState("");
-  const [description, setDescription] = useState("");
+  const [title, setTitle] = useState('');
+  const [category, setCategory] = useState('');
+  const [description, setDescription] = useState('');
 
   const { blogId } = useParams();
   const history = useNavigate();
@@ -34,7 +34,7 @@ const CreateBlog = () => {
       const getSingleBlog = async () => {
         await axios
           .get(
-            `https://e-learn-bd.herokuapp.com/api/instructor/blog/${blogId}`,
+            `https://e-modulfikih.herokuapp.com/api/instructor/blog/${blogId}`,
             { headers: { Authorization: token } }
           )
           .then((res) => {
@@ -45,9 +45,9 @@ const CreateBlog = () => {
               setDescription(data.description);
               setImage(data.images);
             } else {
-              setTitle("");
-              setDescription("");
-              setCategory("");
+              setTitle('');
+              setDescription('');
+              setCategory('');
               setImage(false);
             }
           });
@@ -62,7 +62,7 @@ const CreateBlog = () => {
       if (blogId) {
         setLoading(true);
         await axios.put(
-          `https://e-learn-bd.herokuapp.com/api/instructor/blog/${blogId}`,
+          `https://e-modulfikih.herokuapp.com/api/instructor/blog/${blogId}`,
           {
             title: title,
             category: category,
@@ -71,13 +71,13 @@ const CreateBlog = () => {
           },
           { headers: { Authorization: token } }
         );
-        toast.warn("Post Updated");
+        toast.warn('Post Updated');
         history(-1);
         setLoading(false);
       } else {
         setLoading(true);
         await axios.post(
-          "https://e-learn-bd.herokuapp.com/api/instructor/blog",
+          'https://e-modulfikih.herokuapp.com/api/instructor/blog',
           {
             title: title,
             category: category,
@@ -86,8 +86,8 @@ const CreateBlog = () => {
           },
           { headers: { Authorization: token } }
         );
-        toast.success("Blog Posted");
-        history("/blog");
+        toast.success('Blog Posted');
+        history('/blog');
         setLoading(false);
       }
     } catch (error) {
@@ -100,14 +100,14 @@ const CreateBlog = () => {
     try {
       const file = e.target.files[0];
       let formData = new FormData();
-      formData.append("file", file);
+      formData.append('file', file);
       setLoading(true);
       const res = await axios.post(
-        "https://e-learn-bd.herokuapp.com/api/upload",
+        'https://e-modulfikih.herokuapp.com/api/upload',
         formData,
         {
           headers: {
-            "content-type": "multipart/form-data",
+            'content-type': 'multipart/form-data',
             Authorization: token,
           },
         }
@@ -123,7 +123,7 @@ const CreateBlog = () => {
     try {
       setLoading(true);
       await axios.post(
-        "https://e-learn-bd.herokuapp.com/api/destroy",
+        'https://e-modulfikih.herokuapp.com/api/destroy',
         { public_id: image.public_id },
         {
           headers: { Authorization: token },
@@ -137,15 +137,15 @@ const CreateBlog = () => {
   };
 
   const styleUpload = {
-    display: image ? "block" : "none",
+    display: image ? 'block' : 'none',
   };
 
   return (
-    <div style={{ background: "#fff9f9" }}>
+    <div style={{ background: '#fff9f9' }}>
       {loading ? (
         <div className="loading">Loading&#8230;</div>
       ) : (
-        <Container maxWidth="xl" sx={{ p: 7, bgcolor: "#fff" }}>
+        <Container maxWidth="xl" sx={{ p: 7, bgcolor: '#fff' }}>
           <Grid container spacing={3}>
             <Grid item xs={12} sm={12} lg={12} md={12}>
               <div className="upload">
@@ -163,10 +163,10 @@ const CreateBlog = () => {
                   //   textColor="#676767"
                   //   logoSrc="/logo.png"
                   // />
-                  "loading"
+                  'loading'
                 ) : (
                   <div id="file_img" style={styleUpload}>
-                    <img src={image ? image.url : ""} alt="" />
+                    <img src={image ? image.url : ''} alt="" />
                     <span onClick={handleDestroy}>X</span>
                   </div>
                 )}
@@ -218,13 +218,13 @@ const CreateBlog = () => {
             sx={{ mt: 4, py: 1 }}
             onClick={handleSubmit}
             style={{
-              backgroundColor: "#EA5252",
-              textTransform: "none",
+              backgroundColor: '#EA5252',
+              textTransform: 'none',
             }}
             fullWidth
             variant="contained"
           >
-            {blogId ? "update" : "save"}
+            {blogId ? 'update' : 'save'}
           </Button>
         </Container>
       )}

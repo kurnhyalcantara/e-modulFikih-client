@@ -1,10 +1,10 @@
-import React, { createContext, useEffect, useState } from "react";
-import axios from "axios";
-import UserAPI from "./api/UserAPI";
-import CourseCategoriesAPI from "./api/CourseCategoryAPI";
-import CourseAPI from "./api/CourseAPI";
-import BlogCategoryAPI from "./api/BlogCategoryAPI";
-import BlogAPI from "./api/BlogAPI";
+import React, { createContext, useEffect, useState } from 'react';
+import axios from 'axios';
+import UserAPI from './api/UserAPI';
+import CourseCategoriesAPI from './api/CourseCategoryAPI';
+import CourseAPI from './api/CourseAPI';
+import BlogCategoryAPI from './api/BlogCategoryAPI';
+import BlogAPI from './api/BlogAPI';
 
 export const GlobalState = createContext();
 
@@ -13,7 +13,7 @@ export const DataProvider = ({ children }) => {
 
   const refreshToken = async () => {
     const res = await axios.get(
-      "https://e-learn-bd.herokuapp.com/api/refresh_token"
+      'https://e-modulfikih.herokuapp.com/api/refresh_token'
     );
     setToken(res.data.accessToken);
   };

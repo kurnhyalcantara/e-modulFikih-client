@@ -1,32 +1,32 @@
-import React, { useState } from "react";
-import TextField from "@mui/material/TextField";
-import { Button, Grid, MenuItem, Select, Typography } from "@mui/material";
-import { CountryDropdown, RegionDropdown } from "react-country-region-selector";
-import { Link } from "react-router-dom";
-import { useStyle } from "./styles";
-import axios from "axios";
-import { toast } from "react-toastify";
+import React, { useState } from 'react';
+import TextField from '@mui/material/TextField';
+import { Button, Grid, MenuItem, Select, Typography } from '@mui/material';
+import { CountryDropdown, RegionDropdown } from 'react-country-region-selector';
+import { Link } from 'react-router-dom';
+import { useStyle } from './styles';
+import axios from 'axios';
+import { toast } from 'react-toastify';
 
 const Registration = () => {
   const classes = useStyle();
 
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [userName, setUserName] = useState("");
-  const [mobile, setMobile] = useState("");
-  const [nid, setNid] = useState("");
-  const [password, setPassword] = useState("");
-  const [rePassword, setRePassword] = useState("");
-  const [role, setRole] = useState("student");
-  const [country, setCountry] = useState("");
-  const [region, setRegion] = useState("");
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
+  const [userName, setUserName] = useState('');
+  const [mobile, setMobile] = useState('');
+  const [nid, setNid] = useState('');
+  const [password, setPassword] = useState('');
+  const [rePassword, setRePassword] = useState('');
+  const [role, setRole] = useState('student');
+  const [country, setCountry] = useState('');
+  const [region, setRegion] = useState('');
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      if (role === "student") {
+      if (role === 'student') {
         await axios
-          .post("https://e-learn-bd.herokuapp.com/api/student/register", {
+          .post('https://e-modulfikih.herokuapp.com/api/student/register', {
             userName: userName,
             nid: nid,
             name: `${firstName} ${lastName}`,
@@ -38,14 +38,14 @@ const Registration = () => {
           .then((res) => {
             if (res.status === 200) {
               const { data } = res;
-              window.location.href = "/student_dashboard";
-              localStorage.setItem("AUTH", JSON.stringify(data));
-              toast.success("Registration Complete");
+              window.location.href = '/student_dashboard';
+              localStorage.setItem('AUTH', JSON.stringify(data));
+              toast.success('Registration Complete');
             }
           });
-      } else if (role === "parent") {
+      } else if (role === 'parent') {
         await axios
-          .post("https://e-learn-bd.herokuapp.com/api/parent/register", {
+          .post('https://e-modulfikih.herokuapp.com/api/parent/register', {
             nid: nid,
             name: `${firstName} ${lastName}`,
             mobile: mobile,
@@ -56,14 +56,14 @@ const Registration = () => {
           .then((res) => {
             if (res.status === 200) {
               const { data } = res;
-              window.location.href = "/parent_dashboard";
-              localStorage.setItem("AUTH", JSON.stringify(data));
-              toast.success("Registration Complete");
+              window.location.href = '/parent_dashboard';
+              localStorage.setItem('AUTH', JSON.stringify(data));
+              toast.success('Registration Complete');
             }
           });
-      } else if (role === "instructor") {
+      } else if (role === 'instructor') {
         await axios
-          .post("https://e-learn-bd.herokuapp.com/api/instructor/register", {
+          .post('https://e-modulfikih.herokuapp.com/api/instructor/register', {
             userName: userName,
             name: `${firstName} ${lastName}`,
             mobile: mobile,
@@ -74,9 +74,9 @@ const Registration = () => {
           .then((res) => {
             if (res.status === 200) {
               const { data } = res;
-              window.location.href = "/";
-              localStorage.setItem("AUTH", JSON.stringify(data));
-              toast.success("Registration Complete");
+              window.location.href = '/';
+              localStorage.setItem('AUTH', JSON.stringify(data));
+              toast.success('Registration Complete');
             }
           });
       }
@@ -102,9 +102,9 @@ const Registration = () => {
           }}
           value={role}
         >
-          <MenuItem value={"student"}>Student</MenuItem>
-          <MenuItem value={"parent"}>Parent</MenuItem>
-          <MenuItem value={"instructor"}>Instructor</MenuItem>
+          <MenuItem value={'student'}>Student</MenuItem>
+          <MenuItem value={'parent'}>Parent</MenuItem>
+          <MenuItem value={'instructor'}>Instructor</MenuItem>
         </Select>
         <Grid container spacing={2}>
           <Grid item md={6} sm={12}>
@@ -138,7 +138,7 @@ const Registration = () => {
             />
           </Grid>
         </Grid>
-        {role === "student" ? (
+        {role === 'student' ? (
           <TextField
             fullWidth
             id="outlined-basic"
@@ -153,7 +153,7 @@ const Registration = () => {
             sx={{ pb: 2 }}
           />
         ) : null}
-        {role === "instructor" ? (
+        {role === 'instructor' ? (
           <TextField
             fullWidth
             id="outlined-basic"
@@ -168,7 +168,7 @@ const Registration = () => {
             sx={{ pb: 2 }}
           />
         ) : null}
-        {role === "parent" ? (
+        {role === 'parent' ? (
           <TextField
             fullWidth
             id="outlined-basic"
@@ -183,7 +183,7 @@ const Registration = () => {
             sx={{ pb: 2 }}
           />
         ) : null}
-        {role === "student" ? (
+        {role === 'student' ? (
           <TextField
             fullWidth
             id="outlined-basic"
@@ -201,7 +201,7 @@ const Registration = () => {
         <TextField
           fullWidth
           id="outlined-basic"
-          label={role === "student" ? "Parents Mobile" : "Mobile Number"}
+          label={role === 'student' ? 'Parents Mobile' : 'Mobile Number'}
           variant="outlined"
           color="warning"
           onChange={(e) => {
@@ -253,9 +253,9 @@ const Registration = () => {
         />
         <Button
           style={{
-            backgroundColor: "#EA5252",
-            padding: "18px 36px",
-            fontSize: "18px",
+            backgroundColor: '#EA5252',
+            padding: '18px 36px',
+            fontSize: '18px',
           }}
           className={classes.btn}
           fullWidth
@@ -265,7 +265,7 @@ const Registration = () => {
           sign up
         </Button>
         <Typography className={classes.msg}>
-          Allready have an account?{" "}
+          Allready have an account?{' '}
           <Link className={classes.link} to="/login">
             Sign in
           </Link>

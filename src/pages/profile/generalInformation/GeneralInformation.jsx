@@ -1,12 +1,12 @@
-import { Button, Container, Grid, TextField } from "@mui/material";
-import React, { useContext, useEffect, useState } from "react";
-import ProfileLayout from "../ProfileLayout";
-import SaveIcon from "@mui/icons-material/Save";
-import AccountCircleIcon from "@mui/icons-material/AccountCircle";
-import { GlobalState } from "../../../GlobalState";
-import axios from "axios";
-import { toast } from "react-toastify";
-import Swal from "sweetalert2";
+import { Button, Container, Grid, TextField } from '@mui/material';
+import React, { useContext, useEffect, useState } from 'react';
+import ProfileLayout from '../ProfileLayout';
+import SaveIcon from '@mui/icons-material/Save';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import { GlobalState } from '../../../GlobalState';
+import axios from 'axios';
+import { toast } from 'react-toastify';
+import Swal from 'sweetalert2';
 
 const GeneralInformation = () => {
   const state = useContext(GlobalState);
@@ -14,9 +14,9 @@ const GeneralInformation = () => {
   const [user] = state.userAPI.user;
 
   // const [userName, setUserName] = useState("");
-  const [name, setName] = useState("");
-  const [mobile, setMobile] = useState("");
-  const [address, setAddress] = useState("");
+  const [name, setName] = useState('');
+  const [mobile, setMobile] = useState('');
+  const [address, setAddress] = useState('');
   const [image, setImage] = useState(false);
   const [loading, setLoading] = useState(false);
 
@@ -25,14 +25,14 @@ const GeneralInformation = () => {
     try {
       const file = e.target.files[0];
       let formData = new FormData();
-      formData.append("file", file);
+      formData.append('file', file);
       setLoading(true);
       const res = await axios.post(
-        "https://e-learn-bd.herokuapp.com/api/upload",
+        'https://e-modulfikih.herokuapp.com/api/upload',
         formData,
         {
           headers: {
-            "content-type": "multipart/form-data",
+            'content-type': 'multipart/form-data',
             Authorization: token,
           },
         }
@@ -48,7 +48,7 @@ const GeneralInformation = () => {
     try {
       setLoading(true);
       await axios.post(
-        "https://e-learn-bd.herokuapp.com/api/destroy",
+        'https://e-modulfikih.herokuapp.com/api/destroy',
         { public_id: image.public_id },
         {
           headers: { Authorization: token },
@@ -62,14 +62,14 @@ const GeneralInformation = () => {
   };
 
   const styleUpload = {
-    display: image ? "block" : "none",
+    display: image ? 'block' : 'none',
   };
 
   const handleSubmit = async () => {
-    if (user.type === "student") {
+    if (user.type === 'student') {
       axios
         .put(
-          `https://e-learn-bd.herokuapp.com/api/student/update_profile/${user._id}`,
+          `https://e-modulfikih.herokuapp.com/api/student/update_profile/${user._id}`,
           {
             // userName: userName,
             name: name,
@@ -83,16 +83,16 @@ const GeneralInformation = () => {
         )
         .then((res) => {
           if (res.status === 200) {
-            Swal.fire("Good job!", "You Update Your Profile", "success");
+            Swal.fire('Good job!', 'You Update Your Profile', 'success');
           }
         })
         .catch((error) => {
           toast.error(error.response.data.msg);
         });
-    } else if (user.type === "instructor") {
+    } else if (user.type === 'instructor') {
       axios
         .put(
-          `https://e-learn-bd.herokuapp.com/api/instructor/update_profile/${user._id}`,
+          `https://e-modulfikih.herokuapp.com/api/instructor/update_profile/${user._id}`,
           {
             // userName: userName,
             name: name,
@@ -106,16 +106,16 @@ const GeneralInformation = () => {
         )
         .then((res) => {
           if (res.status === 200) {
-            Swal.fire("Good job!", "You Update Your Profile", "success");
+            Swal.fire('Good job!', 'You Update Your Profile', 'success');
           }
         })
         .catch((error) => {
           toast.error(error.response.data.msg);
         });
-    } else if (user.type === "parent") {
+    } else if (user.type === 'parent') {
       axios
         .put(
-          `https://e-learn-bd.herokuapp.com/api/parent/update_profile/${user._id}`,
+          `https://e-modulfikih.herokuapp.com/api/parent/update_profile/${user._id}`,
           {
             // userName: userName,
             name: name,
@@ -129,7 +129,7 @@ const GeneralInformation = () => {
         )
         .then((res) => {
           if (res.status === 200) {
-            Swal.fire("Good job!", "You Update Your Profile", "success");
+            Swal.fire('Good job!', 'You Update Your Profile', 'success');
           }
         })
         .catch((error) => {
@@ -145,9 +145,9 @@ const GeneralInformation = () => {
       setAddress(user.address);
       setImage(user.image);
     } else {
-      setName("");
-      setMobile("");
-      setAddress("");
+      setName('');
+      setMobile('');
+      setAddress('');
       setImage(false);
     }
   }, [user]);
@@ -162,7 +162,7 @@ const GeneralInformation = () => {
     >
       <Container>
         <div
-          style={{ color: "#645A53", display: "flex", alignItems: "center" }}
+          style={{ color: '#645A53', display: 'flex', alignItems: 'center' }}
         >
           <AccountCircleIcon />
           <h2> Profile</h2>
@@ -224,8 +224,8 @@ const GeneralInformation = () => {
           fullWidth
           variant="contained"
           style={{
-            backgroundColor: "#EA5252",
-            textTransform: "none",
+            backgroundColor: '#EA5252',
+            textTransform: 'none',
           }}
           sx={{ mt: 5 }}
         >

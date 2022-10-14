@@ -5,14 +5,14 @@ import {
   Container,
   Grid,
   Typography,
-} from "@mui/material";
-import Avatar from "@mui/material/Avatar";
-import { Box } from "@mui/system";
-import axios from "axios";
-import React, { useContext, useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-import { GlobalState } from "../../GlobalState.js";
-import { useStyles } from "./styles.js";
+} from '@mui/material';
+import Avatar from '@mui/material/Avatar';
+import { Box } from '@mui/system';
+import axios from 'axios';
+import React, { useContext, useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
+import { GlobalState } from '../../GlobalState.js';
+import { useStyles } from './styles.js';
 
 const ParentDashboard = () => {
   const classes = useStyles();
@@ -23,7 +23,7 @@ const ParentDashboard = () => {
   useEffect(() => {
     const getChild = async () => {
       await axios
-        .get("https://e-learn-bd.herokuapp.com/api/parent/child/", {
+        .get('https://e-modulfikih.herokuapp.com/api/parent/child/', {
           headers: { Authorization: token },
         })
         .then((res) => {
@@ -49,13 +49,13 @@ const ParentDashboard = () => {
                 <Box key={item?._id}>
                   <Card
                     className={classes.card}
-                    style={{ background: "#2196f3", color: "white" }}
+                    style={{ background: '#2196f3', color: 'white' }}
                   >
                     <CardActionArea>
                       <CardContent>
                         <Avatar src="/broken-image.jpg" sx={{ mb: 5 }} />
                         <Typography
-                          sx={{ textTransform: "capitalize", color: "#fff" }}
+                          sx={{ textTransform: 'capitalize', color: '#fff' }}
                           variant="h5"
                           component={Link}
                           to={`/child_course/${item?._id}`}

@@ -1,5 +1,5 @@
-import { useEffect, useState } from "react";
-import axios from "axios";
+import { useEffect, useState } from 'react';
+import axios from 'axios';
 
 function BlogAPI() {
   const [loading, setLoading] = useState(false);
@@ -12,7 +12,7 @@ function BlogAPI() {
     const getBlogs = async () => {
       setLoading(true);
       const res = await axios.get(
-        `https://e-learn-bd.herokuapp.com/api/admin/blog?limit=${page * 6}`
+        `https://e-modulfikih.herokuapp.com/api/admin/blog?limit=${page * 6}`
       );
       setBlogs(res.data.blogs);
       setResult(res.data.result);

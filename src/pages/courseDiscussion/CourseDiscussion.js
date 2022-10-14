@@ -1,4 +1,4 @@
-import StarBorder from "@mui/icons-material/StarBorder";
+import StarBorder from '@mui/icons-material/StarBorder';
 import {
   Button,
   Container,
@@ -6,14 +6,14 @@ import {
   ListItemIcon,
   ListItemText,
   TextField,
-} from "@mui/material";
-import { Box } from "@mui/system";
-import axios from "axios";
-import React, { useContext, useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-import { toast } from "react-toastify";
-import { GlobalState } from "../../GlobalState";
-import { useStyle } from "./styles";
+} from '@mui/material';
+import { Box } from '@mui/system';
+import axios from 'axios';
+import React, { useContext, useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import { GlobalState } from '../../GlobalState';
+import { useStyle } from './styles';
 
 const CourseDiscussion = () => {
   const classes = useStyle();
@@ -21,7 +21,7 @@ const CourseDiscussion = () => {
   const [token] = state.token;
   const [user] = state.userAPI.user;
   const [discussion, setDiscussion] = useState({});
-  const [reply, setReply] = useState("");
+  const [reply, setReply] = useState('');
   const { discussionId } = useParams();
   const [loading, setLoading] = useState(false);
 
@@ -31,7 +31,7 @@ const CourseDiscussion = () => {
         setLoading(true);
         await axios
           .get(
-            `https://e-learn-bd.herokuapp.com/api/discussion/single/${discussionId}`,
+            `https://e-modulfikih.herokuapp.com/api/discussion/single/${discussionId}`,
             {
               headers: { Authorization: token },
             }
@@ -52,7 +52,7 @@ const CourseDiscussion = () => {
     try {
       setLoading(true);
       await axios.put(
-        `https://e-learn-bd.herokuapp.com/api/discussion/single/${discussionId}`,
+        `https://e-modulfikih.herokuapp.com/api/discussion/single/${discussionId}`,
         {
           answer: reply,
           user: user,
@@ -61,7 +61,7 @@ const CourseDiscussion = () => {
           headers: { Authorization: token },
         }
       );
-      toast.success("Submitted");
+      toast.success('Submitted');
       setLoading(false);
     } catch (error) {
       toast.error(error.response.data.msg);
@@ -99,8 +99,8 @@ const CourseDiscussion = () => {
               fullWidth
               variant="contained"
               style={{
-                backgroundColor: "#EA5252",
-                textTransform: "none",
+                backgroundColor: '#EA5252',
+                textTransform: 'none',
               }}
               sx={{ mt: 5 }}
               onClick={submitReply}
@@ -115,9 +115,9 @@ const CourseDiscussion = () => {
               <Box
                 key={item._id}
                 sx={{
-                  background: "#fff",
-                  margin: "20px 0",
-                  borderRadius: "6px",
+                  background: '#fff',
+                  margin: '20px 0',
+                  borderRadius: '6px',
                 }}
               >
                 <ListItemButton>
@@ -130,8 +130,8 @@ const CourseDiscussion = () => {
                   />
                   <ListItemText
                     sx={{
-                      display: "flex",
-                      justifyContent: "end",
+                      display: 'flex',
+                      justifyContent: 'end',
                     }}
                     primary={`Posted ${new Date(
                       item?.createdAt

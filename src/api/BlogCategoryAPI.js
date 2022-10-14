@@ -1,5 +1,5 @@
-import axios from "axios";
-import { useEffect, useState } from "react";
+import axios from 'axios';
+import { useEffect, useState } from 'react';
 
 function BlogCategoryAPI() {
   const [categories, setCategories] = useState([]);
@@ -7,7 +7,7 @@ function BlogCategoryAPI() {
 
   const getCategory = async () => {
     const res = await axios.get(
-      "https://e-learn-bd.herokuapp.com/api/admin/blog_cetegory"
+      'https://e-modulfikih.herokuapp.com/api/admin/blog_cetegory'
     );
     setCategories(res.data.categories);
   };

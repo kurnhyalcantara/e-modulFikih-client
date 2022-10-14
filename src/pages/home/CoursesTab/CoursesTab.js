@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { useStyle } from "./styles";
+import React, { useEffect, useState } from 'react';
+import { useStyle } from './styles';
 import {
   Card,
   CardActionArea,
@@ -9,14 +9,14 @@ import {
   Grow,
   Skeleton,
   Typography,
-} from "@mui/material";
-import axios from "axios";
-import Box from "@mui/material/Box";
-import Tab from "@mui/material/Tab";
-import TabContext from "@mui/lab/TabContext";
-import TabList from "@mui/lab/TabList";
-import TabPanel from "@mui/lab/TabPanel";
-import Cards from "../../../components/Cards/Card";
+} from '@mui/material';
+import axios from 'axios';
+import Box from '@mui/material/Box';
+import Tab from '@mui/material/Tab';
+import TabContext from '@mui/lab/TabContext';
+import TabList from '@mui/lab/TabList';
+import TabPanel from '@mui/lab/TabPanel';
+import Cards from '../../../components/Cards/Card';
 
 const CoursesTab = () => {
   const classes = useStyle();
@@ -30,7 +30,7 @@ const CoursesTab = () => {
     const getCourses = async () => {
       setLoading(true);
       await axios
-        .get("https://e-learn-bd.herokuapp.com/api/all/course")
+        .get('https://e-modulfikih.herokuapp.com/api/all/course')
         .then((res) => {
           if (res.status === 200) {
             const { courses } = res.data;
@@ -54,7 +54,7 @@ const CoursesTab = () => {
         {loading ? (
           <Grow in>
             <Grid container spacing={4} sx={{ mb: 10, mt: 5 }}>
-              {["1", "2", "3", "4"].map((item, i) => (
+              {['1', '2', '3', '4'].map((item, i) => (
                 <Grid item xs={12} sm={6} md={4} lg={3} key={i}>
                   <Card>
                     <CardActionArea>
@@ -79,7 +79,7 @@ const CoursesTab = () => {
           </Grow>
         ) : (
           <TabContext value={value}>
-            <Box sx={{ borderBottom: 1, borderColor: "white" }}>
+            <Box sx={{ borderBottom: 1, borderColor: 'white' }}>
               <TabList
                 variant="scrollable"
                 className={classes.tabcontainer}
@@ -90,7 +90,7 @@ const CoursesTab = () => {
                 {tabList &&
                   tabList.map((item, i) => (
                     <Tab
-                      sx={{ textTransform: "capitalize" }}
+                      sx={{ textTransform: 'capitalize' }}
                       label={item}
                       key={i}
                       value={i}
