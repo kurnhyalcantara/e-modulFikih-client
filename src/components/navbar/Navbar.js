@@ -27,6 +27,8 @@ const Navbar = () => {
   const [search, setSearch] = state.courseAPI.search;
   const [user] = state.userAPI.user;
   const history = useNavigate();
+  const logo =
+    'https://firebasestorage.googleapis.com/v0/b/fikih-mtsbontouse.appspot.com/o/Icons%2Ficon-72x72.png?alt=media&token=7c559bc1-872f-4ba2-b3bd-5d8c0cee5c29';
 
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   // const [anchorElUser, setAnchorElUser] = React.useState(null);
@@ -76,7 +78,12 @@ const Navbar = () => {
 
   return (
     <div className={classes.root}>
-      <AppBar elevation={0} color="inherit" position="static">
+      <AppBar
+        className={classes.appBar}
+        elevation={0}
+        color="inherit"
+        position="fixed"
+      >
         <Container className={classes.root} maxWidth="xl">
           <Toolbar disableGutters>
             <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
@@ -115,7 +122,7 @@ const Navbar = () => {
                     to="/courses"
                     component={Link}
                   >
-                    All Courses
+                    Semua Materi
                   </Typography>
                 </MenuItem>
                 <MenuItem onClick={handleCloseNavMenu}>
@@ -126,40 +133,71 @@ const Navbar = () => {
                     to="/blogs"
                     component={Link}
                   >
-                    Blogs
-                  </Typography>
-                </MenuItem>
-                <MenuItem onClick={handleCloseNavMenu}>
-                  <Typography
-                    textAlign="center"
-                    className={classes.menubutton}
-                    color="inherit"
-                  >
-                    Jobs
+                    Blog
                   </Typography>
                 </MenuItem>
               </Menu>
             </Box>
             <Box
               sx={{
-                flexGrow: 1,
+                alignItems: 'center',
+                display: { xs: 'flex', md: 'none' },
+              }}
+            >
+              <Link to="/">
+                <img
+                  style={{ padding: '12px', width: '40px', height: '40px' }}
+                  src={logo}
+                  alt="logo"
+                />
+              </Link>
+              <Typography
+                color="#006f59"
+                fontWeight="700"
+                fontSize="14px"
+                fontFamily="Rubik"
+                to="/"
+                component={Link}
+              >
+                Fikih MTs Bontouse
+              </Typography>
+            </Box>
+            {isLogged ? (
+              <Fragment>
+                <AccountMenu logOut={logOut} />
+                {user.type === 'instructor' && user.status === true ? (
+                  <Sidebar drawer={drawer} toggleDrawer={toggleDrawer} />
+                ) : null}
+              </Fragment>
+            ) : (
+              <Box
+                className={classes.signin}
+                sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}
+              >
+                <Button color="inherit" component={Link} to="/login">
+                  Login
+                </Button>
+              </Box>
+            )}
+            <Box
+              sx={{
                 alignItems: 'center',
                 display: { xs: 'none', md: 'flex' },
               }}
             >
-              {/* <Link to="/">
-                <img src={logo} alt="logo" />
-              </Link> */}
+              <Link to="/">
+                <img style={{ padding: '12px' }} src={logo} alt="logo" />
+              </Link>
               <Typography
                 className={classes.menubutton}
-                color="red"
+                color="#006f59"
                 fontWeight="700"
                 fontSize="25px"
-                fontFamily="URW Chancery L, cursive"
+                fontFamily="Rubik"
                 to="/"
                 component={Link}
               >
-                E-Learn
+                Fikih MTs Bontouse
               </Typography>
               <Typography
                 className={classes.menubutton}
@@ -167,13 +205,13 @@ const Navbar = () => {
                 to="/courses"
                 component={Link}
               >
-                All Courses
+                Semua Materi
               </Typography>
 
               <div className={classes.serach}>
                 <InputBase
                   className={classes.hints}
-                  placeholder="Search Here"
+                  placeholder="Cari materi"
                   onChange={handleChange}
                 />
               </div>
@@ -183,16 +221,16 @@ const Navbar = () => {
                 to="/blogs"
                 component={Link}
               >
-                Blogs
+                Blog
               </Typography>
-              {/*<Typography
+              <Typography
                 // className={classes.menubutton}
                 color="inherit"
                 component={Link}
                 to="/job_view"
               >
                 Jobs
-              </Typography>*/}
+              </Typography>
             </Box>
             {/* <Sidebar drawer={drawer} toggleDrawer={toggleDrawer} /> */}
 
@@ -209,7 +247,7 @@ const Navbar = () => {
                 sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}
               >
                 <Button color="inherit" component={Link} to="/login">
-                  Sign In
+                  Masuk
                 </Button>
                 <Button
                   className={classes.signup}
@@ -217,7 +255,7 @@ const Navbar = () => {
                   component={Link}
                   to="/registration"
                 >
-                  Sign Up
+                  Daftar
                 </Button>
               </Box>
             )}

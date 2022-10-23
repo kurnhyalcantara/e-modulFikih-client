@@ -12,7 +12,10 @@ a {
 }
 
 a:hover {
-  color: #ea5252;
+  color: #019275;
+}
+video {
+  color: #f1fffb;
 }
 
 // .home_tab {
@@ -81,7 +84,7 @@ a:hover {
   border-radius: 100%;
 }
 #file_up::before {
-  content: "+";
+  content: '+';
   position: absolute;
   width: 100%;
   height: 100%;
@@ -95,7 +98,7 @@ a:hover {
   margin: auto;
 }
 #user_file_up::before {
-  content: "+";
+  content: '+';
   position: absolute;
   width: 100%;
   height: 100%;
@@ -193,7 +196,7 @@ a:hover {
 
 /* Transparent Overlay */
 .loading:before {
-  content: "";
+  content: '';
   display: block;
   position: fixed;
   top: 0;
@@ -219,7 +222,7 @@ a:hover {
 }
 
 .loading:not(:required):after {
-  content: "";
+  content: '';
   display: block;
   font-size: 10px;
   width: 1em;
