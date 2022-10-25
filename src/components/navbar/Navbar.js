@@ -1,16 +1,13 @@
 /* eslint-disable no-unused-vars */
-import MenuIcon from '@mui/icons-material/Menu';
 import {
   AppBar,
   Box,
   Button,
   Container,
-  IconButton,
   InputBase,
-  Menu,
-  MenuItem,
   Toolbar,
   Typography,
+  Divider,
 } from '@mui/material';
 import axios from 'axios';
 import React, { Fragment, useContext, useState } from 'react';
@@ -79,64 +76,15 @@ const Navbar = () => {
   return (
     <div className={classes.root}>
       <AppBar
-        className={classes.appBar}
         elevation={0}
         color="inherit"
         position="fixed"
+        sx={{ filter: 'drop-shadow(0 2px 15px rgba(0,14,61,.08))' }}
       >
-        <Container className={classes.root} maxWidth="xl">
-          <Toolbar disableGutters>
+        <Container maxWidth="xl">
+          <Toolbar disableGutters sx={{ justifyContent: 'center' }}>
             <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
-              <IconButton
-                size="large"
-                aria-label="account of current user"
-                aria-controls="menu-appbar"
-                aria-haspopup="true"
-                onClick={handleOpenNavMenu}
-                color="inherit"
-              >
-                <MenuIcon />
-              </IconButton>
-              <Menu
-                id="menu-appbar"
-                anchorEl={anchorElNav}
-                anchorOrigin={{
-                  vertical: 'bottom',
-                  horizontal: 'left',
-                }}
-                keepMounted
-                transformOrigin={{
-                  vertical: 'top',
-                  horizontal: 'left',
-                }}
-                open={Boolean(anchorElNav)}
-                onClose={handleCloseNavMenu}
-                sx={{
-                  display: { xs: 'block', md: 'none' },
-                }}
-              >
-                <MenuItem onClick={handleCloseNavMenu}>
-                  <Typography
-                    className={classes.menubutton}
-                    color="inherit"
-                    to="/courses"
-                    component={Link}
-                  >
-                    Semua Materi
-                  </Typography>
-                </MenuItem>
-                <MenuItem onClick={handleCloseNavMenu}>
-                  <Typography
-                    textAlign="start"
-                    className={classes.menubutton}
-                    color="inherit"
-                    to="/blogs"
-                    component={Link}
-                  >
-                    Blog
-                  </Typography>
-                </MenuItem>
-              </Menu>
+              <Sidebar drawer={drawer} toggleDrawer={toggleDrawer} />
             </Box>
             <Box
               sx={{
@@ -162,7 +110,7 @@ const Navbar = () => {
                 Fikih MTs Bontouse
               </Typography>
             </Box>
-            {isLogged ? (
+            {/* {isLogged ? (
               <Fragment>
                 <AccountMenu logOut={logOut} />
                 {user.type === 'instructor' && user.status === true ? (
@@ -178,29 +126,31 @@ const Navbar = () => {
                   Login
                 </Button>
               </Box>
-            )}
+            )} */}
             <Box
               sx={{
                 alignItems: 'center',
+                justifyContent: 'center',
                 display: { xs: 'none', md: 'flex' },
+                padding: '12px',
               }}
             >
               <Link to="/">
-                <img style={{ padding: '12px' }} src={logo} alt="logo" />
+                <img src={logo} alt="logo" />
               </Link>
               <Typography
-                className={classes.menubutton}
+                className={classes.menuButton}
                 color="#006f59"
-                fontWeight="700"
+                fontWeight="900"
                 fontSize="25px"
-                fontFamily="Rubik"
                 to="/"
                 component={Link}
               >
                 Fikih MTs Bontouse
               </Typography>
+              <Divider orientation="vertical" variant="middle" flexItem />
               <Typography
-                className={classes.menubutton}
+                className={classes.menuButton}
                 color="inherit"
                 to="/courses"
                 component={Link}
@@ -208,7 +158,7 @@ const Navbar = () => {
                 Semua Materi
               </Typography>
 
-              <div className={classes.serach}>
+              <div className={classes.search}>
                 <InputBase
                   className={classes.hints}
                   placeholder="Cari materi"
@@ -216,7 +166,7 @@ const Navbar = () => {
                 />
               </div>
               <Typography
-                className={classes.menubutton}
+                className={classes.menuButton}
                 color="inherit"
                 to="/blogs"
                 component={Link}
@@ -224,41 +174,31 @@ const Navbar = () => {
                 Blog
               </Typography>
               <Typography
-                // className={classes.menubutton}
+                className={classes.menuButton}
                 color="inherit"
                 component={Link}
                 to="/job_view"
               >
-                Jobs
+                Creator
               </Typography>
-            </Box>
-            {/* <Sidebar drawer={drawer} toggleDrawer={toggleDrawer} /> */}
-
-            {isLogged ? (
-              <Fragment>
-                <AccountMenu logOut={logOut} />
-                {user.type === 'instructor' && user.status === true ? (
-                  <Sidebar drawer={drawer} toggleDrawer={toggleDrawer} />
-                ) : null}
-              </Fragment>
-            ) : (
-              <Box
-                className={classes.signin}
-                sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}
-              >
-                <Button color="inherit" component={Link} to="/login">
-                  Masuk
-                </Button>
+              {isLogged ? (
+                <Fragment>
+                  <AccountMenu logOut={logOut} />
+                  {user.type === 'instructor' && user.status === true ? (
+                    <Sidebar drawer={drawer} toggleDrawer={toggleDrawer} />
+                  ) : null}
+                </Fragment>
+              ) : (
                 <Button
-                  className={classes.signup}
+                  className={classes.signin}
                   color="inherit"
                   component={Link}
-                  to="/registration"
+                  to="/login"
                 >
-                  Daftar
+                  Masuk
                 </Button>
-              </Box>
-            )}
+              )}
+            </Box>
           </Toolbar>
         </Container>
       </AppBar>

@@ -5,13 +5,14 @@ export const useStyle = makeStyles({
     flexGrow: 1,
     color: '#5B6A72',
     backgroundColor: 'white',
-    fontFamily: 'Rubik',
-    fontSize: '14px',
     lineHeight: '21px',
   },
-  serach: {
+  menuButton: {
+    padding: '0 35px',
+  },
+  search: {
     border: '1px solid #C6C6C6',
-    borderRadius: '40px',
+    borderRadius: '4px',
     width: '270px',
     height: '20px',
     margin: '7px',
@@ -21,34 +22,15 @@ export const useStyle = makeStyles({
   },
   hints: {
     width: '100%',
-    padding: '11px 15px',
+    padding: '0 12px',
   },
   signin: {
-    color: '#5B6A72',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'right',
-    gap: '10px',
-  },
-  signinbtn: {
-    backgroundColor: '#F2F2F2',
-    width: '64px',
-    height: '30px',
-    borderRadius: '6px',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  signup: {
-    width: '77px',
-    height: '30px',
-    borderRadius: '6px',
-    color: '#019275 !important',
-    display: 'flex',
-    backgroundColor: '#f1fffb !important',
-    alignItems: 'center',
-    fontSize: '14px',
-    justifyContent: 'center',
+    color: '#006f59 !important',
+    border: '1px solid #dee2e6 !important',
+    borderRadius: '30px !important',
+    padding: '1.5rem !important',
+    height: '48px',
+    fontWeight: '700 !important',
   },
   logout: {
     width: '100px',
@@ -60,11 +42,5 @@ export const useStyle = makeStyles({
     alignItems: 'center',
     fontSize: '14px',
     justifyContent: 'center',
-  },
-  menubutton: {
-    padding: '0 35px',
-  },
-  appBar: {
-    filter: 'drop-shadow(0 2px 15px rgba(0,14,61,.08))',
   },
 });
