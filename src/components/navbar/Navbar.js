@@ -79,11 +79,14 @@ const Navbar = () => {
         elevation={0}
         color="inherit"
         position="fixed"
-        sx={{ filter: 'drop-shadow(0 2px 15px rgba(0,14,61,.08))' }}
+        sx={{ filter: 'drop-shadow(0 8px 15px rgba(0,14,61,.08))' }}
       >
         <Container maxWidth="xl">
-          <Toolbar disableGutters sx={{ justifyContent: 'center' }}>
-            <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
+          <Toolbar
+            disableGutters
+            sx={{ justifyContent: { xs: 'flex-start', md: 'center' } }}
+          >
+            <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
               <Sidebar drawer={drawer} toggleDrawer={toggleDrawer} />
             </Box>
             <Box
@@ -101,36 +104,17 @@ const Navbar = () => {
               </Link>
               <Typography
                 color="#006f59"
-                fontWeight="700"
-                fontSize="14px"
-                fontFamily="Rubik"
+                fontWeight="900"
+                fontSize="20px"
                 to="/"
                 component={Link}
               >
                 Fikih MTs Bontouse
               </Typography>
             </Box>
-            {/* {isLogged ? (
-              <Fragment>
-                <AccountMenu logOut={logOut} />
-                {user.type === 'instructor' && user.status === true ? (
-                  <Sidebar drawer={drawer} toggleDrawer={toggleDrawer} />
-                ) : null}
-              </Fragment>
-            ) : (
-              <Box
-                className={classes.signin}
-                sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}
-              >
-                <Button color="inherit" component={Link} to="/login">
-                  Login
-                </Button>
-              </Box>
-            )} */}
             <Box
               sx={{
                 alignItems: 'center',
-                justifyContent: 'center',
                 display: { xs: 'none', md: 'flex' },
                 padding: '12px',
               }}
@@ -155,7 +139,7 @@ const Navbar = () => {
                 to="/courses"
                 component={Link}
               >
-                Semua Materi
+                Materi
               </Typography>
 
               <div className={classes.search}>
