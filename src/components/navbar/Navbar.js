@@ -16,9 +16,11 @@ import { GlobalState } from '../../GlobalState';
 import AccountMenu from '../account_menu/AccountMenu';
 import Sidebar from '../sidebar/Sidebar';
 import { useStyle } from './styles';
+import { useTheme } from '@mui/material/styles';
 
 const Navbar = () => {
   const classes = useStyle();
+  const theme = useTheme();
   const state = useContext(GlobalState);
   const [isLogged, setIsLogged] = state.userAPI.isLogged;
   const [search, setSearch] = state.courseAPI.search;
@@ -103,7 +105,7 @@ const Navbar = () => {
                 />
               </Link>
               <Typography
-                color="#006f59"
+                color={theme.palette.primary.main}
                 fontWeight="900"
                 fontSize="20px"
                 to="/"
@@ -124,7 +126,7 @@ const Navbar = () => {
               </Link>
               <Typography
                 className={classes.menuButton}
-                color="#006f59"
+                color={theme.palette.primary.main}
                 fontWeight="900"
                 fontSize="25px"
                 to="/"
