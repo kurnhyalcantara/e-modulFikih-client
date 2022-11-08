@@ -1,43 +1,73 @@
 /* eslint-disable no-unused-vars */
-import { Container, Grid, InputBase, Button, IconButton } from "@mui/material";
-import React, { useContext, useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { GlobalState } from "../../GlobalState";
-import CarouselCards from "./CarouselCards/CarouselCards";
-import CoursesTab from "./CoursesTab/CoursesTab";
-import { useStyle } from "./styles";
+import {
+  Container,
+  Grid,
+  InputBase,
+  Button,
+  IconButton,
+  Typography,
+  Box,
+  useTheme,
+} from '@mui/material';
+import React, { useContext, useEffect, useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { GlobalState } from '../../GlobalState';
+import CarouselCards from './CarouselCards/CarouselCards';
+import CoursesTab from './CoursesTab/CoursesTab';
+import { useStyle } from './styles';
 
 const Home = () => {
   const classes = useStyle();
+  const theme = useTheme();
   const state = useContext(GlobalState);
-  const [find, setFind] = useState("");
+  const [find, setFind] = useState('');
   const [search, setSearch] = state.courseAPI.search;
   const history = useNavigate();
 
   const handleSearch = () => {
-    history("/courses");
+    history('/courses');
     setSearch(find);
   };
 
   useEffect(() => {
-    setSearch("");
+    setSearch('');
   }, [setSearch]);
 
   return (
-    <div className={classes.root}>
+    <Box
+      className={classes.root}
+      sx={{ marginTop: { xs: '48px', md: 'inherit' } }}
+    >
       {/* Main Banner  */}
       <Container maxWidth="xl">
         {/* <Container maxWidth="xl"> */}
         <Grid className={classes.banner} container spacing={2}>
           <Grid item xs={12} md={6}>
             <div>
-              <span className={classes.headertxt}>
-                Learn for the sake of the future!
-              </span>
-              <span className={classes.headerbodytxt}>
-                Learn valuable, practical skills for as low as $12.99. Sale ends
-                tomorrow!
-              </span>
+              <Typography
+                sx={{ fontSize: { xs: '2.5rem', md: '3.5rem' } }}
+                fontWeight="900"
+                display="flex"
+                color={theme.palette.primary.main}
+              >
+                Gapai Mimpimu
+              </Typography>
+              <Typography
+                sx={{ fontSize: { xs: '2.5rem', md: '3.5rem' } }}
+                fontWeight="900"
+                display="flex"
+                color={theme.palette.common.black}
+              >
+                Belajar Dimanapun
+              </Typography>
+              <Typography
+                color={theme.palette.text.primary}
+                maxWidth="363px"
+                marginY={1.5}
+              >
+                Modul Pembelajaran Fikih Berbasis <em>Progressive Web Apps </em>
+                untuk siswa MTs As'adiyah No. 2 Bontouse
+              </Typography>
               <div className={classes.serach}>
                 <InputBase
                   className={classes.hints}
@@ -191,12 +221,12 @@ const Home = () => {
                 className={classes.clkbtn}
                 sx={{
                   borderRadius: 28,
-                  backgroundColor: "#EA5252",
-                  width: "100%",
-                  padding: "5px 0 5px 0",
+                  backgroundColor: '#EA5252',
+                  width: '100%',
+                  padding: '5px 0 5px 0',
                 }}
               >
-                {" "}
+                {' '}
                 {/* <span className={classes.buttontxt}> Start Elearn Business</span> */}
                 <span className={classes.buttontxt}> Start Learning</span>
               </Button>
@@ -222,12 +252,12 @@ const Home = () => {
                 className={classes.clkbtn}
                 sx={{
                   borderRadius: 28,
-                  backgroundColor: "#EA5252",
-                  width: "100%",
-                  padding: "5px 0 5px 0",
+                  backgroundColor: '#EA5252',
+                  width: '100%',
+                  padding: '5px 0 5px 0',
                 }}
               >
-                {" "}
+                {' '}
                 <span className={classes.buttontxt}> Start Teaching Today</span>
               </Button>
             </div>
@@ -269,14 +299,14 @@ const Home = () => {
                 className={classes.clkbtn}
                 sx={{
                   borderRadius: 28,
-                  backgroundColor: "#EA5252",
-                  width: "100%",
-                  padding: "5px 0 5px 0",
+                  backgroundColor: '#EA5252',
+                  width: '100%',
+                  padding: '5px 0 5px 0',
                 }}
               >
-                {" "}
+                {' '}
                 <span className={classes.buttontxt}>
-                  {" "}
+                  {' '}
                   Start Elearn Business
                 </span>
               </Button>
@@ -429,7 +459,7 @@ const Home = () => {
         </div>
       </div>
       {/* footer  */}
-    </div>
+    </Box>
   );
 };
 

@@ -28,5 +28,8 @@ export const useTheme = createTheme({
       secondary: 'rgba(0, 0, 0, 0.48)',
       disabled: 'rgba(0, 0, 0, 0.21)',
     },
+    common: {
+      black: 'rgba(0, 0, 0, 0.89)',
+    },
   },
 });
