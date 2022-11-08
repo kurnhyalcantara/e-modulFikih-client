@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Button } from '@mui/material';
+import { toast } from 'react-toastify';
 
 const InstallPWA = () => {
   const [supportsPWA, setSupportsPWA] = useState(false);
@@ -23,10 +24,6 @@ const InstallPWA = () => {
     }
     promptInstall.prompt();
   };
-
-  if (!supportsPWA) {
-    return null;
-  }
 
   return (
     <div>
