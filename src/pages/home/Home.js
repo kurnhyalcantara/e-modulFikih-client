@@ -69,30 +69,23 @@ const Home = () => {
                 Modul Pembelajaran Fikih Berbasis <em>Progressive Web Apps </em>
                 untuk siswa MTs As'adiyah No. 2 Bontouse
               </Typography>
-              {/* <div className={classes.serach}>
-                <InputBase
-                  className={classes.hints}
-                  placeholder="What do you want to learn?"
-                  value={find}
-                  onChange={(e) => {
-                    setFind(e.target.value);
-                  }}
-                />
-                <IconButton onClick={handleSearch}>
-                  <img
-                    className={classes.searchbtn}
-                    src="https://i.ibb.co/HHKCkRy/Group-751.png"
-                    alt="logo"
-                  />
-                </IconButton>
-              </div> */}
               <InstallPWA></InstallPWA>
             </div>
           </Grid>
-          <Grid item xs={12} md={6}>
+          <Grid
+            item
+            xs={12}
+            md={6}
+            sx={{
+              paddingTop: {
+                xs: 'inherit',
+                md: '89px !important',
+              },
+            }}
+          >
             <img
               className={classes.image}
-              src="https://i.ibb.co/NsqrCQ9/Group-750.png"
+              src="https://i.ibb.co/QPZ8m1t/Group-7501.png"
               alt="Group-750"
               border="0"
             />

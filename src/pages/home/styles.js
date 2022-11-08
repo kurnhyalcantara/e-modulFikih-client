@@ -31,7 +31,6 @@ export const useStyle = makeStyles({
   },
   image: {
     width: '100%',
-    height: '75%',
   },
   coursestabtxt: {
     textAlign: 'center',

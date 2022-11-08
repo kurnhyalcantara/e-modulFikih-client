@@ -1,16 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { Button } from '@mui/material';
-import { toast } from 'react-toastify';
 
 const InstallPWA = () => {
-  const [supportsPWA, setSupportsPWA] = useState(false);
   const [promptInstall, setPromptInstall] = useState(null);
 
   useEffect(() => {
     const handler = (e) => {
       e.preventDefault();
       console.log('we are being trigerred :D');
-      setSupportsPWA(true);
       setPromptInstall(e);
     };
     window.addEventListener('beforeinstallprompt', handler);
