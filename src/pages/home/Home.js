@@ -15,6 +15,7 @@ import { GlobalState } from '../../GlobalState';
 import CarouselCards from './CarouselCards/CarouselCards';
 import CoursesTab from './CoursesTab/CoursesTab';
 import { useStyle } from './styles';
+import InstallPWA from '../../utils/InstallPWA';
 
 const Home = () => {
   const classes = useStyle();
@@ -68,7 +69,7 @@ const Home = () => {
                 Modul Pembelajaran Fikih Berbasis <em>Progressive Web Apps </em>
                 untuk siswa MTs As'adiyah No. 2 Bontouse
               </Typography>
-              <div className={classes.serach}>
+              {/* <div className={classes.serach}>
                 <InputBase
                   className={classes.hints}
                   placeholder="What do you want to learn?"
@@ -84,7 +85,8 @@ const Home = () => {
                     alt="logo"
                   />
                 </IconButton>
-              </div>
+              </div> */}
+              <InstallPWA></InstallPWA>
             </div>
           </Grid>
           <Grid item xs={12} md={6}>
