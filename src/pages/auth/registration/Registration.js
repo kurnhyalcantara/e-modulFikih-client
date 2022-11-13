@@ -26,15 +26,18 @@ const Registration = () => {
     try {
       if (role === 'student') {
         await axios
-          .post('https://e-modulfikih.herokuapp.com/api/student/register', {
-            userName: userName,
-            nid: nid,
-            name: `${firstName} ${lastName}`,
-            mobile: mobile,
-            password: password,
-            rePassword: rePassword,
-            address: `${region}, ${country}`,
-          })
+          .post(
+            'https://fikih-mtsbontouse-backend.herokuapp.com/api/student/register',
+            {
+              userName: userName,
+              nid: nid,
+              name: `${firstName} ${lastName}`,
+              mobile: mobile,
+              password: password,
+              rePassword: rePassword,
+              address: `${region}, ${country}`,
+            }
+          )
           .then((res) => {
             if (res.status === 200) {
               const { data } = res;
@@ -45,14 +48,17 @@ const Registration = () => {
           });
       } else if (role === 'parent') {
         await axios
-          .post('https://e-modulfikih.herokuapp.com/api/parent/register', {
-            nid: nid,
-            name: `${firstName} ${lastName}`,
-            mobile: mobile,
-            password: password,
-            rePassword: rePassword,
-            address: `${region}, ${country}`,
-          })
+          .post(
+            'https://fikih-mtsbontouse-backend.herokuapp.com/api/parent/register',
+            {
+              nid: nid,
+              name: `${firstName} ${lastName}`,
+              mobile: mobile,
+              password: password,
+              rePassword: rePassword,
+              address: `${region}, ${country}`,
+            }
+          )
           .then((res) => {
             if (res.status === 200) {
               const { data } = res;
@@ -63,14 +69,17 @@ const Registration = () => {
           });
       } else if (role === 'instructor') {
         await axios
-          .post('https://e-modulfikih.herokuapp.com/api/instructor/register', {
-            userName: userName,
-            name: `${firstName} ${lastName}`,
-            mobile: mobile,
-            password: password,
-            rePassword: rePassword,
-            address: `${region}, ${country}`,
-          })
+          .post(
+            'https://fikih-mtsbontouse-backend.herokuapp.com/api/instructor/register',
+            {
+              userName: userName,
+              name: `${firstName} ${lastName}`,
+              mobile: mobile,
+              password: password,
+              rePassword: rePassword,
+              address: `${region}, ${country}`,
+            }
+          )
           .then((res) => {
             if (res.status === 200) {
               const { data } = res;

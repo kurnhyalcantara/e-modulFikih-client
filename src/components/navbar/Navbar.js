@@ -48,7 +48,9 @@ const Navbar = () => {
   // };
 
   const logOut = async () => {
-    await axios.get('https://e-modulfikih.herokuapp.com/api/logout');
+    await axios.get(
+      'https://fikih-mtsbontouse-backend.herokuapp.com/api/logout'
+    );
     localStorage.clear();
     setIsLogged(false);
     window.location.href = '/';

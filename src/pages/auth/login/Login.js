@@ -27,10 +27,13 @@ const Login = () => {
     try {
       if (role === 'student') {
         await axios
-          .post('https://e-modulfikih.herokuapp.com/api/student/login', {
-            userName: userName,
-            password: password,
-          })
+          .post(
+            'https://fikih-mtsbontouse-backend.herokuapp.com/api/student/login',
+            {
+              userName: userName,
+              password: password,
+            }
+          )
           .then((res) => {
             if (res.status === 200) {
               const { data } = res;
@@ -40,10 +43,13 @@ const Login = () => {
           });
       } else if (role === 'parent') {
         await axios
-          .post('https://e-modulfikih.herokuapp.com/api/parent/login', {
-            mobile: mobile,
-            password: password,
-          })
+          .post(
+            'https://fikih-mtsbontouse-backend.herokuapp.com/api/parent/login',
+            {
+              mobile: mobile,
+              password: password,
+            }
+          )
           .then((res) => {
             if (res.status === 200) {
               const { data } = res;
@@ -53,10 +59,13 @@ const Login = () => {
           });
       } else if (role === 'instructor') {
         await axios
-          .post('https://e-modulfikih.herokuapp.com/api/instructor/login', {
-            userName: userName,
-            password: password,
-          })
+          .post(
+            'https://fikih-mtsbontouse-backend.herokuapp.com/api/instructor/login',
+            {
+              userName: userName,
+              password: password,
+            }
+          )
           .then((res) => {
             if (res.status === 200) {
               const { data } = res;

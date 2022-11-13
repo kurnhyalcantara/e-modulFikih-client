@@ -29,7 +29,7 @@ const Lesson = ({ lessons, getData }) => {
       if (result.isConfirmed) {
         await axios
           .delete(
-            `https://e-modulfikih.herokuapp.com/api/lesson_details/${_id}`,
+            `https://fikih-mtsbontouse-backend.herokuapp.com/api/lesson_details/${_id}`,
             {
               headers: { Authorization: token },
             }

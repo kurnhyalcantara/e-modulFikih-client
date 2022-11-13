@@ -20,7 +20,7 @@ const ParentCourseShow = ({ course }) => {
         setLoading(true);
         axios
           .get(
-            `https://e-modulfikih.herokuapp.com/api/parent/child/${studentId}`,
+            `https://fikih-mtsbontouse-backend.herokuapp.com/api/parent/child/${studentId}`,
             {
               headers: { Authorization: token },
             }

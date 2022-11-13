@@ -30,7 +30,7 @@ const CoursesTab = () => {
     const getCourses = async () => {
       setLoading(true);
       await axios
-        .get('https://e-modulfikih.herokuapp.com/api/all/course')
+        .get('https://fikih-mtsbontouse-backend.herokuapp.com/api/all/course')
         .then((res) => {
           if (res.status === 200) {
             const { courses } = res.data;
@@ -90,7 +90,6 @@ const CoursesTab = () => {
                 {tabList &&
                   tabList.map((item, i) => (
                     <Tab
-                      sx={{ textTransform: 'capitalize' }}
                       label={item}
                       key={i}
                       value={i}

@@ -13,7 +13,7 @@ export const DataProvider = ({ children }) => {
 
   const refreshToken = async () => {
     const res = await axios.get(
-      'https://e-modulfikih.herokuapp.com/api/refresh_token'
+      'https://fikih-mtsbontouse-backend.herokuapp.com/api/refresh_token'
     );
     setToken(res.data.accessToken);
   };

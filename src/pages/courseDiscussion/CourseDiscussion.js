@@ -31,7 +31,7 @@ const CourseDiscussion = () => {
         setLoading(true);
         await axios
           .get(
-            `https://e-modulfikih.herokuapp.com/api/discussion/single/${discussionId}`,
+            `https://fikih-mtsbontouse-backend.herokuapp.com/api/discussion/single/${discussionId}`,
             {
               headers: { Authorization: token },
             }
@@ -52,7 +52,7 @@ const CourseDiscussion = () => {
     try {
       setLoading(true);
       await axios.put(
-        `https://e-modulfikih.herokuapp.com/api/discussion/single/${discussionId}`,
+        `https://fikih-mtsbontouse-backend.herokuapp.com/api/discussion/single/${discussionId}`,
         {
           answer: reply,
           user: user,

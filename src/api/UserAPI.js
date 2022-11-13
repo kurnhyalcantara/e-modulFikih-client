@@ -15,7 +15,7 @@ function UserAPI(token) {
         try {
           setLoading(true);
           const res = await axios.get(
-            'https://e-modulfikih.herokuapp.com/api/parent/profile',
+            'https://fikih-mtsbontouse-backend.herokuapp.com/api/parent/profile',
             {
               headers: { Authorization: token },
             }
@@ -34,7 +34,7 @@ function UserAPI(token) {
         try {
           setLoading(true);
           const res = await axios.get(
-            'https://e-modulfikih.herokuapp.com/api/student/profile',
+            'https://fikih-mtsbontouse-backend.herokuapp.com/api/student/profile',
             {
               headers: { Authorization: token },
             }
@@ -53,7 +53,7 @@ function UserAPI(token) {
         try {
           setLoading(true);
           const res = await axios.get(
-            'https://e-modulfikih.herokuapp.com/api/instructor/profile',
+            'https://fikih-mtsbontouse-backend.herokuapp.com/api/instructor/profile',
             {
               headers: { Authorization: token },
             }
@@ -92,7 +92,7 @@ function UserAPI(token) {
       setList([...list, { ...course }]);
 
       await axios.patch(
-        'https://e-modulfikih.herokuapp.com/api/course/enroll',
+        'https://fikih-mtsbontouse-backend.herokuapp.com/api/course/enroll',
         { enrolled: [...list, { ...course }] },
         {
           headers: { Authorization: token },

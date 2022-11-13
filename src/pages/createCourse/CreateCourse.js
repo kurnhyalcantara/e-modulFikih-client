@@ -110,7 +110,7 @@ const CreateCourse = () => {
       formData.append('file', file);
       setLoading(true);
       const res = await axios.post(
-        'https://e-modulfikih.herokuapp.com/api/upload',
+        'https://fikih-mtsbontouse-backend.herokuapp.com/api/upload',
         formData,
         {
           headers: {
@@ -130,7 +130,7 @@ const CreateCourse = () => {
     try {
       setLoading(true);
       await axios.post(
-        'https://e-modulfikih.herokuapp.com/api/destroy',
+        'https://fikih-mtsbontouse-backend.herokuapp.com/api/destroy',
         { public_id: image.public_id },
         {
           headers: { Authorization: token },
@@ -151,7 +151,7 @@ const CreateCourse = () => {
     if (courseId) {
       await axios
         .put(
-          `https://e-modulfikih.herokuapp.com/api/course_details/${courseId}`,
+          `https://fikih-mtsbontouse-backend.herokuapp.com/api/course_details/${courseId}`,
           {
             title: title,
             price: price,
@@ -178,7 +178,7 @@ const CreateCourse = () => {
     } else {
       await axios
         .post(
-          'https://e-modulfikih.herokuapp.com/api/course',
+          'https://fikih-mtsbontouse-backend.herokuapp.com/api/course',
           {
             title: title,
             price: price,
@@ -212,7 +212,7 @@ const CreateCourse = () => {
         if (courseId) {
           await axios
             .get(
-              `https://e-modulfikih.herokuapp.com/api/course_details/${courseId}`
+              `https://fikih-mtsbontouse-backend.herokuapp.com/api/course_details/${courseId}`
             )
             .then((res) => {
               if (res.status === 200) {

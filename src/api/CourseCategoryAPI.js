@@ -7,7 +7,7 @@ function CourseCategoriesAPI() {
 
   const getCategory = async () => {
     const res = await axios.get(
-      'https://e-modulfikih.herokuapp.com/api/admin/course_cetegory/'
+      'https://fikih-mtsbontouse-backend.herokuapp.com/api/admin/course_cetegory/'
     );
     setCategory(res.data.categories);
   };

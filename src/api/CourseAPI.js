@@ -14,7 +14,7 @@ function CourseAPI() {
     const getCourses = async () => {
       setLoading(true);
       const res = await axios.get(
-        `https://e-modulfikih.herokuapp.com/api/all_course?limit=${
+        `https://fikih-mtsbontouse-backend.herokuapp.com/api/all_course?limit=${
           page * 8
         }&${category}&title[regex]=${search}`
       );

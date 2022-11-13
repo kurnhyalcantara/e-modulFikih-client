@@ -24,9 +24,12 @@ const Blogs = () => {
   useEffect(() => {
     const getBlogs = async () => {
       await axios
-        .get('https://e-modulfikih.herokuapp.com/api/instructor/blog', {
-          headers: { Authorization: token },
-        })
+        .get(
+          'https://fikih-mtsbontouse-backend.herokuapp.com/api/instructor/blog',
+          {
+            headers: { Authorization: token },
+          }
+        )
         .then((res) => {
           if (res.status === 200) {
             setBlogs(res.data);
@@ -40,7 +43,7 @@ const Blogs = () => {
     if (window.confirm('want to delete')) {
       await axios
         .delete(
-          `https://e-modulfikih.herokuapp.com/api/instructor/blog/${id}`,
+          `https://fikih-mtsbontouse-backend.herokuapp.com/api/instructor/blog/${id}`,
           {
             headers: { Authorization: token },
           }

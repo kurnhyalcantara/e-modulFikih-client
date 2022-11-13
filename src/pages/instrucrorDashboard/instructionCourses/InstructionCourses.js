@@ -15,7 +15,7 @@ const InstructionCourses = () => {
     //get course list
     const getCourse = async () => {
       await axios
-        .get('https://e-modulfikih.herokuapp.com/api/course', {
+        .get('https://fikih-mtsbontouse-backend.herokuapp.com/api/course', {
           headers: { Authorization: token },
         })
         .then((res) => {

@@ -66,7 +66,7 @@ const AddLesson = () => {
     if (lessonId) {
       await axios
         .put(
-          `https://e-modulfikih.herokuapp.com/api/lesson/${lessonId}`,
+          `https://fikih-mtsbontouse-backend.herokuapp.com/api/lesson/${lessonId}`,
           {
             title: heading,
             videos: videos,
@@ -87,7 +87,7 @@ const AddLesson = () => {
     } else if (courseId) {
       await axios
         .post(
-          `https://e-modulfikih.herokuapp.com/api/lesson/${courseId}`,
+          `https://fikih-mtsbontouse-backend.herokuapp.com/api/lesson/${courseId}`,
           {
             title: heading,
             videos: videos,
@@ -114,7 +114,7 @@ const AddLesson = () => {
         setLoading(true);
         await axios
           .get(
-            `https://e-modulfikih.herokuapp.com/api/lesson_details/${lessonId}`,
+            `https://fikih-mtsbontouse-backend.herokuapp.com/api/lesson_details/${lessonId}`,
             {
               headers: { Authorization: token },
             }

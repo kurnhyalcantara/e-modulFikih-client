@@ -24,7 +24,7 @@ const ParentCourseDetails = () => {
         setLoading(true);
         await axios
           .get(
-            `https://e-modulfikih.herokuapp.com/api/course_details/${courseId}`
+            `https://fikih-mtsbontouse-backend.herokuapp.com/api/course_details/${courseId}`
           )
           .then((res) => {
             if (res.status === 200) {

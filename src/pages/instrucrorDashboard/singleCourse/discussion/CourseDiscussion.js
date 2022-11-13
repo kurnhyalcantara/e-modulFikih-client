@@ -33,7 +33,7 @@ const CourseDiscussion = ({ discussion, getData }) => {
   const submitDiscussion = async () => {
     try {
       await axios.post(
-        `https://e-modulfikih.herokuapp.com/api/discussion/${courseId}`,
+        `https://fikih-mtsbontouse-backend.herokuapp.com/api/discussion/${courseId}`,
         {
           question: question,
           user: user,
@@ -62,7 +62,7 @@ const CourseDiscussion = ({ discussion, getData }) => {
         if (result.isConfirmed) {
           await axios
             .delete(
-              `https://e-modulfikih.herokuapp.com/api/discussion/single/${id}`,
+              `https://fikih-mtsbontouse-backend.herokuapp.com/api/discussion/single/${id}`,
               {
                 headers: { Authorization: token },
               }

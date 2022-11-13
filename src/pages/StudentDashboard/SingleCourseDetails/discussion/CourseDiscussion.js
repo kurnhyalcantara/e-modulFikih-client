@@ -29,7 +29,7 @@ const CourseDiscussion = ({ discussion, getData }) => {
   const submitDiscussion = async () => {
     try {
       await axios.post(
-        `https://e-modulfikih.herokuapp.com/api/discussion/${courseId}`,
+        `https://fikih-mtsbontouse-backend.herokuapp.com/api/discussion/${courseId}`,
         {
           question: question,
           user: user,

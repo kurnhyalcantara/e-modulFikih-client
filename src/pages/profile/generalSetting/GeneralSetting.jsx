@@ -29,7 +29,7 @@ const GeneralSetting = () => {
       formData.append('file', file);
       setLoading(true);
       const res = await axios.post(
-        'https://e-modulfikih.herokuapp.com/api/upload',
+        'https://fikih-mtsbontouse-backend.herokuapp.com/api/upload',
         formData,
         {
           headers: {
@@ -49,7 +49,7 @@ const GeneralSetting = () => {
     try {
       setLoading(true);
       await axios.post(
-        'https://e-modulfikih.herokuapp.com/api/destroy',
+        'https://fikih-mtsbontouse-backend.herokuapp.com/api/destroy',
         { public_id: image.public_id },
         {
           headers: { Authorization: token },
@@ -66,7 +66,7 @@ const GeneralSetting = () => {
     if (user.type === 'student') {
       axios
         .put(
-          `https://e-modulfikih.herokuapp.com/api/student/update_password/${user._id}`,
+          `https://fikih-mtsbontouse-backend.herokuapp.com/api/student/update_password/${user._id}`,
           {
             userName: userName,
             currentPassword: currentPassword,
@@ -88,7 +88,7 @@ const GeneralSetting = () => {
     } else if (user.type === 'instructor') {
       axios
         .put(
-          `https://e-modulfikih.herokuapp.com/api/instructor/update_password/${user._id}`,
+          `https://fikih-mtsbontouse-backend.herokuapp.com/api/instructor/update_password/${user._id}`,
           {
             userName: userName,
             currentPassword: currentPassword,
@@ -111,7 +111,7 @@ const GeneralSetting = () => {
     if (user.type === 'parent') {
       axios
         .put(
-          `https://e-modulfikih.herokuapp.com/api/parent/update_password/${user._id}`,
+          `https://fikih-mtsbontouse-backend.herokuapp.com/api/parent/update_password/${user._id}`,
           {
             nid: user.nid,
             currentPassword: currentPassword,

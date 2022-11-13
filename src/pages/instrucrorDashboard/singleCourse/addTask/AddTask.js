@@ -32,7 +32,7 @@ const AddTask = () => {
     if (courseId) {
       await axios
         .post(
-          `https://e-modulfikih.herokuapp.com/api/task/${courseId}`,
+          `https://fikih-mtsbontouse-backend.herokuapp.com/api/task/${courseId}`,
           payload,
           {
             headers: { Authorization: token },
@@ -50,7 +50,7 @@ const AddTask = () => {
     } else if (taskId) {
       await axios
         .put(
-          `https://e-modulfikih.herokuapp.com/api/task_update/${taskId}`,
+          `https://fikih-mtsbontouse-backend.herokuapp.com/api/task_update/${taskId}`,
           payload,
           {
             headers: { Authorization: token },
@@ -71,9 +71,12 @@ const AddTask = () => {
   const getSingleTask = async () => {
     setLoading(true);
     await axios
-      .get(`https://e-modulfikih.herokuapp.com/api/task_update/${taskId}`, {
-        headers: { Authorization: token },
-      })
+      .get(
+        `https://fikih-mtsbontouse-backend.herokuapp.com/api/task_update/${taskId}`,
+        {
+          headers: { Authorization: token },
+        }
+      )
       .then((res) => {
         if (res.status === 200) {
           const { task } = res.data;

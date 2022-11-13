@@ -34,7 +34,9 @@ const SingleCourse = () => {
   const getData = async () => {
     setLoading(true);
     await axios
-      .get(`https://e-modulfikih.herokuapp.com/api/course_details/${courseId}`)
+      .get(
+        `https://fikih-mtsbontouse-backend.herokuapp.com/api/course_details/${courseId}`
+      )
       .then((res) => {
         if (res.status === 200) {
           setCourse(res.data);
@@ -67,7 +69,7 @@ const SingleCourse = () => {
       if (result.isConfirmed) {
         await axios
           .delete(
-            `https://e-modulfikih.herokuapp.com/api/course_details/${courseId}`,
+            `https://fikih-mtsbontouse-backend.herokuapp.com/api/course_details/${courseId}`,
             {
               headers: { Authorization: token },
             }

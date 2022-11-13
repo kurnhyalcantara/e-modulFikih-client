@@ -19,9 +19,12 @@ const SubmitTask = () => {
     if (taskId) {
       const getTask = async () => {
         await axios
-          .get(`https://e-modulfikih.herokuapp.com/api/task_update/${taskId}`, {
-            headers: { Authorization: token },
-          })
+          .get(
+            `https://fikih-mtsbontouse-backend.herokuapp.com/api/task_update/${taskId}`,
+            {
+              headers: { Authorization: token },
+            }
+          )
           .then((res) => {
             if (res.status === 200) {
               setTask(res.data.task);
@@ -35,7 +38,7 @@ const SubmitTask = () => {
   const submitTask = async () => {
     try {
       await axios.put(
-        `https://e-modulfikih.herokuapp.com/api/task/${taskId}`,
+        `https://fikih-mtsbontouse-backend.herokuapp.com/api/task/${taskId}`,
         {
           answer: answer,
         },
