@@ -48,7 +48,7 @@ export const useStyle = makeStyles({
     fontWeight: 600,
   },
   background: {
-    backgroundImage: 'linear-gradient(white, #FFF1F1, white)',
+    backgroundImage: 'linear-gradient(white, #FFFCF1, white)',
   },
   //three card here
   featurethree: {

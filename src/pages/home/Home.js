@@ -57,7 +57,7 @@ const Home = () => {
                 sx={{ fontSize: { xs: '2.5rem', md: '3.5rem' } }}
                 fontWeight="900"
                 display="flex"
-                color={theme.palette.common.black}
+                color={theme.palette.text.primary}
               >
                 Belajar Dimanapun
               </Typography>
@@ -94,11 +94,9 @@ const Home = () => {
       </Container>
 
       <div className={classes.coursestabtxt}>
-        <h1 className={classes.coursestabh}>A broad selection of courses</h1>
-        <p className={classes.coursestabp}>
-          Choose from 183,000 online video courses with new additions published
-          every month
-        </p>
+        <h1 className={classes.coursestabh}>
+          Tersedia materi untuk setiap jenjang kelas
+        </h1>
       </div>
       {/* Courses Tab  */}
       <div className={classes.background}>
