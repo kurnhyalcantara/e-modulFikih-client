@@ -101,7 +101,6 @@ const Home = () => {
       {/* Courses Tab  */}
       <div className={classes.background}>
         <CoursesTab />
-
         {/* three feature added here  */}
         <div className={classes.featurethree}>
           <Container maxWidth="xl">
@@ -119,11 +118,10 @@ const Home = () => {
                     </Grid>
                     <Grid item xs={10}>
                       <div className={classes.cardtext}>
-                        <p className={classes.cardtexthead}>
-                          1,205 Courses in 25 subjects
-                        </p>
+                        <p className={classes.cardtexthead}>Buku Digital</p>
                         <p className={classes.cardtextbody}>
-                          Develop your skills in a huge range of subjects
+                          Siswa dapat mengakses konten materi melalui aplikasi
+                          ini selayaknya buku digital
                         </p>
                       </div>
                     </Grid>
@@ -143,11 +141,10 @@ const Home = () => {
                     </Grid>
                     <Grid item xs={10}>
                       <div className={classes.cardtext}>
-                        <p className={classes.cardtexthead}>
-                          Rated Excellent on Trustpilot
-                        </p>
+                        <p className={classes.cardtexthead}>Uji Kompetensi</p>
                         <p className={classes.cardtextbody}>
-                          A trusted brand with thousands of satisfied students
+                          Kumpulan latihan soal yang dapat menguji pemahaman
+                          siswa
                         </p>
                       </div>
                     </Grid>
@@ -167,9 +164,12 @@ const Home = () => {
                     </Grid>
                     <Grid item xs={10}>
                       <div className={classes.cardtext}>
-                        <p className={classes.cardtexthead}>Learn Lifetime</p>
+                        <p className={classes.cardtexthead}>
+                          Belajar Dimanapun
+                        </p>
                         <p className={classes.cardtextbody}>
-                          lifetime access on mobile and desktop
+                          Pembelajaran dapat diakses baik di laptop maupun
+                          mobile
                         </p>
                       </div>
                     </Grid>

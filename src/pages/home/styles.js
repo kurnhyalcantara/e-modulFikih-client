@@ -75,7 +75,7 @@ export const useStyle = makeStyles({
     paddingLeft: '15px',
   },
   cardtext: {
-    paddingLeft: '15px',
+    paddingLeft: '30px',
   },
   cardtexthead: {
     fontWeight: 700,
