@@ -106,6 +106,8 @@ export const useStyle = makeStyles({
   expectcontainer: {
     paddingTop: '56px',
     paddingBottom: '80px',
+    paddingLeft: '16px',
+    paddingRight: '16px',
   },
   expect: {
     textAlign: 'center',

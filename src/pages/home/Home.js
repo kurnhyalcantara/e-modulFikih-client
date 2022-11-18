@@ -92,7 +92,6 @@ const Home = () => {
           </Grid>
         </Grid>
       </Container>
-
       <div className={classes.coursestabtxt}>
         <h1 className={classes.coursestabh}>
           Tersedia materi untuk setiap jenjang kelas
@@ -180,16 +179,14 @@ const Home = () => {
           </Container>
         </div>
       </div>
-
       {/* another card carousel  */}
       <div className={classes.background}>
         <Container maxWidth="xl">
           <CarouselCards />
         </Container>
       </div>
-
       {/* first div */}
-      <Container>
+      {/* <Container>
         <Grid className={classes.banner} container spacing={5}>
           <Grid item xs={12} md={6}>
             <img
@@ -205,9 +202,8 @@ const Home = () => {
               Get unlimited access to 6,000+ of Elearns top courses for your
               team. Learn and improve skills across business, tech, design, and
               more.
-            </span>
-
-            <div className={classes.buttons}>
+            </span> */}
+      {/* <div className={classes.buttons}>
               <Button
                 component={Link}
                 to="/courses"
@@ -218,19 +214,17 @@ const Home = () => {
                   width: '100%',
                   padding: '5px 0 5px 0',
                 }}
-              >
-                {' '}
-                {/* <span className={classes.buttontxt}> Start Elearn Business</span> */}
-                <span className={classes.buttontxt}> Start Learning</span>
+              > */}{' '}
+      {/* <span className={classes.buttontxt}> Start Elearn Business</span> */}
+      {/* <span className={classes.buttontxt}> Start Learning</span>
               </Button>
               <br />
             </div>
           </Grid>
         </Grid>
-      </Container>
-
+      </Container> */}
       {/* second div */}
-      <Container>
+      {/* <Container>
         <Grid className={classes.banner} container spacing={5}>
           <Grid item xs={12} md={6}>
             <span className={classes.headertxt}>Become an instructor</span>
@@ -264,10 +258,9 @@ const Home = () => {
             />
           </Grid>
         </Grid>
-      </Container>
-
+      </Container> */}
       {/* third div */}
-      <Container>
+      {/* <Container>
         <Grid className={classes.banner} container spacing={5}>
           <Grid item xs={12} md={6}>
             <img
@@ -307,11 +300,12 @@ const Home = () => {
             </div>
           </Grid>
         </Grid>
-      </Container>
+      </Container> */}
       {/* What to expect from a Elearn course */}
-
       <div className={classes.expectcontainer}>
-        <h2 className={classes.expect}>What to expect from a Elearn course</h2>
+        <h2 className={classes.expect}>
+          Apa yang bisa kamu dapat dari E-Modul ini?
+        </h2>
 
         <Container maxWidth="xl">
           <Grid container spacing={2}>
@@ -322,11 +316,11 @@ const Home = () => {
                 </Grid>
                 <Grid item xs={10}>
                   <span className={classes.expectcardinh}>
-                    Learn at your own pace
+                    Belajar dengan kecepatanmu sendiri
                   </span>
                   <p className={classes.expectcardinp}>
-                    Enjoy learning from home without a set schedule and an
-                    easy-to-follow method. You set your own timetable.
+                    Nikmati pembelajaran dari rumah tanpa mengatur jadwal dan
+                    mudah untuk mengikuti metode yang diberikan
                   </p>
                 </Grid>
               </Grid>
@@ -338,28 +332,13 @@ const Home = () => {
                 </Grid>
                 <Grid item xs={10}>
                   <span className={classes.expectcardinh}>
-                    Get front row seats
+                    Video pembahasan yang relevan
                   </span>
                   <p className={classes.expectcardinp}>
-                    Videos of the highest quality, so you don't miss a single
-                    detail. With unlimited access, you can watch them as many
-                    times.
-                  </p>
-                </Grid>
-              </Grid>
-            </Grid>
-            <Grid item xs={6}>
-              <Grid className={classes.expectcardin} container spacing={5}>
-                <Grid item xs={1}>
-                  <img src="https://i.ibb.co/ZzwgCSs/Vector2.png" alt="" />
-                </Grid>
-                <Grid item xs={10}>
-                  <span className={classes.expectcardinh}>
-                    Learn from the best professionals
-                  </span>
-                  <p className={classes.expectcardinp}>
-                    Learn valuable methods and techniques explained by top
-                    experts in the creative sector.
+                    Video dengan kualitas terbaik, jadi kamu akan mendapatkan
+                    penjelasan detail. Dengan akses tanpa berbatas waktu, kamu
+                    dapat menontonnya sesering mungkin, bahkan saat kamu tidak
+                    punya akses internet
                   </p>
                 </Grid>
               </Grid>
@@ -371,28 +350,11 @@ const Home = () => {
                 </Grid>
                 <Grid item xs={10}>
                   <span className={classes.expectcardinh}>
-                    Share knowledge and ideas
+                    Asah Pemahaman dengan Latihan Soal
                   </span>
                   <p className={classes.expectcardinp}>
-                    Learn valuable methods and techniques explained by top
-                    experts in the creative sector.
-                  </p>
-                </Grid>
-              </Grid>
-            </Grid>
-            <Grid item xs={6}>
-              <Grid className={classes.expectcardin} container spacing={5}>
-                <Grid item xs={1}>
-                  <img src="https://i.ibb.co/6r4MSdV/Vector4.png" alt="" />
-                </Grid>
-                <Grid item xs={10}>
-                  <span className={classes.expectcardinh}>
-                    Meet expert instructors
-                  </span>
-                  <p className={classes.expectcardinp}>
-                    Each instructor teaches what they do best, with clear
-                    guidelines, true passion, and professional insight in every
-                    lesson.
+                    Ketahui sejauh mana pemahaman dan kemampuanmu dalam menjawab
+                    soal yang ada
                   </p>
                 </Grid>
               </Grid>
@@ -403,13 +365,11 @@ const Home = () => {
                   <img src="https://i.ibb.co/qD8bJVN/Vector.png" alt="" />
                 </Grid>
                 <Grid item xs={10}>
-                  <span className={classes.expectcardinh}>
-                    Connect creative community
-                  </span>
+                  <span className={classes.expectcardinh}>Multi Platform</span>
                   <p className={classes.expectcardinp}>
-                    Each instructor teaches what they do best, with clear
-                    guidelines, true passion, and professional insight in every
-                    lesson.
+                    E-Modul ini dapat diakses baik di Laptop maupun Smartphone.
+                    Anda pun juga bisa menginstallnya tanpa perlu mengingat link
+                    yang diberikan
                   </p>
                 </Grid>
               </Grid>
@@ -417,41 +377,6 @@ const Home = () => {
           </Grid>
         </Container>
       </div>
-
-      {/* Trusted Company  */}
-      <div className={classes.trust}>
-        <h2 className={classes.trustedcompany}>
-          Trusted by companies of all sizes
-        </h2>
-        <div>
-          <img
-            className={classes.trustedcompanyimg}
-            src="https://i.ibb.co/bW5K0BR/paypal.png"
-            alt=""
-          />
-          <img
-            className={classes.trustedcompanyimg}
-            src="https://i.ibb.co/6HkbRqk/apple.png"
-            alt=""
-          />
-          <img
-            className={classes.trustedcompanyimg}
-            src="https://i.ibb.co/z2wmjC4/netflix.png"
-            alt=""
-          />
-          <img
-            className={classes.trustedcompanyimg}
-            src="https://i.ibb.co/RTPsMLX/dell.png"
-            alt=""
-          />
-          <img
-            className={classes.trustedcompanyimg}
-            src="https://i.ibb.co/ZmXhZm8/wordpress.png"
-            alt=""
-          />
-        </div>
-      </div>
-      {/* footer  */}
     </Box>
   );
 };
