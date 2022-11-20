@@ -118,15 +118,16 @@ export const useStyle = makeStyles({
   expectcardin: {
     display: 'flex',
   },
+  expectcardimage: {
+    marginRight: '18px',
+  },
   expectcardinh: {
-    paddingLeft: '17px',
     fontSize: '24px',
     fontWeight: 500,
     lineHeight: '36px',
     color: '#2C3644',
   },
   expectcardinp: {
-    paddingLeft: '17px',
     fontSize: '18px',
     fontWeight: 400,
     lineHeight: '27px',

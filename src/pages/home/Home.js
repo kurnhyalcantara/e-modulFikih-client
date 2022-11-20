@@ -312,7 +312,11 @@ const Home = () => {
             <Grid item xs={6}>
               <Grid className={classes.expectcardin} container spacing={5}>
                 <Grid item xs={1}>
-                  <img src="https://i.ibb.co/60WVLwS/Vector.png" alt="" />
+                  <img
+                    className={classes.expectcardimage}
+                    src="https://i.ibb.co/60WVLwS/Vector.png"
+                    alt=""
+                  />
                 </Grid>
                 <Grid item xs={10}>
                   <span className={classes.expectcardinh}>
@@ -328,7 +332,11 @@ const Home = () => {
             <Grid item xs={6}>
               <Grid className={classes.expectcardin} container spacing={5}>
                 <Grid item xs={1}>
-                  <img src="https://i.ibb.co/549zSVP/Vector1.png" alt="" />
+                  <img
+                    className={classes.expectcardimage}
+                    src="https://i.ibb.co/549zSVP/Vector1.png"
+                    alt=""
+                  />
                 </Grid>
                 <Grid item xs={10}>
                   <span className={classes.expectcardinh}>
@@ -346,7 +354,11 @@ const Home = () => {
             <Grid item xs={6}>
               <Grid className={classes.expectcardin} container spacing={5}>
                 <Grid item xs={1}>
-                  <img src="https://i.ibb.co/zQ8NhhZ/Vector3.png" alt="" />
+                  <img
+                    className={classes.expectcardimage}
+                    src="https://i.ibb.co/zQ8NhhZ/Vector3.png"
+                    alt=""
+                  />
                 </Grid>
                 <Grid item xs={10}>
                   <span className={classes.expectcardinh}>
@@ -362,7 +374,11 @@ const Home = () => {
             <Grid item xs={6}>
               <Grid className={classes.expectcardin} container spacing={5}>
                 <Grid item xs={1}>
-                  <img src="https://i.ibb.co/qD8bJVN/Vector.png" alt="" />
+                  <img
+                    className={classes.expectcardimage}
+                    src="https://i.ibb.co/qD8bJVN/Vector.png"
+                    alt=""
+                  />
                 </Grid>
                 <Grid item xs={10}>
                   <span className={classes.expectcardinh}>Multi Platform</span>
