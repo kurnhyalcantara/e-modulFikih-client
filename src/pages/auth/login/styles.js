@@ -27,7 +27,10 @@ export const useStyle = makeStyles({
     fontSize: '20px',
   },
   link: {
-    color: '#ed6c02',
+    color: '#ff9800',
     textDecoration: 'none',
+    '&:hover': {
+      color: '#ffb74d',
+    },
   },
 });
