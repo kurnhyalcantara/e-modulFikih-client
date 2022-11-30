@@ -1,41 +1,59 @@
 import React, { useState } from 'react';
 import TextField from '@mui/material/TextField';
-import { Button, Grid, MenuItem, Select, Typography } from '@mui/material';
-import { CountryDropdown, RegionDropdown } from 'react-country-region-selector';
+import {
+  Button,
+  FormControl,
+  IconButton,
+  InputAdornment,
+  InputLabel,
+  MenuItem,
+  Select,
+  Typography,
+  useTheme,
+} from '@mui/material';
 import { Link } from 'react-router-dom';
 import { useStyle } from './styles';
 import axios from 'axios';
 import { toast } from 'react-toastify';
+import { Visibility, VisibilityOff } from '@mui/icons-material';
 
 const Registration = () => {
   const classes = useStyle();
+  const theme = useTheme();
 
-  const [firstName, setFirstName] = useState('');
-  const [lastName, setLastName] = useState('');
-  const [userName, setUserName] = useState('');
+  const [namaLengkap, setNamaLengkap] = useState('');
+  const [nis, setNis] = useState('');
+  const [kelas, setKelas] = useState('');
   const [mobile, setMobile] = useState('');
-  const [nid, setNid] = useState('');
   const [password, setPassword] = useState('');
-  const [rePassword, setRePassword] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
   const [role, setRole] = useState('student');
-  const [country, setCountry] = useState('');
-  const [region, setRegion] = useState('');
+  const [labelSubmit, setLabelSubmit] = useState('Buat Akun');
+  const [submitDisable, setSubmitDisable] = useState(false);
+
+  const handleClickShowPassword = () => {
+    setShowPassword(!showPassword);
+  };
+
+  const handleMouseDownPassword = (e) => {
+    e.preventDefault();
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setSubmitDisable(!submitDisable);
+    setLabelSubmit('Loading');
     try {
       if (role === 'student') {
         await axios
           .post(
             'https://fikih-mtsbontouse-backend.herokuapp.com/api/student/register',
             {
-              userName: userName,
-              nid: nid,
-              name: `${firstName} ${lastName}`,
+              namaLengkap: namaLengkap,
+              nis: nis,
+              kelas: kelas,
               mobile: mobile,
               password: password,
-              rePassword: rePassword,
-              address: `${region}, ${country}`,
             }
           )
           .then((res) => {
@@ -43,65 +61,31 @@ const Registration = () => {
               const { data } = res;
               window.location.href = '/student_dashboard';
               localStorage.setItem('AUTH', JSON.stringify(data));
-              toast.success('Registration Complete');
-            }
-          });
-      } else if (role === 'parent') {
-        await axios
-          .post(
-            'https://fikih-mtsbontouse-backend.herokuapp.com/api/parent/register',
-            {
-              nid: nid,
-              name: `${firstName} ${lastName}`,
-              mobile: mobile,
-              password: password,
-              rePassword: rePassword,
-              address: `${region}, ${country}`,
-            }
-          )
-          .then((res) => {
-            if (res.status === 200) {
-              const { data } = res;
-              window.location.href = '/parent_dashboard';
-              localStorage.setItem('AUTH', JSON.stringify(data));
-              toast.success('Registration Complete');
-            }
-          });
-      } else if (role === 'instructor') {
-        await axios
-          .post(
-            'https://fikih-mtsbontouse-backend.herokuapp.com/api/instructor/register',
-            {
-              userName: userName,
-              name: `${firstName} ${lastName}`,
-              mobile: mobile,
-              password: password,
-              rePassword: rePassword,
-              address: `${region}, ${country}`,
-            }
-          )
-          .then((res) => {
-            if (res.status === 200) {
-              const { data } = res;
-              window.location.href = '/';
-              localStorage.setItem('AUTH', JSON.stringify(data));
-              toast.success('Registration Complete');
+              toast.success('Pendaftaran Berhasil');
             }
           });
       }
     } catch (error) {
       toast.error(error.response.data.msg);
+      setSubmitDisable(false);
+      setLabelSubmit('Buat Akun');
     }
   };
 
   return (
     <div className={classes.root}>
       <form className={classes.formWrapper}>
-        <Typography variant="h4" className={classes.heading}>
-          Sign Up
+        <Typography variant="h4" fontWeight="700" className={classes.heading}>
+          Yuk, Daftar!
+        </Typography>
+        <Typography
+          className={classes.subheading}
+          color={theme.palette.text.secondary}
+        >
+          Belajar dan wujudkan mimpi kamu
         </Typography>
         <Select
-          labelId="demo-simple-select-label"
+          labelId="role-select"
           id="demo-simple-select"
           color="warning"
           fullWidth
@@ -111,106 +95,66 @@ const Registration = () => {
           }}
           value={role}
         >
-          <MenuItem value={'student'}>Student</MenuItem>
-          <MenuItem value={'parent'}>Parent</MenuItem>
-          <MenuItem value={'instructor'}>Instructor</MenuItem>
+          <MenuItem value={'student'}>Siswa</MenuItem>
+          <MenuItem value={'parent'}>Orang Tua</MenuItem>
+          <MenuItem value={'instructor'}>Guru</MenuItem>
         </Select>
-        <Grid container spacing={2}>
-          <Grid item md={6} sm={12}>
-            <TextField
-              fullWidth
-              id="outlined-basic"
-              label="First Name"
-              variant="outlined"
-              color="warning"
-              type="text"
-              onChange={(e) => {
-                setFirstName(e.target.value);
-              }}
-              value={firstName}
-              sx={{ pb: 2 }}
-            />
-          </Grid>
-          <Grid item md={6} sm={12}>
-            <TextField
-              fullWidth
-              id="outlined-basic"
-              label="Last Name"
-              variant="outlined"
-              color="warning"
-              onChange={(e) => {
-                setLastName(e.target.value);
-              }}
-              value={lastName}
-              type="text"
-              sx={{ pb: 2 }}
-            />
-          </Grid>
-        </Grid>
-        {role === 'student' ? (
-          <TextField
-            fullWidth
-            id="outlined-basic"
-            label="User Name"
-            variant="outlined"
-            color="warning"
-            type="text"
-            value={userName}
-            onChange={(e) => {
-              setUserName(e.target.value);
-            }}
-            sx={{ pb: 2 }}
-          />
-        ) : null}
-        {role === 'instructor' ? (
-          <TextField
-            fullWidth
-            id="outlined-basic"
-            label="User Name"
-            variant="outlined"
-            color="warning"
-            value={userName}
-            onChange={(e) => {
-              setUserName(e.target.value);
-            }}
-            type="text"
-            sx={{ pb: 2 }}
-          />
-        ) : null}
-        {role === 'parent' ? (
-          <TextField
-            fullWidth
-            id="outlined-basic"
-            label="NID"
-            variant="outlined"
-            value={nid}
-            onChange={(e) => {
-              setNid(e.target.value);
-            }}
-            color="warning"
-            type="text"
-            sx={{ pb: 2 }}
-          />
-        ) : null}
-        {role === 'student' ? (
-          <TextField
-            fullWidth
-            id="outlined-basic"
-            label="Parents NID"
-            variant="outlined"
-            value={nid}
-            onChange={(e) => {
-              setNid(e.target.value);
-            }}
-            color="warning"
-            type="text"
-            sx={{ pb: 2 }}
-          />
-        ) : null}
+
         <TextField
           fullWidth
           id="outlined-basic"
-          label={role === 'student' ? 'Parents Mobile' : 'Mobile Number'}
+          label="Nama Lengkap"
+          variant="outlined"
+          color="warning"
+          type="text"
+          onChange={(e) => {
+            setNamaLengkap(e.target.value);
+          }}
+          value={namaLengkap}
+          sx={{ pb: 2 }}
+        />
+
+        {role === 'student' ? (
+          <TextField
+            fullWidth
+            id="outlined-basic"
+            label="NIS"
+            variant="outlined"
+            color="warning"
+            type="text"
+            value={nis}
+            onChange={(e) => {
+              setNis(e.target.value);
+            }}
+            sx={{ pb: 2 }}
+          />
+        ) : null}
+        <FormControl fullWidth>
+          <InputLabel id="class-student-select" color="warning">
+            Pilih Kelas
+          </InputLabel>
+          <Select
+            labelId="class-select"
+            label="Pilih Kelas"
+            id="class-select"
+            color="warning"
+            fullWidth
+            sx={{ mb: 2 }}
+            onChange={(e) => {
+              setKelas(e.target.value);
+            }}
+            value={kelas}
+          >
+            <MenuItem value={'tujuh'}>Kelas VII</MenuItem>
+            <MenuItem value={'delapan'}>Kelas VIII</MenuItem>
+            <MenuItem value={'sembilan'}>Kelas IX</MenuItem>
+          </Select>
+        </FormControl>
+
+        <TextField
+          fullWidth
+          id="outlined-basic"
+          label="Nomor Telepon"
           variant="outlined"
           color="warning"
           onChange={(e) => {
@@ -219,8 +163,12 @@ const Registration = () => {
           value={mobile}
           type="text"
           sx={{ pb: 2 }}
+          InputProps={{
+            startAdornment: (
+              <InputAdornment position="start">+62</InputAdornment>
+            ),
+          }}
         />
-
         <TextField
           fullWidth
           id="outlined-basic"
@@ -231,52 +179,40 @@ const Registration = () => {
             setPassword(e.target.value);
           }}
           value={password}
-          type="password"
+          type={!showPassword ? 'password' : 'text'}
           sx={{ pb: 2 }}
-        />
-        <TextField
-          fullWidth
-          id="outlined-basic"
-          label="Repeat Password"
-          variant="outlined"
-          color="warning"
-          onChange={(e) => {
-            setRePassword(e.target.value);
+          InputProps={{
+            endAdornment: (
+              <InputAdornment position="end">
+                <IconButton
+                  aria-label="Tampilkan Password"
+                  onClick={handleClickShowPassword}
+                  onMouseDown={handleMouseDownPassword}
+                  edge="end"
+                >
+                  {!showPassword ? <Visibility /> : <VisibilityOff />}
+                </IconButton>
+              </InputAdornment>
+            ),
           }}
-          value={rePassword}
-          type="password"
-          sx={{ pb: 2 }}
-        />
-        <CountryDropdown
-          id="demo-simple-select"
-          labelId="demo-simple-select-label"
-          value={country}
-          onChange={(val) => setCountry(val)}
-          className={classes.option}
-        />
-        <RegionDropdown
-          className={classes.option}
-          country={country}
-          value={region}
-          onChange={(val) => setRegion(val)}
         />
         <Button
-          style={{
-            backgroundColor: '#EA5252',
-            padding: '18px 36px',
-            fontSize: '18px',
-          }}
-          className={classes.btn}
+          color="primary"
+          sx={{ height: '2.5rem', borderRadius: '2rem' }}
           fullWidth
+          disabled={submitDisable}
           variant="contained"
           onClick={handleSubmit}
         >
-          sign up
+          {labelSubmit}
         </Button>
-        <Typography className={classes.msg}>
-          Allready have an account?{' '}
+        <Typography
+          color={theme.palette.text.secondary}
+          sx={{ textAlign: 'center', marginTop: '1rem' }}
+        >
+          Sudah punya akun?{' '}
           <Link className={classes.link} to="/login">
-            Sign in
+            Login
           </Link>
         </Typography>
       </form>
