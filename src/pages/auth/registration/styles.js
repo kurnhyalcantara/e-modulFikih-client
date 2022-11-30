@@ -2,16 +2,23 @@ import { makeStyles } from '@mui/styles';
 
 export const useStyle = makeStyles({
   root: {
-    backgroundColor: '#fff5f6',
+    backgroundColor: '#fff',
     minHeight: '90vh',
     padding: '120px 20px',
   },
+  bannerWrapper: {
+    display: 'flex',
+    justifyContent: 'center',
+  },
+  signupBanner: {
+    width: '65%',
+  },
   formWrapper: {
-    maxWidth: '400px',
-    margin: '0px auto',
+    maxWidth: '28rem',
+    margin: '0 auto',
     border: '1px solid #e6e6e6',
-    padding: '70px 30px',
-    borderRadius: '10px',
+    padding: '2.5rem',
+    borderRadius: '0.5rem',
     background: 'white',
   },
   heading: {
