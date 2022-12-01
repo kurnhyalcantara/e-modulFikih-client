@@ -9,6 +9,8 @@ export const useStyle = makeStyles({
   bannerWrapper: {
     display: 'flex',
     justifyContent: 'center',
+    maxHeight: '234px',
+    alignItems: 'center',
   },
   signupBanner: {
     width: '65%',

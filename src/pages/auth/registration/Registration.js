@@ -84,8 +84,9 @@ const Registration = () => {
           <Grid
             item
             md={7}
+            xs={12}
             className={classes.bannerWrapper}
-            sx={{ display: { xs: 'none', md: 'flex' } }}
+            sx={{ maxHeight: { md: 'auto' }, alignItems: { md: 'flex-start' } }}
           >
             <SignUpBanner className={classes.signupBanner} />
           </Grid>
