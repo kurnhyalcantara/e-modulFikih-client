@@ -16,8 +16,8 @@ export const useStyle = makeStyles({
   formWrapper: {
     maxWidth: '28rem',
     margin: '0 auto',
-    border: '1px solid #e6e6e6',
     padding: '2.5rem',
+    border: '1px solid #e6e6e6',
     borderRadius: '0.5rem',
     background: 'white',
   },
