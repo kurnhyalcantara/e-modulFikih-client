@@ -95,7 +95,7 @@ const Registration = () => {
                 maxWidth: '28rem',
                 margin: '0 auto',
                 padding: {
-                  xs: '0.5rem',
+                  xs: '0',
                   md: '2.5rem',
                 },
                 border: {
@@ -257,12 +257,9 @@ const Registration = () => {
                 </Button>
                 <Typography
                   color={theme.palette.text.secondary}
-                  sx={{ textAlign: 'center', marginTop: '1rem' }}
+                  sx={{ textAlign: 'center' }}
                 >
-                  Sudah punya akun?{' '}
-                  <Link className={classes.link} to="/login">
-                    Login
-                  </Link>
+                  Sudah punya akun? <Link to="/login">Login</Link>
                 </Typography>
               </form>
             </Box>

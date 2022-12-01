@@ -36,10 +36,6 @@ export const useStyle = makeStyles({
     padding: '30px 0',
     fontSize: '20px',
   },
-  link: {
-    color: '#ed6c02',
-    textDecoration: 'none',
-  },
   option: {
     width: '100%',
     border: '1px solid #cbcbcb',
