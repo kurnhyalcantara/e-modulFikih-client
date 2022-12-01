@@ -246,7 +246,8 @@ const Registration = () => {
 
                 <Button
                   color="primary"
-                  sx={{ height: '2.5rem', borderRadius: '2rem' }}
+                  className="bootstraped-button"
+                  sx={{ margin: '1rem 0' }}
                   fullWidth
                   disabled={submitDisable}
                   variant="contained"
