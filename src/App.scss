@@ -14,6 +14,16 @@ video {
   color: #f1fffb;
 }
 
+.root-container {
+  background-color: #fff;
+  min-height: 90vh;
+  padding: 120px 20px;
+}
+
+.banner-auth {
+  width: 65%;
+}
+
 .container-input-adornment {
   display: flex;
   flex-direction: row;
