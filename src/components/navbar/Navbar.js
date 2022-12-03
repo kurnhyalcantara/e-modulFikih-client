@@ -78,119 +78,117 @@ const Navbar = () => {
   };
 
   return (
-    <div className={classes.root}>
-      <AppBar
-        elevation={0}
-        color="inherit"
-        position="fixed"
-        sx={{ filter: 'drop-shadow(0 8px 15px rgba(0,14,61,.08))' }}
-      >
-        <Container maxWidth="xl">
-          <Toolbar
-            disableGutters
-            sx={{ justifyContent: { xs: 'flex-start', md: 'center' } }}
+    <AppBar
+      elevation={0}
+      color="inherit"
+      position="fixed"
+      sx={{ filter: 'drop-shadow(0 8px 15px rgba(0,14,61,.08))' }}
+    >
+      <Container maxWidth="xl">
+        <Toolbar
+          disableGutters
+          sx={{ justifyContent: { xs: 'flex-start', md: 'center' } }}
+        >
+          <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
+            <Sidebar drawer={drawer} toggleDrawer={toggleDrawer} />
+          </Box>
+          <Box
+            sx={{
+              alignItems: 'center',
+              display: { xs: 'flex', md: 'none' },
+            }}
           >
-            <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
-              <Sidebar drawer={drawer} toggleDrawer={toggleDrawer} />
-            </Box>
-            <Box
-              sx={{
-                alignItems: 'center',
-                display: { xs: 'flex', md: 'none' },
-              }}
+            <Link to="/">
+              <img
+                style={{ padding: '12px', width: '40px', height: '40px' }}
+                src={logo}
+                alt="logo"
+              />
+            </Link>
+            <Typography
+              color={theme.palette.primary.main}
+              fontWeight="900"
+              fontSize="20px"
+              to="/"
+              component={Link}
             >
-              <Link to="/">
-                <img
-                  style={{ padding: '12px', width: '40px', height: '40px' }}
-                  src={logo}
-                  alt="logo"
-                />
-              </Link>
-              <Typography
-                color={theme.palette.primary.main}
-                fontWeight="900"
-                fontSize="20px"
-                to="/"
-                component={Link}
-              >
-                Fikih MTs Bontouse
-              </Typography>
-            </Box>
-            <Box
-              sx={{
-                alignItems: 'center',
-                display: { xs: 'none', md: 'flex' },
-                padding: '12px',
-              }}
+              Fikih MTs Bontouse
+            </Typography>
+          </Box>
+          <Box
+            sx={{
+              alignItems: 'center',
+              display: { xs: 'none', md: 'flex' },
+              padding: '12px',
+            }}
+          >
+            <Link to="/">
+              <img src={logo} alt="logo" />
+            </Link>
+            <Typography
+              className={classes.menuButton}
+              color={theme.palette.primary.main}
+              fontWeight="900"
+              fontSize="25px"
+              to="/"
+              component={Link}
             >
-              <Link to="/">
-                <img src={logo} alt="logo" />
-              </Link>
-              <Typography
-                className={classes.menuButton}
-                color={theme.palette.primary.main}
-                fontWeight="900"
-                fontSize="25px"
-                to="/"
-                component={Link}
-              >
-                Fikih MTs Bontouse
-              </Typography>
-              <Divider orientation="vertical" variant="middle" flexItem />
-              <Typography
-                className={classes.menuButton}
-                color="inherit"
-                to="/courses"
-                component={Link}
-              >
-                Materi
-              </Typography>
+              Fikih MTs Bontouse
+            </Typography>
+            <Divider orientation="vertical" variant="middle" flexItem />
+            <Typography
+              className={classes.menuButton}
+              color="inherit"
+              to="/courses"
+              component={Link}
+            >
+              Materi
+            </Typography>
 
-              <div className={classes.search}>
-                <InputBase
-                  className={classes.hints}
-                  placeholder="Cari materi"
-                  onChange={handleChange}
-                />
-              </div>
-              <Typography
-                className={classes.menuButton}
+            <div className={classes.search}>
+              <InputBase
+                className={classes.hints}
+                placeholder="Cari materi"
+                onChange={handleChange}
+              />
+            </div>
+            <Typography
+              className={classes.menuButton}
+              color="inherit"
+              to="/blogs"
+              component={Link}
+            >
+              Blog
+            </Typography>
+            <Typography
+              className={classes.menuButton}
+              color="inherit"
+              component={Link}
+              to="/job_view"
+            >
+              Creator
+            </Typography>
+            {isLogged ? (
+              <Fragment>
+                <AccountMenu logOut={logOut} />
+                {user.type === 'instructor' && user.status === true ? (
+                  <Sidebar drawer={drawer} toggleDrawer={toggleDrawer} />
+                ) : null}
+              </Fragment>
+            ) : (
+              <Button
+                className={classes.signin}
                 color="inherit"
-                to="/blogs"
                 component={Link}
+                to="/login"
               >
-                Blog
-              </Typography>
-              <Typography
-                className={classes.menuButton}
-                color="inherit"
-                component={Link}
-                to="/job_view"
-              >
-                Creator
-              </Typography>
-              {isLogged ? (
-                <Fragment>
-                  <AccountMenu logOut={logOut} />
-                  {user.type === 'instructor' && user.status === true ? (
-                    <Sidebar drawer={drawer} toggleDrawer={toggleDrawer} />
-                  ) : null}
-                </Fragment>
-              ) : (
-                <Button
-                  className={classes.signin}
-                  color="inherit"
-                  component={Link}
-                  to="/login"
-                >
-                  Masuk
-                </Button>
-              )}
-            </Box>
-          </Toolbar>
-        </Container>
-      </AppBar>
-    </div>
+                Masuk
+              </Button>
+            )}
+          </Box>
+        </Toolbar>
+      </Container>
+    </AppBar>
   );
 };
 

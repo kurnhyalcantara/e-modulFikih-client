@@ -6,12 +6,13 @@ a {
   transition: all 0.2s;
 }
 
-a:hover {
-  color: #eda202;
-}
-
 video {
   color: #f1fffb;
+}
+
+.root-main {
+  padding: 6rem 0 2.5rem;
+  flex: 1 1 0%;
 }
 
 .root-container {
@@ -38,6 +39,21 @@ video {
   height: 3rem;
   text-transform: capitalize !important;
   font-size: 1rem !important;
+}
+
+.pattern-banner {
+  background-image: url('./assets/pattern.svg');
+  background-size: cover;
+  padding: 20px 40px;
+  height: 4rem;
+  display: flex;
+  align-items: center;
+}
+
+.box-container-nav-profile {
+  padding: 1rem 0.5rem 0.5rem;
+  border-radius: 0.5rem;
+  border: 1px solid #e6e6e6;
 }
 // .home_tab {
 //   .active_tab {
