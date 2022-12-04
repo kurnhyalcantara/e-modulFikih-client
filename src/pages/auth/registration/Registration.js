@@ -31,7 +31,7 @@ const Registration = () => {
 
   const [namaLengkap, setNamaLengkap] = useState('');
   const [nis, setNis] = useState('');
-  const [kelas, setKelas] = useState('');
+  const [kelas, setKelas] = useState('tujuh');
   const [mobile, setMobile] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);

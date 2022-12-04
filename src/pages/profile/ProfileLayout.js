@@ -1,16 +1,13 @@
 import {
   Box,
-  Button,
   Container,
   Grid,
   List,
   ListItemButton,
   ListItemText,
-  Typography,
 } from '@mui/material';
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { useStyle } from './styles';
 
 const ProfileLayout = ({
   children,
@@ -20,7 +17,6 @@ const ProfileLayout = ({
   styleUpload,
   handleDestroy,
 }) => {
-  const classes = useStyle();
   return (
     <div>
       <div className="pattern-banner">Pengaturan Akun</div>
