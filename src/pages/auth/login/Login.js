@@ -66,130 +66,130 @@ const Login = () => {
   };
 
   return (
-    <div className="root-container">
-      <Container maxWidth="xl">
-        <Grid container spacing={2}>
-          <Grid
-            item
-            md={7}
-            xs={12}
+    // <div className="root-container">
+    <Container maxWidth="xl">
+      <Grid container spacing={2}>
+        <Grid
+          item
+          md={7}
+          xs={12}
+          sx={{
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: { xs: 'center', md: 'flex-start' },
+            maxHeight: { xs: '234px', md: 'auto' },
+          }}
+        >
+          <LoginBanner className="banner-auth" />
+        </Grid>
+        <Grid item md={5} xs={12}>
+          <Box
             sx={{
-              display: 'flex',
-              justifyContent: 'center',
-              alignItems: { xs: 'center', md: 'flex-start' },
-              maxHeight: { xs: '234px', md: 'auto' },
+              maxWidth: '28rem',
+              margin: '0 auto',
+              padding: {
+                xs: '0',
+                md: '2.5rem',
+              },
+              border: {
+                xs: 'none',
+                md: '1px solid #e6e6e6',
+              },
+              borderRadius: '0.5rem',
+              background: '#fff',
             }}
           >
-            <LoginBanner className="banner-auth" />
-          </Grid>
-          <Grid item md={5} xs={12}>
-            <Box
-              sx={{
-                maxWidth: '28rem',
-                margin: '0 auto',
-                padding: {
-                  xs: '0',
-                  md: '2.5rem',
-                },
-                border: {
-                  xs: 'none',
-                  md: '1px solid #e6e6e6',
-                },
-                borderRadius: '0.5rem',
-                background: '#fff',
-              }}
-            >
-              <form id="login-submit">
-                <Typography
-                  variant="h4"
-                  fontWeight="700"
-                  color={theme.palette.text.primary}
-                  sx={{ textAlign: 'center' }}
+            <form id="login-submit">
+              <Typography
+                variant="h4"
+                fontWeight="700"
+                color={theme.palette.text.primary}
+                sx={{ textAlign: 'center' }}
+              >
+                Halo!
+              </Typography>
+              <Typography
+                color={theme.palette.text.secondary}
+                sx={{ textAlign: 'center', marginBottom: '28px !important' }}
+              >
+                Masuk untuk belajar sekarang
+              </Typography>
+              <FormControl fullWidth variant="standard">
+                <InputLabel
+                  shrink
+                  htmlFor="nis-login-input"
+                  sx={{ fontWeight: '700' }}
                 >
-                  Halo!
-                </Typography>
-                <Typography
-                  color={theme.palette.text.secondary}
-                  sx={{ textAlign: 'center', marginBottom: '28px !important' }}
+                  NIS
+                </InputLabel>
+                <BootstrapedInput
+                  id="nis-login-input"
+                  variant="outlined"
+                  type="text"
+                  onChange={(e) => {
+                    setNis(e.target.value);
+                  }}
+                  value={nis}
+                />
+              </FormControl>
+              <FormControl fullWidth variant="standard">
+                <InputLabel
+                  shrink
+                  htmlFor="password-input"
+                  sx={{ fontWeight: '700' }}
                 >
-                  Masuk untuk belajar sekarang
-                </Typography>
-                <FormControl fullWidth variant="standard">
-                  <InputLabel
-                    shrink
-                    htmlFor="nis-login-input"
-                    sx={{ fontWeight: '700' }}
-                  >
-                    NIS
-                  </InputLabel>
-                  <BootstrapedInput
-                    id="nis-login-input"
+                  Password
+                </InputLabel>
+                <div className="container-input-adornment">
+                  <AdornmentInputPassword
+                    fullWidth
+                    id="outlined-basic"
                     variant="outlined"
-                    type="text"
                     onChange={(e) => {
-                      setNis(e.target.value);
+                      setPassword(e.target.value);
                     }}
-                    value={nis}
+                    value={password}
+                    type={!showPassword ? 'password' : 'text'}
                   />
-                </FormControl>
-                <FormControl fullWidth variant="standard">
-                  <InputLabel
-                    shrink
-                    htmlFor="password-input"
-                    sx={{ fontWeight: '700' }}
-                  >
-                    Password
-                  </InputLabel>
-                  <div className="container-input-adornment">
-                    <AdornmentInputPassword
-                      fullWidth
-                      id="outlined-basic"
-                      variant="outlined"
-                      onChange={(e) => {
-                        setPassword(e.target.value);
-                      }}
-                      value={password}
-                      type={!showPassword ? 'password' : 'text'}
-                    />
-                    <Box>
-                      <IconButton
-                        aria-label="Tampilkan Password"
-                        onClick={handleClickShowPassword}
-                        onMouseDown={handleMouseDownPassword}
-                        edge="end"
-                      >
-                        {!showPassword ? <Visibility /> : <VisibilityOff />}
-                      </IconButton>
-                    </Box>
-                  </div>
-                </FormControl>
+                  <Box>
+                    <IconButton
+                      aria-label="Tampilkan Password"
+                      onClick={handleClickShowPassword}
+                      onMouseDown={handleMouseDownPassword}
+                      edge="end"
+                    >
+                      {!showPassword ? <Visibility /> : <VisibilityOff />}
+                    </IconButton>
+                  </Box>
+                </div>
+              </FormControl>
 
-                <Button
-                  color="primary"
-                  className="bootstraped-button"
-                  sx={{ margin: '1rem 0' }}
-                  fullWidth
-                  disabled={submitDisable}
-                  variant="contained"
-                  onClick={handleSubmit}
-                >
-                  {labelSubmit}
-                </Button>
-                <Typography
-                  color={theme.palette.text.secondary}
-                  sx={{ textAlign: 'center' }}
-                >
-                  Belum punya akun?{' '}
-                  <Link className={classes.link} to="/registration">
-                    Daftar
-                  </Link>
-                </Typography>
-              </form>
-            </Box>
-          </Grid>
+              <Button
+                color="primary"
+                className="bootstraped-button"
+                sx={{ margin: '1rem 0' }}
+                fullWidth
+                disabled={submitDisable}
+                variant="contained"
+                onClick={handleSubmit}
+              >
+                {labelSubmit}
+              </Button>
+              <Typography
+                color={theme.palette.text.secondary}
+                sx={{ textAlign: 'center' }}
+              >
+                Belum punya akun?{' '}
+                <Link className={classes.link} to="/registration">
+                  Daftar
+                </Link>
+              </Typography>
+            </form>
+          </Box>
         </Grid>
-      </Container>
-    </div>
+      </Grid>
+    </Container>
+    // </div>
   );
 };
 

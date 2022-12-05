@@ -20,9 +20,7 @@ import AddTask from './pages/instrucrorDashboard/singleCourse/addTask/AddTask';
 import SingleCourse from './pages/instrucrorDashboard/singleCourse/SingleCourse';
 import AllSubmission from './pages/instrucrorDashboard/singleCourse/tasks/allSubmission/AllSubmission';
 import NotFound from './pages/notFound/NotFound';
-import GeneralInformation from './pages/profile/generalInformation/GeneralInformation';
-import ProfileUser from './pages/profile/ProfileUser';
-import GeneralSetting from './pages/profile/generalSetting/GeneralSetting';
+import Profile from './pages/profile/Profile';
 import SingleCourseDetails from './pages/StudentDashboard/SingleCourseDetails/SinglecourseDetails';
 import SubmitTask from './pages/StudentDashboard/SingleCourseDetails/task/submitTask/SubmitTask';
 import StudentDashboard from './pages/StudentDashboard/StudentDashboard';
@@ -60,8 +58,7 @@ function App() {
               path="/registration"
               element={isLogged ? <NotFound /> : <Registration />}
             />
-            <Route path="/profile" element={<ProfileUser />} />
-            <Route path="/setting" element={<GeneralSetting />} />
+            <Route path="/profile" element={<Profile />} />
             <Route path="/courses" element={<AllCourse />} />
             <Route
               path="/instructor_dashboard"

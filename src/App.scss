@@ -18,7 +18,7 @@ video {
 .root-container {
   background-color: #fff;
   min-height: 90vh;
-  padding: 120px 20px;
+  padding: 80px 20px;
 }
 
 .banner-auth {
@@ -52,7 +52,8 @@ video {
 
 .box-container-nav-profile {
   padding: 1rem 0.5rem 0.5rem;
-  border-radius: 0.5rem;
+  border-bottom-left-radius: 0.5rem;
+  border-bottom-right-radius: 0.5rem;
   border: 1px solid #e6e6e6;
 }
 // .home_tab {

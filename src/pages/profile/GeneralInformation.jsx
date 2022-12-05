@@ -16,8 +16,8 @@ import {
   TextField,
 } from '@mui/material';
 import React, { useContext, useState } from 'react';
-import ProfileLayout from '../ProfileUser';
-import { GlobalState } from '../../../GlobalState';
+import ProfileLayout from './Profile';
+import { GlobalState } from '../../GlobalState';
 import axios from 'axios';
 import dayjs from 'dayjs';
 import { toast } from 'react-toastify';
@@ -27,7 +27,7 @@ import {
   AdornmentInputPhone,
   BootstrapedInput,
   SelectInputStyled,
-} from '../../../components/Input/BootstrapedInput';
+} from '../../components/Input/BootstrapedInput';
 import { DatePicker, LocalizationProvider } from '@mui/lab';
 import AdapterDayjs from '@mui/lab/AdapterDayjs';
 

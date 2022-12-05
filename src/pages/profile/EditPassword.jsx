@@ -1,9 +1,9 @@
 import { Button, Container, Grid, TextField } from '@mui/material';
 import React, { useContext, useEffect, useState } from 'react';
-import ProfileLayout from '../ProfileUser';
+import ProfileLayout from './Profile';
 import SaveIcon from '@mui/icons-material/Save';
 import SettingsIcon from '@mui/icons-material/Settings';
-import { GlobalState } from '../../../GlobalState';
+import { GlobalState } from '../../GlobalState';
 import axios from 'axios';
 import Swal from 'sweetalert2';
 import { toast } from 'react-toastify';
