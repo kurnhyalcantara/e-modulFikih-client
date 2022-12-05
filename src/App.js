@@ -21,6 +21,7 @@ import SingleCourse from './pages/instrucrorDashboard/singleCourse/SingleCourse'
 import AllSubmission from './pages/instrucrorDashboard/singleCourse/tasks/allSubmission/AllSubmission';
 import NotFound from './pages/notFound/NotFound';
 import GeneralInformation from './pages/profile/generalInformation/GeneralInformation';
+import ProfileUser from './pages/profile/ProfileUser';
 import GeneralSetting from './pages/profile/generalSetting/GeneralSetting';
 import SingleCourseDetails from './pages/StudentDashboard/SingleCourseDetails/SinglecourseDetails';
 import SubmitTask from './pages/StudentDashboard/SingleCourseDetails/task/submitTask/SubmitTask';
@@ -59,7 +60,7 @@ function App() {
               path="/registration"
               element={isLogged ? <NotFound /> : <Registration />}
             />
-            <Route path="/profile" element={<GeneralInformation />} />
+            <Route path="/profile" element={<ProfileUser />} />
             <Route path="/setting" element={<GeneralSetting />} />
             <Route path="/courses" element={<AllCourse />} />
             <Route

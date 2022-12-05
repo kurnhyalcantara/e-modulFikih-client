@@ -1,6 +1,6 @@
 import { Button, Container, Grid, TextField } from '@mui/material';
 import React, { useContext, useEffect, useState } from 'react';
-import ProfileLayout from '../ProfileLayout';
+import ProfileLayout from '../ProfileUser';
 import SaveIcon from '@mui/icons-material/Save';
 import SettingsIcon from '@mui/icons-material/Settings';
 import { GlobalState } from '../../../GlobalState';
@@ -146,76 +146,74 @@ const GeneralSetting = () => {
   }, [user.image]);
 
   return (
-    <ProfileLayout
-      handleUpload={handleUpload}
-      loading={loading}
-      image={image}
-      styleUpload={styleUpload}
-      handleDestroy={handleDestroy}
-    >
-      <Container>
-        <div
-          style={{ color: '#645A53', display: 'flex', alignItems: 'center' }}
-        >
-          <SettingsIcon />
-          <h2> Change Password</h2>
-        </div>
-        <Grid container spacing={4} alignItems="center">
-          <Grid item xs={12}>
-            <TextField
-              fullWidth
-              id="outlined-basic"
-              label="Current Password"
-              variant="outlined"
-              color="warning"
-              type="password"
-              onChange={(e) => {
-                setCurrentPassword(e.target.value);
-              }}
-            />
-          </Grid>
-          <Grid item xs={12}>
-            <TextField
-              fullWidth
-              id="outlined-basic"
-              label="New Password"
-              variant="outlined"
-              color="warning"
-              type="password"
-              onChange={(e) => {
-                setPassword(e.target.value);
-              }}
-            />
-          </Grid>
-          <Grid item xs={12}>
-            <TextField
-              fullWidth
-              id="outlined-basic"
-              label="Repeat New Password"
-              variant="outlined"
-              color="warning"
-              type="password"
-              onChange={(e) => {
-                setRePassword(e.target.value);
-              }}
-            />
-          </Grid>
+    // <ProfileLayout
+    //   handleUpload={handleUpload}
+    //   loading={loading}
+    //   image={image}
+    //   styleUpload={styleUpload}
+    //   handleDestroy={handleDestroy}
+    // >
+    <Container>
+      <div style={{ color: '#645A53', display: 'flex', alignItems: 'center' }}>
+        <SettingsIcon />
+        <h2> Change Password</h2>
+      </div>
+      <Grid container spacing={4} alignItems="center">
+        <Grid item xs={12}>
+          <TextField
+            fullWidth
+            id="outlined-basic"
+            label="Current Password"
+            variant="outlined"
+            color="warning"
+            type="password"
+            onChange={(e) => {
+              setCurrentPassword(e.target.value);
+            }}
+          />
         </Grid>
+        <Grid item xs={12}>
+          <TextField
+            fullWidth
+            id="outlined-basic"
+            label="New Password"
+            variant="outlined"
+            color="warning"
+            type="password"
+            onChange={(e) => {
+              setPassword(e.target.value);
+            }}
+          />
+        </Grid>
+        <Grid item xs={12}>
+          <TextField
+            fullWidth
+            id="outlined-basic"
+            label="Repeat New Password"
+            variant="outlined"
+            color="warning"
+            type="password"
+            onChange={(e) => {
+              setRePassword(e.target.value);
+            }}
+          />
+        </Grid>
+      </Grid>
 
-        <Button
-          onClick={handleSubmit}
-          fullWidth
-          variant="contained"
-          style={{
-            backgroundColor: '#EA5252',
-            textTransform: 'none',
-          }}
-          sx={{ mt: 5 }}
-        >
-          <SaveIcon /> Update Password
-        </Button>
-      </Container>
-    </ProfileLayout>
+      <Button
+        onClick={handleSubmit}
+        fullWidth
+        variant="contained"
+        style={{
+          backgroundColor: '#EA5252',
+          textTransform: 'none',
+        }}
+        sx={{ mt: 5 }}
+      >
+        <SaveIcon /> Update Password
+      </Button>
+    </Container>
+    // </ProfileLayout>
   );
 };
 
