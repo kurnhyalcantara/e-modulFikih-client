@@ -15,11 +15,10 @@ import { Link, useNavigate } from 'react-router-dom';
 import { GlobalState } from '../../GlobalState';
 import AccountMenu from '../account_menu/AccountMenu';
 import Sidebar from '../sidebar/Sidebar';
-import { useStyle } from './styles';
 import { useTheme } from '@mui/material/styles';
+import { BootstrapedInput } from '../Input/BootstrapedInput';
 
 const Navbar = () => {
-  const classes = useStyle();
   const theme = useTheme();
   const state = useContext(GlobalState);
   const [isLogged, setIsLogged] = state.userAPI.isLogged;
@@ -89,6 +88,7 @@ const Navbar = () => {
           disableGutters
           sx={{ justifyContent: { xs: 'flex-start', md: 'center' } }}
         >
+          {/* For Mobile View */}
           <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
             <Sidebar drawer={drawer} toggleDrawer={toggleDrawer} />
           </Box>
@@ -115,6 +115,7 @@ const Navbar = () => {
               Fikih MTs Bontouse
             </Typography>
           </Box>
+          {/* For Desktop View */}
           <Box
             sx={{
               alignItems: 'center',
@@ -126,7 +127,7 @@ const Navbar = () => {
               <img src={logo} alt="logo" />
             </Link>
             <Typography
-              className={classes.menuButton}
+              className="menuButton-Navbar"
               color={theme.palette.primary.main}
               fontWeight="900"
               fontSize="25px"
@@ -137,32 +138,28 @@ const Navbar = () => {
             </Typography>
             <Divider orientation="vertical" variant="middle" flexItem />
             <Typography
-              className={classes.menuButton}
-              color="inherit"
+              className="menuButton-Navbar"
+              color={theme.palette.text.primary}
               to="/courses"
               component={Link}
             >
               Materi
             </Typography>
-
-            <div className={classes.search}>
-              <InputBase
-                className={classes.hints}
-                placeholder="Cari materi"
-                onChange={handleChange}
-              />
-            </div>
+            <BootstrapedInput
+              onChange={handleChange}
+              placeholder="Cari materi"
+            />
             <Typography
-              className={classes.menuButton}
-              color="inherit"
+              className="menuButton-Navbar"
+              color={theme.palette.text.primary}
               to="/blogs"
               component={Link}
             >
               Blog
             </Typography>
             <Typography
-              className={classes.menuButton}
-              color="inherit"
+              className="menuButton-Navbar"
+              color={theme.palette.text.primary}
               component={Link}
               to="/job_view"
             >
@@ -176,12 +173,7 @@ const Navbar = () => {
                 ) : null}
               </Fragment>
             ) : (
-              <Button
-                className={classes.signin}
-                color="inherit"
-                component={Link}
-                to="/login"
-              >
+              <Button className="rounded-button" component={Link} to="/login">
                 Masuk
               </Button>
             )}

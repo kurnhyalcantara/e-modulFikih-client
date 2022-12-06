@@ -21,6 +21,14 @@ video {
   padding: 80px 20px;
 }
 
+.menuButton-Navbar {
+  padding: 0 35px;
+}
+
+.menuButton-Navbar:hover {
+  color: #f08126;
+}
+
 .banner-auth {
   width: 65%;
 }
@@ -39,6 +47,18 @@ video {
   height: 3rem;
   text-transform: capitalize !important;
   font-size: 1rem !important;
+  font-weight: 700 !important;
+}
+
+.rounded-button {
+  border: 1px solid #dcdcdc !important;
+  border-radius: 30px !important;
+  background-color: transparent !important;
+  padding: 1.5rem !important;
+  height: 3rem !important;
+  text-transform: capitalize !important;
+  font-size: 1rem !important;
+  font-weight: 700 !important;
 }
 
 .pattern-banner {

@@ -1,10 +1,10 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import LocalLibraryTwoToneIcon from '@mui/icons-material/LocalLibraryTwoTone';
 import ArticleTwoToneIcon from '@mui/icons-material/ArticleTwoTone';
 import FaceTwoToneIcon from '@mui/icons-material/FaceTwoTone';
 import MenuIcon from '@mui/icons-material/Menu';
 import Typography from '@mui/material/Typography';
-import { IconButton, Button } from '@mui/material';
+import { IconButton, Button, useTheme } from '@mui/material';
 import Box from '@mui/material/Box';
 import Divider from '@mui/material/Divider';
 import Drawer from '@mui/material/Drawer';
@@ -13,7 +13,7 @@ import ListItem from '@mui/material/ListItem';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import { Link } from 'react-router-dom';
-import { useStyle } from './styles';
+import { GlobalState } from '../../GlobalState';
 
 const listBox = [
   {
@@ -34,10 +34,10 @@ const listBox = [
 ];
 
 const Sidebar = ({ toggleDrawer, drawer }) => {
-  const classes = useStyle();
+  const theme = useTheme();
   const logo =
     'https://firebasestorage.googleapis.com/v0/b/fikih-mtsbontouse.appspot.com/o/Icons%2Ficon-72x72.png?alt=media&token=7c559bc1-872f-4ba2-b3bd-5d8c0cee5c29';
-  const list = (anchor) => (
+  const List = (anchor) => (
     <Box
       sx={{ width: anchor === 'top' || anchor === 'bottom' ? 'auto' : 250 }}
       role="presentation"
@@ -47,8 +47,13 @@ const Sidebar = ({ toggleDrawer, drawer }) => {
       <List>
         {listBox.map((list, i) => (
           <ListItem component={Link} to={list.route} button key={i}>
-            <ListItemIcon sx={{ color: '#006f59' }}>{list.icon}</ListItemIcon>
-            <ListItemText primary={list.name} sx={{ color: '#5b6a72' }} />
+            <ListItemIcon sx={{ color: `${theme.palette.primary.main}` }}>
+              {list.icon}
+            </ListItemIcon>
+            <ListItemText
+              color={theme.palette.text.primary}
+              primary={list.name}
+            />
           </ListItem>
         ))}
       </List>
@@ -70,7 +75,7 @@ const Sidebar = ({ toggleDrawer, drawer }) => {
           open={drawer['left']}
           onClose={toggleDrawer('left', false)}
         >
-          <Box sx={{ alignItems: 'center', display: 'flex' }}>
+          <Box display="flex" alignItems="center">
             <Link to="/">
               <img
                 style={{ padding: '12px', width: '40px', height: '40px' }}
@@ -80,7 +85,7 @@ const Sidebar = ({ toggleDrawer, drawer }) => {
             </Link>
             <Box display="flex" flexDirection="column">
               <Typography
-                color="#006f59"
+                color={theme.palette.primary.main}
                 fontWeight="900"
                 to="/"
                 onClick={toggleDrawer('left', false)}
@@ -91,31 +96,32 @@ const Sidebar = ({ toggleDrawer, drawer }) => {
               </Typography>
               <Typography
                 id="version"
-                color="#3D3B37"
+                color={theme.palette.text.primary}
                 fontSize="12px"
-                fontWeight="900"
+                fontWeight="700"
               >
                 versi 0.1.0 (testing)
               </Typography>
             </Box>
           </Box>
-          <Divider />
-          {list('left')}
-          <Divider />
+          <Divider variant="middle" />
+          {List('left')}
+          <Divider variant="middle" />
           <Box
             sx={{
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
+              padding: '1.5rem',
             }}
           >
             <Button
-              className={classes.login}
+              className="rounded-button"
               component={Link}
-              color="inherit"
               to="/login"
               onClick={toggleDrawer('left', false)}
               onKeyDown={toggleDrawer('left', false)}
+              fullWidth
             >
               Masuk
             </Button>
@@ -129,7 +135,11 @@ const Sidebar = ({ toggleDrawer, drawer }) => {
               padding: '0.8rem',
             }}
           >
-            <Typography color="#616161" fontSize="11px" textAlign="center">
+            <Typography
+              color={theme.palette.text.secondary}
+              fontSize="12px"
+              textAlign="center"
+            >
               Powered by Kurniawan &copy; {getYear()} <br />
               Mahasiswa IAI As'adiyah Sengkang
             </Typography>

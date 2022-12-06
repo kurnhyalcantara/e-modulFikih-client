@@ -24,7 +24,7 @@ export const useTheme = createTheme({
       main: amber['500'],
     },
     text: {
-      primary: 'rgba(0, 0, 0, 0.80)',
+      primary: 'rgba(0, 0, 0, 0.69)',
       secondary: 'rgba(0, 0, 0, 0.48)',
       disabled: 'rgba(0, 0, 0, 0.21)',
     },
