@@ -163,14 +163,14 @@ const Sidebar = ({ toggleDrawer, drawer }) => {
             </Box>
           </Box>
           <Divider variant="middle" />
-          {user ? listUserNav('left') : listMainMenu('left')}
+          {isLogged ? listUserNav('left') : listMainMenu('left')}
           <Box
             sx={{
               alignItems: 'center',
               justifyContent: 'center',
               padding: '1.5rem',
             }}
-            display={user ? 'none' : 'flex'}
+            display={isLogged ? 'none' : 'flex'}
           >
             <Button
               className="rounded-button"
