@@ -4,7 +4,13 @@ import ArticleTwoToneIcon from '@mui/icons-material/ArticleTwoTone';
 import FaceTwoToneIcon from '@mui/icons-material/FaceTwoTone';
 import MenuIcon from '@mui/icons-material/Menu';
 import Typography from '@mui/material/Typography';
-import { IconButton, Button, useTheme } from '@mui/material';
+import {
+  IconButton,
+  Button,
+  useTheme,
+  ListItemAvatar,
+  Avatar,
+} from '@mui/material';
 import Box from '@mui/material/Box';
 import Divider from '@mui/material/Divider';
 import Drawer from '@mui/material/Drawer';
@@ -14,8 +20,15 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import { Link } from 'react-router-dom';
 import { GlobalState } from '../../GlobalState';
+import {
+  LogoutSharp,
+  SettingsApplicationsSharp,
+  SupervisedUserCircleOutlined,
+  SupervisedUserCircleSharp,
+  VerifiedUserSharp,
+} from '@mui/icons-material';
 
-const listBox = [
+const mainMenu = [
   {
     name: 'Materi',
     route: '/courses',
@@ -33,11 +46,27 @@ const listBox = [
   },
 ];
 
+const userMenu = [
+  {
+    name: 'Pengaturan Profil',
+    route: '/profile',
+    icon: <SettingsApplicationsSharp />,
+  },
+  {
+    name: 'Keluar',
+    route: '/logout',
+    icon: <LogoutSharp />,
+  },
+];
+
 const Sidebar = ({ toggleDrawer, drawer }) => {
   const theme = useTheme();
+  const state = useContext(GlobalState);
+  const [isLogged, setIsLogged] = state.userAPI.isLogged;
+  const [user] = state.userAPI.user;
   const logo =
     'https://firebasestorage.googleapis.com/v0/b/fikih-mtsbontouse.appspot.com/o/Icons%2Ficon-72x72.png?alt=media&token=7c559bc1-872f-4ba2-b3bd-5d8c0cee5c29';
-  const List = (anchor) => (
+  const listMainMenu = (anchor) => (
     <Box
       sx={{ width: anchor === 'top' || anchor === 'bottom' ? 'auto' : 250 }}
       role="presentation"
@@ -45,7 +74,7 @@ const Sidebar = ({ toggleDrawer, drawer }) => {
       onKeyDown={toggleDrawer(anchor, false)}
     >
       <List>
-        {listBox.map((list, i) => (
+        {mainMenu.map((list, i) => (
           <ListItem component={Link} to={list.route} button key={i}>
             <ListItemIcon sx={{ color: `${theme.palette.primary.main}` }}>
               {list.icon}
@@ -56,6 +85,35 @@ const Sidebar = ({ toggleDrawer, drawer }) => {
             />
           </ListItem>
         ))}
+      </List>
+    </Box>
+  );
+
+  const listUserNav = (anchor) => (
+    <Box
+      sx={{ width: anchor === 'top' || anchor === 'bottom' ? 'auto' : 250 }}
+      role="presentation"
+      onClick={toggleDrawer(anchor, false)}
+      onKeyDown={toggleDrawer(anchor, false)}
+    >
+      <List>
+        <ListItem>
+          <ListItemAvatar>
+            <Avatar>
+              <SupervisedUserCircleOutlined />
+            </Avatar>
+          </ListItemAvatar>
+          <ListItemText primary={user.name} secondary={`NIS. ${user.nis}`} />
+        </ListItem>
+        {userMenu.map((list, i) => {
+          <ListItem component={Link} to={list.route} button key={i}>
+            <ListItemIcon>{list.icon}</ListItemIcon>
+            <ListItemText
+              color={theme.palette.text.primary}
+              primary={list.name}
+            />
+          </ListItem>;
+        })}
       </List>
     </Box>
   );
@@ -105,15 +163,14 @@ const Sidebar = ({ toggleDrawer, drawer }) => {
             </Box>
           </Box>
           <Divider variant="middle" />
-          {List('left')}
-          <Divider variant="middle" />
+          {user ? listUserNav('left') : listMainMenu('left')}
           <Box
             sx={{
-              display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
               padding: '1.5rem',
             }}
+            display={user ? 'none' : 'flex'}
           >
             <Button
               className="rounded-button"
@@ -126,6 +183,7 @@ const Sidebar = ({ toggleDrawer, drawer }) => {
               Masuk
             </Button>
           </Box>
+
           <Box
             sx={{
               display: 'flex',
