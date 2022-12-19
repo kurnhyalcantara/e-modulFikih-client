@@ -7,15 +7,32 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import Divider from '@mui/material/Divider';
 import IconButton from '@mui/material/IconButton';
 import Tooltip from '@mui/material/Tooltip';
-import Settings from '@mui/icons-material/Settings';
-import Logout from '@mui/icons-material/Logout';
 import { Link } from 'react-router-dom';
-import { Typography } from '@mui/material';
+import {
+  ListItemAvatar,
+  ListItemText,
+  Typography,
+  useTheme,
+} from '@mui/material';
 import DashboardIcon from '@mui/icons-material/Dashboard';
 import { GlobalState } from '../../GlobalState';
+import { LogoutTwoTone, SettingsTwoTone } from '@mui/icons-material';
 
+const userMenu = [
+  {
+    name: 'Pengaturan Profil',
+    route: '/profile',
+    icon: <SettingsTwoTone />,
+  },
+  {
+    name: 'Keluar',
+    route: '/logout',
+    icon: <LogoutTwoTone />,
+  },
+];
 const AccountMenu = ({ logOut }) => {
   const state = useContext(GlobalState);
+  const theme = useTheme();
   const [user] = state.userAPI.user;
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
@@ -54,7 +71,11 @@ const AccountMenu = ({ logOut }) => {
           elevation: 0,
           sx: {
             overflow: 'visible',
-            filter: 'drop-shadow(0px 2px 8px rgba(0,0,0,0.32))',
+            filter: 'drop-shadow(0 8px 15px rgba(0,2,12,.19))',
+            p: '1rem',
+            borderBottomRightRadius: '0.5rem',
+            borderBottomLeftRadius: '0.5rem',
+            width: '245px',
             mt: 1.5,
             '& .MuiAvatar-root': {
               width: 32,
@@ -100,32 +121,26 @@ const AccountMenu = ({ logOut }) => {
           </MenuItem>
         )}
         <MenuItem>
-          <ListItemIcon>
-            <Avatar fontSize="small" />
-          </ListItemIcon>
-          <Typography component={Link} to={`/profile`}>
-            Profile
-          </Typography>
+          <ListItemAvatar>
+            <Avatar
+              src="../../assets/avatar.svg"
+              sx={{ width: 40, height: 40 }}
+            />
+          </ListItemAvatar>
+          <ListItemText primary={user.name} secondary={`NIS. ${user.nis}`} />
         </MenuItem>
         <Divider />
-        <MenuItem>
-          <ListItemIcon>
-            <Settings fontSize="small" />
-          </ListItemIcon>
-          <Typography component={Link} to={`/setting`}>
-            Settings
-          </Typography>
-        </MenuItem>
-        <MenuItem
-          onClick={() => {
-            logOut();
-          }}
-        >
-          <ListItemIcon>
-            <Logout fontSize="small" />
-          </ListItemIcon>
-          Logout
-        </MenuItem>
+        {userMenu.map((list, i) => {
+          return (
+            <MenuItem component={Link} to={list.route} button key={i}>
+              <ListItemIcon>{list.icon}</ListItemIcon>
+              <ListItemText
+                color={theme.palette.text.secondary}
+                primary={list.name}
+              />
+            </MenuItem>
+          );
+        })}
       </Menu>
     </React.Fragment>
   );

@@ -1,8 +1,4 @@
 import React, { useContext } from 'react';
-import LocalLibraryTwoToneIcon from '@mui/icons-material/LocalLibraryTwoTone';
-import ArticleTwoToneIcon from '@mui/icons-material/ArticleTwoTone';
-import FaceTwoToneIcon from '@mui/icons-material/FaceTwoTone';
-import MenuIcon from '@mui/icons-material/Menu';
 import Typography from '@mui/material/Typography';
 import {
   IconButton,
@@ -21,28 +17,29 @@ import ListItemText from '@mui/material/ListItemText';
 import { Link } from 'react-router-dom';
 import { GlobalState } from '../../GlobalState';
 import {
-  LogoutSharp,
-  SettingsApplicationsSharp,
-  SupervisedUserCircleOutlined,
-  SupervisedUserCircleSharp,
-  VerifiedUserSharp,
+  LogoutTwoTone,
+  SettingsTwoTone,
+  LocalLibraryTwoTone,
+  FaceTwoTone,
+  ArticleTwoTone,
+  Menu,
 } from '@mui/icons-material';
 
 const mainMenu = [
   {
     name: 'Materi',
     route: '/courses',
-    icon: <LocalLibraryTwoToneIcon />,
+    icon: <LocalLibraryTwoTone />,
   },
   {
     name: 'Blog',
     route: '/blog',
-    icon: <ArticleTwoToneIcon />,
+    icon: <ArticleTwoTone />,
   },
   {
     name: 'Profil Creator',
     route: '/job_view',
-    icon: <FaceTwoToneIcon />,
+    icon: <FaceTwoTone />,
   },
 ];
 
@@ -50,19 +47,19 @@ const userMenu = [
   {
     name: 'Pengaturan Profil',
     route: '/profile',
-    icon: <SettingsApplicationsSharp />,
+    icon: <SettingsTwoTone />,
   },
   {
     name: 'Keluar',
     route: '/logout',
-    icon: <LogoutSharp />,
+    icon: <LogoutTwoTone />,
   },
 ];
 
 const Sidebar = ({ toggleDrawer, drawer }) => {
   const theme = useTheme();
   const state = useContext(GlobalState);
-  const [isLogged, setIsLogged] = state.userAPI.isLogged;
+  const [isLogged] = state.userAPI.isLogged;
   const [user] = state.userAPI.user;
   const logo =
     'https://firebasestorage.googleapis.com/v0/b/fikih-mtsbontouse.appspot.com/o/Icons%2Ficon-72x72.png?alt=media&token=7c559bc1-872f-4ba2-b3bd-5d8c0cee5c29';
@@ -99,20 +96,23 @@ const Sidebar = ({ toggleDrawer, drawer }) => {
       <List>
         <ListItem>
           <ListItemAvatar>
-            <Avatar>
-              <SupervisedUserCircleOutlined />
-            </Avatar>
+            <Avatar
+              src="../../assets/avatar.svg"
+              sx={{ width: 40, height: 40 }}
+            ></Avatar>
           </ListItemAvatar>
           <ListItemText primary={user.name} secondary={`NIS. ${user.nis}`} />
         </ListItem>
         {userMenu.map((list, i) => {
-          <ListItem component={Link} to={list.route} button key={i}>
-            <ListItemIcon>{list.icon}</ListItemIcon>
-            <ListItemText
-              color={theme.palette.text.primary}
-              primary={list.name}
-            />
-          </ListItem>;
+          return (
+            <ListItem component={Link} to={list.route} button key={i}>
+              <ListItemIcon>{list.icon}</ListItemIcon>
+              <ListItemText
+                color={theme.palette.text.secondary}
+                primary={list.name}
+              />
+            </ListItem>
+          );
         })}
       </List>
     </Box>
@@ -126,7 +126,7 @@ const Sidebar = ({ toggleDrawer, drawer }) => {
     <div>
       <React.Fragment>
         <IconButton onClick={toggleDrawer('left', true)}>
-          <MenuIcon />
+          <Menu />
         </IconButton>
         <Drawer
           anchor={'left'}
