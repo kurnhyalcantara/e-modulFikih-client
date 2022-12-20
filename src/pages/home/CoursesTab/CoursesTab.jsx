@@ -68,7 +68,11 @@ const CoursesTab = () => {
                       <Skeleton animation="wave" width="40%" />
                     </Typography>
                     <Typography variant="h4">
+<<<<<<< HEAD:src/pages/home/CoursesTab/CoursesTab.jsx
                       <Skeleton animation="wave" width="100%" />
+=======
+                      <Skeleton animation="wave" width="100%" count={5} />
+>>>>>>> 7dcf256b259d49c50e44de4e10fb7441a67e021d:src/pages/home/CoursesTab/CoursesTab.js
                     </Typography>
                   </CardContent>
                 </Card>
