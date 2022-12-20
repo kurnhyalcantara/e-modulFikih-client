@@ -29,17 +29,15 @@ const CoursesTab = () => {
   useEffect(() => {
     const getCourses = async () => {
       setLoading(true);
-      await axios
-        .get('https://fikih-mtsbontouse-backend.herokuapp.com/api/all/course')
-        .then((res) => {
-          if (res.status === 200) {
-            const { courses } = res.data;
-            setCourseList(courses);
-            let list = [...new Set(courses.map((item) => item.category))];
-            setTabList(list);
-            setLoading(false);
-          }
-        });
+      await axios.get('http://localhost:4000/api/all/course').then((res) => {
+        if (res.status === 200) {
+          const { courses } = res.data;
+          setCourseList(courses);
+          let list = [...new Set(courses.map((item) => item.category))];
+          setTabList(list);
+          setLoading(false);
+        }
+      });
     };
     getCourses();
   }, []);

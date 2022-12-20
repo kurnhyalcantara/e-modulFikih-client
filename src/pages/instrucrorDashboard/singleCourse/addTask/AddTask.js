@@ -31,13 +31,9 @@ const AddTask = () => {
     };
     if (courseId) {
       await axios
-        .post(
-          `https://fikih-mtsbontouse-backend.herokuapp.com/api/task/${courseId}`,
-          payload,
-          {
-            headers: { Authorization: token },
-          }
-        )
+        .post(`http://localhost:4000/api/task/${courseId}`, payload, {
+          headers: { Authorization: token },
+        })
         .then((res) => {
           if (res.status === 200) {
             Swal.fire('Good job!', 'You Created a Task!', 'success');
@@ -49,13 +45,9 @@ const AddTask = () => {
         });
     } else if (taskId) {
       await axios
-        .put(
-          `https://fikih-mtsbontouse-backend.herokuapp.com/api/task_update/${taskId}`,
-          payload,
-          {
-            headers: { Authorization: token },
-          }
-        )
+        .put(`http://localhost:4000/api/task_update/${taskId}`, payload, {
+          headers: { Authorization: token },
+        })
         .then((res) => {
           if (res.status === 200) {
             Swal.fire('Good job!', 'You updated this Task!', 'success');
@@ -71,12 +63,9 @@ const AddTask = () => {
   const getSingleTask = async () => {
     setLoading(true);
     await axios
-      .get(
-        `https://fikih-mtsbontouse-backend.herokuapp.com/api/task_update/${taskId}`,
-        {
-          headers: { Authorization: token },
-        }
-      )
+      .get(`http://localhost:4000/api/task_update/${taskId}`, {
+        headers: { Authorization: token },
+      })
       .then((res) => {
         if (res.status === 200) {
           const { task } = res.data;

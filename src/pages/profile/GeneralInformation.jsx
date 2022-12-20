@@ -57,7 +57,7 @@ const GeneralInformation = () => {
       formData.append('file', file);
       setLoading(true);
       const res = await axios.post(
-        'https://fikih-mtsbontouse-backend.herokuapp.com/api/upload',
+        'http://localhost:4000/api/upload',
         formData,
         {
           headers: {
@@ -77,7 +77,7 @@ const GeneralInformation = () => {
     try {
       setLoading(true);
       await axios.post(
-        'https://fikih-mtsbontouse-backend.herokuapp.com/api/destroy',
+        'http://localhost:4000/api/destroy',
         { public_id: image.public_id },
         {
           headers: { Authorization: token },
@@ -99,7 +99,7 @@ const GeneralInformation = () => {
     setLabelSubmit('Loading');
     axios
       .put(
-        `https://fikih-mtsbontouse-backend.herokuapp.com/api/student/update_profile/${user._id}`,
+        `http://localhost:4000/api/student/update_profile/${user._id}`,
         {
           // userName: userName,
           namaLengkap: namaLengkap,

@@ -46,13 +46,10 @@ const Login = () => {
     setLabelSubmit('Loading');
     try {
       await axios
-        .post(
-          'https://fikih-mtsbontouse-backend.herokuapp.com/api/student/login',
-          {
-            nis: nis,
-            password: password,
-          }
-        )
+        .post('http://localhost:4000/api/student/login', {
+          nis: nis,
+          password: password,
+        })
         .then((res) => {
           if (res.status === 200) {
             const { data } = res;

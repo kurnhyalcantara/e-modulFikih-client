@@ -87,7 +87,7 @@ const CourseDetails = () => {
   const submitReview = async () => {
     try {
       await axios.put(
-        `https://fikih-mtsbontouse-backend.herokuapp.com/api/course/review/${courseId}`,
+        `http://localhost:4000/api/course/review/${courseId}`,
         {
           rating: rating,
           comment: review,
@@ -109,9 +109,7 @@ const CourseDetails = () => {
       if (courseId) {
         setLoading(true);
         await axios
-          .get(
-            `https://fikih-mtsbontouse-backend.herokuapp.com/api/course_details/${courseId}`
-          )
+          .get(`http://localhost:4000/api/course_details/${courseId}`)
           .then((res) => {
             if (res.status === 200) {
               const { courseDetails } = res.data;

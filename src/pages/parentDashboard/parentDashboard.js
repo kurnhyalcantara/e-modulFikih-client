@@ -23,12 +23,9 @@ const ParentDashboard = () => {
   useEffect(() => {
     const getChild = async () => {
       await axios
-        .get(
-          'https://fikih-mtsbontouse-backend.herokuapp.com/api/parent/child/',
-          {
-            headers: { Authorization: token },
-          }
-        )
+        .get('http://localhost:4000/api/parent/child/', {
+          headers: { Authorization: token },
+        })
         .then((res) => {
           if (res.status === 200) {
             setChild(res.data);

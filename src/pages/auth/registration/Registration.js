@@ -52,16 +52,13 @@ const Registration = () => {
     setLabelSubmit('Loading');
     try {
       await axios
-        .post(
-          'https://fikih-mtsbontouse-backend.herokuapp.com/api/student/register',
-          {
-            namaLengkap: namaLengkap,
-            nis: nis,
-            kelas: kelas,
-            mobile: mobile,
-            password: password,
-          }
-        )
+        .post('http://localhost:4000/api/student/register', {
+          namaLengkap: namaLengkap,
+          nis: nis,
+          kelas: kelas,
+          mobile: mobile,
+          password: password,
+        })
         .then((res) => {
           if (res.status === 200) {
             const { data } = res;
