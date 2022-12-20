@@ -4,6 +4,7 @@ import {
   Card,
   CardActionArea,
   CardContent,
+  CardMedia,
   Container,
   Grid,
   Grow,
@@ -48,32 +49,28 @@ const CoursesTab = () => {
 
   return (
     <Box className="container">
-      {loading ? (
+      {!loading ? (
         <Grow in>
           <Grid container spacing={4} sx={{ mb: 10, mt: 5 }}>
             {['1', '2', '3', '4'].map((item, i) => (
               <Grid item xs={12} sm={6} lg={3} key={i}>
                 <Card variant="outlined">
-                  <CardActionArea>
-                    <Skeleton animation="wave" height={200} width="100%" />
-                    <CardContent>
-                      <Typography gutterBottom variant="h5" component="h2">
-                        <Skeleton animation="wave" height={20} width="100%" />
-                      </Typography>
-                      <Typography
-                        variant="body2"
-                        color="textSecondary"
-                        component="p"
-                      >
-                        <Skeleton
-                          animation="wave"
-                          height={10}
-                          width="100%"
-                          count={5}
-                        />
-                      </Typography>
-                    </CardContent>
-                  </CardActionArea>
+                  <CardMedia height={140}>
+                    <Skeleton
+                      variant="rectangular"
+                      animation="wave"
+                      height={140}
+                      width="100%"
+                    />
+                  </CardMedia>
+                  <CardContent>
+                    <Typography variant="h5">
+                      <Skeleton animation="wave" width="40%" />
+                    </Typography>
+                    <Typography variant="h4">
+                      <Skeleton animation="wave" width="100%" count={5} />
+                    </Typography>
+                  </CardContent>
                 </Card>
               </Grid>
             ))}
