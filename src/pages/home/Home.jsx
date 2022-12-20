@@ -15,8 +15,8 @@ import { GlobalState } from '../../GlobalState';
 import CarouselCards from './CarouselCards/CarouselCards';
 import CoursesTab from './CoursesTab/CoursesTab';
 import { useStyle } from './styles';
-import styles from './Home.module.css';
-import InstallPWA from '../../utils/InstallPWA';
+import InstallPWA from '../../utils/InstallPWA/InstallPWA';
+import './Home.css';
 
 const Home = () => {
   const classes = useStyle();
@@ -37,63 +37,49 @@ const Home = () => {
 
   return (
     <Container maxWidth="xl">
-      <Grid className={styles.banner} container spacing={2}>
+      <Grid className="banner" container spacing={2}>
         <Grid item xs={12} md={6}>
-          <div>
-            <Typography
-              sx={{ fontSize: { xs: '2.5rem', md: '3.5rem' } }}
-              fontWeight="900"
-              display="flex"
-              color={theme.palette.primary.main}
-            >
-              Gapai Mimpimu
-            </Typography>
-            <Typography
-              sx={{ fontSize: { xs: '2.5rem', md: '3.5rem' } }}
-              fontWeight="900"
-              display="flex"
-              color={theme.palette.text.primary}
-            >
-              Belajar Dimanapun
-            </Typography>
-            <Typography
-              color={theme.palette.text.primary}
-              maxWidth="363px"
-              marginY={1.5}
-            >
-              Modul Pembelajaran Fikih Berbasis <em>Progressive Web Apps </em>
-              untuk siswa MTs As'adiyah No. 2 Bontouse
-            </Typography>
-            <InstallPWA></InstallPWA>
-          </div>
+          <Typography
+            sx={{ fontSize: { xs: '2.5rem', md: '3.5rem' } }}
+            fontWeight="900"
+            color={theme.palette.primary.main}
+          >
+            Gapai Mimpimu
+          </Typography>
+          <Typography
+            sx={{ fontSize: { xs: '2.5rem', md: '3.5rem' } }}
+            fontWeight="900"
+            color={theme.palette.text.primary}
+          >
+            Belajar Dimanapun
+          </Typography>
+          <Typography color={theme.palette.text.primary}>
+            Modul Pembelajaran Fikih Berbasis <em>Progressive Web Apps </em>
+            untuk siswa MTs As'adiyah No. 2 Bontouse
+          </Typography>
+          <InstallPWA></InstallPWA>
         </Grid>
-        <Grid
-          item
-          xs={12}
-          md={6}
-          sx={{
-            paddingTop: {
-              xs: 'inherit',
-              md: '89px !important',
-            },
-          }}
-        >
+        <Grid item xs={12} md={6}>
           <img
-            className={classes.image}
+            className="image"
             src="https://i.ibb.co/QPZ8m1t/Group-7501.png"
             alt="Group-750"
             border="0"
           />
         </Grid>
       </Grid>
-      <div className={classes.coursestabtxt}>
-        <h1 className={classes.coursestabh}>
+      <Box className="courses-tab">
+        <Typography
+          variant="h1"
+          className="courses-tab-header"
+          color={theme.palette.text.primary}
+        >
           Tersedia materi untuk setiap jenjang kelas
-        </h1>
-      </div>
+        </Typography>
+        <CoursesTab />
+      </Box>
       {/* Courses Tab  */}
       <div className={classes.background}>
-        <CoursesTab />
         {/* three feature added here  */}
         <div className={classes.featurethree}>
           <Container maxWidth="xl">

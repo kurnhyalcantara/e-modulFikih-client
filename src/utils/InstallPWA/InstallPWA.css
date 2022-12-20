@@ -1,0 +1,9 @@
+.download-pwa {
+  background-color: #f8aa00;
+  color: #fff;
+  text-transform: uppercase;
+}
+
+.download-pwa:hover {
+  background-color: #e79e00;
+}

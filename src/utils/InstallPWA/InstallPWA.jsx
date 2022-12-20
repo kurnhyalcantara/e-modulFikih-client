@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Button } from '@mui/material';
+import './InstallPWA.css';
 
 const InstallPWA = () => {
   const [promptInstall, setPromptInstall] = useState(null);
@@ -23,20 +24,8 @@ const InstallPWA = () => {
   };
 
   return (
-    <div>
-      <Button
-        onClick={triggerPrompt}
-        sx={{
-          paddingX: '24px',
-          borderRadius: '50px',
-          fontWeight: '700',
-          backgroundColor: '#ff9800',
-          color: '#fff',
-          '&:hover': {
-            backgroundColor: '#ffb74d',
-          },
-        }}
-      >
+    <div style={{ margin: '1.5rem 0' }}>
+      <Button onClick={triggerPrompt} className="rounded-button download-pwa">
         Download Aplikasi
       </Button>
     </div>
