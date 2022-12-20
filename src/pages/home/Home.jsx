@@ -15,6 +15,7 @@ import { GlobalState } from '../../GlobalState';
 import CarouselCards from './CarouselCards/CarouselCards';
 import CoursesTab from './CoursesTab/CoursesTab';
 import { useStyle } from './styles';
+import styles from './Home.module.css';
 import InstallPWA from '../../utils/InstallPWA';
 
 const Home = () => {
@@ -35,63 +36,56 @@ const Home = () => {
   }, [setSearch]);
 
   return (
-    <Box
-      className={classes.root}
-      sx={{ marginTop: { xs: '48px', md: 'inherit' } }}
-    >
-      {/* Main Banner  */}
-      <Container maxWidth="xl">
-        {/* <Container maxWidth="xl"> */}
-        <Grid className={classes.banner} container spacing={2}>
-          <Grid item xs={12} md={6}>
-            <div>
-              <Typography
-                sx={{ fontSize: { xs: '2.5rem', md: '3.5rem' } }}
-                fontWeight="900"
-                display="flex"
-                color={theme.palette.primary.main}
-              >
-                Gapai Mimpimu
-              </Typography>
-              <Typography
-                sx={{ fontSize: { xs: '2.5rem', md: '3.5rem' } }}
-                fontWeight="900"
-                display="flex"
-                color={theme.palette.text.primary}
-              >
-                Belajar Dimanapun
-              </Typography>
-              <Typography
-                color={theme.palette.text.primary}
-                maxWidth="363px"
-                marginY={1.5}
-              >
-                Modul Pembelajaran Fikih Berbasis <em>Progressive Web Apps </em>
-                untuk siswa MTs As'adiyah No. 2 Bontouse
-              </Typography>
-              <InstallPWA></InstallPWA>
-            </div>
-          </Grid>
-          <Grid
-            item
-            xs={12}
-            md={6}
-            sx={{
-              paddingTop: {
-                xs: 'inherit',
-                md: '89px !important',
-              },
-            }}
-          >
-            <img
-              className={classes.image}
-              src="https://i.ibb.co/QPZ8m1t/Group-7501.png"
-              alt="Group-750"
-              border="0"
-            />
-          </Grid>
+    <Container maxWidth="xl">
+      <Grid className={styles.banner} container spacing={2}>
+        <Grid item xs={12} md={6}>
+          <div>
+            <Typography
+              sx={{ fontSize: { xs: '2.5rem', md: '3.5rem' } }}
+              fontWeight="900"
+              display="flex"
+              color={theme.palette.primary.main}
+            >
+              Gapai Mimpimu
+            </Typography>
+            <Typography
+              sx={{ fontSize: { xs: '2.5rem', md: '3.5rem' } }}
+              fontWeight="900"
+              display="flex"
+              color={theme.palette.text.primary}
+            >
+              Belajar Dimanapun
+            </Typography>
+            <Typography
+              color={theme.palette.text.primary}
+              maxWidth="363px"
+              marginY={1.5}
+            >
+              Modul Pembelajaran Fikih Berbasis <em>Progressive Web Apps </em>
+              untuk siswa MTs As'adiyah No. 2 Bontouse
+            </Typography>
+            <InstallPWA></InstallPWA>
+          </div>
         </Grid>
-      </Container>
+        <Grid
+          item
+          xs={12}
+          md={6}
+          sx={{
+            paddingTop: {
+              xs: 'inherit',
+              md: '89px !important',
+            },
+          }}
+        >
+          <img
+            className={classes.image}
+            src="https://i.ibb.co/QPZ8m1t/Group-7501.png"
+            alt="Group-750"
+            border="0"
+          />
+        </Grid>
+      </Grid>
       <div className={classes.coursestabtxt}>
         <h1 className={classes.coursestabh}>
           Tersedia materi untuk setiap jenjang kelas
@@ -393,7 +387,7 @@ const Home = () => {
           </Grid>
         </Container>
       </div>
-    </Box>
+    </Container>
   );
 };
 

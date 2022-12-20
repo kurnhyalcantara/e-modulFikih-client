@@ -5,6 +5,7 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { DataProvider } from './GlobalState';
 import { ToastContainer } from 'react-toastify';
+import { StyledEngineProvider } from '@mui/material/styles';
 import 'react-toastify/dist/ReactToastify.css';
 import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 // import "sweetalert2/src/sweetalert2.scss";
@@ -12,8 +13,10 @@ import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 ReactDOM.render(
   <React.StrictMode>
     <DataProvider>
-      <ToastContainer />
-      <App />
+      <StyledEngineProvider injectFirst>
+        <ToastContainer />
+        <App />
+      </StyledEngineProvider>
     </DataProvider>
   </React.StrictMode>,
   document.getElementById('root')
