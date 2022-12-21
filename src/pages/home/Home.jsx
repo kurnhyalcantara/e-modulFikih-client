@@ -8,6 +8,7 @@ import {
   Typography,
   Box,
   useTheme,
+  Grow,
 } from '@mui/material';
 import React, { useContext, useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
@@ -17,6 +18,7 @@ import CoursesTab from './CoursesTab/CoursesTab';
 import { useStyle } from './styles';
 import InstallPWA from '../../utils/InstallPWA/InstallPWA';
 import './Home.css';
+import OurFeature from './OurFeature/OurFeature';
 
 const Home = () => {
   const classes = useStyle();
@@ -37,7 +39,7 @@ const Home = () => {
 
   return (
     <Container maxWidth="xl">
-      <Grid className="banner" container spacing={2}>
+      <Grid className="about-section" container spacing={2}>
         <Grid item xs={12} md={6}>
           <Typography
             sx={{ fontSize: { xs: '2.5rem', md: '3.5rem' } }}
@@ -53,113 +55,36 @@ const Home = () => {
           >
             Belajar Dimanapun
           </Typography>
-          <Typography color={theme.palette.text.primary}>
+          <Typography color={theme.palette.text.secondary}>
             Modul Pembelajaran Fikih Berbasis <em>Progressive Web Apps </em>
             untuk siswa MTs As'adiyah No. 2 Bontouse
           </Typography>
           <InstallPWA></InstallPWA>
         </Grid>
         <Grid item xs={12} md={6}>
-          <img
-            className="image"
-            src="https://i.ibb.co/QPZ8m1t/Group-7501.png"
-            alt="Group-750"
-            border="0"
-          />
+          <Grow in>
+            <img
+              className="image"
+              src="https://i.ibb.co/QPZ8m1t/Group-7501.png"
+              alt="Group-750"
+              border="0"
+            />
+          </Grow>
         </Grid>
       </Grid>
-      <Box className="courses-tab">
+      <Box className="container-section">
+        <OurFeature />
+      </Box>
+      <Box className="container-section">
         <Typography
-          variant="h1"
+          variant="h3"
           className="courses-tab-header"
           color={theme.palette.text.primary}
         >
-          Tersedia materi untuk setiap jenjang kelas
+          Tersedia Materi Untuk Setiap Jenjang Kelas
         </Typography>
         <CoursesTab />
       </Box>
-      {/* Courses Tab  */}
-      <div className={classes.background}>
-        {/* three feature added here  */}
-        <div className={classes.featurethree}>
-          <Container maxWidth="xl">
-            <Grid container spacing={5}>
-              <Grid className={classes.featurethreecard} item xs={12} md={4}>
-                <div className={classes.featurethreecardinner}>
-                  <Grid className={classes.card} container spacing={2}>
-                    <Grid item xs={2}>
-                      <img
-                        className={classes.cardicon}
-                        src="https://i.ibb.co/0B99wM0/Group-49.png"
-                        alt="Group-49"
-                        border="0"
-                      />
-                    </Grid>
-                    <Grid item xs={10}>
-                      <div className={classes.cardtext}>
-                        <p className={classes.cardtexthead}>Buku Digital</p>
-                        <p className={classes.cardtextbody}>
-                          Siswa dapat mengakses konten materi melalui aplikasi
-                          ini selayaknya buku digital
-                        </p>
-                      </div>
-                    </Grid>
-                  </Grid>
-                </div>
-              </Grid>
-              <Grid className={classes.featurethreecard} item xs={12} md={4}>
-                <div className={classes.featurethreecardinner}>
-                  <Grid className={classes.card} container spacing={2}>
-                    <Grid item xs={2}>
-                      <img
-                        className={classes.cardicon}
-                        src="https://i.ibb.co/pv0wMjW/Group-52.png"
-                        alt="Group-49"
-                        border="0"
-                      />
-                    </Grid>
-                    <Grid item xs={10}>
-                      <div className={classes.cardtext}>
-                        <p className={classes.cardtexthead}>Uji Kompetensi</p>
-                        <p className={classes.cardtextbody}>
-                          Kumpulan latihan soal yang dapat menguji pemahaman
-                          siswa
-                        </p>
-                      </div>
-                    </Grid>
-                  </Grid>
-                </div>
-              </Grid>
-              <Grid className={classes.featurethreecard} item xs={12} md={4}>
-                <div className={classes.featurethreecardinner}>
-                  <Grid className={classes.card} container spacing={2}>
-                    <Grid item xs={2}>
-                      <img
-                        className={classes.cardicon}
-                        src="https://i.ibb.co/YdnGSqz/Group-48.png"
-                        alt="Group-49"
-                        border="0"
-                      />
-                    </Grid>
-                    <Grid item xs={10}>
-                      <div className={classes.cardtext}>
-                        <p className={classes.cardtexthead}>
-                          Belajar Dimanapun
-                        </p>
-                        <p className={classes.cardtextbody}>
-                          Pembelajaran dapat diakses baik di laptop maupun
-                          mobile
-                        </p>
-                      </div>
-                    </Grid>
-                  </Grid>
-                </div>
-              </Grid>
-            </Grid>
-          </Container>
-        </div>
-      </div>
-      {/* another card carousel  */}
       <div className={classes.background}>
         <Container maxWidth="xl">
           <CarouselCards />

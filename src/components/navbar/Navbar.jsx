@@ -137,7 +137,7 @@ const Navbar = () => {
             <Divider orientation="vertical" variant="middle" flexItem />
             <Typography
               className="menuButton-Navbar"
-              color={theme.palette.text.primary}
+              color={theme.palette.text.secondary}
               to="/courses"
               component={Link}
             >
@@ -149,7 +149,7 @@ const Navbar = () => {
             />
             <Typography
               className="menuButton-Navbar"
-              color={theme.palette.text.primary}
+              color={theme.palette.text.secondary}
               to="/blogs"
               component={Link}
             >
@@ -157,7 +157,7 @@ const Navbar = () => {
             </Typography>
             <Typography
               className="menuButton-Navbar"
-              color={theme.palette.text.primary}
+              color={theme.palette.text.secondary}
               component={Link}
               to="/job_view"
             >

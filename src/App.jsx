@@ -47,7 +47,7 @@ function App() {
     <ThemeProvider theme={theme}>
       <Router>
         <Navbar />
-        <main className="root-main">
+        <main className="main-section">
           <Routes>
             <Route path="/" element={<Home />} />
             <Route

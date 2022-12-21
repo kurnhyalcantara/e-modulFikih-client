@@ -10,15 +10,9 @@ video {
   color: #f1fffb;
 }
 
-.root-main {
+.main-section {
   padding: 6rem 0 2.5rem;
   flex: 1 1 0%;
-}
-
-.root-container {
-  background-color: #fff;
-  min-height: 90vh;
-  padding: 80px 20px;
 }
 
 .menuButton-Navbar {
@@ -27,6 +21,10 @@ video {
 
 .menuButton-Navbar:hover {
   color: #f08126;
+}
+
+.container-section {
+  margin: 3.5rem 0;
 }
 
 .banner-auth {
