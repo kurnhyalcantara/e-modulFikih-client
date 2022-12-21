@@ -9,6 +9,7 @@ import {
   Grid,
   Grow,
   Skeleton,
+  Tabs,
   Typography,
 } from '@mui/material';
 import axios from 'axios';
@@ -24,8 +25,16 @@ const CoursesTab = () => {
   const classes = useStyle();
   const [tabList, setTabList] = useState([]);
   const [courseList, setCourseList] = useState([]);
-  const [value, setValue] = useState(0);
+  const [tabContext, setTabContext] = useState(0);
   const [loading, setLoading] = useState(false);
+
+  const TabPanel = ({ children, value, index, ...other }) => {
+    return (
+      <div role="tabpanel" hidden={value !== index} {...other}>
+        {value === index && <Box>{children}</Box>}
+      </div>
+    );
+  };
 
   useEffect(() => {
     const getCourses = async () => {
@@ -43,13 +52,9 @@ const CoursesTab = () => {
     getCourses();
   }, []);
 
-  const handleChange = (event, newValue) => {
-    setValue(newValue);
-  };
-
   return (
     <Box className="container">
-      {!loading ? (
+      {loading ? (
         <Grow in>
           <Grid container spacing={4} sx={{ mb: 10, mt: 5 }}>
             {['1', '2', '3', '4'].map((item, i) => (
@@ -67,12 +72,8 @@ const CoursesTab = () => {
                     <Typography variant="h5">
                       <Skeleton animation="wave" width="40%" />
                     </Typography>
-                    <Typography variant="h4">
-<<<<<<< HEAD:src/pages/home/CoursesTab/CoursesTab.jsx
+                    <Typography variant="h5">
                       <Skeleton animation="wave" width="100%" />
-=======
-                      <Skeleton animation="wave" width="100%" count={5} />
->>>>>>> 7dcf256b259d49c50e44de4e10fb7441a67e021d:src/pages/home/CoursesTab/CoursesTab.js
                     </Typography>
                   </CardContent>
                 </Card>
@@ -81,37 +82,37 @@ const CoursesTab = () => {
           </Grid>
         </Grow>
       ) : (
-        <TabContext value={value}>
-          <Box sx={{ borderBottom: 1, borderColor: 'white' }}>
-            <TabList
+        <div>
+          <Box sx={{ borderBottom: 1, borderColor: 'white', mt: '1rem' }}>
+            <Tabs
               variant="scrollable"
               className={classes.tabcontainer}
-              onChange={handleChange}
-              indicatorColor={false}
-              // textColor="secondary"
+              onChange={(event, newValue) => {
+                setTabContext(newValue);
+              }}
+              value={tabContext}
+              indicatorColor="secondary"
             >
               {tabList &&
-                tabList.map((item, i) => (
-                  <Tab
-                    label={item}
-                    key={i}
-                    value={i}
-                    className={`${classes.tab}`}
-                  />
-                ))}
-            </TabList>
+                tabList.map((item, i) => <Tab label={item} key={i} />)}
+            </Tabs>
           </Box>
           {tabList &&
             tabList.map((tab, index) => {
               return (
-                <TabPanel key={`tab${index}`} value={index}>
+                <TabPanel key={`tab${index}`} value={tabContext} index={index}>
                   <Grid container spacing={4}>
                     {courseList &&
                       courseList
                         .filter((item, i) => item.category === tab)
                         .slice(0, 4)
                         .map((item, i) => (
-                          <Grid key={`course${i}`} item md={3}>
+                          <Grid
+                            item
+                            key={`course${i}`}
+                            md={3}
+                            sx={{ mt: '1.5rem' }}
+                          >
                             <Cards key={i} item={item} type="details" />
                           </Grid>
                         ))}
@@ -119,7 +120,7 @@ const CoursesTab = () => {
                 </TabPanel>
               );
             })}
-        </TabContext>
+        </div>
       )}
     </Box>
   );
