@@ -11,6 +11,7 @@ import {
   Skeleton,
   Tabs,
   Typography,
+  useTheme,
 } from '@mui/material';
 import axios from 'axios';
 import Box from '@mui/material/Box';
@@ -22,6 +23,7 @@ import Cards from '../../../components/Cards/Card';
 import './CoursesTab.css';
 
 const CoursesTab = () => {
+  const theme = useTheme();
   const classes = useStyle();
   const [tabList, setTabList] = useState([]);
   const [courseList, setCourseList] = useState([]);
@@ -54,6 +56,13 @@ const CoursesTab = () => {
 
   return (
     <Box className="container">
+      <Typography
+        variant="h3"
+        className="courses-tab-header"
+        color={theme.palette.text.primary}
+      >
+        Tersedia Materi Untuk Setiap Jenjang Kelas
+      </Typography>
       {loading ? (
         <Grow in>
           <Grid container spacing={4} sx={{ mb: 10, mt: 5 }}>
