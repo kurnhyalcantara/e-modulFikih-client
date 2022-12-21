@@ -1,0 +1,55 @@
+.container {
+  max-width: 100%;
+}
+
+.card {
+  height: 100%;
+}
+
+.tag {
+  background-color: #ffa400;
+  color: #fff;
+  text-transform: capitalize;
+  border: none;
+  padding: 5px;
+  border-radius: 3px;
+  display: block;
+}
+
+.heading {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.lecturer {
+  display: flex;
+  align-items: center;
+  margin-bottom: 6px;
+}
+
+.info-detail-pelajaran {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 0;
+}
+
+.alokasi-waktu,
+.rating-pelajaran {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+}
+
+.star-rating {
+  color: #ffa400;
+  transform: scale(0.8);
+}
+
+.count-rating {
+  font-weight: 700;
+  font-size: 12px;
+}

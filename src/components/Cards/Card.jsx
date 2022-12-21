@@ -1,14 +1,27 @@
-import AttachMoneyIcon from "@mui/icons-material/AttachMoney";
-import PeopleOutlineIcon from "@mui/icons-material/PeopleOutline";
-import StarRateIcon from "@mui/icons-material/StarRate";
-import { Grid, Typography } from "@mui/material";
-import Card from "@mui/material/Card";
-import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-import { useStyle } from "./styles";
+import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
+import PeopleOutlineIcon from '@mui/icons-material/PeopleOutline';
+import StarRateIcon from '@mui/icons-material/StarRate';
+import {
+  Avatar,
+  Button,
+  CardActions,
+  CardContent,
+  CardMedia,
+  Divider,
+  Grid,
+  Typography,
+  useTheme,
+} from '@mui/material';
+import Card from '@mui/material/Card';
+import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
+import { useStyle } from './styles';
+import './Card.css';
+import { AccessTimeTwoTone, PersonPinTwoTone } from '@mui/icons-material';
 
 const Cards = ({ item, type }) => {
   const classes = useStyle();
+  const theme = useTheme();
   const [rating, setRating] = useState(0);
 
   useEffect(() => {
@@ -30,52 +43,65 @@ const Cards = ({ item, type }) => {
   }, [item]);
 
   return (
-    <div className={classes.root}>
-      <Card
-        className={classes.cardmain}
-        sx={{ border: "none", boxShadow: "none", height: "10%" }}
-      >
-        <img
-          className={classes.cardimg}
-          width="100%"
-          src={
+    <div className="container">
+      <Card className="card" variant="outlined">
+        <CardMedia
+          component="img"
+          height={140}
+          image={
             item?.banner?.url ??
-            "https://www.pulsecarshalton.co.uk/wp-content/uploads/2016/08/jk-placeholder-image.jpg"
+            'https://www.pulsecarshalton.co.uk/wp-content/uploads/2016/08/jk-placeholder-image.jpg'
           }
-          alt=""
-        />
-        <button className={classes.tag}>{item?.category}</button>
-        <h1 className={classes.heading}>
-          <Typography component={Link} to={`/${type}/${item?._id}`}>
-            {item?.title}
-          </Typography>
-        </h1>
-        <div className={classes.flexitem}>
-          <div className={classes.avatar}>
-            <img
-              className={classes.avatarimg}
-              src="https://monstar-lab.com/global/wp-content/uploads/sites/11/2019/04/male-placeholder-image.jpeg"
-              alt=""
-            />
+          alt={item?.title ?? 'card-image-banner'}
+        ></CardMedia>
+        <CardContent>
+          <button className="tag">{item?.category}</button>
+          <h3 className="heading">
+            <Typography component={Link} to={`/${type}/${item?._id}`}>
+              {item?.title}
+            </Typography>
+          </h3>
+          <div className="lecturer">
+            <Avatar
+              alt={item?.lecturer?.name ?? 'Kurniawan'}
+              img={
+                item?.lecturer?.img ??
+                'https://monstar-lab.com/global/wp-content/uploads/sites/11/2019/04/male-placeholder-image.jpeg'
+              }
+              sx={{ width: '14px', height: '14px' }}
+            ></Avatar>
+            <Typography
+              component="p"
+              color={theme.palette.text.secondary}
+              fontSize={12}
+              marginLeft={0.5}
+            >
+              {item?.instructor?.name ?? 'Kurniawan'}
+            </Typography>
           </div>
-          <p className={classes.avatar}>{item?.instructor?.name}</p>
-        </div>
-        <Grid className={classes.gridcontainer} container spacing={2}>
-          <Grid className={classes.flexitem} item xs={4}>
-            <StarRateIcon className={classes.star} />{" "}
-            <span className={classes.startext}>{rating ? rating : "0"}+</span>
-          </Grid>
-          <Grid className={classes.flexitem} item xs={4}>
-            <PeopleOutlineIcon className={classes.enroll} />{" "}
-            <span className={classes.enrolltxt}>{item?.enrolled}+</span>
-          </Grid>
-          <Grid className={classes.flexitems} item xs={4}>
-            <span className={classes.normal}>
-              <AttachMoneyIcon className={classes.dollar} />
-              <span className={classes.pricetxt}>{item?.price}</span>
-            </span>
-          </Grid>
-        </Grid>
+          <Divider></Divider>
+          <div className="info-detail-pelajaran">
+            <div className="alokasi-waktu">
+              <AccessTimeTwoTone
+                sx={{ width: '14px', height: '14px' }}
+                color="disabled"
+              ></AccessTimeTwoTone>
+              <Typography
+                component="p"
+                color={theme.palette.text.primary}
+                fontSize={12}
+                fontWeight="700"
+                marginLeft={0.5}
+              >
+                {item?.detail?.alokasiWaktu ?? '90 Menit'}
+              </Typography>
+            </div>
+            <div className="rating-pelajaran">
+              <StarRateIcon className="star-rating" />{' '}
+              <span className="count-rating">{rating ? rating : '0'}+</span>
+            </div>
+          </div>
+        </CardContent>
       </Card>
     </div>
   );
