@@ -9,3 +9,14 @@
   display: block;
   margin: 0 auto;
 }
+
+.download-pwa {
+  background-color: rgb(248, 170, 0);
+  color: #fff;
+}
+
+.download-pwa:hover {
+  box-shadow: 0 16px 40px -6px rgba(248, 170, 0, 0.445);
+  background-color: rgb(248, 170, 0);
+  color: #fff;
+}
