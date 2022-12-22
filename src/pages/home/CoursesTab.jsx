@@ -3,6 +3,7 @@ import {
   Card,
   CardContent,
   CardMedia,
+  Container,
   Grid,
   Grow,
   Skeleton,
@@ -48,81 +49,87 @@ const CoursesTab = () => {
 
   return (
     <Box className="container-section">
-      <Typography
-        variant="h3"
-        textAlign="center"
-        fontWeight={700}
-        color={theme.palette.text.primary}
-      >
-        Tersedia Materi Untuk Setiap Jenjang Kelas
-      </Typography>
-      {loading ? (
-        <Grow in>
-          <Grid container spacing={4} sx={{ mb: 10, mt: 5 }}>
-            {['1', '2', '3', '4'].map((i) => (
-              <Grid item xs={12} sm={6} lg={3} key={i}>
-                <Card variant="outlined">
-                  <CardMedia height={140}>
-                    <Skeleton
-                      variant="rectangular"
-                      animation="wave"
-                      height={140}
-                      width="100%"
-                    />
-                  </CardMedia>
-                  <CardContent>
-                    <Typography variant="h5">
-                      <Skeleton animation="wave" width="40%" />
-                    </Typography>
-                    <Typography variant="p">
-                      <Skeleton animation="wave" width="100%" />
-                    </Typography>
-                  </CardContent>
-                </Card>
-              </Grid>
-            ))}
-          </Grid>
-        </Grow>
-      ) : (
-        <Box>
-          <Box sx={{ borderBottom: 1, borderColor: 'white', mt: '1rem' }}>
-            <Tabs
-              variant="scrollable"
-              onChange={(event, newValue) => {
-                setTabContext(newValue);
-              }}
-              value={tabContext}
-              indicatorColor="primary"
-            >
-              {tabList &&
-                tabList.map((item, i) => <Tab label={item} key={i} />)}
-            </Tabs>
+      <Container maxWidth="xl">
+        <Typography
+          variant="h3"
+          textAlign="center"
+          fontWeight={700}
+          color={theme.palette.text.primary}
+        >
+          Tersedia Materi Untuk Setiap Jenjang Kelas
+        </Typography>
+        {loading ? (
+          <Grow in>
+            <Grid container spacing={4} sx={{ mb: 10, mt: 5 }}>
+              {['1', '2', '3', '4'].map((i) => (
+                <Grid item xs={12} sm={6} lg={3} key={i}>
+                  <Card variant="outlined">
+                    <CardMedia height={140}>
+                      <Skeleton
+                        variant="rectangular"
+                        animation="wave"
+                        height={140}
+                        width="100%"
+                      />
+                    </CardMedia>
+                    <CardContent>
+                      <Typography variant="h5">
+                        <Skeleton animation="wave" width="40%" />
+                      </Typography>
+                      <Typography variant="p">
+                        <Skeleton animation="wave" width="100%" />
+                      </Typography>
+                    </CardContent>
+                  </Card>
+                </Grid>
+              ))}
+            </Grid>
+          </Grow>
+        ) : (
+          <Box>
+            <Box sx={{ borderBottom: 1, borderColor: 'white', mt: '1rem' }}>
+              <Tabs
+                variant="scrollable"
+                onChange={(event, newValue) => {
+                  setTabContext(newValue);
+                }}
+                value={tabContext}
+                indicatorColor="primary"
+              >
+                {tabList &&
+                  tabList.map((item, i) => <Tab label={item} key={i} />)}
+              </Tabs>
+            </Box>
+            {tabList &&
+              tabList.map((tab, index) => {
+                return (
+                  <TabPanel
+                    key={`tab${index}`}
+                    value={tabContext}
+                    index={index}
+                  >
+                    <Grid container spacing={4}>
+                      {courseList &&
+                        courseList
+                          .filter((item) => item.category === tab)
+                          .slice(0, 4)
+                          .map((item, i) => (
+                            <Grid
+                              item
+                              key={`course${i}`}
+                              md={3}
+                              sx={{ mt: '1.5rem' }}
+                            >
+                              <CardCourse key={i} item={item} type="details" />
+                            </Grid>
+                          ))}
+                    </Grid>
+                  </TabPanel>
+                );
+              })}
           </Box>
-          {tabList &&
-            tabList.map((tab, index) => {
-              return (
-                <TabPanel key={`tab${index}`} value={tabContext} index={index}>
-                  <Grid container spacing={4}>
-                    {courseList &&
-                      courseList
-                        .filter((item) => item.category === tab)
-                        .slice(0, 4)
-                        .map((item, i) => (
-                          <Grid
-                            item
-                            key={`course${i}`}
-                            md={3}
-                            sx={{ mt: '1.5rem' }}
-                          >
-                            <CardCourse key={i} item={item} type="details" />
-                          </Grid>
-                        ))}
-                  </Grid>
-                </TabPanel>
-              );
-            })}
-        </Box>
-      )}
+        )}
+      </Container>
     </Box>
   );
 };

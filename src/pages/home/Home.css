@@ -22,7 +22,7 @@
 }
 
 .container-section {
-  margin: 3.5rem 0;
+  margin: 4.5rem 0;
 }
 
 /* Our Feature */
@@ -84,6 +84,9 @@
 
 /* CourseTab */
 
+.container-coursetab {
+  margin-top: 4.5rem;
+}
 .Mui-selected {
   color: #006f59;
   font-weight: 600;

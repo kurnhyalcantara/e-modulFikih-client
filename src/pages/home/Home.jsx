@@ -32,53 +32,55 @@ const Home = () => {
   }, [setSearch]);
 
   return (
-    <Container maxWidth="xl">
-      <Grid className="about-section" container spacing={2}>
-        <Grid item xs={12} md={6}>
-          <Typography
-            sx={{ fontSize: { xs: '2.5rem', md: '3.5rem' } }}
-            fontWeight="900"
-            color={theme.palette.primary.main}
-          >
-            Gapai Mimpimu
-          </Typography>
-          <Typography
-            sx={{ fontSize: { xs: '2.5rem', md: '3.5rem' } }}
-            fontWeight="900"
-            color={theme.palette.text.primary}
-          >
-            Belajar Dimanapun
-          </Typography>
-          <Typography color={theme.palette.text.secondary}>
-            Modul Pembelajaran Fikih Berbasis <em>Progressive Web Apps </em>
-            untuk siswa MTs As'adiyah No. 2 Bontouse
-          </Typography>
-          <InstallPWA></InstallPWA>
+    <Box>
+      <Container maxWidth="xl">
+        <Grid className="about-section" container spacing={2}>
+          <Grid item xs={12} md={6}>
+            <Typography
+              sx={{ fontSize: { xs: '2.5rem', md: '3.5rem' } }}
+              fontWeight="900"
+              color={theme.palette.primary.main}
+            >
+              Gapai Mimpimu
+            </Typography>
+            <Typography
+              sx={{ fontSize: { xs: '2.5rem', md: '3.5rem' } }}
+              fontWeight="900"
+              color={theme.palette.text.primary}
+            >
+              Belajar Dimanapun
+            </Typography>
+            <Typography color={theme.palette.text.secondary}>
+              Modul Pembelajaran Fikih Berbasis <em>Progressive Web Apps </em>
+              untuk siswa MTs As'adiyah No. 2 Bontouse
+            </Typography>
+            <InstallPWA></InstallPWA>
+          </Grid>
+          <Grid item xs={12} md={6}>
+            <Grow in>
+              <Box
+                component="img"
+                className="image"
+                src="https://i.ibb.co/QPZ8m1t/Group-7501.png"
+                alt="Group-750"
+                border="0"
+                sx={{
+                  display: 'block',
+                  margin: '0 auto',
+                  width: { md: '100%', xs: '90%' },
+                }}
+              />
+            </Grow>
+          </Grid>
         </Grid>
-        <Grid item xs={12} md={6}>
-          <Grow in>
-            <Box
-              component="img"
-              className="image"
-              src="https://i.ibb.co/QPZ8m1t/Group-7501.png"
-              alt="Group-750"
-              border="0"
-              sx={{
-                display: 'block',
-                margin: '0 auto',
-                width: { md: '100%', xs: '90%' },
-              }}
-            />
-          </Grow>
-        </Grid>
-      </Grid>
+      </Container>
       <Box className="container-section">
         <OurFeature />
       </Box>
       <Box className="container-section">
         <CoursesTab />
       </Box>
-    </Container>
+    </Box>
   );
 };
 

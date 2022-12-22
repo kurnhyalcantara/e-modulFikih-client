@@ -1,4 +1,4 @@
-import { Container, Grid, Link, Typography } from '@mui/material';
+import { Box, Container, Grid, Link, Typography } from '@mui/material';
 import React from 'react';
 import LocalPhoneIcon from '@mui/icons-material/LocalPhone';
 import MailOutlineIcon from '@mui/icons-material/MailOutline';
@@ -10,12 +10,13 @@ import YouTubeIcon from '@mui/icons-material/YouTube';
 import PinterestIcon from '@mui/icons-material/Pinterest';
 import { useStyle } from './styles';
 import { useTheme } from '@mui/material/styles';
+import './Footer.css';
 
 const Footer = () => {
   const classes = useStyle();
   const theme = useTheme();
   return (
-    <div className={classes.root}>
+    <Box className="container-footer">
       <div className={classes.footers}>
         <Container maxWidth="xl">
           <Grid container spacing={6}>
@@ -91,7 +92,7 @@ const Footer = () => {
           </Grid>
         </Container>
       </div>
-    </div>
+    </Box>
   );
 };
 

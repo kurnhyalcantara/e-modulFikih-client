@@ -208,7 +208,6 @@ function App() {
             <Route path="/job_details" element={<JobDetails />} />
           </Routes>
         </main>
-
         <Footer />
       </Router>
     </ThemeProvider>
