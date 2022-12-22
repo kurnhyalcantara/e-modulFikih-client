@@ -2,9 +2,12 @@ import StarRateIcon from '@mui/icons-material/StarRate';
 import {
   Avatar,
   Box,
+  Button,
+  CardActions,
   CardContent,
   CardMedia,
   Divider,
+  Grid,
   Typography,
   useTheme,
 } from '@mui/material';
@@ -52,6 +55,7 @@ const Cards = ({ item, type }) => {
           <button className="tag">{item?.category}</button>
           <Typography
             variant="h5"
+            component={Link}
             className="heading"
             to={`/${type}/${item?._id}`}
           >
@@ -74,10 +78,10 @@ const Cards = ({ item, type }) => {
             >
               {item?.instructor?.name ?? 'Kurniawan'}
             </Typography>
-          </B>
+          </Box>
           <Divider></Divider>
-          <div className="info-detail-pelajaran">
-            <div className="alokasi-waktu">
+          <Box className="info-detail-pelajaran">
+            <Box className="alokasi-waktu">
               <AccessTimeTwoTone
                 sx={{ width: '14px', height: '14px' }}
                 color="disabled"
@@ -91,12 +95,12 @@ const Cards = ({ item, type }) => {
               >
                 {item?.detail?.alokasiWaktu ?? '90 Menit'}
               </Typography>
-            </div>
-            <div className="rating-pelajaran">
+            </Box>
+            <Box className="rating-pelajaran">
               <StarRateIcon className="star-rating" />{' '}
               <span className="count-rating">{rating ? rating : '0'}+</span>
-            </div>
-          </div>
+            </Box>
+          </Box>
         </CardContent>
       </Card>
     </Box>

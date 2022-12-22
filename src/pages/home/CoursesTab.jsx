@@ -13,7 +13,7 @@ import {
 import axios from 'axios';
 import Box from '@mui/material/Box';
 import Tab from '@mui/material/Tab';
-import Cards from '../../components/Cards/Card';
+import CardCourse from '../../components/Cards/Card';
 
 const CoursesTab = () => {
   const theme = useTheme();
@@ -114,7 +114,7 @@ const CoursesTab = () => {
                             md={3}
                             sx={{ mt: '1.5rem' }}
                           >
-                            <Cards key={i} item={item} type="details" />
+                            <CardCourse key={i} item={item} type="details" />
                           </Grid>
                         ))}
                   </Grid>

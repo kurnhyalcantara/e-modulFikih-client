@@ -22,8 +22,7 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  margin: 0.5rem 0;
-  color: rgba(0, 0, 0, 0.63);
+  margin: 0.8rem 0;
 }
 
 .lecturer {
@@ -54,4 +53,18 @@
 .count-rating {
   font-weight: 700;
   font-size: 12px;
+}
+
+.action-detail {
+  display: block;
+  padding: 0.5rem 1rem;
+  color: #006f59;
+  background-color: transparent;
+  font-weight: 700;
+  border-radius: 0.5rem;
+  width: 100%;
+}
+
+.action-detail:hover {
+  background-color: #f7f7f7;
 }
