@@ -1,26 +1,20 @@
-import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
-import PeopleOutlineIcon from '@mui/icons-material/PeopleOutline';
 import StarRateIcon from '@mui/icons-material/StarRate';
 import {
   Avatar,
-  Button,
-  CardActions,
+  Box,
   CardContent,
   CardMedia,
   Divider,
-  Grid,
   Typography,
   useTheme,
 } from '@mui/material';
 import Card from '@mui/material/Card';
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { useStyle } from './styles';
 import './Card.css';
-import { AccessTimeTwoTone, PersonPinTwoTone } from '@mui/icons-material';
+import { AccessTimeTwoTone } from '@mui/icons-material';
 
 const Cards = ({ item, type }) => {
-  const classes = useStyle();
   const theme = useTheme();
   const [rating, setRating] = useState(0);
 
@@ -43,7 +37,7 @@ const Cards = ({ item, type }) => {
   }, [item]);
 
   return (
-    <div className="container">
+    <Box className="container">
       <Card className="card" variant="outlined">
         <CardMedia
           component="img"
@@ -52,16 +46,18 @@ const Cards = ({ item, type }) => {
             item?.banner?.url ??
             'https://www.pulsecarshalton.co.uk/wp-content/uploads/2016/08/jk-placeholder-image.jpg'
           }
-          alt={item?.title ?? 'card-image-banner'}
+          alt={item?.title ?? 'Card Banner'}
         ></CardMedia>
         <CardContent>
           <button className="tag">{item?.category}</button>
-          <h3 className="heading">
-            <Typography component={Link} to={`/${type}/${item?._id}`}>
-              {item?.title}
-            </Typography>
-          </h3>
-          <div className="lecturer">
+          <Typography
+            variant="h5"
+            className="heading"
+            to={`/${type}/${item?._id}`}
+          >
+            {item?.title}
+          </Typography>
+          <Box className="lecturer">
             <Avatar
               alt={item?.lecturer?.name ?? 'Kurniawan'}
               img={
@@ -78,7 +74,7 @@ const Cards = ({ item, type }) => {
             >
               {item?.instructor?.name ?? 'Kurniawan'}
             </Typography>
-          </div>
+          </B>
           <Divider></Divider>
           <div className="info-detail-pelajaran">
             <div className="alokasi-waktu">
@@ -103,7 +99,7 @@ const Cards = ({ item, type }) => {
           </div>
         </CardContent>
       </Card>
-    </div>
+    </Box>
   );
 };
 

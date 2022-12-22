@@ -5,12 +5,10 @@ import {
   useTheme,
   Card,
   CardContent,
-  CardMedia,
 } from '@mui/material';
-import './OurFeature.css';
-import { ReactComponent as TimeManagement } from '../../../assets/feature-time-management.svg';
-import { ReactComponent as ExamOnline } from '../../../assets/feature-exam-online.svg';
-import { ReactComponent as MultiPlatform } from '../../../assets/feature-multi-platform.svg';
+import { ReactComponent as TimeManagement } from '../../assets/feature-time-management.svg';
+import { ReactComponent as ExamOnline } from '../../assets/feature-exam-online.svg';
+import { ReactComponent as MultiPlatform } from '../../assets/feature-multi-platform.svg';
 
 const listFeature = [
   {

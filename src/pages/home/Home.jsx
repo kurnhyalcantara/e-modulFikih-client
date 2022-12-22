@@ -10,10 +10,10 @@ import {
 import React, { useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { GlobalState } from '../../GlobalState';
-import CoursesTab from './CoursesTab/CoursesTab';
+import CoursesTab from './CoursesTab';
 import InstallPWA from '../../utils/InstallPWA/InstallPWA';
 import './Home.css';
-import OurFeature from './OurFeature/OurFeature';
+import OurFeature from './OurFeature';
 
 const Home = () => {
   const theme = useTheme();

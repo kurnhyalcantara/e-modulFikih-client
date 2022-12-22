@@ -20,3 +20,71 @@
   background-color: rgb(248, 170, 0);
   color: #fff;
 }
+
+.container-section {
+  margin: 3.5rem 0;
+}
+
+/* Our Feature */
+
+.our-feature {
+  background-color: #f7fdfa;
+  padding: 5rem 0;
+  border-top-left-radius: 4rem;
+  border-top-right-radius: 4rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.title-container {
+  padding: 0.5rem 0.875rem;
+  background-color: #e7faf2;
+  font-weight: 700;
+  border-radius: 50px;
+  font-size: small;
+}
+
+.header-feature {
+  margin: 1.5rem 0;
+}
+
+.description-feature {
+  max-width: 345px;
+  text-align: center;
+  line-height: 1.5;
+}
+
+.card-feature {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.card-image {
+  width: 50%;
+  height: 50%;
+  display: block;
+  padding: 2.5rem;
+}
+
+.card-style {
+  min-height: 450px;
+  background-color: rgb(230, 245, 238, 0.2);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+}
+
+.card-style:hover {
+  box-shadow: 0 4px 40px rgba(0, 0, 0, 0.1);
+}
+
+/* CourseTab */
+
+.Mui-selected {
+  color: #006f59;
+  font-weight: 600;
+}

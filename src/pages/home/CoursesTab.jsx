@@ -1,11 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { useStyle } from './styles';
 import {
   Card,
-  CardActionArea,
   CardContent,
   CardMedia,
-  Container,
   Grid,
   Grow,
   Skeleton,
@@ -16,15 +13,10 @@ import {
 import axios from 'axios';
 import Box from '@mui/material/Box';
 import Tab from '@mui/material/Tab';
-import TabContext from '@mui/lab/TabContext';
-import TabList from '@mui/lab/TabList';
-import TabPanel from '@mui/lab/TabPanel';
-import Cards from '../../../components/Cards/Card';
-import './CoursesTab.css';
+import Cards from '../../components/Cards/Card';
 
 const CoursesTab = () => {
   const theme = useTheme();
-  const classes = useStyle();
   const [tabList, setTabList] = useState([]);
   const [courseList, setCourseList] = useState([]);
   const [tabContext, setTabContext] = useState(0);
@@ -55,10 +47,11 @@ const CoursesTab = () => {
   }, []);
 
   return (
-    <Box className="container">
+    <Box className="container-section">
       <Typography
         variant="h3"
-        className="courses-tab-header"
+        textAlign="center"
+        fontWeight={700}
         color={theme.palette.text.primary}
       >
         Tersedia Materi Untuk Setiap Jenjang Kelas
@@ -66,7 +59,7 @@ const CoursesTab = () => {
       {loading ? (
         <Grow in>
           <Grid container spacing={4} sx={{ mb: 10, mt: 5 }}>
-            {['1', '2', '3', '4'].map((item, i) => (
+            {['1', '2', '3', '4'].map((i) => (
               <Grid item xs={12} sm={6} lg={3} key={i}>
                 <Card variant="outlined">
                   <CardMedia height={140}>
@@ -81,7 +74,7 @@ const CoursesTab = () => {
                     <Typography variant="h5">
                       <Skeleton animation="wave" width="40%" />
                     </Typography>
-                    <Typography variant="h5">
+                    <Typography variant="p">
                       <Skeleton animation="wave" width="100%" />
                     </Typography>
                   </CardContent>
@@ -91,16 +84,15 @@ const CoursesTab = () => {
           </Grid>
         </Grow>
       ) : (
-        <div>
+        <Box>
           <Box sx={{ borderBottom: 1, borderColor: 'white', mt: '1rem' }}>
             <Tabs
               variant="scrollable"
-              className={classes.tabcontainer}
               onChange={(event, newValue) => {
                 setTabContext(newValue);
               }}
               value={tabContext}
-              indicatorColor="secondary"
+              indicatorColor="primary"
             >
               {tabList &&
                 tabList.map((item, i) => <Tab label={item} key={i} />)}
@@ -113,7 +105,7 @@ const CoursesTab = () => {
                   <Grid container spacing={4}>
                     {courseList &&
                       courseList
-                        .filter((item, i) => item.category === tab)
+                        .filter((item) => item.category === tab)
                         .slice(0, 4)
                         .map((item, i) => (
                           <Grid
@@ -129,7 +121,7 @@ const CoursesTab = () => {
                 </TabPanel>
               );
             })}
-        </div>
+        </Box>
       )}
     </Box>
   );
