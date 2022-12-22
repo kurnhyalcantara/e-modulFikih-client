@@ -161,7 +161,7 @@ const Navbar = () => {
               component={Link}
               to="/job_view"
             >
-              Creator
+              Tentang
             </Typography>
             {isLogged ? (
               <Fragment>
