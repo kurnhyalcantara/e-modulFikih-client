@@ -19,25 +19,15 @@ const Footer = () => {
     <Box className="container-footer">
       <Grid container spacing={6}>
         <Grid item xs={12} md={5}>
-          <Grid container spacing={1}>
-            <Grid item xs={12}>
-              <Typography
-                color={theme.palette.primary.main}
-                fontWeight="900"
-                fontSize="32px"
-              >
-                Fikih MTs Bontouse
-              </Typography>
-            </Grid>
-            <Grid item xs={12}>
-              <Typography component="p" color={theme.palette.text.secondary}>
-                Modul Pembelajaran Fikih Berbasis
-                <em> Progressive Web Apps </em>
-                untuk siswa MTs As'adiyah No. 2 Bontouse
-              </Typography>
-            </Grid>
-          </Grid>
+          <Typography
+            color={theme.palette.primary.main}
+            fontWeight="900"
+            fontSize="32px"
+          >
+            Fikih MTs Bontouse
+          </Typography>
         </Grid>
+
         <Grid item xs={12} md={3} className="footer-section">
           <Grid container spacing={2}>
             <Grid item xs={12}>
@@ -52,7 +42,7 @@ const Footer = () => {
             </Grid>
           </Grid>
         </Grid>
-        <Grid item xs={12} md={3}>
+        <Grid item xs={12} md={3} className="footer-section">
           Contact US
           <p className={classes.contact}>
             <LocalPhoneIcon className={classes.ico} /> +62 81920 9382
