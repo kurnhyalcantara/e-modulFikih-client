@@ -57,11 +57,17 @@ const Home = () => {
         </Grid>
         <Grid item xs={12} md={6}>
           <Grow in>
-            <img
+            <Box
+              component="img"
               className="image"
               src="https://i.ibb.co/QPZ8m1t/Group-7501.png"
               alt="Group-750"
               border="0"
+              sx={{
+                display: 'block',
+                margin: '0 auto',
+                width: { md: '100%', xs: '90%' },
+              }}
             />
           </Grow>
         </Grid>
