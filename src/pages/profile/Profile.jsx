@@ -3,6 +3,7 @@ import React from 'react';
 import { useState } from 'react';
 import GeneralInformation from './GeneralInformation';
 import EditPassword from './EditPassword';
+import './Profile.css';
 
 const TabPanel = ({ children, value, index, ...other }) => {
   return (
@@ -15,59 +16,9 @@ const TabPanel = ({ children, value, index, ...other }) => {
 const Profile = () => {
   const [tabContext, setTabContext] = useState(0);
   return (
-    <div>
-      <div className="pattern-banner">Pengaturan Akun</div>
-      <Container sx={{ my: '1.5rem' }} maxWidth="md">
-        {/* <div className="user_profile_upload">
-                <input
-                  type="file"
-                  name="file"
-                  id="user_file_up"
-                  onChange={handleUpload}
-                />
-                {loading ? (
-                  // <LoadingScreen
-                  //   loading={loading}
-                  //   bgColor="#f1f1f1"
-                  //   spinnerColor="#9ee5f8"
-                  //   textColor="#676767"
-                  //   logoSrc="/logo.png"
-                  // />
-                  'loading'
-                ) : (
-                  <div id="user_file_img" style={styleUpload}>
-                    <img src={image ? image.url : ''} alt="" />
-                    <span onClick={handleDestroy}>X</span>
-                  </div>
-                )}
-              </div>
-              <Button
-                sx={{ my: 1, color: '#000' }}
-                fullWidth
-                variant="contained"
-                color="primary"
-                component={Link}
-                to={`/profile`}
-                style={{
-                  backgroundColor: '#EEE',
-                  textTransform: 'none',
-                }}
-              >
-                General Information
-              </Button>
-              <Button
-                sx={{ my: 1, color: '#000' }}
-                fullWidth
-                component={Link}
-                to={`/setting`}
-                variant="contained"
-                style={{
-                  backgroundColor: '#Eee',
-                  textTransform: 'none',
-                }}
-              >
-                Setting
-              </Button> */}
+    <Box>
+      <Box className="pattern-banner">Pengaturan Akun</Box>
+      <Container maxWidth="md">
         <Box
           sx={{
             borderBottom: 1,
@@ -76,7 +27,7 @@ const Profile = () => {
         >
           <Tabs
             value={tabContext}
-            onChange={(event, newValue) => {
+            onChange={(newValue) => {
               setTabContext(newValue);
             }}
             aria-label="Tabs Navigation Profile"
@@ -95,7 +46,7 @@ const Profile = () => {
           </TabPanel>
         </Box>
       </Container>
-    </div>
+    </Box>
   );
 };
 

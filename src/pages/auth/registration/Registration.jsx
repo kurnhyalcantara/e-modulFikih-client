@@ -14,7 +14,6 @@ import {
 } from '@mui/material';
 import { ReactComponent as SignUpBanner } from '../../../assets/signup-banner.svg';
 import { Link } from 'react-router-dom';
-import { useStyle } from './styles';
 import axios from 'axios';
 import { toast } from 'react-toastify';
 import { Visibility, VisibilityOff } from '@mui/icons-material';
@@ -27,7 +26,6 @@ import {
 import './Registration.css';
 
 const Registration = () => {
-  const classes = useStyle();
   const theme = useTheme();
 
   const [namaLengkap, setNamaLengkap] = useState('');
@@ -118,9 +116,9 @@ const Registration = () => {
                   Yuk, Daftar!
                 </Typography>
                 <Typography
-                  className={classes.subheading}
                   color={theme.palette.text.secondary}
                   marginBottom={5}
+                  textAlign="center"
                 >
                   Belajar dan wujudkan mimpi kamu
                 </Typography>

@@ -1,10 +1,8 @@
 import {
-  alpha,
   Avatar,
   Badge,
   Box,
   Button,
-  Container,
   FormControl,
   FormControlLabel,
   IconButton,
@@ -16,7 +14,7 @@ import {
   TextField,
 } from '@mui/material';
 import React, { useContext, useState } from 'react';
-import ProfileLayout from './Profile';
+
 import { GlobalState } from '../../GlobalState';
 import axios from 'axios';
 import dayjs from 'dayjs';
@@ -44,55 +42,9 @@ const GeneralInformation = () => {
   const [mobile, setMobile] = useState('');
   const [tanggalLahir, setTanggalLahir] = useState(dayjs('2010-01-01'));
   const [jenisKelamin, setJenisKelamin] = useState('');
-  const [image, setImage] = useState(false);
-  const [loading, setLoading] = useState(false);
+  const [image] = useState(false);
   const [labelSubmit, setLabelSubmit] = useState('Simpan');
   const [submitDisable, setSubmitDisable] = useState(false);
-
-  const handleUpload = async (e) => {
-    e.preventDefault();
-    try {
-      const file = e.target.files[0];
-      let formData = new FormData();
-      formData.append('file', file);
-      setLoading(true);
-      const res = await axios.post(
-        'http://localhost:4000/api/upload',
-        formData,
-        {
-          headers: {
-            'content-type': 'multipart/form-data',
-            Authorization: token,
-          },
-        }
-      );
-      setLoading(false);
-      setImage(res.data);
-    } catch (error) {
-      toast.error(error.response.data.msg);
-    }
-  };
-
-  const handleDestroy = async () => {
-    try {
-      setLoading(true);
-      await axios.post(
-        'http://localhost:4000/api/destroy',
-        { public_id: image.public_id },
-        {
-          headers: { Authorization: token },
-        }
-      );
-      setLoading(false);
-      setImage(false);
-    } catch (err) {
-      toast.error(err.response.data.msg);
-    }
-  };
-
-  const styleUpload = {
-    display: image ? 'block' : 'none',
-  };
 
   const handleSubmit = async () => {
     setSubmitDisable(true);
@@ -121,52 +73,16 @@ const GeneralInformation = () => {
       });
   };
 
-  // useEffect(() => {
-  //   if (user) {
-  //     setNamaLengkap(user.name);
-  //     setNamaPanggilan(user.nickname);
-  //     setSekolah(user.sekolah);
-  //     setKelas(user.address);
-  //     setNis(user.nis);
-  //     setMobile(user.mobile);
-  //     setTanggalLahir(user.tanggalLahir);
-  //     setImage(user.image);
-  //   } else {
-  //     setNamaLengkap('');
-  //     setNamaPanggilan('');
-  //     setSekolah('');
-  //     setKelas('tujuh');
-  //     setNis('');
-  //     setMobile('');
-  //     setTanggalLahir('');
-  //     setImage(false);
-  //   }
-  // }, [user]);
-
   return (
-    // <ProfileLayout
-    //   handleUpload={handleUpload}
-    //   loading={loading}
-    //   image={image}
-    //   styleUpload={styleUpload}
-    //   handleDestroy={handleDestroy}
-    // >
-    <Box>
-      <div
-        style={{
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          padding: '2rem',
-        }}
-      >
+    <Box className="general-information-container">
+      <Box className="avatar-container">
         <Badge
           overlap="circular"
           anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
           badgeContent={
             <IconButton
               color="primary"
-              aria-label="upload picture"
+              aria-label="Upload Foto Profile"
               component="label"
             >
               <input hidden accept="image/*" type="file" />
@@ -180,8 +96,8 @@ const GeneralInformation = () => {
             sx={{ width: '5rem', height: '5rem' }}
           />
         </Badge>
-      </div>
-      <form id="edit-profile-form" style={{ padding: '1.5rem' }}>
+      </Box>
+      <form id="edit-profile-form" className="edit-information-container">
         <FormControl fullWidth variant="standard">
           <InputLabel
             shrink
@@ -198,6 +114,7 @@ const GeneralInformation = () => {
               setNamaLengkap(e.target.value);
             }}
             value={namaLengkap}
+            className="edit-information-input"
           />
         </FormControl>
         <FormControl fullWidth variant="standard">
@@ -216,6 +133,7 @@ const GeneralInformation = () => {
               setNamaPanggilan(e.target.value);
             }}
             value={namaPanggilan}
+            className="edit-information-input"
           />
         </FormControl>
         <FormControl fullWidth variant="standard">
@@ -230,6 +148,7 @@ const GeneralInformation = () => {
               setSekolah(e.target.value);
             }}
             value={sekolah}
+            className="edit-information-input"
           />
         </FormControl>
         <FormControl fullWidth variant="standard">
@@ -247,7 +166,7 @@ const GeneralInformation = () => {
               setKelas(e.target.value);
             }}
             value={kelas}
-            input={<SelectInputStyled />}
+            input={<SelectInputStyled className="edit-information-input" />}
           >
             <MenuItem value={'tujuh'}>Kelas VII</MenuItem>
             <MenuItem value={'delapan'}>Kelas VIII</MenuItem>
@@ -266,6 +185,7 @@ const GeneralInformation = () => {
               setNis(e.target.value);
             }}
             value={nis}
+            className="edit-information-input"
           />
         </FormControl>
         <FormControl fullWidth variant="standard">
@@ -333,7 +253,7 @@ const GeneralInformation = () => {
             onChange={(e) => {
               setJenisKelamin(e.target.value);
             }}
-            sx={{ marginTop: '1rem !important' }}
+            sx={{ marginTop: '1rem' }}
           >
             <FormControlLabel
               value="male"
@@ -360,7 +280,6 @@ const GeneralInformation = () => {
         </Button>
       </form>
     </Box>
-    // </ProfileLayout>
   );
 };
 
