@@ -2,12 +2,9 @@ import StarRateIcon from '@mui/icons-material/StarRate';
 import {
   Avatar,
   Box,
-  Button,
-  CardActions,
   CardContent,
   CardMedia,
   Divider,
-  Grid,
   Typography,
   useTheme,
 } from '@mui/material';
