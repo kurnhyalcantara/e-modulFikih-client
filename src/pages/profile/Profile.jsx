@@ -27,7 +27,7 @@ const Profile = () => {
         >
           <Tabs
             value={tabContext}
-            onChange={(newValue) => {
+            onChange={(event, newValue) => {
               setTabContext(newValue);
             }}
             aria-label="Tabs Navigation Profile"

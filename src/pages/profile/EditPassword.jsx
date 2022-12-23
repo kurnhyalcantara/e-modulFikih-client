@@ -1,12 +1,10 @@
-import { Button, Container, Grid, TextField } from '@mui/material';
-import React, { useContext, useEffect, useState } from 'react';
-import ProfileLayout from './Profile';
-import SaveIcon from '@mui/icons-material/Save';
-import SettingsIcon from '@mui/icons-material/Settings';
+import { Box, Button, FormControl, InputLabel } from '@mui/material';
+import React, { useContext, useState } from 'react';
 import { GlobalState } from '../../GlobalState';
 import axios from 'axios';
 import Swal from 'sweetalert2';
 import { toast } from 'react-toastify';
+import { AdornmentInputPassword } from '../../components/Input/BootstrapedInput';
 
 const GeneralSetting = () => {
   const state = useContext(GlobalState);
@@ -14,53 +12,9 @@ const GeneralSetting = () => {
   const [user] = state.userAPI.user;
   const userName = user.userName;
 
-  const [currentPassword, setCurrentPassword] = useState('');
-  const [password, setPassword] = useState('');
-  const [rePassword, setRePassword] = useState('');
-
-  const [image, setImage] = useState(false);
-  const [loading, setLoading] = useState(false);
-
-  const handleUpload = async (e) => {
-    e.preventDefault();
-    try {
-      const file = e.target.files[0];
-      let formData = new FormData();
-      formData.append('file', file);
-      setLoading(true);
-      const res = await axios.post(
-        'http://localhost:4000/api/upload',
-        formData,
-        {
-          headers: {
-            'content-type': 'multipart/form-data',
-            Authorization: token,
-          },
-        }
-      );
-      setLoading(false);
-      setImage(res.data);
-    } catch (error) {
-      toast.error(error.response.data.msg);
-    }
-  };
-
-  const handleDestroy = async () => {
-    try {
-      setLoading(true);
-      await axios.post(
-        'http://localhost:4000/api/destroy',
-        { public_id: image.public_id },
-        {
-          headers: { Authorization: token },
-        }
-      );
-      setLoading(false);
-      setImage(false);
-    } catch (err) {
-      toast.error(err.response.data.msg);
-    }
-  };
+  const [oldPassword, setOldPassword] = useState('');
+  const [newPassword, setNewPassword] = useState('');
+  const [confirmNewPassword, setConfirmNewPassword] = useState('');
 
   const handleSubmit = async () => {
     if (user.type === 'student') {
@@ -69,54 +23,9 @@ const GeneralSetting = () => {
           `http://localhost:4000/api/student/update_password/${user._id}`,
           {
             userName: userName,
-            currentPassword: currentPassword,
-            password: password,
-            rePassword: rePassword,
-          },
-          {
-            headers: { Authorization: token },
-          }
-        )
-        .then((res) => {
-          if (res.status === 200) {
-            Swal.fire('Good job!', 'You change Your Password', 'success');
-          }
-        })
-        .catch((error) => {
-          toast.error(error.response.data.msg);
-        });
-    } else if (user.type === 'instructor') {
-      axios
-        .put(
-          `http://localhost:4000/api/instructor/update_password/${user._id}`,
-          {
-            userName: userName,
-            currentPassword: currentPassword,
-            password: password,
-            rePassword: rePassword,
-          },
-          {
-            headers: { Authorization: token },
-          }
-        )
-        .then((res) => {
-          if (res.status === 200) {
-            Swal.fire('Good job!', 'You change Your Password', 'success');
-          }
-        })
-        .catch((error) => {
-          toast.error(error.response.data.msg);
-        });
-    }
-    if (user.type === 'parent') {
-      axios
-        .put(
-          `http://localhost:4000/api/parent/update_password/${user._id}`,
-          {
-            nid: user.nid,
-            currentPassword: currentPassword,
-            password: password,
-            rePassword: rePassword,
+            currentPassword: oldPassword,
+            password: newPassword,
+            rePassword: confirmNewPassword,
           },
           {
             headers: { Authorization: token },
@@ -132,88 +41,74 @@ const GeneralSetting = () => {
         });
     }
   };
-
-  const styleUpload = {
-    display: image ? 'block' : 'none',
-  };
-
-  useEffect(() => {
-    if (user.image) {
-      setImage(user.image);
-    } else {
-      setImage(false);
-    }
-  }, [user.image]);
 
   return (
-    // <ProfileLayout
-    //   handleUpload={handleUpload}
-    //   loading={loading}
-    //   image={image}
-    //   styleUpload={styleUpload}
-    //   handleDestroy={handleDestroy}
-    // >
-    <Container>
-      <div style={{ color: '#645A53', display: 'flex', alignItems: 'center' }}>
-        <SettingsIcon />
-        <h2> Change Password</h2>
-      </div>
-      <Grid container spacing={4} alignItems="center">
-        <Grid item xs={12}>
-          <TextField
+    <Box className="general-information-container">
+      <FormControl fullWidth variant="standard">
+        <InputLabel shrink htmlFor="old-password" sx={{ fontWeight: '700' }}>
+          Password Lama
+        </InputLabel>
+        <div className="container-input-adornment">
+          <AdornmentInputPassword
             fullWidth
-            id="outlined-basic"
-            label="Current Password"
+            id="old-password"
             variant="outlined"
-            color="warning"
-            type="password"
             onChange={(e) => {
-              setCurrentPassword(e.target.value);
+              setOldPassword(e.target.value);
             }}
+            value={oldPassword}
+            type="password"
           />
-        </Grid>
-        <Grid item xs={12}>
-          <TextField
+        </div>
+      </FormControl>
+      <FormControl fullWidth variant="standard">
+        <InputLabel shrink htmlFor="new-password" sx={{ fontWeight: '700' }}>
+          Password Baru
+        </InputLabel>
+        <div className="container-input-adornment">
+          <AdornmentInputPassword
             fullWidth
-            id="outlined-basic"
-            label="New Password"
+            id="new-password"
             variant="outlined"
-            color="warning"
-            type="password"
             onChange={(e) => {
-              setPassword(e.target.value);
+              setNewPassword(e.target.value);
             }}
+            value={newPassword}
+            type="password"
           />
-        </Grid>
-        <Grid item xs={12}>
-          <TextField
+        </div>
+      </FormControl>
+      <FormControl fullWidth variant="standard">
+        <InputLabel
+          shrink
+          htmlFor="confirm-new-password"
+          sx={{ fontWeight: '700' }}
+        >
+          Konfirmasi Password Baru
+        </InputLabel>
+        <div className="container-input-adornment">
+          <AdornmentInputPassword
             fullWidth
-            id="outlined-basic"
-            label="Repeat New Password"
+            id="confirm-new-password"
             variant="outlined"
-            color="warning"
-            type="password"
             onChange={(e) => {
-              setRePassword(e.target.value);
+              setConfirmNewPassword(e.target.value);
             }}
+            value={confirmNewPassword}
+            type="password"
           />
-        </Grid>
-      </Grid>
-
+        </div>
+      </FormControl>
       <Button
         onClick={handleSubmit}
         fullWidth
         variant="contained"
-        style={{
-          backgroundColor: '#EA5252',
-          textTransform: 'none',
-        }}
+        className="bootstraped-button"
         sx={{ mt: 5 }}
       >
-        <SaveIcon /> Update Password
+        Update Password
       </Button>
-    </Container>
-    // </ProfileLayout>
+    </Box>
   );
 };
 
