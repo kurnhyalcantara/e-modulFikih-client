@@ -17,6 +17,7 @@ import AccountMenu from '../account_menu/AccountMenu';
 import Sidebar from '../sidebar/Sidebar';
 import { useTheme } from '@mui/material/styles';
 import { BootstrapedInput } from '../Input/BootstrapedInput';
+import './Navbar.css';
 
 const Navbar = () => {
   const theme = useTheme();

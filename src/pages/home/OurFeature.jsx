@@ -46,6 +46,7 @@ const OurFeature = () => {
         fontWeight={700}
         className="header-feature"
         color={theme.palette.text.primary}
+        textAlign="center"
       >
         Fitur Kami Siap Membantu Kamu!
       </Typography>
