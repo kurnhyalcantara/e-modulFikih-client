@@ -17,6 +17,7 @@ import AccountMenu from '../account_menu/AccountMenu';
 import Sidebar from '../sidebar/Sidebar';
 import { useTheme } from '@mui/material/styles';
 import { BootstrapedInput } from '../Input/BootstrapedInput';
+import './Navbar.css';
 
 const Navbar = () => {
   const theme = useTheme();
@@ -137,7 +138,7 @@ const Navbar = () => {
             <Divider orientation="vertical" variant="middle" flexItem />
             <Typography
               className="menuButton-Navbar"
-              color={theme.palette.text.primary}
+              color={theme.palette.text.secondary}
               to="/courses"
               component={Link}
             >
@@ -149,7 +150,7 @@ const Navbar = () => {
             />
             <Typography
               className="menuButton-Navbar"
-              color={theme.palette.text.primary}
+              color={theme.palette.text.secondary}
               to="/blogs"
               component={Link}
             >
@@ -157,11 +158,11 @@ const Navbar = () => {
             </Typography>
             <Typography
               className="menuButton-Navbar"
-              color={theme.palette.text.primary}
+              color={theme.palette.text.secondary}
               component={Link}
               to="/job_view"
             >
-              Creator
+              Tentang
             </Typography>
             {isLogged ? (
               <Fragment>

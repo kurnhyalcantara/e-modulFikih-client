@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { Button } from '@mui/material';
-import './InstallPWA.css';
 
 const InstallPWA = () => {
   const [promptInstall, setPromptInstall] = useState(null);

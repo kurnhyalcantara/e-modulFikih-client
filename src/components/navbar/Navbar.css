@@ -1,0 +1,7 @@
+.menuButton-Navbar {
+  padding: 0 35px;
+}
+
+.menuButton-Navbar:hover {
+  color: #f08126;
+}
