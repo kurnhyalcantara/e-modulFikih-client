@@ -24,6 +24,7 @@ import {
   BootstrapedInput,
   SelectInputStyled,
 } from '../../../components/Input/BootstrapedInput';
+import './Registration.css';
 
 const Registration = () => {
   const classes = useStyle();
@@ -75,17 +76,20 @@ const Registration = () => {
   };
 
   return (
-    <div className={classes.root}>
+    <Box className="registration-container">
       <Container maxWidth="xl">
         <Grid container spacing={2}>
           <Grid
             item
             md={7}
             xs={12}
-            className={classes.bannerWrapper}
-            sx={{ maxHeight: { md: 'auto' }, alignItems: { md: 'flex-start' } }}
+            sx={{
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: { xs: 'center', md: 'flex-start' },
+            }}
           >
-            <SignUpBanner className={classes.signupBanner} />
+            <SignUpBanner className="banner-registration" />
           </Grid>
           <Grid item md={5} xs={12}>
             <Box
@@ -108,13 +112,15 @@ const Registration = () => {
                 <Typography
                   variant="h4"
                   fontWeight="700"
-                  className={classes.heading}
+                  color={theme.palette.text.primary}
+                  textAlign="center"
                 >
                   Yuk, Daftar!
                 </Typography>
                 <Typography
                   className={classes.subheading}
                   color={theme.palette.text.secondary}
+                  marginBottom={5}
                 >
                   Belajar dan wujudkan mimpi kamu
                 </Typography>
@@ -134,6 +140,7 @@ const Registration = () => {
                       setNamaLengkap(e.target.value);
                     }}
                     value={namaLengkap}
+                    className="registration-input"
                   />
                 </FormControl>
                 <FormControl fullWidth variant="standard">
@@ -152,6 +159,7 @@ const Registration = () => {
                       setNis(e.target.value);
                     }}
                     value={nis}
+                    className="registration-input"
                   />
                 </FormControl>
                 <FormControl fullWidth variant="standard">
@@ -169,7 +177,7 @@ const Registration = () => {
                       setKelas(e.target.value);
                     }}
                     value={kelas}
-                    input={<SelectInputStyled />}
+                    input={<SelectInputStyled className="registration-input" />}
                   >
                     <MenuItem value={'tujuh'}>Kelas VII</MenuItem>
                     <MenuItem value={'delapan'}>Kelas VIII</MenuItem>
@@ -221,7 +229,7 @@ const Registration = () => {
                   <div className="container-input-adornment">
                     <AdornmentInputPassword
                       fullWidth
-                      id="outlined-basic"
+                      id="password-input"
                       variant="outlined"
                       onChange={(e) => {
                         setPassword(e.target.value);
@@ -264,7 +272,7 @@ const Registration = () => {
           </Grid>
         </Grid>
       </Container>
-    </div>
+    </Box>
   );
 };
 
