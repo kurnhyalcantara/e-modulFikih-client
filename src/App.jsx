@@ -52,11 +52,11 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route
               path="/login"
-              element={isLogged ? <NotFound /> : <Login />}
+              element={isLogged ? <Login /> : <NotFound />}
             />
             <Route
               path="/registration"
-              element={isLogged ? <NotFound /> : <Registration />}
+              element={isLogged ? <Registration /> : <NotFound />}
             />
             <Route path="/profile" element={<Profile />} />
             <Route path="/courses" element={<AllCourse />} />

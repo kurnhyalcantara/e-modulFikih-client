@@ -11,6 +11,7 @@ export const BootstrapedInput = styled(InputBase)(({ theme }) => ({
     position: 'relative',
     height: '3rem',
     padding: '0 1rem',
+    backgroundColor: '#fff',
     '&:focus': {
       boxShadow: `${alpha(theme.palette.primary.main, 0.25)} 0 0 0 0.2rem`,
       borderColor: theme.palette.primary.main,
@@ -29,6 +30,7 @@ export const SelectInputStyled = styled(InputBase)(({ theme }) => ({
     borderRadius: '0.5rem',
     position: 'relative',
     padding: '0.8rem 1rem',
+    backgroundColor: '#fff',
     '&:focus': {
       boxShadow: `${alpha(theme.palette.primary.main, 0.25)} 0 0 0 0.2rem`,
       borderColor: theme.palette.primary.main,
