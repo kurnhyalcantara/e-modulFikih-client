@@ -38,7 +38,11 @@ const Cards = ({ item, type }) => {
 
   return (
     <Box className="container">
-      <Card className="card" variant="outlined">
+      <Card
+        className="card"
+        variant="outlined"
+        sx={{ width: { md: '300px', xs: '100%' } }}
+      >
         <CardMedia
           component="img"
           height={140}
