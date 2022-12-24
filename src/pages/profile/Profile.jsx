@@ -23,6 +23,10 @@ const Profile = () => {
           sx={{
             borderBottom: 1,
             borderColor: 'divider',
+            position: 'sticky',
+            top: '70px',
+            zIndex: '24',
+            background: '#fff',
           }}
         >
           <Tabs

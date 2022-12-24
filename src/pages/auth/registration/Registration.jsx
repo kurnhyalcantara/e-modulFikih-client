@@ -74,7 +74,7 @@ const Registration = () => {
   };
 
   return (
-    <Box className="registration-container">
+    <Box className="container">
       <Container maxWidth="xl">
         <Grid container spacing={2}>
           <Grid
