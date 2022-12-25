@@ -57,7 +57,7 @@ const OurFeature = () => {
       >
         Kami menyediakan fitur-fitur menarik untuk memudahkan proses belajarmu
       </Typography>
-      <Grid container spacing={4} sx={{ padding: '2.5rem 5rem' }}>
+      <Grid container spacing={4} sx={{ padding: '2.5rem 2rem' }}>
         {listFeature &&
           listFeature.map((feature, index) => {
             return (
