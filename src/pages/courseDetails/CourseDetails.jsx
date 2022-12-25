@@ -1,34 +1,32 @@
-import { AccessTimeTwoTone } from '@mui/icons-material';
-import AllInclusiveIcon from '@mui/icons-material/AllInclusive';
-import BuildIcon from '@mui/icons-material/Build';
-import CreateIcon from '@mui/icons-material/Create';
-import FindInPageIcon from '@mui/icons-material/FindInPage';
-import PhoneAndroidIcon from '@mui/icons-material/PhoneAndroid';
-import VerifiedUserIcon from '@mui/icons-material/VerifiedUser';
 import {
-  Avatar,
+  AccessTimeTwoTone,
+  PeopleTwoTone,
+  StarRate,
+} from '@mui/icons-material';
+
+import {
   Box,
+  Breadcrumbs,
   Button,
   Card,
   CardActions,
   CardContent,
   CardMedia,
   Container,
-  FormLabel,
   Grid,
-  Paper,
-  Rating,
-  TextareaAutosize,
+  Link,
   Typography,
 } from '@mui/material';
 import Tab from '@mui/material/Tab';
 import Tabs from '@mui/material/Tabs';
+
 import axios from 'axios';
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { toast } from 'react-toastify';
-import { GlobalState } from '../../GlobalState';
-import { useStyle } from '../home/CourseDetails/styles';
+import DeskripsiCourse from './CourseDescription';
+import './CourseDetail.css';
+import CourseInstructur from './CourseInstructur';
+import CourseTesti from './CourseTesti';
 
 const TabPanel = ({ children, value, index, ...other }) => {
   return (
@@ -45,40 +43,15 @@ const CourseDetails = () => {
     setValue(newValue);
   };
 
-  const classes = useStyle();
   const { courseId } = useParams();
-  const state = useContext(GlobalState);
-  const [token] = state.token;
+
   const [course, setCourse] = useState([]);
-  const [requirrements, setRequirrements] = useState([]);
-  const [objective, setObjective] = useState([]);
-  const [isLogging] = state.userAPI.isLogged;
 
   const [rating, setRating] = useState(0);
-  const [review, setReview] = useState('');
+
   const [loading, setLoading] = useState(false);
 
   const navigate = useNavigate();
-
-  const submitReview = async () => {
-    try {
-      await axios.put(
-        `http://localhost:4000/api/course/review/${courseId}`,
-        {
-          rating: rating,
-          comment: review,
-        },
-        {
-          headers: { Authorization: token },
-        }
-      );
-      toast.success('Successfully Comment');
-      setRating(0);
-      setReview('');
-    } catch (error) {
-      toast.error(error.response.data.msg);
-    }
-  };
 
   useEffect(() => {
     const getData = async () => {
@@ -89,10 +62,21 @@ const CourseDetails = () => {
           .then((res) => {
             if (res.status === 200) {
               const { courseDetails } = res.data;
-              setRequirrements(courseDetails?.requirements);
-              setObjective(courseDetails?.objective);
+
               setCourse(res.data);
               setLoading(false);
+              const ratings = courseDetails?.comments.map(
+                (rating) => rating.rating
+              );
+              const total = ratings
+                .reduce((acc, item) => (acc += item), 0)
+                .toFixed(1);
+              const rating = total / ratings.length;
+              if (rating > 0) {
+                setRating(rating);
+              } else {
+                setRating(0);
+              }
             }
           })
           .catch((error) => {
@@ -119,58 +103,95 @@ const CourseDetails = () => {
                     alt={course?.courseDetails?.title}
                   />
                   <CardContent>
-                    <Box
-                      sx={{
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                      }}
-                    >
-                      <AccessTimeTwoTone></AccessTimeTwoTone>
-                      <Typography align="center" fontSize="1.5rem">
-                        {' '}
-                        {course?.courseDetails?.alokasiWaktu ?? '90 Menit'}
+                    <Box className="rating-and-path">
+                      <Box className="rating">
+                        <StarRate className="star-rating"></StarRate>
+                        <Typography className="count-rating">
+                          {rating ? rating : '0'}+
+                        </Typography>
+                      </Box>
+                      <Box
+                        sx={{
+                          fontSize: '12px',
+                          color: '#a4a4a4',
+                          marginX: '0.5rem',
+                        }}
+                      >
+                        •
+                      </Box>
+                      <Box className="path">
+                        <Breadcrumbs>
+                          <Link
+                            underline="hover"
+                            color="inherit"
+                            href="/course"
+                          >
+                            Fikih
+                          </Link>
+                          <Link underline="hover" color="inherit" href="">
+                            {course?.courseDetails?.class ?? 'Kelas 8'}
+                          </Link>
+                        </Breadcrumbs>
+                      </Box>
+                    </Box>
+                    <Box className="title-and-detail">
+                      <Typography
+                        variant="h5"
+                        fontWeight="700"
+                        marginTop="0.5rem"
+                      >
+                        {course?.courseDetails?.title}
                       </Typography>
+                      <button className="tag-course">
+                        {course?.courseDetails?.category}
+                      </button>
+                      <Box className="detailCourse">
+                        <Grid container>
+                          <Grid
+                            item
+                            xs={6}
+                            sx={{ display: 'flex', alignItems: 'center' }}
+                          >
+                            <PeopleTwoTone
+                              sx={{ marginRight: '0.2rem' }}
+                            ></PeopleTwoTone>
+                            <Typography fontSize="14px">
+                              {course?.courseDetails?.jumlahSiswa ??
+                                '12 Siswa Terdaftar'}
+                            </Typography>
+                          </Grid>
+                          <Grid
+                            item
+                            xs={6}
+                            sx={{ display: 'flex', alignItems: 'center' }}
+                          >
+                            <AccessTimeTwoTone
+                              sx={{
+                                marginRight: '0.2rem',
+                              }}
+                            ></AccessTimeTwoTone>
+                            <Typography align="center">
+                              {course?.courseDetails?.alokasiWaktu ??
+                                '4 x 90 Menit'}
+                            </Typography>
+                          </Grid>
+                        </Grid>
+                      </Box>
                     </Box>
                   </CardContent>
-                  <CardActions>
+                  <CardActions sx={{ padding: '0.8rem' }}>
                     <Button
-                      style={{
-                        backgroundColor: '#EA5252',
-                        padding: '18px 36px',
-                        fontSize: '18px',
-                        textTransform: 'none',
-                      }}
-                      className={classes.button}
+                      className="bootstraped-button"
                       variant="contained"
                       onClick={() => {
                         navigate(`/enroll_page_student/${courseId}`);
                       }}
+                      fullWidth
+                      sx={{ display: { xs: 'none', md: 'block' } }}
                     >
-                      Enroll
+                      Gabung
                     </Button>
                   </CardActions>
-                  <div className={classes.section}>
-                    <Typography component="p">This course includes</Typography>
-                    <p className={classes.section2}>
-                      <FindInPageIcon className={classes.icon2} /> 1 article
-                    </p>
-                    <p className={classes.section2}>
-                      <AllInclusiveIcon className={classes.icon2} /> Full
-                      lifetime access
-                    </p>
-                    <p className={classes.section2}>
-                      <PhoneAndroidIcon className={classes.icon2} /> Access on
-                      mobile and TV
-                    </p>
-                    <p className={classes.section2}>
-                      <BuildIcon className={classes.icon2} /> Assignment
-                    </p>
-                    <p className={classes.section2}>
-                      <VerifiedUserIcon className={classes.icon2} /> Certificate
-                      of Completion
-                    </p>
-                  </div>
                 </Card>
               </Grid>
               <Grid item md={9} xs={12}>
@@ -197,190 +218,33 @@ const CourseDetails = () => {
                     </Tabs>
                   </Box>
                   <TabPanel value={value} index={0}>
-                    <Paper className={classes.paper}>
-                      <Grid container>
-                        <Grid item xs={12}>
-                          <Typography variant="h4">
-                            {course?.courseDetails?.title}
-                          </Typography>
-                          <Typography variant="h6">
-                            {course?.courseDetails?.category}
-                          </Typography>
-                          <br></br>
-                          <p>
-                            <b>{course?.courseDetails?.enrolled}+</b> People
-                            Enrolled This Course
-                          </p>
-                        </Grid>
-                      </Grid>
-                      <br></br>
-
-                      <h2>About</h2>
-                      <Typography component="p">
-                        {course?.courseDetails?.about} --- Lorem ipsum dolor sit
-                        amet consectetur adipisicing elit. Expedita voluptas
-                        laborum asperiores modi quia aut velit cum. Iure iste
-                        officia assumenda velit, deserunt accusamus recusandae
-                        explicabo aliquid aperiam ut ipsam. dignissimos.
-                      </Typography>
-                      <br></br>
-                      <h2>Requirements</h2>
-                      <Grid container className={classes.require} spacing={3}>
-                        {requirrements &&
-                          requirrements?.length > 0 &&
-                          requirrements?.map((item, i) => (
-                            <Grid item md={6} xs={12} key={i}>
-                              <Typography className={classes.require2}>
-                                <CreateIcon className={classes.icon2} />
-                                {item?.requrement}
-                              </Typography>
-                            </Grid>
-                          ))}
-                      </Grid>
-                      <h2>Objective</h2>
-                      <Grid container className={classes.require} spacing={3}>
-                        {objective &&
-                          objective?.length > 0 &&
-                          objective?.map((item, i) => (
-                            <Grid item md={6} xs={12} key={i}>
-                              <Typography className={classes.require2}>
-                                <CreateIcon className={classes.icon2} />
-                                {item?.objective}
-                              </Typography>
-                            </Grid>
-                          ))}
-                      </Grid>
-                      <h2>Description</h2>
-                      <Typography component="p">
-                        {course?.courseDetails?.description} --- Lorem ipsum
-                        dolor sit amet, consectetur adipisicing elit. Pariatur
-                        dolorum, odio esse ipsum earum suscipit quo nostrum
-                        atque eos tempore perferendis, cum dolor autem deleniti
-                        quidem, saepe est quibusdam nobis et. Iure tempora
-                        reiciendis aliquam! Eveniet placeat, in tempore, porro,
-                        perferendis saepe cum corporis consequatur ab omnis
-                        animi nam similique?
-                      </Typography>
-                    </Paper>
+                    <DeskripsiCourse item={course} />
                   </TabPanel>
                   <TabPanel value={value} index={1}>
-                    <Paper className={classes.paper}>
-                      <Grid container spacing={4} className={classes.tab2}>
-                        <Grid item md={3} xs={12}>
-                          <img
-                            src={
-                              course?.instructor?.image
-                                ? course?.instructor?.image?.url
-                                : 'https://monstar-lab.com/global/wp-content/uploads/sites/11/2019/04/male-placeholder-image.jpeg'
-                            }
-                            alt=""
-                            className={classes.img}
-                          />
-                        </Grid>
-                        <Grid item md={9} xs={12} className={classes.tab2grid2}>
-                          <b className={classes.instructor}>Name</b>
-                          <Typography variant="h6">
-                            {course?.instructor?.name}
-                          </Typography>
-                          <br />
-                          <b className={classes.instructor}>Mobile</b>{' '}
-                          <Typography variant="h6">
-                            {course?.courseDetails?.instructor?.mobile}
-                          </Typography>
-                          <br />
-                          <b className={classes.instructor}>Address</b>{' '}
-                          <Typography variant="h6">
-                            {course?.courseDetails?.instructor?.address}
-                          </Typography>
-                          <br />
-                        </Grid>
-                      </Grid>
-                    </Paper>
+                    <CourseInstructur item={course} />
                   </TabPanel>
                   <TabPanel value={value} index={2}>
-                    <Paper className={classes.paper}>
-                      {isLogging && (
-                        <Box>
-                          <Box
-                            sx={{
-                              display: 'flex',
-                              alignItems: 'center',
-                              mb: 3,
-                            }}
-                          >
-                            <FormLabel sx={{ mr: 5 }}>Give Rating: </FormLabel>
-                            <Rating
-                              name="simple-controlled"
-                              value={rating}
-                              onChange={(event, newValue) => {
-                                setRating(newValue);
-                              }}
-                            />
-                          </Box>
-                          <FormLabel>Give Review:</FormLabel>
-                          <TextareaAutosize
-                            color="warning"
-                            minRows={4}
-                            aria-label="maximum height"
-                            placeholder="Give Review"
-                            value={review}
-                            style={{ width: '100%', marginTop: '10px' }}
-                            onChange={(e) => {
-                              setReview(e.target.value);
-                            }}
-                          />
-                          <Button
-                            sx={{
-                              background: '#eb5252',
-                              ':hover': {
-                                background: '#eb5252',
-                              },
-                            }}
-                            variant="contained"
-                            onClick={submitReview}
-                          >
-                            Submit
-                          </Button>
-                        </Box>
-                      )}
-                      <Box>
-                        {course?.courseDetails?.comments &&
-                          course?.courseDetails?.comments?.length > 0 &&
-                          course?.courseDetails?.comments?.map((item, i) => (
-                            <Box
-                              key={item?._id}
-                              sx={{
-                                border: '1px solid #eee',
-                                padding: '10px',
-                                margin: '15px 0',
-                              }}
-                            >
-                              <Box sx={{ display: 'flex' }}>
-                                <Avatar
-                                  src="/broken-image.jpg"
-                                  sx={{ mr: 3 }}
-                                />
-                                <Typography sx={{ fontSize: '20px', mr: 3 }}>
-                                  {item?.author}
-                                </Typography>
-                                <Rating
-                                  name="read-only"
-                                  value={item?.rating}
-                                  readOnly
-                                />
-                              </Box>
-                              <Typography sx={{ pl: 8 }}>
-                                {item?.comment}
-                              </Typography>
-                            </Box>
-                          ))}
-                      </Box>
-                    </Paper>
+                    <CourseTesti item={course} />
                   </TabPanel>
                 </Box>
               </Grid>
             </Grid>
           </Container>
+          <Box
+            sx={{ display: { xs: 'block', md: 'none' } }}
+            className="button-flow"
+          >
+            <Button
+              className="bootstraped-button"
+              variant="contained"
+              onClick={() => {
+                navigate(`/enroll_page_student/${courseId}`);
+              }}
+              fullWidth
+            >
+              Gabung
+            </Button>
+          </Box>
         </Box>
       )}
     </div>

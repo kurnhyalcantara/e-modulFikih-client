@@ -1,11 +1,17 @@
 import { Box, Paper, Typography } from '@mui/material';
 
-const DeskripsiCourse = (course) => {
+const DeskripsiCourse = ({ item }) => {
   return (
-    <Paper className="container-detail-course-description">
-      <Box className="title-heading">
-        <Typography variant="h4">{course?.courseDetails?.title}</Typography>
-        <Typography variant="h6">{course?.courseDetails?.category}</Typography>
+    <Paper className="container-detail-course">
+      <Box className="container-description">
+        <h2>Deskripsi</h2>
+        <Typography component="p">{item?.courseDetails?.about}</Typography>
+      </Box>
+      <Box className="container-description">
+        <h2>Tujuan Pembelajaran</h2>
+      </Box>
+      <Box className="container-description">
+        <h2>Metode Ajar</h2>
       </Box>
     </Paper>
   );
