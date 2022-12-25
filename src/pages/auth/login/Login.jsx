@@ -61,7 +61,7 @@ const Login = () => {
   };
 
   return (
-    <Box className="login-container">
+    <Box className="container">
       <Container maxWidth="xl">
         <Grid container spacing={2}>
           <Grid

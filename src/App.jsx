@@ -11,7 +11,7 @@ import Registration from './pages/auth/registration/Registration';
 import Blogs from './pages/blogs/allBlogs/Blogs';
 import BlogDetails from './pages/blogs/blogDetails/BlogDetails';
 import CreateCourse from './pages/createCourse/CreateCourse';
-import CourseDetails from './pages/home/CourseDetails/CourseDetails';
+import CourseDetails from './pages/courseDetails/CourseDetails';
 import EnrollStudent from './pages/home/enroll/enroll';
 import Home from './pages/home/Home';
 import InstructorDashboard from './pages/instrucrorDashboard/InstructorDashboard';
@@ -56,7 +56,7 @@ function App() {
             />
             <Route
               path="/registration"
-              element={isLogged ? <NotFound /> : <Registration />}
+              element={isLogged ? <Registration /> : <NotFound />}
             />
             <Route path="/profile" element={<Profile />} />
             <Route path="/courses" element={<AllCourse />} />

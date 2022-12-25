@@ -1,0 +1,50 @@
+.container-detail-course {
+  padding: 30px 30px 60px;
+  min-height: 90vh;
+}
+
+.rating-and-path,
+.rating,
+.detailCourse,
+.path {
+  display: flex;
+  align-items: center;
+}
+
+.star-rating {
+  color: #ffa400;
+  transform: scale(1.2);
+  margin-right: 0.5rem;
+}
+
+.count-rating {
+  font-weight: 700;
+  font-size: 1rem;
+}
+
+.title-and-tag {
+  margin: 0.8rem 0;
+}
+
+.tag-course {
+  border-radius: 0.5rem;
+  border: 1px solid #ffa400;
+  background-color: transparent;
+  color: #ffa400;
+  text-transform: capitalize;
+  padding: 5px;
+  font-size: 12px;
+  border-radius: 3px;
+  display: block;
+  margin: 0.5rem 0;
+}
+
+.button-flow {
+  width: 100%;
+  z-index: 1;
+  position: fixed;
+  bottom: 0;
+  padding: 1rem 0;
+  filter: drop-shadow(0 8px 15px rgba(0, 14, 61, 0.4));
+  background-color: #fff;
+}
