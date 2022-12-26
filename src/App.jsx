@@ -21,9 +21,9 @@ import SingleCourse from './pages/instrucrorDashboard/singleCourse/SingleCourse'
 import AllSubmission from './pages/instrucrorDashboard/singleCourse/tasks/allSubmission/AllSubmission';
 import NotFound from './pages/notFound/NotFound';
 import Profile from './pages/profile/Profile';
-import SingleCourseDetails from './pages/StudentDashboard/SingleCourseDetails/SinglecourseDetails';
-import SubmitTask from './pages/StudentDashboard/SingleCourseDetails/task/submitTask/SubmitTask';
-import StudentDashboard from './pages/StudentDashboard/StudentDashboard';
+import SingleCourseDetails from './pages/dashboard/SingleCourseDetails/SinglecourseDetails';
+import SubmitTask from './pages/dashboard/SingleCourseDetails/task/submitTask/SubmitTask';
+import Dashboard from './pages/dashboard/Dashboard';
 import ParentDashboard from './pages/parentDashboard/parentDashboard';
 import ParentCourseShow from './pages/parentDashboard/parentCourseShow/parentCourseShow';
 import ParentCourseDetails from './pages/parentDashboard/parentCourseDetails/parentcourseDetails';
@@ -52,14 +52,24 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route
               path="/login"
-              element={isLogged ? <NotFound /> : <Login />}
+              element={isLogged ? <Dashboard /> : <Login />}
             />
             <Route
               path="/registration"
-              element={isLogged ? <Registration /> : <NotFound />}
+              element={isLogged ? <Dashboard /> : <Registration />}
             />
             <Route path="/profile" element={<Profile />} />
             <Route path="/courses" element={<AllCourse />} />
+            <Route path="/details/:courseId" element={<CourseDetails />} />
+            <Route
+              path="/dashboard"
+              element={isLogged ? <Dashboard /> : <Login />}
+            />
+            <Route
+              path="/single_course_details/:courseId"
+              element={<SingleCourseDetails />}
+            />
+            <Route path="/logout" element={<Home />} />
             <Route
               path="/instructor_dashboard"
               element={isLogged ? <InstructorDashboard /> : <NotFound />}
@@ -90,25 +100,12 @@ function App() {
                 )
               }
             />
-            <Route path="/details/:courseId" element={<CourseDetails />} />
-            <Route
-              path="/student_dashboard"
-              element={
-                isLogged && user.type === 'student' ? (
-                  <StudentDashboard />
-                ) : (
-                  <NotFound />
-                )
-              }
-            />
+
             <Route
               path="/enroll_page_student/:courseId"
               element={<EnrollStudent />}
             />
-            <Route
-              path="/single_course_details/:courseId"
-              element={<SingleCourseDetails />}
-            />
+
             <Route
               path="/course_task/:courseId"
               element={

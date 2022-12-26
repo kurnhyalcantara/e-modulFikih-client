@@ -61,9 +61,11 @@ const Registration = () => {
         .then((res) => {
           if (res.status === 200) {
             const { data } = res;
-            window.location.href = '/student_dashboard';
             localStorage.setItem('AUTH', JSON.stringify(data));
             toast.success('Pendaftaran Berhasil');
+            setTimeout(() => {
+              window.location.href = '/dashboard';
+            }, 3000);
           }
         });
     } catch (error) {

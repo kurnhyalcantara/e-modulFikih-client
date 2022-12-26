@@ -44,7 +44,7 @@ function UserAPI(token) {
           //   res.data.user.role === 1 ? setIsAdmin(true) : setIsAdmin(false);
           setUser(res.data.student);
           setLoading(false);
-          toast.success('Wellcome');
+          toast.success('Welcome');
         } catch (error) {
           toast.error(error.response.data.msg);
         }
