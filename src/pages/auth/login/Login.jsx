@@ -51,11 +51,13 @@ const Login = () => {
         .then((res) => {
           if (res.status === 200) {
             const { data } = res;
-            window.location.href = '/student_dashboard';
+            window.location.href = '/dashboard';
             localStorage.setItem('AUTH', JSON.stringify(data));
           }
         });
     } catch (error) {
+      setSubmitDisable(false);
+      setLabelSubmit('Masuk');
       toast.error(error.response.data.msg);
     }
   };

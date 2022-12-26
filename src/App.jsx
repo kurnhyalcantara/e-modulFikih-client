@@ -52,19 +52,24 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route
               path="/login"
-              element={isLogged ? <NotFound /> : <Login />}
+              element={isLogged ? <Dashboard /> : <Login />}
             />
             <Route
               path="/registration"
-              element={isLogged ? <Registration /> : <NotFound />}
+              element={isLogged ? <Dashboard /> : <Registration />}
             />
             <Route path="/profile" element={<Profile />} />
             <Route path="/courses" element={<AllCourse />} />
             <Route path="/details/:courseId" element={<CourseDetails />} />
             <Route
               path="/dashboard"
-              element={!isLogged ? <Dashboard /> : <NotFound />}
+              element={isLogged ? <Dashboard /> : <Login />}
             />
+            <Route
+              path="/single_course_details/:courseId"
+              element={<SingleCourseDetails />}
+            />
+            <Route path="/logout" element={<Home />} />
             <Route
               path="/instructor_dashboard"
               element={isLogged ? <InstructorDashboard /> : <NotFound />}
@@ -100,10 +105,7 @@ function App() {
               path="/enroll_page_student/:courseId"
               element={<EnrollStudent />}
             />
-            <Route
-              path="/single_course_details/:courseId"
-              element={<SingleCourseDetails />}
-            />
+
             <Route
               path="/course_task/:courseId"
               element={
