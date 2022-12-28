@@ -44,7 +44,7 @@ function UserAPI(token) {
           //   res.data.user.role === 1 ? setIsAdmin(true) : setIsAdmin(false);
           setUser(res.data.student);
           setLoading(false);
-          toast.success('Wellcome');
+          toast.success('Welcome');
         } catch (error) {
           toast.error(error.response.data.msg);
         }
@@ -68,14 +68,7 @@ function UserAPI(token) {
           toast.error(error.response.data.msg);
         }
       };
-      const { user } = JSON.parse(localStorage.getItem('AUTH'));
-      if (user.type === 'parent') {
-        getParent();
-      } else if (user.type === 'student') {
-        getStudent();
-      } else {
-        getInstructor();
-      }
+      getStudent();
     }
   }, [token]);
 

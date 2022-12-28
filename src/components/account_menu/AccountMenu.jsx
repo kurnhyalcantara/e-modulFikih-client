@@ -17,23 +17,14 @@ import {
 import DashboardIcon from '@mui/icons-material/Dashboard';
 import { GlobalState } from '../../GlobalState';
 import { LogoutTwoTone, SettingsTwoTone } from '@mui/icons-material';
+import axios from 'axios';
+import { toast } from 'react-toastify';
 
-const userMenu = [
-  {
-    name: 'Pengaturan Profil',
-    route: '/profile',
-    icon: <SettingsTwoTone />,
-  },
-  {
-    name: 'Keluar',
-    route: '/logout',
-    icon: <LogoutTwoTone />,
-  },
-];
 const AccountMenu = ({ logOut }) => {
   const state = useContext(GlobalState);
   const theme = useTheme();
   const [user] = state.userAPI.user;
+  const [isLogged, setIsLogged] = state.userAPI.isLogged;
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
@@ -64,7 +55,7 @@ const AccountMenu = ({ logOut }) => {
       <Menu
         anchorEl={anchorEl}
         id="account-menu"
-        open={open}
+        open={open && isLogged}
         onClose={handleClose}
         onClick={handleClose}
         PaperProps={{
@@ -130,17 +121,33 @@ const AccountMenu = ({ logOut }) => {
           <ListItemText primary={user.name} secondary={`NIS. ${user.nis}`} />
         </MenuItem>
         <Divider />
-        {userMenu.map((list, i) => {
-          return (
-            <MenuItem component={Link} to={list.route} button key={i}>
-              <ListItemIcon>{list.icon}</ListItemIcon>
-              <ListItemText
-                color={theme.palette.text.secondary}
-                primary={list.name}
-              />
-            </MenuItem>
-          );
-        })}
+
+        <MenuItem component={Link} to="/profile" button>
+          <ListItemIcon>
+            <SettingsTwoTone />
+          </ListItemIcon>
+          <ListItemText
+            color={theme.palette.text.secondary}
+            primary="Pengaturan Profil"
+          />
+        </MenuItem>
+        <MenuItem
+          button
+          onClick={async () => {
+            await axios.get('http://localhost:4000/api/logout');
+            localStorage.clear();
+            setIsLogged(false);
+            toast.success('Anda telah logout');
+            setTimeout(() => {
+              window.location.href = '/';
+            }, 3000);
+          }}
+        >
+          <ListItemIcon>
+            <LogoutTwoTone />
+          </ListItemIcon>
+          <ListItemText color={theme.palette.text.secondary} primary="Keluar" />
+        </MenuItem>
       </Menu>
     </React.Fragment>
   );
