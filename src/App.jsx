@@ -35,6 +35,7 @@ import BlogList from './pages/blogs/BlogList';
 import VideoStream from './pages/videoStraming/VideoStream';
 import { ThemeProvider } from '@mui/material/styles';
 import { useTheme } from './styles/Theme';
+import ScrollToTop from './utils/ScrollToTop';
 
 axios.defaults.withCredentials = true;
 
@@ -46,6 +47,7 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <Router>
+        <ScrollToTop />
         <Navbar />
         <main className="main-section">
           <Routes>

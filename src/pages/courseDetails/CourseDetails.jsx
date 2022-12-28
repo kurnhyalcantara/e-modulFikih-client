@@ -151,7 +151,12 @@ const CourseDetails = () => {
                           <Grid
                             item
                             xs={6}
-                            sx={{ display: 'flex', alignItems: 'center' }}
+                            md={12}
+                            sx={{
+                              display: 'flex',
+                              alignItems: 'center',
+                              flexGrow: { md: '2', xs: '1' },
+                            }}
                           >
                             <PeopleTwoTone
                               sx={{ marginRight: '0.2rem' }}
@@ -177,8 +182,11 @@ const CourseDetails = () => {
                           <Grid
                             item
                             xs={6}
-                            flexGrow={2}
-                            sx={{ display: 'flex', alignItems: 'center' }}
+                            sx={{
+                              display: 'flex',
+                              alignItems: 'center',
+                              flexGrow: { md: '1', xs: '2' },
+                            }}
                           >
                             <BarChartTwoTone
                               sx={{
@@ -203,7 +211,7 @@ const CourseDetails = () => {
                       fullWidth
                       sx={{ display: { xs: 'none', md: 'block' } }}
                     >
-                      Gabung
+                      Masuk Kelas
                     </Button>
                   </CardActions>
                 </Card>
@@ -245,7 +253,7 @@ const CourseDetails = () => {
             </Grid>
           </Container>
           <Box
-            sx={{ display: { xs: 'block', md: 'none' } }}
+            sx={{ display: { xs: 'flex', md: 'none' } }}
             className="button-flow"
           >
             <Button
@@ -256,7 +264,7 @@ const CourseDetails = () => {
               }}
               fullWidth
             >
-              Gabung
+              Masuk Kelas
             </Button>
           </Box>
         </Box>

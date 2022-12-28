@@ -11,6 +11,10 @@
   align-items: center;
 }
 
+.detailCourse {
+  margin-top: 0.5rem;
+}
+
 .star-rating {
   color: #ffa400;
   transform: scale(1.2);
@@ -41,15 +45,19 @@
 }
 
 .button-flow {
-  width: 100%;
-  z-index: 1;
+  width: calc(100% - 32px);
+  z-index: 99;
   position: fixed;
   bottom: 0;
-  padding: 1rem 0;
+  padding: 1rem;
   filter: drop-shadow(0 8px 15px rgba(0, 14, 61, 0.4));
   background-color: #fff;
 }
 
 .paraghraph {
   white-space: pre-line;
+}
+
+.metode-ajar-style {
+  list-style-type: circle;
 }
