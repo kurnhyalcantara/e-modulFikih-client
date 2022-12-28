@@ -1,5 +1,6 @@
 import {
   AccessTimeTwoTone,
+  BarChartTwoTone,
   PeopleTwoTone,
   StarRate,
 } from '@mui/icons-material';
@@ -44,13 +45,9 @@ const CourseDetails = () => {
   };
 
   const { courseId } = useParams();
-
   const [course, setCourse] = useState([]);
-
   const [rating, setRating] = useState(0);
-
   const [loading, setLoading] = useState(false);
-
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -129,7 +126,7 @@ const CourseDetails = () => {
                             Fikih
                           </Link>
                           <Link underline="hover" color="inherit" href="">
-                            {course?.courseDetails?.class ?? 'Kelas 8'}
+                            {`Kelas ${course?.courseDetails?.kelas}`}
                           </Link>
                         </Breadcrumbs>
                       </Box>
@@ -142,11 +139,15 @@ const CourseDetails = () => {
                       >
                         {course?.courseDetails?.title}
                       </Typography>
-                      <button className="tag-course">
-                        {course?.courseDetails?.category}
-                      </button>
+                      {course?.courseDetails?.category.map((tag, i) => {
+                        return (
+                          <button className="tag-course" key={i}>
+                            {tag}
+                          </button>
+                        );
+                      })}
                       <Box className="detailCourse">
-                        <Grid container>
+                        <Grid container spacing={1}>
                           <Grid
                             item
                             xs={6}
@@ -156,8 +157,7 @@ const CourseDetails = () => {
                               sx={{ marginRight: '0.2rem' }}
                             ></PeopleTwoTone>
                             <Typography fontSize="14px">
-                              {course?.courseDetails?.jumlahSiswa ??
-                                '12 Siswa Terdaftar'}
+                              {`${course?.courseDetails?.jumlahSiswa} Siswa Bergabung`}
                             </Typography>
                           </Grid>
                           <Grid
@@ -170,9 +170,23 @@ const CourseDetails = () => {
                                 marginRight: '0.2rem',
                               }}
                             ></AccessTimeTwoTone>
-                            <Typography align="center">
-                              {course?.courseDetails?.alokasiWaktu ??
-                                '4 x 90 Menit'}
+                            <Typography align="center" fontSize="14px">
+                              {`4 x ${course?.courseDetails?.alokasiWaktu} Menit`}
+                            </Typography>
+                          </Grid>
+                          <Grid
+                            item
+                            xs={6}
+                            flexGrow={2}
+                            sx={{ display: 'flex', alignItems: 'center' }}
+                          >
+                            <BarChartTwoTone
+                              sx={{
+                                marginRight: '0.2rem',
+                              }}
+                            ></BarChartTwoTone>
+                            <Typography align="center" fontSize="14px">
+                              {`${course?.courseDetails?.jumlahPertemuan} Pertemuan`}
                             </Typography>
                           </Grid>
                         </Grid>
@@ -212,7 +226,7 @@ const CourseDetails = () => {
                       variant="fullWidth"
                       aria-label="Detail Materi Navigation"
                     >
-                      <Tab label="Deskripsi Kelas" />
+                      <Tab label="Deskripsi" />
                       <Tab label="Pengajar" />
                       <Tab label="Testimoni" />
                     </Tabs>

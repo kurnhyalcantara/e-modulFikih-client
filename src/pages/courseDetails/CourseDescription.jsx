@@ -1,11 +1,13 @@
 import { Box, Paper, Typography } from '@mui/material';
+import MarkDown from 'react-markdown';
 
 const DeskripsiCourse = ({ item }) => {
+  console.log(item?.courseDetails?.description);
   return (
     <Paper className="container-detail-course">
       <Box className="container-description">
         <h2>Deskripsi</h2>
-        <Typography component="p">{item?.courseDetails?.about}</Typography>
+        <MarkDown>{item?.courseDetails?.description}</MarkDown>
       </Box>
       <Box className="container-description">
         <h2>Tujuan Pembelajaran</h2>

@@ -36,6 +36,7 @@
     "react-html-parser": "^2.0.2",
     "react-icons": "^4.3.1",
     "react-jitsi": "^1.0.4",
+    "react-markdown": "^8.0.4",
     "react-player": "^2.9.0",
     "react-router-dom": "^6.2.1",
     "react-scripts": "4.0.3",
@@ -52,7 +53,7 @@
     "workbox": "^0.0.0"
   },
   "scripts": {
-    "dev": "react-scripts start",
+    "dev": "react-scripts --openssl-legacy-provider start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"

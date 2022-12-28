@@ -52,7 +52,13 @@ const Cards = ({ item, type }) => {
         alt={item?.title ?? 'Card Banner'}
       ></CardMedia>
       <CardContent>
-        <button className="tag">{item?.category}</button>
+        {item?.category.map((tag, i) => {
+          return (
+            <button className="tag" key={i}>
+              {tag}
+            </button>
+          );
+        })}
         <Typography
           variant="h5"
           component={Link}
@@ -61,11 +67,11 @@ const Cards = ({ item, type }) => {
         >
           {item?.title}
         </Typography>
-        <Box className="lecturer">
+        <Box className="instructor">
           <Avatar
-            alt={item?.lecturer?.name ?? 'Kurniawan'}
+            alt={item?.instructor?.name}
             img={
-              item?.lecturer?.img ??
+              item?.instructor?.img ??
               'https://monstar-lab.com/global/wp-content/uploads/sites/11/2019/04/male-placeholder-image.jpeg'
             }
             sx={{ width: '14px', height: '14px' }}
@@ -76,7 +82,7 @@ const Cards = ({ item, type }) => {
             fontSize={12}
             marginLeft={0.5}
           >
-            {item?.instructor?.name ?? 'Kurniawan'}
+            {item?.instructor?.name}
           </Typography>
         </Box>
         <Divider></Divider>
@@ -88,12 +94,12 @@ const Cards = ({ item, type }) => {
             ></AccessTimeTwoTone>
             <Typography
               component="p"
-              color={theme.palette.text.primary}
+              color={theme.palette.text.secondary}
               fontSize={12}
               fontWeight="700"
               marginLeft={0.5}
             >
-              {item?.detail?.alokasiWaktu ?? '90 Menit'}
+              {`4 x ${item?.alokasiWaktu} Menit (${item?.jumlahPertemuan} Pertemuan)`}
             </Typography>
           </Box>
           <Box className="rating-pelajaran">

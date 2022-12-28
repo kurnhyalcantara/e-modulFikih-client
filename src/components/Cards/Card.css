@@ -13,7 +13,8 @@
   border: none;
   padding: 5px;
   border-radius: 3px;
-  display: block;
+  display: inline-block;
+  margin-right: 0.3rem;
 }
 
 .heading {
@@ -25,7 +26,7 @@
   margin: 0.8rem 0;
 }
 
-.lecturer {
+.instructor {
   display: flex;
   align-items: center;
   margin-bottom: 6px;
