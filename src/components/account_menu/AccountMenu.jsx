@@ -14,17 +14,15 @@ import {
   Typography,
   useTheme,
 } from '@mui/material';
-import DashboardIcon from '@mui/icons-material/Dashboard';
+
 import { GlobalState } from '../../GlobalState';
-import { LogoutTwoTone, SettingsTwoTone } from '@mui/icons-material';
-import axios from 'axios';
-import { toast } from 'react-toastify';
+import { LogoutRounded, SettingsRounded } from '@mui/icons-material';
 
 const AccountMenu = ({ logOut }) => {
   const state = useContext(GlobalState);
   const theme = useTheme();
   const [user] = state.userAPI.user;
-  const [isLogged, setIsLogged] = state.userAPI.isLogged;
+  const [isLogged] = state.userAPI.isLogged;
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
@@ -40,15 +38,21 @@ const AccountMenu = ({ logOut }) => {
         <Tooltip title="Account settings">
           <IconButton
             onClick={handleClick}
-            size="large"
             aria-controls={open ? 'account-menu' : undefined}
             aria-haspopup="true"
             aria-expanded={open ? 'true' : undefined}
           >
-            <Avatar
-              src="../../assets/avatar.svg"
-              sx={{ width: 40, height: 40 }}
-            ></Avatar>
+            <Box class="avatar-penampung">
+              <Avatar
+                className="avatar-navbar"
+                src={user?.image?.url}
+                alt={user?.namaLengkap}
+                sx={{
+                  width: { xs: '2rem', md: '2.5rem' },
+                  height: { xs: '2rem', md: '2.5rem' },
+                }}
+              ></Avatar>
+            </Box>
           </IconButton>
         </Tooltip>
       </Box>
@@ -91,26 +95,6 @@ const AccountMenu = ({ logOut }) => {
         transformOrigin={{ horizontal: 'right', vertical: 'top' }}
         anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
       >
-        {user && user.type === 'student' && (
-          <MenuItem>
-            <ListItemIcon>
-              <DashboardIcon fontSize="small" />
-            </ListItemIcon>
-            <Typography component={Link} to={`/student_dashboard`}>
-              Dashboard
-            </Typography>
-          </MenuItem>
-        )}
-        {user && user.type === 'parent' && (
-          <MenuItem>
-            <ListItemIcon>
-              <DashboardIcon fontSize="small" />
-            </ListItemIcon>
-            <Typography component={Link} to={`/parent_dashboard`}>
-              Dashboard
-            </Typography>
-          </MenuItem>
-        )}
         <MenuItem>
           <ListItemAvatar>
             <Avatar
@@ -118,35 +102,30 @@ const AccountMenu = ({ logOut }) => {
               sx={{ width: 40, height: 40 }}
             />
           </ListItemAvatar>
-          <ListItemText primary={user.name} secondary={`NIS. ${user.nis}`} />
+          <ListItemText
+            primary={user.namaLengkap}
+            secondary={`NIS. ${user.nis}`}
+            className="namaLengkap-sidebar"
+          />
         </MenuItem>
         <Divider />
-
         <MenuItem component={Link} to="/profile" button>
           <ListItemIcon>
-            <SettingsTwoTone />
+            <SettingsRounded />
           </ListItemIcon>
           <ListItemText
             color={theme.palette.text.secondary}
             primary="Pengaturan Profil"
+            fontWeight="700"
           />
         </MenuItem>
-        <MenuItem
-          button
-          onClick={async () => {
-            await axios.get('http://localhost:4000/api/logout');
-            localStorage.clear();
-            setIsLogged(false);
-            toast.success('Anda telah logout');
-            setTimeout(() => {
-              window.location.href = '/';
-            }, 3000);
-          }}
-        >
+        <MenuItem button onClick={logOut}>
           <ListItemIcon>
-            <LogoutTwoTone />
+            <LogoutRounded color="error" />
           </ListItemIcon>
-          <ListItemText color={theme.palette.text.secondary} primary="Keluar" />
+          <ListItemText>
+            <Typography color="error">Keluar</Typography>
+          </ListItemText>
         </MenuItem>
       </Menu>
     </React.Fragment>

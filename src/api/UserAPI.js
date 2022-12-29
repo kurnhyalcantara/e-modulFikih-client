@@ -11,25 +11,6 @@ function UserAPI(token) {
 
   useEffect(() => {
     if (token) {
-      const getParent = async () => {
-        try {
-          setLoading(true);
-          const res = await axios.get(
-            'http://localhost:4000/api/parent/profile',
-            {
-              headers: { Authorization: token },
-            }
-          );
-          setIsLogged(true);
-          //   setList(res.data.user.list);
-          //   res.data.user.role === 1 ? setIsAdmin(true) : setIsAdmin(false);
-          setUser(res.data.parent);
-          setLoading(false);
-          toast.success('Wellcome');
-        } catch (error) {
-          toast.error(error.response.data.msg);
-        }
-      };
       const getStudent = async () => {
         try {
           setLoading(true);
@@ -41,29 +22,8 @@ function UserAPI(token) {
           );
           setIsLogged(true);
           setList(res.data.student.enrolled);
-          //   res.data.user.role === 1 ? setIsAdmin(true) : setIsAdmin(false);
           setUser(res.data.student);
           setLoading(false);
-          toast.success('Welcome');
-        } catch (error) {
-          toast.error(error.response.data.msg);
-        }
-      };
-      const getInstructor = async () => {
-        try {
-          setLoading(true);
-          const res = await axios.get(
-            'http://localhost:4000/api/instructor/profile',
-            {
-              headers: { Authorization: token },
-            }
-          );
-          setIsLogged(true);
-          //   setList(res.data.user.list);
-          //   res.data.user.role === 1 ? setIsAdmin(true) : setIsAdmin(false);
-          setUser(res.data.instructor);
-          setLoading(false);
-          toast.success('Wellcome');
         } catch (error) {
           toast.error(error.response.data.msg);
         }
