@@ -11,7 +11,7 @@ import {
   Box,
 } from '@mui/material';
 import { ReactComponent as LoginBanner } from '../../../assets/login-banner.svg';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { toast } from 'react-toastify';
 import { Visibility, VisibilityOff } from '@mui/icons-material';
@@ -20,10 +20,14 @@ import {
   BootstrapedInput,
 } from '../../../components/Input/BootstrapedInput';
 import './Login.css';
+import { useContext } from 'react';
+import { GlobalState } from '../../../GlobalState';
 
 const Login = () => {
   const theme = useTheme();
-
+  const history = useNavigate();
+  const state = useContext(GlobalState);
+  const [isLogged, setIsLogged] = state.userAPI.isLogged;
   const [nis, setNis] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
@@ -51,8 +55,10 @@ const Login = () => {
         .then((res) => {
           if (res.status === 200) {
             const { data } = res;
-            window.location.href = '/dashboard';
             localStorage.setItem('AUTH', JSON.stringify(data));
+            setIsLogged(true);
+            history('/dashboard');
+            toast.success('Login sukses');
           }
         });
     } catch (error) {

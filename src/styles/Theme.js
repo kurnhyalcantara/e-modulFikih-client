@@ -25,7 +25,7 @@ export const useTheme = createTheme({
     },
     text: {
       primary: 'rgba(0, 0, 0, 0.81)',
-      secondary: 'rgba(0, 0, 0, 0.63)',
+      secondary: 'rgba(0, 0, 0, 0.68)',
       disabled: 'rgba(0, 0, 0, 0.48)',
     },
     common: {
