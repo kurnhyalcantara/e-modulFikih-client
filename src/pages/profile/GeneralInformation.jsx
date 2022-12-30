@@ -44,17 +44,22 @@ const GeneralInformation = () => {
   const [image] = useState({});
   const [labelSubmit, setLabelSubmit] = useState('Simpan');
   const [submitDisable, setSubmitDisable] = useState(false);
-  const handleSubmit = async () => {
+  const handleSubmit = async (e) => {
+    e.preventDefault();
     setSubmitDisable(true);
     setLabelSubmit('Loading');
     axios
       .put(
-        `http://localhost:4000/api/student/update_profile/${user._id}`,
+        `http://localhost:4000/api/student/profile/update/${user._id}`,
         {
           namaLengkap: namaLengkap,
+          namaPanggilan: namaPanggilan,
+          sekolah: sekolah,
+          kelas: kelas,
           nis: nis,
           mobile: mobile,
-          image: image,
+          tanggalLahir: tanggalLahir,
+          jenisKelamin: jenisKelamin,
         },
         {
           headers: { Authorization: token },
@@ -62,11 +67,14 @@ const GeneralInformation = () => {
       )
       .then((res) => {
         if (res.status === 200) {
-          Swal.fire('Good job!', 'You Update Your Profile', 'success');
+          toast.success('Data profil telah diperbarui');
+          window.location.reload();
         }
       })
       .catch((error) => {
         toast.error(error.response.data.msg);
+        setSubmitDisable(false);
+        setLabelSubmit('Simpan');
       });
   };
 
@@ -204,7 +212,7 @@ const GeneralInformation = () => {
         </FormControl>
         <FormControl fullWidth variant="standard">
           <InputLabel shrink htmlFor="phone-input" sx={{ fontWeight: '700' }}>
-            Nomor Telepon
+            Nomor Telepon <span style={{ color: 'red' }}>*</span>
           </InputLabel>
           <div className="container-input-adornment">
             <Box
