@@ -40,9 +40,38 @@ const GeneralInformation = () => {
   const [mobile, setMobile] = useState('');
   const [tanggalLahir, setTanggalLahir] = useState(dayjs('2010-01-01'));
   const [jenisKelamin, setJenisKelamin] = useState('');
-  const [image] = useState({});
+  const [image, setImage] = useState({});
   const [labelSubmit, setLabelSubmit] = useState('Simpan');
   const [submitDisable, setSubmitDisable] = useState(false);
+
+  const handleUpload = async (e) => {
+    e.preventDefault();
+    try {
+      const file = e.target.files[0];
+      let formData = new FormData();
+      formData.append('file', file);
+      await toast.promise(
+        axios
+          .post('http://localhost:4000/api/upload', formData, {
+            headers: {
+              'content-type': 'multipart/form-data',
+              Authorization: token,
+            },
+          })
+          .then((res) => {
+            setImage(res.data);
+          }),
+        {
+          pending: 'Mengupload Foto Profil',
+          success: 'Upload Berhasil',
+          error: 'Upload Gagal',
+        }
+      );
+    } catch (error) {
+      toast.error(error.response.data.msg);
+    }
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setSubmitDisable(true);
@@ -59,6 +88,7 @@ const GeneralInformation = () => {
           mobile: mobile,
           tanggalLahir: tanggalLahir,
           jenisKelamin: jenisKelamin,
+          image: image,
         },
         {
           headers: { Authorization: token },
@@ -87,6 +117,7 @@ const GeneralInformation = () => {
       setMobile(user.mobile);
       setTanggalLahir(user.tanggalLahir);
       setJenisKelamin(user.jenisKelamin);
+      setImage(user.image);
     }
   }, [user]);
 
@@ -102,14 +133,21 @@ const GeneralInformation = () => {
               aria-label="Upload Foto Profile"
               component="label"
             >
-              <input hidden accept="image/*" type="file" />
+              <input
+                hidden
+                accept="image/*"
+                type="file"
+                name="file"
+                id="user_file_up"
+                onChange={handleUpload}
+              />
               <PhotoCamera />
             </IconButton>
           }
         >
           <Avatar
             alt={user.name}
-            src={!image ? '../../../assets/avatar.svg' : user.image}
+            src={image ? image.url : '../../../assets/avatar.svg'}
             sx={{ width: '5rem', height: '5rem' }}
           />
         </Badge>
