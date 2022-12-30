@@ -7,7 +7,6 @@ const InstallPWA = () => {
   useEffect(() => {
     const handler = (e) => {
       e.preventDefault();
-      console.log('we are being trigerred :D');
       setPromptInstall(e);
     };
     window.addEventListener('beforeinstallprompt', handler);
@@ -23,11 +22,9 @@ const InstallPWA = () => {
   };
 
   return (
-    <div style={{ margin: '1.5rem 0' }}>
-      <Button onClick={triggerPrompt} className="rounded-button download-pwa">
-        Download Aplikasi
-      </Button>
-    </div>
+    <Button onClick={triggerPrompt} className="rounded-button" fullWidth>
+      Download
+    </Button>
   );
 };
 
