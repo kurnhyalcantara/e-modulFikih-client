@@ -1,10 +1,11 @@
 import { Box, Container, Tab, Tabs } from '@mui/material';
-import React from 'react';
+import React, { useContext } from 'react';
 import { useState } from 'react';
 import GeneralInformation from './GeneralInformation';
 import EditPassword from './EditPassword';
 import './Profile.css';
 import Transition from '../../components/transition/Transition';
+import { GlobalState } from '../../GlobalState';
 
 const TabPanel = ({ children, value, index, ...other }) => {
   return (
@@ -15,6 +16,8 @@ const TabPanel = ({ children, value, index, ...other }) => {
 };
 
 const Profile = () => {
+  const state = useContext(GlobalState);
+  const [user] = state.userAPI.user;
   const [tabContext, setTabContext] = useState(0);
   return (
     <Transition>
@@ -44,7 +47,7 @@ const Profile = () => {
         </Box>
         <Box className="box-container-nav-profile">
           <TabPanel value={tabContext} index={0}>
-            <GeneralInformation />
+            <GeneralInformation user={user} />
           </TabPanel>
           <TabPanel value={tabContext} index={1}>
             <EditPassword />

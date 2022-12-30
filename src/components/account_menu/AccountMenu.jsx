@@ -42,7 +42,7 @@ const AccountMenu = ({ logOut }) => {
             aria-haspopup="true"
             aria-expanded={open ? 'true' : undefined}
           >
-            <Box class="avatar-penampung">
+            <Box className="avatar-penampung">
               <Avatar
                 className="avatar-navbar"
                 src={user?.image?.url}

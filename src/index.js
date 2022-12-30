@@ -14,7 +14,7 @@ ReactDOM.render(
   <React.StrictMode>
     <DataProvider>
       <StyledEngineProvider injectFirst>
-        <ToastContainer position="bottom-right" />
+        <ToastContainer />
         <App />
       </StyledEngineProvider>
     </DataProvider>

@@ -13,7 +13,7 @@ import {
   Select,
   TextField,
 } from '@mui/material';
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 
 import { GlobalState } from '../../GlobalState';
 import axios from 'axios';
@@ -29,11 +29,9 @@ import {
 import { DatePicker, LocalizationProvider } from '@mui/lab';
 import AdapterDayjs from '@mui/lab/AdapterDayjs';
 
-const GeneralInformation = () => {
+const GeneralInformation = ({ user }) => {
   const state = useContext(GlobalState);
   const [token] = state.token;
-  const [user] = state.userAPI.user;
-
   const [namaLengkap, setNamaLengkap] = useState('');
   const [namaPanggilan, setNamaPanggilan] = useState('');
   const [sekolah, setSekolah] = useState('');
@@ -42,7 +40,7 @@ const GeneralInformation = () => {
   const [mobile, setMobile] = useState('');
   const [tanggalLahir, setTanggalLahir] = useState(dayjs('2010-01-01'));
   const [jenisKelamin, setJenisKelamin] = useState('');
-  const [image] = useState(false);
+  const [image] = useState({});
   const [labelSubmit, setLabelSubmit] = useState('Simpan');
   const [submitDisable, setSubmitDisable] = useState(false);
 
@@ -72,6 +70,19 @@ const GeneralInformation = () => {
         toast.error(error.response.data.msg);
       });
   };
+
+  useEffect(() => {
+    if (user) {
+      setNamaLengkap(user.namaLengkap);
+      setNamaPanggilan(user.namaPanggilan);
+      setSekolah(user.setSekolah);
+      setKelas(user.setKelas);
+      setNis(user.setNis);
+      setMobile(user.setMobile);
+      setTanggalLahir(user.setTanggalLahir);
+      setJenisKelamin(user.jenisKelamin);
+    }
+  }, [user]);
 
   return (
     <Box className="general-information-container">

@@ -13,7 +13,7 @@ import {
   useTheme,
 } from '@mui/material';
 import { ReactComponent as SignUpBanner } from '../../../assets/signup-banner.svg';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { toast } from 'react-toastify';
 import { Visibility, VisibilityOff } from '@mui/icons-material';
@@ -28,7 +28,7 @@ import Transition from '../../../components/transition/Transition';
 
 const Registration = () => {
   const theme = useTheme();
-
+  const history = useNavigate();
   const [namaLengkap, setNamaLengkap] = useState('');
   const [nis, setNis] = useState('');
   const [kelas, setKelas] = useState('tujuh');
@@ -64,9 +64,7 @@ const Registration = () => {
             const { data } = res;
             localStorage.setItem('AUTH', JSON.stringify(data));
             toast.success('Pendaftaran Berhasil');
-            setTimeout(() => {
-              window.location.href = '/dashboard';
-            }, 3000);
+            history('/dashboard');
           }
         });
     } catch (error) {
