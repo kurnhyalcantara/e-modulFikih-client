@@ -109,7 +109,7 @@ const AccountMenu = ({ logOut }) => {
           />
         </MenuItem>
         <Divider />
-        <MenuItem component={Link} to="/profile" button>
+        <MenuItem component={Link} to="/profile">
           <ListItemIcon>
             <SettingsRounded />
           </ListItemIcon>
@@ -119,7 +119,7 @@ const AccountMenu = ({ logOut }) => {
             fontWeight="700"
           />
         </MenuItem>
-        <MenuItem button onClick={logOut}>
+        <MenuItem onClick={logOut}>
           <ListItemIcon>
             <LogoutRounded color="error" />
           </ListItemIcon>

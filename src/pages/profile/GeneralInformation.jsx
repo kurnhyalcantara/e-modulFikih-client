@@ -29,9 +29,10 @@ import {
 import { DatePicker, LocalizationProvider } from '@mui/lab';
 import AdapterDayjs from '@mui/lab/AdapterDayjs';
 
-const GeneralInformation = ({ user }) => {
+const GeneralInformation = () => {
   const state = useContext(GlobalState);
   const [token] = state.token;
+  const [user] = state.userAPI.user;
   const [namaLengkap, setNamaLengkap] = useState('');
   const [namaPanggilan, setNamaPanggilan] = useState('');
   const [sekolah, setSekolah] = useState('');
@@ -43,7 +44,6 @@ const GeneralInformation = ({ user }) => {
   const [image] = useState({});
   const [labelSubmit, setLabelSubmit] = useState('Simpan');
   const [submitDisable, setSubmitDisable] = useState(false);
-
   const handleSubmit = async () => {
     setSubmitDisable(true);
     setLabelSubmit('Loading');
@@ -51,7 +51,6 @@ const GeneralInformation = ({ user }) => {
       .put(
         `http://localhost:4000/api/student/update_profile/${user._id}`,
         {
-          // userName: userName,
           namaLengkap: namaLengkap,
           nis: nis,
           mobile: mobile,
@@ -75,11 +74,11 @@ const GeneralInformation = ({ user }) => {
     if (user) {
       setNamaLengkap(user.namaLengkap);
       setNamaPanggilan(user.namaPanggilan);
-      setSekolah(user.setSekolah);
-      setKelas(user.setKelas);
-      setNis(user.setNis);
-      setMobile(user.setMobile);
-      setTanggalLahir(user.setTanggalLahir);
+      setSekolah(user.sekolah);
+      setKelas(user.kelas);
+      setNis(user.nis);
+      setMobile(user.mobile);
+      setTanggalLahir(user.tanggalLahir);
       setJenisKelamin(user.jenisKelamin);
     }
   }, [user]);
@@ -108,7 +107,11 @@ const GeneralInformation = ({ user }) => {
           />
         </Badge>
       </Box>
-      <form id="edit-profile-form" className="edit-information-container">
+      <form
+        id="edit-profile-form"
+        className="edit-information-container"
+        onSubmit={handleSubmit}
+      >
         <FormControl fullWidth variant="standard">
           <InputLabel
             shrink
@@ -285,7 +288,7 @@ const GeneralInformation = ({ user }) => {
           fullWidth
           disabled={submitDisable}
           variant="contained"
-          onClick={handleSubmit}
+          type="submit"
         >
           {labelSubmit}
         </Button>

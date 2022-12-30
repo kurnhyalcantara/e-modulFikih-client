@@ -63,8 +63,8 @@ const Registration = () => {
           if (res.status === 200) {
             const { data } = res;
             localStorage.setItem('AUTH', JSON.stringify(data));
-            toast.success('Pendaftaran Berhasil');
-            history('/dashboard');
+            toast.success('Pendaftaran Berhasil, Silahkan login');
+            history('/login');
           }
         });
     } catch (error) {

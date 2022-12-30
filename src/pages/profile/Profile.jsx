@@ -16,8 +16,6 @@ const TabPanel = ({ children, value, index, ...other }) => {
 };
 
 const Profile = () => {
-  const state = useContext(GlobalState);
-  const [user] = state.userAPI.user;
   const [tabContext, setTabContext] = useState(0);
   return (
     <Transition>
@@ -47,7 +45,7 @@ const Profile = () => {
         </Box>
         <Box className="box-container-nav-profile">
           <TabPanel value={tabContext} index={0}>
-            <GeneralInformation user={user} />
+            <GeneralInformation />
           </TabPanel>
           <TabPanel value={tabContext} index={1}>
             <EditPassword />
