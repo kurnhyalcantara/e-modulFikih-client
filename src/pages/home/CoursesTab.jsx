@@ -38,7 +38,7 @@ const CoursesTab = () => {
         if (res.status === 200) {
           const { courses } = res.data;
           setCourseList(courses);
-          let list = [...new Set(courses.map((item) => item.category))];
+          let list = [...new Set(courses.map((item) => item.kelas))];
           setTabList(list);
           setLoading(false);
         }
@@ -51,7 +51,7 @@ const CoursesTab = () => {
     <Box className="container-section">
       <Container maxWidth="xl">
         <Typography
-          variant="h3"
+          variant="h4"
           textAlign="center"
           fontWeight={700}
           color={theme.palette.text.primary}
@@ -97,7 +97,9 @@ const CoursesTab = () => {
                 indicatorColor="primary"
               >
                 {tabList &&
-                  tabList.map((item, i) => <Tab label={item} key={i} />)}
+                  tabList.map((item, i) => (
+                    <Tab label={`Kelas ${item}`} key={i} />
+                  ))}
               </Tabs>
             </Box>
             {tabList &&
@@ -111,7 +113,7 @@ const CoursesTab = () => {
                     <Grid container spacing={4}>
                       {courseList &&
                         courseList
-                          .filter((item) => item.category === tab)
+                          .filter((item) => item.kelas === tab)
                           .slice(0, 4)
                           .map((item, i) => (
                             <Grid

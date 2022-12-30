@@ -42,7 +42,7 @@ const OurFeature = () => {
         FITUR KAMI
       </Typography>
       <Typography
-        variant="h3"
+        variant="h4"
         fontWeight={700}
         className="header-feature"
         color={theme.palette.text.primary}
