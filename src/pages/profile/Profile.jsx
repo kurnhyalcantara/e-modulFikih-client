@@ -4,6 +4,7 @@ import { useState } from 'react';
 import GeneralInformation from './GeneralInformation';
 import EditPassword from './EditPassword';
 import './Profile.css';
+import Transition from '../../components/transition/Transition';
 
 const TabPanel = ({ children, value, index, ...other }) => {
   return (
@@ -16,7 +17,7 @@ const TabPanel = ({ children, value, index, ...other }) => {
 const Profile = () => {
   const [tabContext, setTabContext] = useState(0);
   return (
-    <Box>
+    <Transition>
       <Box className="pattern-banner">Pengaturan Akun</Box>
       <Container maxWidth="md">
         <Box
@@ -50,7 +51,7 @@ const Profile = () => {
           </TabPanel>
         </Box>
       </Container>
-    </Box>
+    </Transition>
   );
 };
 

@@ -24,6 +24,7 @@ import Tabs from '@mui/material/Tabs';
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
+import Transition from '../../components/transition/Transition';
 import DeskripsiCourse from './CourseDescription';
 import './CourseDetail.css';
 import CourseInstructur from './CourseInstructur';
@@ -85,7 +86,7 @@ const CourseDetails = () => {
   }, [courseId]);
 
   return (
-    <div>
+    <Transition>
       {loading ? (
         <div className="loading">Loading&#8230;</div>
       ) : (
@@ -269,7 +270,7 @@ const CourseDetails = () => {
           </Box>
         </Box>
       )}
-    </div>
+    </Transition>
   );
 };
 

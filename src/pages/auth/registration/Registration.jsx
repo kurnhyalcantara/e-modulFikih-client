@@ -24,6 +24,7 @@ import {
   SelectInputStyled,
 } from '../../../components/Input/BootstrapedInput';
 import './Registration.css';
+import Transition from '../../../components/transition/Transition';
 
 const Registration = () => {
   const theme = useTheme();
@@ -76,203 +77,207 @@ const Registration = () => {
   };
 
   return (
-    <Box className="container">
-      <Container maxWidth="xl">
-        <Grid container spacing={2}>
-          <Grid
-            item
-            md={7}
-            xs={12}
-            sx={{
-              display: 'flex',
-              justifyContent: 'center',
-              alignItems: { xs: 'center', md: 'flex-start' },
-            }}
-          >
-            <SignUpBanner className="banner-registration" />
-          </Grid>
-          <Grid item md={5} xs={12}>
-            <Box
+    <Transition>
+      <Box className="container">
+        <Container maxWidth="xl">
+          <Grid container spacing={2}>
+            <Grid
+              item
+              md={7}
+              xs={12}
               sx={{
-                maxWidth: '28rem',
-                margin: '0 auto',
-                padding: {
-                  xs: '0',
-                  md: '2.5rem',
-                },
-                border: {
-                  xs: 'none',
-                  md: '1px solid #e6e6e6',
-                },
-                borderRadius: '0.5rem',
-                background: '#fff',
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: { xs: 'center', md: 'flex-start' },
               }}
             >
-              <form id="signup-submit">
-                <Typography
-                  variant="h4"
-                  fontWeight="700"
-                  color={theme.palette.text.primary}
-                  textAlign="center"
-                >
-                  Yuk, Daftar!
-                </Typography>
-                <Typography
-                  color={theme.palette.text.secondary}
-                  marginBottom={5}
-                  textAlign="center"
-                >
-                  Belajar dan wujudkan mimpi kamu
-                </Typography>
-                <FormControl fullWidth variant="standard">
-                  <InputLabel
-                    shrink
-                    htmlFor="nama-lengkap-input"
-                    sx={{ fontWeight: '700' }}
+              <SignUpBanner className="banner-registration" />
+            </Grid>
+            <Grid item md={5} xs={12}>
+              <Box
+                sx={{
+                  maxWidth: '28rem',
+                  margin: '0 auto',
+                  padding: {
+                    xs: '0',
+                    md: '2.5rem',
+                  },
+                  border: {
+                    xs: 'none',
+                    md: '1px solid #e6e6e6',
+                  },
+                  borderRadius: '0.5rem',
+                  background: '#fff',
+                }}
+              >
+                <form id="signup-submit">
+                  <Typography
+                    variant="h4"
+                    fontWeight="700"
+                    color={theme.palette.text.primary}
+                    textAlign="center"
                   >
-                    Nama Lengkap
-                  </InputLabel>
-                  <BootstrapedInput
-                    id="nama-lengkap-input"
-                    variant="outlined"
-                    type="text"
-                    onChange={(e) => {
-                      setNamaLengkap(e.target.value);
-                    }}
-                    value={namaLengkap}
-                    className="registration-input"
-                  />
-                </FormControl>
-                <FormControl fullWidth variant="standard">
-                  <InputLabel
-                    shrink
-                    htmlFor="nis-input"
-                    sx={{ fontWeight: '700' }}
+                    Yuk, Daftar!
+                  </Typography>
+                  <Typography
+                    color={theme.palette.text.secondary}
+                    marginBottom={5}
+                    textAlign="center"
                   >
-                    NIS
-                  </InputLabel>
-                  <BootstrapedInput
-                    id="nis-input"
-                    variant="outlined"
-                    type="text"
-                    onChange={(e) => {
-                      setNis(e.target.value);
-                    }}
-                    value={nis}
-                    className="registration-input"
-                  />
-                </FormControl>
-                <FormControl fullWidth variant="standard">
-                  <InputLabel
-                    shrink
-                    htmlFor="class-student-select"
-                    sx={{ fontWeight: '700' }}
-                  >
-                    Pilih Kelas
-                  </InputLabel>
-                  <Select
-                    id="class-student-select"
-                    fullWidth
-                    onChange={(e) => {
-                      setKelas(e.target.value);
-                    }}
-                    value={kelas}
-                    input={<SelectInputStyled className="registration-input" />}
-                  >
-                    <MenuItem value={'tujuh'}>Kelas VII</MenuItem>
-                    <MenuItem value={'delapan'}>Kelas VIII</MenuItem>
-                    <MenuItem value={'sembilan'}>Kelas IX</MenuItem>
-                  </Select>
-                </FormControl>
-                <FormControl fullWidth variant="standard">
-                  <InputLabel
-                    shrink
-                    htmlFor="phone-input"
-                    sx={{ fontWeight: '700' }}
-                  >
-                    Nomor Telepon
-                  </InputLabel>
-                  <div className="container-input-adornment">
-                    <Box
-                      sx={{
-                        p: '0.8rem',
-                        border: '1px solid #dcdcdc',
-                        borderTopLeftRadius: '0.5rem',
-                        borderBottomLeftRadius: '0.5rem',
-                        borderRightColor: 'transparent',
-                      }}
+                    Belajar dan wujudkan mimpi kamu
+                  </Typography>
+                  <FormControl fullWidth variant="standard">
+                    <InputLabel
+                      shrink
+                      htmlFor="nama-lengkap-input"
+                      sx={{ fontWeight: '700' }}
                     >
-                      +62
-                    </Box>
-                    <AdornmentInputPhone
-                      id="phone-input"
+                      Nama Lengkap
+                    </InputLabel>
+                    <BootstrapedInput
+                      id="nama-lengkap-input"
                       variant="outlined"
-                      sx={{
-                        flexGrow: '2',
-                      }}
                       type="text"
                       onChange={(e) => {
-                        setMobile(e.target.value);
+                        setNamaLengkap(e.target.value);
                       }}
-                      value={mobile}
+                      value={namaLengkap}
+                      className="registration-input"
                     />
-                  </div>
-                </FormControl>
-                <FormControl fullWidth variant="standard">
-                  <InputLabel
-                    shrink
-                    htmlFor="password-input"
-                    sx={{ fontWeight: '700' }}
-                  >
-                    Password
-                  </InputLabel>
-                  <div className="container-input-adornment">
-                    <AdornmentInputPassword
-                      fullWidth
-                      id="password-input"
+                  </FormControl>
+                  <FormControl fullWidth variant="standard">
+                    <InputLabel
+                      shrink
+                      htmlFor="nis-input"
+                      sx={{ fontWeight: '700' }}
+                    >
+                      NIS
+                    </InputLabel>
+                    <BootstrapedInput
+                      id="nis-input"
                       variant="outlined"
+                      type="text"
                       onChange={(e) => {
-                        setPassword(e.target.value);
+                        setNis(e.target.value);
                       }}
-                      value={password}
-                      type={!showPassword ? 'password' : 'text'}
+                      value={nis}
+                      className="registration-input"
                     />
-                    <Box>
-                      <IconButton
-                        aria-label="Tampilkan Password"
-                        onClick={handleClickShowPassword}
-                        onMouseDown={handleMouseDownPassword}
-                        edge="end"
+                  </FormControl>
+                  <FormControl fullWidth variant="standard">
+                    <InputLabel
+                      shrink
+                      htmlFor="class-student-select"
+                      sx={{ fontWeight: '700' }}
+                    >
+                      Pilih Kelas
+                    </InputLabel>
+                    <Select
+                      id="class-student-select"
+                      fullWidth
+                      onChange={(e) => {
+                        setKelas(e.target.value);
+                      }}
+                      value={kelas}
+                      input={
+                        <SelectInputStyled className="registration-input" />
+                      }
+                    >
+                      <MenuItem value={'tujuh'}>Kelas VII</MenuItem>
+                      <MenuItem value={'delapan'}>Kelas VIII</MenuItem>
+                      <MenuItem value={'sembilan'}>Kelas IX</MenuItem>
+                    </Select>
+                  </FormControl>
+                  <FormControl fullWidth variant="standard">
+                    <InputLabel
+                      shrink
+                      htmlFor="phone-input"
+                      sx={{ fontWeight: '700' }}
+                    >
+                      Nomor Telepon
+                    </InputLabel>
+                    <div className="container-input-adornment">
+                      <Box
+                        sx={{
+                          p: '0.8rem',
+                          border: '1px solid #dcdcdc',
+                          borderTopLeftRadius: '0.5rem',
+                          borderBottomLeftRadius: '0.5rem',
+                          borderRightColor: 'transparent',
+                        }}
                       >
-                        {!showPassword ? <Visibility /> : <VisibilityOff />}
-                      </IconButton>
-                    </Box>
-                  </div>
-                </FormControl>
+                        +62
+                      </Box>
+                      <AdornmentInputPhone
+                        id="phone-input"
+                        variant="outlined"
+                        sx={{
+                          flexGrow: '2',
+                        }}
+                        type="text"
+                        onChange={(e) => {
+                          setMobile(e.target.value);
+                        }}
+                        value={mobile}
+                      />
+                    </div>
+                  </FormControl>
+                  <FormControl fullWidth variant="standard">
+                    <InputLabel
+                      shrink
+                      htmlFor="password-input"
+                      sx={{ fontWeight: '700' }}
+                    >
+                      Password
+                    </InputLabel>
+                    <div className="container-input-adornment">
+                      <AdornmentInputPassword
+                        fullWidth
+                        id="password-input"
+                        variant="outlined"
+                        onChange={(e) => {
+                          setPassword(e.target.value);
+                        }}
+                        value={password}
+                        type={!showPassword ? 'password' : 'text'}
+                      />
+                      <Box>
+                        <IconButton
+                          aria-label="Tampilkan Password"
+                          onClick={handleClickShowPassword}
+                          onMouseDown={handleMouseDownPassword}
+                          edge="end"
+                        >
+                          {!showPassword ? <Visibility /> : <VisibilityOff />}
+                        </IconButton>
+                      </Box>
+                    </div>
+                  </FormControl>
 
-                <Button
-                  color="primary"
-                  className="bootstraped-button"
-                  sx={{ margin: '1rem 0' }}
-                  fullWidth
-                  disabled={submitDisable}
-                  variant="contained"
-                  onClick={handleSubmit}
-                >
-                  {labelSubmit}
-                </Button>
-                <Typography
-                  color={theme.palette.text.secondary}
-                  sx={{ textAlign: 'center' }}
-                >
-                  Sudah punya akun? <Link to="/login">Login</Link>
-                </Typography>
-              </form>
-            </Box>
+                  <Button
+                    color="primary"
+                    className="bootstraped-button"
+                    sx={{ margin: '1rem 0' }}
+                    fullWidth
+                    disabled={submitDisable}
+                    variant="contained"
+                    onClick={handleSubmit}
+                  >
+                    {labelSubmit}
+                  </Button>
+                  <Typography
+                    color={theme.palette.text.secondary}
+                    sx={{ textAlign: 'center' }}
+                  >
+                    Sudah punya akun? <Link to="/login">Login</Link>
+                  </Typography>
+                </form>
+              </Box>
+            </Grid>
           </Grid>
-        </Grid>
-      </Container>
-    </Box>
+        </Container>
+      </Box>
+    </Transition>
   );
 };
 
