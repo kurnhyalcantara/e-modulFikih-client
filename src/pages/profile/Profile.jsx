@@ -1,11 +1,10 @@
 import { Box, Container, Tab, Tabs } from '@mui/material';
-import React, { useContext } from 'react';
+import React from 'react';
 import { useState } from 'react';
 import GeneralInformation from './GeneralInformation';
 import EditPassword from './EditPassword';
 import './Profile.css';
 import Transition from '../../components/transition/Transition';
-import { GlobalState } from '../../GlobalState';
 
 const TabPanel = ({ children, value, index, ...other }) => {
   return (

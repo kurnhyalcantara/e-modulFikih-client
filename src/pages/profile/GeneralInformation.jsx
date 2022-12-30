@@ -19,7 +19,6 @@ import { GlobalState } from '../../GlobalState';
 import axios from 'axios';
 import dayjs from 'dayjs';
 import { toast } from 'react-toastify';
-import Swal from 'sweetalert2';
 import { PhotoCamera } from '@mui/icons-material';
 import {
   AdornmentInputPhone,
@@ -48,9 +47,9 @@ const GeneralInformation = () => {
     e.preventDefault();
     setSubmitDisable(true);
     setLabelSubmit('Loading');
-    axios
+    await axios
       .put(
-        `http://localhost:4000/api/student/profile/update/${user._id}`,
+        `http://localhost:4000/api/student/profile/update_data/${user._id}`,
         {
           namaLengkap: namaLengkap,
           namaPanggilan: namaPanggilan,

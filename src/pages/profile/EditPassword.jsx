@@ -15,33 +15,35 @@ const GeneralSetting = () => {
   const [oldPassword, setOldPassword] = useState('');
   const [newPassword, setNewPassword] = useState('');
   const [confirmNewPassword, setConfirmNewPassword] = useState('');
+  const [submitDisable, setSubmitDisable] = useState(false);
+  const [submitLabel, setSubmitLabel] = useState('Ganti Password');
 
-  const handleSubmit = async () => {
-    if (user.type === 'student') {
-      axios
-        .put(
-          `http://localhost:4000/api/student/update_password/${user._id}`,
-          {
-            userName: userName,
-            currentPassword: oldPassword,
-            password: newPassword,
-            rePassword: confirmNewPassword,
-          },
-          {
-            headers: { Authorization: token },
-          }
-        )
-        .then((res) => {
-          if (res.status === 200) {
-            Swal.fire('Good job!', 'You change Your Password', 'success');
-          }
-        })
-        .catch((error) => {
-          toast.error(error.response.data.msg);
-        });
-    }
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setSubmitDisable(true);
+    setSubmitLabel('Loading');
+    await axios
+      .put(
+        `http://localhost:4000/api/student/profile/update_password/${user._id}`,
+        {
+          userName: userName,
+          currentPassword: oldPassword,
+          password: newPassword,
+          rePassword: confirmNewPassword,
+        },
+        {
+          headers: { Authorization: token },
+        }
+      )
+      .then((res) => {
+        if (res.status === 200) {
+          Swal.fire('Good job!', 'You change Your Password', 'success');
+        }
+      })
+      .catch((error) => {
+        toast.error(error.response.data.msg);
+      });
   };
-
   return (
     <Box className="general-information-container">
       <FormControl fullWidth variant="standard">
@@ -103,10 +105,11 @@ const GeneralSetting = () => {
         onClick={handleSubmit}
         fullWidth
         variant="contained"
+        disabled={submitDisable}
         className="bootstraped-button"
         sx={{ mt: 5 }}
       >
-        Update Password
+        {submitLabel}
       </Button>
     </Box>
   );

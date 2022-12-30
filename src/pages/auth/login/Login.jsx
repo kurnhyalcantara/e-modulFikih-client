@@ -11,7 +11,7 @@ import {
   Box,
 } from '@mui/material';
 import { ReactComponent as LoginBanner } from '../../../assets/login-banner.svg';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { toast } from 'react-toastify';
 import { Visibility, VisibilityOff } from '@mui/icons-material';
