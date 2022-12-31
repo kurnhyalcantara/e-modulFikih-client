@@ -1,6 +1,6 @@
 .appBar {
   position: fixed;
-  filter: drop-shadow(0 8px 15px rgba(0, 14, 61, 0.08));
+  filter: drop-shadow(0 8px 15px rgb(0 14 61 / 8%));
 }
 
 .menuButton-Navbar {
