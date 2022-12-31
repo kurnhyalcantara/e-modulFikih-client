@@ -2,7 +2,6 @@ import { Box, Button, FormControl, InputLabel } from '@mui/material';
 import React, { useContext, useState } from 'react';
 import { GlobalState } from '../../GlobalState';
 import axios from 'axios';
-import Swal from 'sweetalert2';
 import { toast } from 'react-toastify';
 import { AdornmentInputPassword } from '../../components/Input/BootstrapedInput';
 
@@ -10,7 +9,6 @@ const GeneralSetting = () => {
   const state = useContext(GlobalState);
   const [token] = state.token;
   const [user] = state.userAPI.user;
-  const userName = user.userName;
 
   const [oldPassword, setOldPassword] = useState('');
   const [newPassword, setNewPassword] = useState('');

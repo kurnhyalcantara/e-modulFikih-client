@@ -27,6 +27,7 @@ import {
 } from '../../components/Input/BootstrapedInput';
 import { DatePicker, LocalizationProvider } from '@mui/lab';
 import AdapterDayjs from '@mui/lab/AdapterDayjs';
+import { toCapitalize } from '../../utils/StringModify';
 
 const GeneralInformation = () => {
   const state = useContext(GlobalState);
@@ -80,9 +81,9 @@ const GeneralInformation = () => {
       .put(
         `http://localhost:4000/api/student/profile/update_data/${user._id}`,
         {
-          namaLengkap: namaLengkap,
-          namaPanggilan: namaPanggilan,
-          sekolah: sekolah,
+          namaLengkap: toCapitalize(namaLengkap),
+          namaPanggilan: toCapitalize(namaPanggilan),
+          sekolah: toCapitalize(sekolah),
           kelas: kelas,
           nis: nis,
           mobile: mobile,
@@ -157,13 +158,18 @@ const GeneralInformation = () => {
         className="edit-information-container"
         onSubmit={handleSubmit}
       >
-        <FormControl fullWidth variant="standard">
+        <FormControl
+          fullWidth
+          variant="standard"
+          className="edit-information-input"
+          required
+        >
           <InputLabel
             shrink
             htmlFor="nama-lengkap-input"
             sx={{ fontWeight: '700' }}
           >
-            Nama Lengkap <span style={{ color: 'red' }}>*</span>
+            Nama Lengkap
           </InputLabel>
           <BootstrapedInput
             id="nama-lengkap-input"
@@ -173,10 +179,13 @@ const GeneralInformation = () => {
               setNamaLengkap(e.target.value);
             }}
             value={namaLengkap}
-            className="edit-information-input"
           />
         </FormControl>
-        <FormControl fullWidth variant="standard">
+        <FormControl
+          fullWidth
+          variant="standard"
+          className="edit-information-input"
+        >
           <InputLabel
             shrink
             htmlFor="nama-panggilan-input"
@@ -192,12 +201,16 @@ const GeneralInformation = () => {
               setNamaPanggilan(e.target.value);
             }}
             value={namaPanggilan}
-            className="edit-information-input"
           />
         </FormControl>
-        <FormControl fullWidth variant="standard">
+        <FormControl
+          fullWidth
+          variant="standard"
+          className="edit-information-input"
+          required
+        >
           <InputLabel shrink htmlFor="sekolah-input" sx={{ fontWeight: '700' }}>
-            Sekolah <span style={{ color: 'red' }}>*</span>
+            Sekolah
           </InputLabel>
           <BootstrapedInput
             id="sekolah-input"
@@ -210,13 +223,18 @@ const GeneralInformation = () => {
             className="edit-information-input"
           />
         </FormControl>
-        <FormControl fullWidth variant="standard">
+        <FormControl
+          fullWidth
+          variant="standard"
+          className="edit-information-input"
+          required
+        >
           <InputLabel
             shrink
             htmlFor="class-student-select"
             sx={{ fontWeight: '700' }}
           >
-            Pilih Kelas <span style={{ color: 'red' }}>*</span>
+            Pilih Kelas
           </InputLabel>
           <Select
             id="class-student-select"
@@ -225,16 +243,21 @@ const GeneralInformation = () => {
               setKelas(e.target.value);
             }}
             value={kelas}
-            input={<SelectInputStyled className="edit-information-input" />}
+            input={<SelectInputStyled />}
           >
             <MenuItem value={'tujuh'}>Kelas VII</MenuItem>
             <MenuItem value={'delapan'}>Kelas VIII</MenuItem>
             <MenuItem value={'sembilan'}>Kelas IX</MenuItem>
           </Select>
         </FormControl>
-        <FormControl fullWidth variant="standard">
+        <FormControl
+          fullWidth
+          variant="standard"
+          className="edit-information-input"
+          required
+        >
           <InputLabel shrink htmlFor="nis-input" sx={{ fontWeight: '700' }}>
-            NIS <span style={{ color: 'red' }}>*</span>
+            NIS
           </InputLabel>
           <BootstrapedInput
             id="nis-input"
@@ -244,12 +267,16 @@ const GeneralInformation = () => {
               setNis(e.target.value);
             }}
             value={nis}
-            className="edit-information-input"
           />
         </FormControl>
-        <FormControl fullWidth variant="standard">
+        <FormControl
+          fullWidth
+          variant="standard"
+          className="edit-information-input"
+          required
+        >
           <InputLabel shrink htmlFor="phone-input" sx={{ fontWeight: '700' }}>
-            Nomor Telepon <span style={{ color: 'red' }}>*</span>
+            Nomor Telepon
           </InputLabel>
           <div className="container-input-adornment">
             <Box
@@ -297,7 +324,11 @@ const GeneralInformation = () => {
             renderInput={(params) => <TextField fullWidth {...params} />}
           />
         </LocalizationProvider>
-        <FormControl fullWidth variant="standard" sx={{ marginTop: '1rem' }}>
+        <FormControl
+          fullWidth
+          variant="standard"
+          className="edit-information-input"
+        >
           <InputLabel
             shrink
             htmlFor="jenis-kelamin-input"

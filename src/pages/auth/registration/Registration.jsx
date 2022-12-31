@@ -26,6 +26,7 @@ import {
 } from '../../../components/Input/BootstrapedInput';
 import './Registration.css';
 import Transition from '../../../components/transition/Transition';
+import { toCapitalize } from '../../../utils/StringModify';
 
 const Registration = () => {
   const theme = useTheme();
@@ -36,7 +37,6 @@ const Registration = () => {
   const [mobile, setMobile] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
-  const [errorInput, setErrorInput] = useState(false);
   const [labelSubmit, setLabelSubmit] = useState('Buat Akun');
   const [submitDisable, setSubmitDisable] = useState(false);
 
@@ -55,7 +55,7 @@ const Registration = () => {
     try {
       await axios
         .post('http://localhost:4000/api/student/register', {
-          namaLengkap: namaLengkap,
+          namaLengkap: toCapitalize(namaLengkap),
           nis: nis,
           kelas: kelas,
           mobile: mobile,
@@ -118,7 +118,7 @@ const Registration = () => {
                   background: '#fff',
                 }}
               >
-                <form id="signup-submit">
+                <form id="signup-submit" onSubmit={handleSubmit}>
                   <Typography
                     variant="h4"
                     fontWeight="700"
@@ -138,6 +138,7 @@ const Registration = () => {
                     fullWidth
                     variant="standard"
                     className="registration-input"
+                    required
                   >
                     <InputLabel
                       shrink
@@ -160,6 +161,7 @@ const Registration = () => {
                     fullWidth
                     variant="standard"
                     className="registration-input"
+                    required
                   >
                     <InputLabel
                       shrink
@@ -182,6 +184,7 @@ const Registration = () => {
                     fullWidth
                     variant="standard"
                     className="registration-input"
+                    required
                   >
                     <InputLabel
                       shrink
@@ -208,6 +211,7 @@ const Registration = () => {
                     fullWidth
                     variant="standard"
                     className="registration-input"
+                    required
                   >
                     <InputLabel
                       shrink
@@ -288,7 +292,7 @@ const Registration = () => {
                     fullWidth
                     disabled={submitDisable}
                     variant="contained"
-                    onClick={handleSubmit}
+                    type="submit"
                   >
                     {labelSubmit}
                   </Button>
