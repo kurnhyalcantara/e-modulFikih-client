@@ -9,8 +9,9 @@ import {
   useTheme,
 } from '@mui/material';
 import Card from '@mui/material/Card';
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import './Card.css';
 import { AccessTimeTwoTone } from '@mui/icons-material';
 
@@ -112,4 +113,8 @@ const Cards = ({ item, type }) => {
   );
 };
 
+Cards.propTypes = {
+  item: PropTypes.object,
+  type: PropTypes.string,
+};
 export default Cards;
