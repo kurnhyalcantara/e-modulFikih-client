@@ -64,7 +64,7 @@
     "workbox": "^0.0.0"
   },
   "scripts": {
-    "dev": "react-scripts --openssl-legacy-provider start",
+    "dev": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "fix": "concurrently npm:fix:*",
@@ -92,7 +92,7 @@
     ]
   },
   "devDependencies": {
-    "eslint": "^8.31.0",
+    "eslint": "7.11.0",
     "eslint-plugin-react": "^7.31.11"
   }
 }
