@@ -25,7 +25,7 @@ const Profile = () => {
             borderBottom: 1,
             borderColor: 'divider',
             position: 'sticky',
-            top: '70px',
+            top: { xs: '70px', md: '102px' },
             zIndex: '24',
             background: '#fff',
           }}
