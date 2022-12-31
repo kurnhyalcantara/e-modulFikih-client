@@ -26,10 +26,9 @@ const GeneralSetting = () => {
       .put(
         `http://localhost:4000/api/student/profile/update_password/${user._id}`,
         {
-          userName: userName,
-          currentPassword: oldPassword,
-          password: newPassword,
-          rePassword: confirmNewPassword,
+          oldPassword: oldPassword,
+          newPassword: newPassword,
+          confirmNewPassword: confirmNewPassword,
         },
         {
           headers: { Authorization: token },
@@ -37,7 +36,9 @@ const GeneralSetting = () => {
       )
       .then((res) => {
         if (res.status === 200) {
-          Swal.fire('Good job!', 'You change Your Password', 'success');
+          toast.success(res.data.msg);
+          setSubmitDisable(false);
+          setSubmitLabel('Ganti Password');
         }
       })
       .catch((error) => {

@@ -101,6 +101,7 @@ const Footer = () => {
             <Link
               href="https://instagram.com/kurnhyalcantara24"
               sx={{ color: '#949494' }}
+              target="_blank"
             >
               <Instagram></Instagram>
             </Link>

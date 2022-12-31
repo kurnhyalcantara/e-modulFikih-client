@@ -9,6 +9,7 @@ import {
   Container,
   Grid,
   Box,
+  FormHelperText,
 } from '@mui/material';
 import { ReactComponent as LoginBanner } from '../../../assets/login-banner.svg';
 import { Link } from 'react-router-dom';
@@ -21,10 +22,13 @@ import {
 } from '../../../components/Input/BootstrapedInput';
 import './Login.css';
 import Transition from '../../../components/transition/Transition';
+import { useEffect } from 'react';
 
 const Login = () => {
   const theme = useTheme();
-  const [nis, setNis] = useState('');
+  const [mobile, setMobile] = useState('');
+  const [errorMobile, setErrorMobile] = useState(false);
+  const [errorMobileMsg, setErrorMobileMsg] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [labelSubmit, setLabelSubmit] = useState('Masuk');
@@ -45,23 +49,38 @@ const Login = () => {
     try {
       await axios
         .post('http://localhost:4000/api/student/login', {
-          nis: nis,
+          mobile: mobile,
           password: password,
         })
         .then((res) => {
           if (res.status === 200) {
             const { data } = res;
             localStorage.setItem('AUTH', JSON.stringify(data));
-            window.location.href = '/dashboard';
-            toast.success('Login sukses');
+            toast.success('Login berhasil');
+            setSubmitDisable(false);
+            setLabelSubmit('Masuk');
+            setTimeout(() => {
+              window.location.href = '/dashboard';
+            }, 3000);
           }
         });
     } catch (error) {
       setSubmitDisable(false);
       setLabelSubmit('Masuk');
-      toast.error(error.response.data.msg);
+      if (error.response.data.id === 'account_not_registered') {
+        setErrorMobile(true);
+        setErrorMobileMsg(error.response.data.msg);
+      }
     }
   };
+
+  useEffect(() => {
+    if (!mobile || !password || password.length < 4) {
+      setSubmitDisable(true);
+    } else {
+      setSubmitDisable(false);
+    }
+  }, [mobile, password]);
 
   return (
     <Transition>
@@ -113,26 +132,39 @@ const Login = () => {
                   >
                     Masuk untuk belajar sekarang
                   </Typography>
-                  <FormControl fullWidth variant="standard">
+                  <FormControl
+                    fullWidth
+                    variant="standard"
+                    error={errorMobile}
+                    sx={{ marginTop: '1rem' }}
+                  >
                     <InputLabel
                       shrink
                       htmlFor="nis-login-input"
                       sx={{ fontWeight: '700' }}
                     >
-                      NIS
+                      No. HP
                     </InputLabel>
                     <BootstrapedInput
                       id="nis-login-input"
                       variant="outlined"
                       type="text"
                       onChange={(e) => {
-                        setNis(e.target.value);
+                        setMobile(e.target.value);
                       }}
-                      value={nis}
-                      className="login-input"
+                      value={mobile}
+                      autoFocus
+                      error={errorMobile}
                     />
+                    <FormHelperText id="componentMobileInput">
+                      {errorMobileMsg}
+                    </FormHelperText>
                   </FormControl>
-                  <FormControl fullWidth variant="standard">
+                  <FormControl
+                    fullWidth
+                    variant="standard"
+                    sx={{ marginTop: '1rem' }}
+                  >
                     <InputLabel
                       shrink
                       htmlFor="password-input"
