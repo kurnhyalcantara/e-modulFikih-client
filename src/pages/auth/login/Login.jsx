@@ -61,7 +61,7 @@ const Login = () => {
             setLabelSubmit('Masuk');
             setTimeout(() => {
               window.location.href = '/dashboard';
-            }, 3000);
+            }, 2000);
           }
         });
     } catch (error) {

@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   Box,
   Button,
   Container,
   FormControl,
+  FormHelperText,
   Grid,
   IconButton,
   InputLabel,
@@ -35,6 +36,7 @@ const Registration = () => {
   const [mobile, setMobile] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
+  const [errorInput, setErrorInput] = useState(false);
   const [labelSubmit, setLabelSubmit] = useState('Buat Akun');
   const [submitDisable, setSubmitDisable] = useState(false);
 
@@ -73,6 +75,14 @@ const Registration = () => {
       setLabelSubmit('Buat Akun');
     }
   };
+
+  useEffect(() => {
+    if (password < 4) {
+      setSubmitDisable(true);
+    } else {
+      setSubmitDisable(false);
+    }
+  }, [password]);
 
   return (
     <Transition>
@@ -119,12 +129,16 @@ const Registration = () => {
                   </Typography>
                   <Typography
                     color={theme.palette.text.secondary}
-                    marginBottom={5}
+                    marginBottom={3}
                     textAlign="center"
                   >
                     Belajar dan wujudkan mimpi kamu
                   </Typography>
-                  <FormControl fullWidth variant="standard">
+                  <FormControl
+                    fullWidth
+                    variant="standard"
+                    className="registration-input"
+                  >
                     <InputLabel
                       shrink
                       htmlFor="nama-lengkap-input"
@@ -140,10 +154,13 @@ const Registration = () => {
                         setNamaLengkap(e.target.value);
                       }}
                       value={namaLengkap}
-                      className="registration-input"
                     />
                   </FormControl>
-                  <FormControl fullWidth variant="standard">
+                  <FormControl
+                    fullWidth
+                    variant="standard"
+                    className="registration-input"
+                  >
                     <InputLabel
                       shrink
                       htmlFor="nis-input"
@@ -159,10 +176,13 @@ const Registration = () => {
                         setNis(e.target.value);
                       }}
                       value={nis}
-                      className="registration-input"
                     />
                   </FormControl>
-                  <FormControl fullWidth variant="standard">
+                  <FormControl
+                    fullWidth
+                    variant="standard"
+                    className="registration-input"
+                  >
                     <InputLabel
                       shrink
                       htmlFor="class-student-select"
@@ -177,16 +197,18 @@ const Registration = () => {
                         setKelas(e.target.value);
                       }}
                       value={kelas}
-                      input={
-                        <SelectInputStyled className="registration-input" />
-                      }
+                      input={<SelectInputStyled />}
                     >
                       <MenuItem value={'tujuh'}>Kelas VII</MenuItem>
                       <MenuItem value={'delapan'}>Kelas VIII</MenuItem>
                       <MenuItem value={'sembilan'}>Kelas IX</MenuItem>
                     </Select>
                   </FormControl>
-                  <FormControl fullWidth variant="standard">
+                  <FormControl
+                    fullWidth
+                    variant="standard"
+                    className="registration-input"
+                  >
                     <InputLabel
                       shrink
                       htmlFor="phone-input"
@@ -194,7 +216,7 @@ const Registration = () => {
                     >
                       Nomor Telepon
                     </InputLabel>
-                    <div className="container-input-adornment">
+                    <div className="container-input-adornment-register">
                       <Box
                         sx={{
                           p: '0.8rem',
@@ -220,7 +242,11 @@ const Registration = () => {
                       />
                     </div>
                   </FormControl>
-                  <FormControl fullWidth variant="standard">
+                  <FormControl
+                    fullWidth
+                    variant="standard"
+                    className="registration-input"
+                  >
                     <InputLabel
                       shrink
                       htmlFor="password-input"
@@ -228,7 +254,7 @@ const Registration = () => {
                     >
                       Password
                     </InputLabel>
-                    <div className="container-input-adornment">
+                    <div className="container-input-adornment-register">
                       <AdornmentInputPassword
                         fullWidth
                         id="password-input"
@@ -250,6 +276,9 @@ const Registration = () => {
                         </IconButton>
                       </Box>
                     </div>
+                    <FormHelperText id="helper-password">
+                      Password minimal 4 karakter
+                    </FormHelperText>
                   </FormControl>
 
                   <Button

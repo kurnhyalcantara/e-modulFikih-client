@@ -15,9 +15,15 @@ import {
   PersonRounded,
   LocalLibraryRounded,
   ArticleRounded,
+  DashboardRounded,
 } from '@mui/icons-material';
 
 const mainMenu = [
+  {
+    name: 'Home',
+    route: '/',
+    icon: <HomeRounded />,
+  },
   {
     name: 'Materi',
     route: '/courses',
@@ -34,7 +40,7 @@ const userMenu = [
   {
     name: 'Dashboard',
     route: '/dashboard',
-    icon: <HomeRounded />,
+    icon: <DashboardRounded />,
   },
   {
     name: 'Profil Saya',

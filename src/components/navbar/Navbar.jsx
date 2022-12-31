@@ -38,6 +38,7 @@ const Navbar = () => {
     localStorage.clear();
     setIsLogged(false);
     toast.success('Logout berhasil');
+    history('/login');
   };
 
   const toggleDrawer = (anchor, open) => (event) => {
