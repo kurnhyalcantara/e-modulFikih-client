@@ -1,5 +1,5 @@
 import { Container, Grid } from "@mui/material";
-import React, { useContext } from "react";
+import { useContext } from "react";
 import BlogCard from "../../../components/blogCard/BlogCard";
 import { GlobalState } from "../../../GlobalState";
 

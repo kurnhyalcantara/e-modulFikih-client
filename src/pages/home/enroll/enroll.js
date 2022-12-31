@@ -2,8 +2,9 @@ import { Backdrop, Box, Button, Divider, Fade, Modal, Typography } from "@mui/ma
 import { CardElement, Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
 import axios from "axios";
-import React, { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import PropTypes from "prop-types";
 import { GlobalState } from "../../../GlobalState";
 import { useStyles } from "./styles";
 
@@ -66,6 +67,13 @@ const PaymentForm = ({ addList, classes, course, enrolled }) => {
       </Button>
     </>
   );
+};
+
+PaymentForm.propTypes = {
+  addList: PropTypes.func,
+  classes: PropTypes.string,
+  course: PropTypes.object,
+  enrolled: PropTypes.bool,
 };
 
 const EnrollStudent = () => {

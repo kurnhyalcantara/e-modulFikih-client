@@ -1,12 +1,12 @@
 import { Container, Grid, Typography } from "@mui/material";
 import axios from "axios";
-import React, { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Cards from "../../../components/Cards/Card";
 import { GlobalState } from "../../../GlobalState";
 import { useStyle } from "./styles";
 
-const ParentCourseShow = ({ course }) => {
+const ParentCourseShow = () => {
   const classes = useStyle();
   const state = useContext(GlobalState);
   const [token] = state.token;
@@ -24,7 +24,7 @@ const ParentCourseShow = ({ course }) => {
           })
           .then((res) => {
             if (res.status === 200) {
-              const { enrolled } = res?.data;
+              const { enrolled } = res.data;
               setCourses(enrolled);
               setLoading(false);
             }

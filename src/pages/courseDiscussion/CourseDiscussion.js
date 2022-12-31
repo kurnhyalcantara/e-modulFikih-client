@@ -2,7 +2,7 @@ import StarBorder from "@mui/icons-material/StarBorder";
 import { Button, Container, ListItemButton, ListItemIcon, ListItemText, TextField } from "@mui/material";
 import { Box } from "@mui/system";
 import axios from "axios";
-import React, { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import { GlobalState } from "../../GlobalState";
@@ -103,7 +103,7 @@ const CourseDiscussion = () => {
             discussion?.submissions?.length > 0 &&
             discussion?.submissions?.map((item, i) => (
               <Box
-                key={item._id}
+                key={i}
                 sx={{
                   background: "#fff",
                   margin: "20px 0",

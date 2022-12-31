@@ -2,7 +2,7 @@ import { Box, Grid, IconButton, Link, Typography } from "@mui/material";
 
 import { useTheme } from "@mui/material/styles";
 import "./Footer.css";
-import { EmailOutlined, Instagram, LocationOnOutlined, WhatsappOutlined } from "@mui/icons-material";
+import { EmailOutlined, Instagram, LocationOnOutlined, WhatsApp } from "@mui/icons-material";
 
 const getYear = () => {
   return new Date().getFullYear();
@@ -53,7 +53,7 @@ const Footer = () => {
             <Typography color={theme.palette.text.secondary}>kurnhyalcantara@gmail.com</Typography>
           </Box>
           <Box className="footer-contact">
-            <WhatsappOutlined color="disabled" sx={{ marginRight: "1rem" }} />
+            <WhatsApp color="disabled" sx={{ marginRight: "1rem" }} />
             <Typography color={theme.palette.text.secondary}>+62 823-7252-7221 (chat only)</Typography>
           </Box>
         </Grid>

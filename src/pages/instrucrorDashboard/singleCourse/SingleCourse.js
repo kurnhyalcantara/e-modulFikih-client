@@ -196,8 +196,16 @@ const SingleCourse = () => {
             <Grid item xs={12} sm={6}>
               <h2>What You’ll Learn</h2>
               <Grid className={classes.container} container spacing={3}>
-                {objective.map((objective) => (
-                  <Grid item xs={12} sm={12} md={6} lg={6} style={{ display: "flex", alignItems: "center" }}>
+                {objective.map((objective, index) => (
+                  <Grid
+                    item
+                    key={index}
+                    xs={12}
+                    sm={12}
+                    md={6}
+                    lg={6}
+                    style={{ display: "flex", alignItems: "center" }}
+                  >
                     <Typography component="p" style={{ display: "flex", alignItems: "center" }}>
                       <CheckIcon className={classes.icon} /> {objective.objective}
                     </Typography>
@@ -209,8 +217,8 @@ const SingleCourse = () => {
             <Grid item xs={6}>
               <h2>Requirement</h2>
               <Grid className={classes.container} container spacing={3}>
-                {req.map((req) => (
-                  <Grid item xs={12} md={6} lg={6}>
+                {req.map((req, index) => (
+                  <Grid item key={index} xs={12} md={6} lg={6}>
                     <Typography component="p" style={{ display: "flex", alignItems: "center" }}>
                       <CreateIcon className={classes.icon} /> {req?.requrement}
                     </Typography>

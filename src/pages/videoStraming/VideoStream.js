@@ -1,5 +1,5 @@
 import { JitsiMeeting } from "@jitsi/react-sdk";
-import React, { useContext } from "react";
+import { useContext } from "react";
 import { useParams } from "react-router-dom";
 import { GlobalState } from "../../GlobalState";
 
@@ -12,6 +12,7 @@ const VideoStream = () => {
     displayName: `${user.name} (${user.type})`,
     email: user.userName,
     changeLocalAvatarUrl:
+      // eslint-disable-next-line max-len
       "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Image_created_with_a_mobile_phone.png/640px-Image_created_with_a_mobile_phone.png",
   };
 

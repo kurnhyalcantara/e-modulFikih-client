@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
+import PropTypes from "prop-types";
 import SunEditor from "suneditor-react";
 import "suneditor/dist/css/suneditor.min.css";
 
@@ -77,4 +78,10 @@ const Editor = ({ name, contents, onChange, height }) => {
   );
 };
 
+Editor.propTypes = {
+  name: PropTypes.string,
+  contents: PropTypes.string,
+  onChange: PropTypes.func,
+  height: PropTypes.number,
+};
 export default Editor;

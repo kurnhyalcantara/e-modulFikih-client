@@ -14,12 +14,14 @@ const listFeature = [
     image: <ExamOnline className="card-image" />,
     title: "Latihan Soal",
     description:
+      // eslint-disable-next-line max-len
       "Kumpulan bank soal yang bisa diakses untuk memudahkan proses belajar. Bank soal ini juga dilengkapi dengan pembahasan pada setiap soalnya",
   },
   {
     image: <MultiPlatform className="card-image" />,
     title: "Multi Platform",
     description:
+      // eslint-disable-next-line max-len
       "E-Modul ini dapat diakses baik di laptop maupun di smartphone. Anda pun juga dapat menginstallnya tanpa perlu mengingat link aplikasinya",
   },
 ];

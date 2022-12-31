@@ -21,6 +21,7 @@ const Navbar = () => {
   const [drawer, setDrawer] = useState({});
   const history = useNavigate();
   const logo =
+    // eslint-disable-next-line max-len
     "https://firebasestorage.googleapis.com/v0/b/fikih-mtsbontouse.appspot.com/o/Icons%2Ficon-72x72.png?alt=media&token=7c559bc1-872f-4ba2-b3bd-5d8c0cee5c29";
 
   const logOut = async () => {

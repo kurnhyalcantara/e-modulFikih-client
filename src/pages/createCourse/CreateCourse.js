@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import Swal from "sweetalert2";
 import { GlobalState } from "../../GlobalState";
 import { v4 as uuidv4 } from "uuid";
@@ -352,7 +352,7 @@ const CreateCourse = () => {
             </Grid>
             <Grid item xs={12} sm={12} lg={6} md={6}>
               {objectives.map((objective, index) => (
-                <div key={objective.id} className={classes.fullWidth} style={{ display: "flex" }}>
+                <div key={index} className={classes.fullWidth} style={{ display: "flex" }}>
                   <TextField
                     id="outlined-basic"
                     label="Objective"
@@ -386,7 +386,7 @@ const CreateCourse = () => {
             </Grid>
             <Grid item xs={12} sm={12} lg={6} md={6}>
               {requirements.map((requirement, index) => (
-                <div key={requirement.id} className={classes.fullWidth} style={{ display: "flex" }}>
+                <div key={index} className={classes.fullWidth} style={{ display: "flex" }}>
                   <TextField
                     id="outlined-basic"
                     label="Requirement"

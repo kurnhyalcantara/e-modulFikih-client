@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import Carousel from "react-grid-carousel";
 import { GlobalState } from "../../../GlobalState";
 import InstructionCoursesCard from "../instructionCoursesCard/InstructionCoursesCard";

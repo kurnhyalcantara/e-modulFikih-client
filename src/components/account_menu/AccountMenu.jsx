@@ -15,7 +15,7 @@ import { GlobalState } from "../../GlobalState";
 import { LogoutRounded, SettingsRounded } from "@mui/icons-material";
 import { Fragment } from "react";
 
-export const AccountMenu = ({ logOut }) => {
+const AccountMenu = ({ logOut }) => {
   const state = useContext(GlobalState);
   const theme = useTheme();
   const [user] = state.userAPI.user;
@@ -132,3 +132,5 @@ export const AccountMenu = ({ logOut }) => {
 AccountMenu.propTypes = {
   logOut: PropTypes.func,
 };
+
+export default AccountMenu;

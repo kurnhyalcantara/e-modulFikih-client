@@ -2,7 +2,7 @@ import { Card, CardActionArea, CardContent, Container, Grid, Typography } from "
 import Avatar from "@mui/material/Avatar";
 import { Box } from "@mui/system";
 import axios from "axios";
-import React, { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { GlobalState } from "../../GlobalState.js";
 import { useStyles } from "./styles.js";
@@ -38,8 +38,8 @@ const ParentDashboard = () => {
           {child &&
             child?.length > 0 &&
             child?.map((item, i) => (
-              <Grid item md={3} sm={12} xs={12}>
-                <Box key={item?._id}>
+              <Grid item key={i} md={3} sm={12} xs={12}>
+                <Box id={item?._id}>
                   <Card className={classes.card} style={{ background: "#2196f3", color: "white" }}>
                     <CardActionArea>
                       <CardContent>

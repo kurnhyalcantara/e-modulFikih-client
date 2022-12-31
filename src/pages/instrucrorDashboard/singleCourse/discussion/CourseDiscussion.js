@@ -14,10 +14,11 @@ import {
   Typography,
 } from "@mui/material";
 import axios from "axios";
-import React, { useContext, useState } from "react";
+import { useContext, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import Swal from "sweetalert2";
+import PropTypes from "prop-types";
 import { GlobalState } from "../../../../GlobalState";
 
 const CourseDiscussion = ({ discussion, getData }) => {
@@ -176,6 +177,11 @@ const CourseDiscussion = ({ discussion, getData }) => {
       )}
     </div>
   );
+};
+
+CourseDiscussion.propTypes = {
+  discussion: PropTypes.array,
+  getData: PropTypes.func,
 };
 
 export default CourseDiscussion;

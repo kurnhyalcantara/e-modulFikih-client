@@ -1,7 +1,7 @@
-import React from "react";
 import { Grid, Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import parse from "html-react-parser";
+import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 
 const BlogCard = ({ item }) => {
@@ -63,4 +63,7 @@ const BlogCard = ({ item }) => {
   );
 };
 
+BlogCard.propTypes = {
+  item: PropTypes.object,
+};
 export default BlogCard;

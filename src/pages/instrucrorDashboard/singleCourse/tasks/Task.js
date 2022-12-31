@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import { useContext } from "react";
 import { Link } from "react-router-dom";
 import AssignmentIcon from "@mui/icons-material/Assignment";
 import DeleteIcon from "@mui/icons-material/Delete";
@@ -7,6 +7,7 @@ import { Button, IconButton } from "@mui/material";
 import { useStyle } from "./styles";
 import Swal from "sweetalert2";
 import axios from "axios";
+import PropTypes from "prop-types";
 import { GlobalState } from "../../../../GlobalState";
 
 const Task = ({ getData, tasks }) => {
@@ -91,4 +92,8 @@ const Task = ({ getData, tasks }) => {
   );
 };
 
+Task.propTypes = {
+  getData: PropTypes.func,
+  tasks: PropTypes.object,
+};
 export default Task;

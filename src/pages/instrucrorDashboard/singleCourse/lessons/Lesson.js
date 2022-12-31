@@ -3,11 +3,12 @@ import ModeEditIcon from "@mui/icons-material/ModeEdit";
 import PlayLessonOutlinedIcon from "@mui/icons-material/PlayLessonOutlined";
 import { IconButton } from "@mui/material";
 import axios from "axios";
-import React, { useContext } from "react";
+import { useContext } from "react";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 import { GlobalState } from "../../../../GlobalState";
 import LessonVideo from "./lessonsVideo/LessonVideo";
+import PropTypes from "prop-types";
 import { useStyle } from "./styles";
 
 const Lesson = ({ lessons, getData }) => {
@@ -74,6 +75,11 @@ const Lesson = ({ lessons, getData }) => {
       </div>
     </div>
   );
+};
+
+Lesson.propTypes = {
+  lessons: PropTypes.object,
+  getData: PropTypes.func,
 };
 
 export default Lesson;

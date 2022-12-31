@@ -1,4 +1,5 @@
 import { Grid, Paper, Typography } from "@mui/material";
+import PropTypes from "prop-types";
 
 const CourseInstructur = ({ item }) => {
   return (
@@ -34,4 +35,7 @@ const CourseInstructur = ({ item }) => {
   );
 };
 
+CourseInstructur.propTypes = {
+  item: PropTypes.object,
+};
 export default CourseInstructur;
