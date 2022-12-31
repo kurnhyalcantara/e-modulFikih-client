@@ -11,7 +11,7 @@ import './App.scss';
 import Footer from './components/footer/Footer';
 import Navbar from './components/navbar/Navbar';
 import { GlobalState } from './GlobalState';
-import AllCourse from './pages/allCourse/AllCourse';
+import AllCourse from './pages/courses/AllCourse';
 import Login from './pages/auth/login/Login';
 import Registration from './pages/auth/registration/Registration';
 import Blogs from './pages/blogs/allBlogs/Blogs';
