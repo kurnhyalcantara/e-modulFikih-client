@@ -1,5 +1,5 @@
-import { useEffect, useState } from 'react';
-import axios from 'axios';
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 function BlogAPI() {
   const [loading, setLoading] = useState(false);
@@ -11,9 +11,7 @@ function BlogAPI() {
   useEffect(() => {
     const getBlogs = async () => {
       setLoading(true);
-      const res = await axios.get(
-        `http://localhost:4000/api/admin/blog?limit=${page * 6}`
-      );
+      const res = await axios.get(`http://localhost:4000/api/admin/blog?limit=${page * 6}`);
       setBlogs(res.data.blogs);
       setResult(res.data.result);
       setLoading(false);

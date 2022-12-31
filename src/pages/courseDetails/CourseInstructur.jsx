@@ -1,4 +1,4 @@
-import { Grid, Paper, Typography } from '@mui/material';
+import { Grid, Paper, Typography } from "@mui/material";
 
 const CourseInstructur = ({ item }) => {
   return (
@@ -9,10 +9,10 @@ const CourseInstructur = ({ item }) => {
             src={
               item?.courseDetail?.instructor?.image
                 ? item?.instructor?.image?.url
-                : 'https://monstar-lab.com/global/wp-content/uploads/sites/11/2019/04/male-placeholder-image.jpeg'
+                : "https://monstar-lab.com/global/wp-content/uploads/sites/11/2019/04/male-placeholder-image.jpeg"
             }
             alt="instructor"
-            style={{ width: '100%' }}
+            style={{ width: "100%" }}
           />
           <Grid item md={9} xs={12} marginTop="1.5rem">
             <strong>Nama</strong>

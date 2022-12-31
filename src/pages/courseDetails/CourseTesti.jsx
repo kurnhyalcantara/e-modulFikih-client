@@ -1,5 +1,5 @@
-import { Avatar, Box, Paper, Rating, Typography } from '@mui/material';
-import PropTypes from 'prop-types';
+import { Avatar, Box, Paper, Rating, Typography } from "@mui/material";
+import PropTypes from "prop-types";
 
 const CourseTesti = ({ item }) => {
   return (
@@ -11,18 +11,18 @@ const CourseTesti = ({ item }) => {
             <Box
               key={i}
               sx={{
-                border: '1px solid #eee',
-                padding: '10px',
-                margin: '15px 0',
+                border: "1px solid #eee",
+                padding: "10px",
+                margin: "15px 0",
               }}
             >
-              <Box sx={{ display: 'flex', alignItems: 'center' }}>
+              <Box sx={{ display: "flex", alignItems: "center" }}>
                 <Avatar
                   sx={{ mr: 3 }}
-                  alt={comment?.lecturer?.name ?? 'Kurniawan'}
+                  alt={comment?.lecturer?.name ?? "Kurniawan"}
                   img={
                     comment?.lecturer?.img ??
-                    'https://monstar-lab.com/global/wp-content/uploads/sites/11/2019/04/male-placeholder-image.jpeg'
+                    "https://monstar-lab.com/global/wp-content/uploads/sites/11/2019/04/male-placeholder-image.jpeg"
                   }
                 ></Avatar>
                 <Typography fontWeight="700" marginRight="1rem">

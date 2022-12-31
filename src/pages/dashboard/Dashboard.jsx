@@ -1,20 +1,15 @@
-import { Box, Container, Grid, Typography } from '@mui/material';
-import Transition from '../../components/transition/Transition';
-import './Dashboard.css';
+import { Box, Container, Grid, Typography } from "@mui/material";
+import Transition from "../../components/transition/Transition";
+import "./Dashboard.css";
 
 const Dashboard = () => {
   return (
     <Transition>
-      {' '}
+      {" "}
       <Box className="dashboardContainer">
         <Box className="jumbotron">
           <Container maxWidth="lg">
-            <Typography
-              variant="h4"
-              fontWeight="800"
-              color="#fff"
-              marginY="0.2rem"
-            >
+            <Typography variant="h4" fontWeight="800" color="#fff" marginY="0.2rem">
               Selamat Datang Kurniawan!
             </Typography>
             <Typography color="#fff" component="p">

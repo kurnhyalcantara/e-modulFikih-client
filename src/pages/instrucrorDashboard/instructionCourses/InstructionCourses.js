@@ -1,9 +1,9 @@
-import axios from 'axios';
-import React, { useContext, useEffect, useState } from 'react';
-import Carousel from 'react-grid-carousel';
-import { GlobalState } from '../../../GlobalState';
-import InstructionCoursesCard from '../instructionCoursesCard/InstructionCoursesCard';
-import { useStyle } from './styles';
+import axios from "axios";
+import React, { useContext, useEffect, useState } from "react";
+import Carousel from "react-grid-carousel";
+import { GlobalState } from "../../../GlobalState";
+import InstructionCoursesCard from "../instructionCoursesCard/InstructionCoursesCard";
+import { useStyle } from "./styles";
 
 const InstructionCourses = () => {
   const classes = useStyle();
@@ -15,7 +15,7 @@ const InstructionCourses = () => {
     //get course list
     const getCourse = async () => {
       await axios
-        .get('http://localhost:4000/api/course', {
+        .get("http://localhost:4000/api/course", {
           headers: { Authorization: token },
         })
         .then((res) => {

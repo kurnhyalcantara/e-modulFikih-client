@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState } from "react";
 import {
   Card,
   CardContent,
@@ -10,12 +10,12 @@ import {
   Tabs,
   Typography,
   useTheme,
-} from '@mui/material';
-import axios from 'axios';
-import PropTypes from 'prop-types';
-import Box from '@mui/material/Box';
-import Tab from '@mui/material/Tab';
-import CardCourse from '../../components/Cards/Card';
+} from "@mui/material";
+import axios from "axios";
+import PropTypes from "prop-types";
+import Box from "@mui/material/Box";
+import Tab from "@mui/material/Tab";
+import CardCourse from "../../components/Cards/Card";
 
 const CoursesTab = () => {
   const theme = useTheme();
@@ -41,7 +41,7 @@ const CoursesTab = () => {
   useEffect(() => {
     const getCourses = async () => {
       setLoading(true);
-      await axios.get('http://localhost:4000/api/all/course').then((res) => {
+      await axios.get("http://localhost:4000/api/all/course").then((res) => {
         if (res.status === 200) {
           const { courses } = res.data;
           setCourseList(courses);
@@ -57,27 +57,17 @@ const CoursesTab = () => {
   return (
     <Box className="container-section">
       <Container maxWidth="xl">
-        <Typography
-          variant="h4"
-          textAlign="center"
-          fontWeight={700}
-          color={theme.palette.text.primary}
-        >
+        <Typography variant="h4" textAlign="center" fontWeight={700} color={theme.palette.text.primary}>
           Tersedia Materi Untuk Setiap Jenjang Kelas
         </Typography>
         {loading ? (
           <Grow in>
             <Grid container spacing={4} sx={{ mb: 10, mt: 5 }}>
-              {['1', '2', '3', '4'].map((i) => (
+              {["1", "2", "3", "4"].map((i) => (
                 <Grid item xs={12} sm={6} lg={3} key={i}>
                   <Card variant="outlined">
                     <CardMedia height={140}>
-                      <Skeleton
-                        variant="rectangular"
-                        animation="wave"
-                        height={140}
-                        width="100%"
-                      />
+                      <Skeleton variant="rectangular" animation="wave" height={140} width="100%" />
                     </CardMedia>
                     <CardContent>
                       <Typography variant="h5">
@@ -94,7 +84,7 @@ const CoursesTab = () => {
           </Grow>
         ) : (
           <Box>
-            <Box sx={{ borderBottom: 1, borderColor: 'white', mt: '1rem' }}>
+            <Box sx={{ borderBottom: 1, borderColor: "white", mt: "1rem" }}>
               <Tabs
                 variant="scrollable"
                 onChange={(event, newValue) => {
@@ -103,32 +93,20 @@ const CoursesTab = () => {
                 value={tabContext}
                 indicatorColor="primary"
               >
-                {tabList &&
-                  tabList.map((item, i) => (
-                    <Tab label={`Kelas ${item}`} key={i} />
-                  ))}
+                {tabList && tabList.map((item, i) => <Tab label={`Kelas ${item}`} key={i} />)}
               </Tabs>
             </Box>
             {tabList &&
               tabList.map((tab, index) => {
                 return (
-                  <TabPanel
-                    key={`tab${index}`}
-                    value={tabContext}
-                    index={index}
-                  >
+                  <TabPanel key={`tab${index}`} value={tabContext} index={index}>
                     <Grid container spacing={4}>
                       {courseList &&
                         courseList
                           .filter((item) => item.kelas === tab)
                           .slice(0, 4)
                           .map((item, i) => (
-                            <Grid
-                              item
-                              key={`course${i}`}
-                              md={3}
-                              sx={{ mt: '1.5rem' }}
-                            >
+                            <Grid item key={`course${i}`} md={3} sx={{ mt: "1.5rem" }}>
                               <CardCourse key={i} item={item} type="details" />
                             </Grid>
                           ))}

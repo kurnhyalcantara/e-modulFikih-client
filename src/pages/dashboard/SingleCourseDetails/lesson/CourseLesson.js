@@ -40,8 +40,7 @@ const CourseLesson = ({ lessons }) => {
               </Typography>
             ) : (
               <Typography variant="h5" className={classes.title}>
-                <i className="far fa-play-circle"></i> Now Playing:{" "}
-                <strong>{title}</strong>
+                <i className="far fa-play-circle"></i> Now Playing: <strong>{title}</strong>
               </Typography>
             )}
           </Grid>
@@ -69,32 +68,18 @@ const CourseLesson = ({ lessons }) => {
                     <Typography>{data.title}</Typography>
                   </AccordionSummary>
                   <AccordionDetails sx={{ padding: "0px" }}>
-                    <List
-                      aria-label="main mailbox folders"
-                      className={classes.songList}
-                    >
+                    <List aria-label="main mailbox folders" className={classes.songList}>
                       {data.videos.map((item) => (
                         <ListItem
                           button
                           selected={selectedIndex === item.title}
-                          onClick={(event) =>
-                            handleListItemClick(
-                              event,
-                              item.link,
-                              item.link,
-                              item.title
-                            )
-                          }
+                          onClick={(event) => handleListItemClick(event, item.link, item.link, item.title)}
                         >
                           <ListItemIcon>
                             {selectedIndex === item.link ? (
-                              <PauseCircleOutlineRoundedIcon
-                                className={classes.bgIcon}
-                              />
+                              <PauseCircleOutlineRoundedIcon className={classes.bgIcon} />
                             ) : (
-                              <PlayCircleOutlineRoundedIcon
-                                className={classes.bgIcon}
-                              />
+                              <PlayCircleOutlineRoundedIcon className={classes.bgIcon} />
                             )}
                           </ListItemIcon>
                           <ListItemText>{item.title}</ListItemText>

@@ -1,27 +1,25 @@
-import { Box, Card, CardContent, Paper, Typography } from '@mui/material';
-import Carousel from 'react-grid-carousel';
-import PropTypes from 'prop-types';
-import { ReactMarkdown } from 'react-markdown/lib/react-markdown';
-import remarkGfm from 'remark-gfm';
+import { Box, Card, CardContent, Paper, Typography } from "@mui/material";
+import Carousel from "react-grid-carousel";
+import PropTypes from "prop-types";
+import { ReactMarkdown } from "react-markdown/lib/react-markdown";
+import remarkGfm from "remark-gfm";
 
 const fasility = [
   {
-    name: 'Materi',
-    brief: 'Materi akan disajikan dengan menarik dan mudah dipahami',
+    name: "Materi",
+    brief: "Materi akan disajikan dengan menarik dan mudah dipahami",
   },
   {
-    name: 'Video Penjelasan',
-    brief:
-      'Beberapa materi disajikan dengan video penjelasan agar mempermudah pemahaman peserta didik',
+    name: "Video Penjelasan",
+    brief: "Beberapa materi disajikan dengan video penjelasan agar mempermudah pemahaman peserta didik",
   },
   {
-    name: 'Kuis',
-    brief:
-      'Di sela-sela pembelajaran, akan ada beberapa soal yang akan dijawab oleh peserta didik',
+    name: "Kuis",
+    brief: "Di sela-sela pembelajaran, akan ada beberapa soal yang akan dijawab oleh peserta didik",
   },
   {
-    name: 'Ujian',
-    brief: 'Uji pengetahuanmu dengan mengerjakan soal-soal ujian',
+    name: "Ujian",
+    brief: "Uji pengetahuanmu dengan mengerjakan soal-soal ujian",
   },
 ];
 
@@ -35,17 +33,12 @@ const DeskripsiCourse = ({ item }) => {
       </Box>
       <Box className="container-description">
         <h2>Tujuan Pembelajaran</h2>
-        <p>
-          Setelah mengikuti pembelajaran pada materi ini, diakhir peserta didik
-          diharapkan:
-        </p>
+        <p>Setelah mengikuti pembelajaran pada materi ini, diakhir peserta didik diharapkan:</p>
         <ul>
           {item?.courseDetails?.indikatorPencapaianKompetensi &&
-            item?.courseDetails?.indikatorPencapaianKompetensi.map(
-              (ipk, index) => {
-                return <li key={index}>{ipk}</li>;
-              }
-            )}
+            item?.courseDetails?.indikatorPencapaianKompetensi.map((ipk, index) => {
+              return <li key={index}>{ipk}</li>;
+            })}
         </ul>
       </Box>
       <Box className="container-description">
@@ -63,7 +56,7 @@ const DeskripsiCourse = ({ item }) => {
           {fasility.map((item, index) => {
             return (
               <Carousel.Item key={index}>
-                <Card sx={{ borderRadius: '0.5rem' }} variant="outlined">
+                <Card sx={{ borderRadius: "0.5rem" }} variant="outlined">
                   <CardContent>
                     <Typography variant="h6" fontWeight={700} gutterBottom>
                       {item.name}

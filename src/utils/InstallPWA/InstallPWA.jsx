@@ -1,5 +1,5 @@
-import { useEffect, useState } from 'react';
-import { Button } from '@mui/material';
+import { useEffect, useState } from "react";
+import { Button } from "@mui/material";
 
 const InstallPWA = () => {
   const [promptInstall, setPromptInstall] = useState(null);
@@ -9,8 +9,8 @@ const InstallPWA = () => {
       e.preventDefault();
       setPromptInstall(e);
     };
-    window.addEventListener('beforeinstallprompt', handler);
-    return () => window.removeEventListener('transitionend', handler);
+    window.addEventListener("beforeinstallprompt", handler);
+    return () => window.removeEventListener("transitionend", handler);
   }, []);
 
   const triggerPrompt = (evt) => {

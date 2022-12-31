@@ -1,16 +1,16 @@
-import { Button, Container, TextField } from '@mui/material';
-import React, { useContext, useEffect, useState } from 'react';
-import { useStyle } from './styles';
-import Accordion from '@mui/material/Accordion';
-import AccordionSummary from '@mui/material/AccordionSummary';
-import AccordionDetails from '@mui/material/AccordionDetails';
-import Typography from '@mui/material/Typography';
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import { GlobalState } from '../../../../../GlobalState';
-import { useParams } from 'react-router-dom';
-import parse from 'html-react-parser';
-import axios from 'axios';
-import { toast } from 'react-toastify';
+import { Button, Container, TextField } from "@mui/material";
+import React, { useContext, useEffect, useState } from "react";
+import { useStyle } from "./styles";
+import Accordion from "@mui/material/Accordion";
+import AccordionSummary from "@mui/material/AccordionSummary";
+import AccordionDetails from "@mui/material/AccordionDetails";
+import Typography from "@mui/material/Typography";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import { GlobalState } from "../../../../../GlobalState";
+import { useParams } from "react-router-dom";
+import parse from "html-react-parser";
+import axios from "axios";
+import { toast } from "react-toastify";
 
 const AllSubmission = () => {
   const classes = useStyle();
@@ -46,7 +46,7 @@ const AllSubmission = () => {
           headers: { Authorization: token },
         }
       );
-      toast.success('Uploaded');
+      toast.success("Uploaded");
       await getTask();
     } catch (error) {
       toast.error(error.response.data.msg);
@@ -83,15 +83,10 @@ const AllSubmission = () => {
           {submissions &&
             submissions.length > 0 &&
             submissions?.map((item, i) => (
-              <Accordion
-                key={i}
-                style={{ marginBottom: '6px', borderRadius: '5px' }}
-              >
+              <Accordion key={i} style={{ marginBottom: "6px", borderRadius: "5px" }}>
                 <AccordionSummary expandIcon={<ExpandMoreIcon />}>
                   <div className={classes.headingWrapper}>
-                    <Typography className={classes.heading}>
-                      Student Name : {item?.student?.name}
-                    </Typography>
+                    <Typography className={classes.heading}>Student Name : {item?.student?.name}</Typography>
                     <div className={classes.mark}>Mark : {item?.marks} </div>
                   </div>
                 </AccordionSummary>
@@ -112,9 +107,9 @@ const AllSubmission = () => {
                     />
                     <Button
                       style={{
-                        backgroundColor: '#EA5252',
-                        padding: '18px 36px',
-                        fontSize: '18px',
+                        backgroundColor: "#EA5252",
+                        padding: "18px 36px",
+                        fontSize: "18px",
                       }}
                       className={classes.btn}
                       variant="contained"

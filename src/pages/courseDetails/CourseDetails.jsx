@@ -1,9 +1,4 @@
-import {
-  AccessTimeTwoTone,
-  BarChartTwoTone,
-  PeopleTwoTone,
-  StarRate,
-} from '@mui/icons-material';
+import { AccessTimeTwoTone, BarChartTwoTone, PeopleTwoTone, StarRate } from "@mui/icons-material";
 
 import {
   Box,
@@ -17,19 +12,19 @@ import {
   Grid,
   Link,
   Typography,
-} from '@mui/material';
-import Tab from '@mui/material/Tab';
-import Tabs from '@mui/material/Tabs';
+} from "@mui/material";
+import Tab from "@mui/material/Tab";
+import Tabs from "@mui/material/Tabs";
 
-import axios from 'axios';
-import { useEffect, useState } from 'react';
-import PropTypes from 'prop-types';
-import { useNavigate, useParams } from 'react-router-dom';
-import Transition from '../../components/transition/Transition';
-import DeskripsiCourse from './CourseDescription';
-import './CourseDetail.css';
-import CourseInstructur from './CourseInstructur';
-import CourseTesti from './CourseTesti';
+import axios from "axios";
+import { useEffect, useState } from "react";
+import PropTypes from "prop-types";
+import { useNavigate, useParams } from "react-router-dom";
+import Transition from "../../components/transition/Transition";
+import DeskripsiCourse from "./CourseDescription";
+import "./CourseDetail.css";
+import CourseInstructur from "./CourseInstructur";
+import CourseTesti from "./CourseTesti";
 
 const TabPanel = ({ children, value, index, ...other }) => {
   return (
@@ -70,12 +65,8 @@ const CourseDetails = () => {
 
               setCourse(res.data);
               setLoading(false);
-              const ratings = courseDetails?.comments.map(
-                (rating) => rating.rating
-              );
-              const total = ratings
-                .reduce((acc, item) => (acc += item), 0)
-                .toFixed(1);
+              const ratings = courseDetails?.comments.map((rating) => rating.rating);
+              const total = ratings.reduce((acc, item) => (acc += item), 0).toFixed(1);
               const rating = total / ratings.length;
               if (rating > 0) {
                 setRating(rating);
@@ -97,7 +88,7 @@ const CourseDetails = () => {
       {loading ? (
         <div className="loading">Loading&#8230;</div>
       ) : (
-        <Box sx={{ marginTop: { md: '3rem' } }}>
+        <Box sx={{ marginTop: { md: "3rem" } }}>
           <Container maxWidth="xl">
             <Grid container spacing={3}>
               <Grid item md={3} xs={12} sm={12}>
@@ -111,26 +102,20 @@ const CourseDetails = () => {
                     <Box className="rating-and-path">
                       <Box className="rating">
                         <StarRate className="star-rating"></StarRate>
-                        <Typography className="count-rating">
-                          {rating ? rating : '0'}+
-                        </Typography>
+                        <Typography className="count-rating">{rating ? rating : "0"}+</Typography>
                       </Box>
                       <Box
                         sx={{
-                          fontSize: '12px',
-                          color: '#a4a4a4',
-                          marginX: '0.5rem',
+                          fontSize: "12px",
+                          color: "#a4a4a4",
+                          marginX: "0.5rem",
                         }}
                       >
                         •
                       </Box>
                       <Box className="path">
                         <Breadcrumbs>
-                          <Link
-                            underline="hover"
-                            color="inherit"
-                            href="/course"
-                          >
+                          <Link underline="hover" color="inherit" href="/course">
                             Fikih
                           </Link>
                           <Link underline="hover" color="inherit" href="">
@@ -140,11 +125,7 @@ const CourseDetails = () => {
                       </Box>
                     </Box>
                     <Box className="title-and-detail">
-                      <Typography
-                        variant="h5"
-                        fontWeight="700"
-                        marginTop="0.5rem"
-                      >
+                      <Typography variant="h5" fontWeight="700" marginTop="0.5rem">
                         {course?.courseDetails?.title}
                       </Typography>
                       {course?.courseDetails?.category.map((tag, i) => {
@@ -161,26 +142,20 @@ const CourseDetails = () => {
                             xs={6}
                             md={12}
                             sx={{
-                              display: 'flex',
-                              alignItems: 'center',
-                              flexGrow: { md: '2', xs: '1' },
+                              display: "flex",
+                              alignItems: "center",
+                              flexGrow: { md: "2", xs: "1" },
                             }}
                           >
-                            <PeopleTwoTone
-                              sx={{ marginRight: '0.2rem' }}
-                            ></PeopleTwoTone>
+                            <PeopleTwoTone sx={{ marginRight: "0.2rem" }}></PeopleTwoTone>
                             <Typography fontSize="14px">
                               {`${course?.courseDetails?.jumlahSiswa} Siswa Bergabung`}
                             </Typography>
                           </Grid>
-                          <Grid
-                            item
-                            xs={6}
-                            sx={{ display: 'flex', alignItems: 'center' }}
-                          >
+                          <Grid item xs={6} sx={{ display: "flex", alignItems: "center" }}>
                             <AccessTimeTwoTone
                               sx={{
-                                marginRight: '0.2rem',
+                                marginRight: "0.2rem",
                               }}
                             ></AccessTimeTwoTone>
                             <Typography align="center" fontSize="14px">
@@ -191,14 +166,14 @@ const CourseDetails = () => {
                             item
                             xs={6}
                             sx={{
-                              display: 'flex',
-                              alignItems: 'center',
-                              flexGrow: { md: '1', xs: '2' },
+                              display: "flex",
+                              alignItems: "center",
+                              flexGrow: { md: "1", xs: "2" },
                             }}
                           >
                             <BarChartTwoTone
                               sx={{
-                                marginRight: '0.2rem',
+                                marginRight: "0.2rem",
                               }}
                             ></BarChartTwoTone>
                             <Typography align="center" fontSize="14px">
@@ -209,7 +184,7 @@ const CourseDetails = () => {
                       </Box>
                     </Box>
                   </CardContent>
-                  <CardActions sx={{ padding: '0.8rem' }}>
+                  <CardActions sx={{ padding: "0.8rem" }}>
                     <Button
                       className="bootstraped-button"
                       variant="contained"
@@ -217,7 +192,7 @@ const CourseDetails = () => {
                         navigate(`/enroll_page_student/${courseId}`);
                       }}
                       fullWidth
-                      sx={{ display: { xs: 'none', md: 'block' } }}
+                      sx={{ display: { xs: "none", md: "block" } }}
                     >
                       Masuk Kelas
                     </Button>
@@ -225,15 +200,15 @@ const CourseDetails = () => {
                 </Card>
               </Grid>
               <Grid item md={9} xs={12}>
-                <Box sx={{ width: '100%' }}>
+                <Box sx={{ width: "100%" }}>
                   <Box
                     sx={{
                       borderBottom: 1,
-                      borderColor: 'divider',
-                      position: 'sticky',
-                      top: '70px',
-                      zIndex: '24',
-                      background: '#fff',
+                      borderColor: "divider",
+                      position: "sticky",
+                      top: "70px",
+                      zIndex: "24",
+                      background: "#fff",
                     }}
                   >
                     <Tabs
@@ -260,10 +235,7 @@ const CourseDetails = () => {
               </Grid>
             </Grid>
           </Container>
-          <Box
-            sx={{ display: { xs: 'flex', md: 'none' } }}
-            className="button-flow"
-          >
+          <Box sx={{ display: { xs: "flex", md: "none" } }} className="button-flow">
             <Button
               className="bootstraped-button"
               variant="contained"

@@ -12,37 +12,33 @@ import {
   RadioGroup,
   Select,
   TextField,
-} from '@mui/material';
-import { useContext, useEffect, useState } from 'react';
-import { GlobalState } from '../../GlobalState';
-import axios from 'axios';
-import dayjs from 'dayjs';
-import { toast } from 'react-toastify';
-import { PhotoCamera } from '@mui/icons-material';
-import {
-  AdornmentInputPhone,
-  BootstrapedInput,
-  SelectInputStyled,
-} from '../../components/Input/BootstrapedInput';
-import { DatePicker, LocalizationProvider } from '@mui/lab';
-import AdapterDayjs from '@mui/lab/AdapterDayjs';
-import { toCapitalize } from '../../utils/StringModify';
+} from "@mui/material";
+import { useContext, useEffect, useState } from "react";
+import { GlobalState } from "../../GlobalState";
+import axios from "axios";
+import dayjs from "dayjs";
+import { toast } from "react-toastify";
+import { PhotoCamera } from "@mui/icons-material";
+import { AdornmentInputPhone, BootstrapedInput, SelectInputStyled } from "../../components/Input/BootstrapedInput";
+import { DatePicker, LocalizationProvider } from "@mui/lab";
+import AdapterDayjs from "@mui/lab/AdapterDayjs";
+import { toCapitalize } from "../../utils/StringModify";
 
 const GeneralInformation = () => {
   const state = useContext(GlobalState);
   const [token] = state.token;
   const [user] = state.userAPI.user;
-  const [namaLengkap, setNamaLengkap] = useState('');
-  const [namaPanggilan, setNamaPanggilan] = useState('');
-  const [sekolah, setSekolah] = useState('');
-  const [kelas, setKelas] = useState('tujuh');
-  const [nis, setNis] = useState('');
-  const [mobile, setMobile] = useState('');
-  const [tanggalLahir, setTanggalLahir] = useState(dayjs('2010-01-01'));
-  const [jenisKelamin, setJenisKelamin] = useState('');
+  const [namaLengkap, setNamaLengkap] = useState("");
+  const [namaPanggilan, setNamaPanggilan] = useState("");
+  const [sekolah, setSekolah] = useState("");
+  const [kelas, setKelas] = useState("tujuh");
+  const [nis, setNis] = useState("");
+  const [mobile, setMobile] = useState("");
+  const [tanggalLahir, setTanggalLahir] = useState(dayjs("2010-01-01"));
+  const [jenisKelamin, setJenisKelamin] = useState("");
   const [image, setImage] = useState({});
-  const [avatarLetter, setAvatarLetter] = useState('');
-  const [labelSubmit, setLabelSubmit] = useState('Simpan');
+  const [avatarLetter, setAvatarLetter] = useState("");
+  const [labelSubmit, setLabelSubmit] = useState("Simpan");
   const [submitDisable, setSubmitDisable] = useState(false);
 
   const handleUpload = async (e) => {
@@ -50,12 +46,12 @@ const GeneralInformation = () => {
     try {
       const file = e.target.files[0];
       let formData = new FormData();
-      formData.append('file', file);
+      formData.append("file", file);
       await toast.promise(
         axios
-          .post('http://localhost:4000/api/upload', formData, {
+          .post("http://localhost:4000/api/upload", formData, {
             headers: {
-              'content-type': 'multipart/form-data',
+              "content-type": "multipart/form-data",
               Authorization: token,
             },
           })
@@ -63,9 +59,9 @@ const GeneralInformation = () => {
             setImage(res.data);
           }),
         {
-          pending: 'Mengupload Foto Profil',
-          success: 'Upload Berhasil',
-          error: 'Upload Gagal',
+          pending: "Mengupload Foto Profil",
+          success: "Upload Berhasil",
+          error: "Upload Gagal",
         }
       );
     } catch (error) {
@@ -76,7 +72,7 @@ const GeneralInformation = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setSubmitDisable(true);
-    setLabelSubmit('Loading');
+    setLabelSubmit("Loading");
     await axios
       .put(
         `http://localhost:4000/api/student/profile/update_data/${user._id}`,
@@ -97,14 +93,14 @@ const GeneralInformation = () => {
       )
       .then((res) => {
         if (res.status === 200) {
-          toast.success('Data profil telah diperbarui');
+          toast.success("Data profil telah diperbarui");
           window.location.reload();
         }
       })
       .catch((error) => {
         toast.error(error.response.data.msg);
         setSubmitDisable(false);
-        setLabelSubmit('Simpan');
+        setLabelSubmit("Simpan");
       });
   };
 
@@ -128,50 +124,26 @@ const GeneralInformation = () => {
       <Box className="avatar-container">
         <Badge
           overlap="circular"
-          anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
+          anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
           badgeContent={
-            <IconButton
-              color="primary"
-              aria-label="Upload Foto Profile"
-              component="label"
-            >
-              <input
-                hidden
-                accept="image/*"
-                type="file"
-                name="file"
-                id="user_file_up"
-                onChange={handleUpload}
-              />
+            <IconButton color="primary" aria-label="Upload Foto Profile" component="label">
+              <input hidden accept="image/*" type="file" name="file" id="user_file_up" onChange={handleUpload} />
               <PhotoCamera />
             </IconButton>
           }
         >
           <Avatar
             alt={namaLengkap}
-            src={image ? image.url : '../../../assets/avatar.svg'}
-            sx={{ width: '5rem', height: '5rem' }}
+            src={image ? image.url : "../../../assets/avatar.svg"}
+            sx={{ width: "5rem", height: "5rem" }}
           >
             {avatarLetter}
           </Avatar>
         </Badge>
       </Box>
-      <form
-        id="edit-profile-form"
-        className="edit-information-container"
-        onSubmit={handleSubmit}
-      >
-        <FormControl
-          fullWidth
-          variant="standard"
-          className="edit-information-input"
-          required
-        >
-          <InputLabel
-            shrink
-            htmlFor="nama-lengkap-input"
-            sx={{ fontWeight: '700' }}
-          >
+      <form id="edit-profile-form" className="edit-information-container" onSubmit={handleSubmit}>
+        <FormControl fullWidth variant="standard" className="edit-information-input" required>
+          <InputLabel shrink htmlFor="nama-lengkap-input" sx={{ fontWeight: "700" }}>
             Nama Lengkap
           </InputLabel>
           <BootstrapedInput
@@ -184,16 +156,8 @@ const GeneralInformation = () => {
             value={namaLengkap}
           />
         </FormControl>
-        <FormControl
-          fullWidth
-          variant="standard"
-          className="edit-information-input"
-        >
-          <InputLabel
-            shrink
-            htmlFor="nama-panggilan-input"
-            sx={{ fontWeight: '700' }}
-          >
+        <FormControl fullWidth variant="standard" className="edit-information-input">
+          <InputLabel shrink htmlFor="nama-panggilan-input" sx={{ fontWeight: "700" }}>
             Nama Panggilan
           </InputLabel>
           <BootstrapedInput
@@ -206,13 +170,8 @@ const GeneralInformation = () => {
             value={namaPanggilan}
           />
         </FormControl>
-        <FormControl
-          fullWidth
-          variant="standard"
-          className="edit-information-input"
-          required
-        >
-          <InputLabel shrink htmlFor="sekolah-input" sx={{ fontWeight: '700' }}>
+        <FormControl fullWidth variant="standard" className="edit-information-input" required>
+          <InputLabel shrink htmlFor="sekolah-input" sx={{ fontWeight: "700" }}>
             Sekolah
           </InputLabel>
           <BootstrapedInput
@@ -226,17 +185,8 @@ const GeneralInformation = () => {
             className="edit-information-input"
           />
         </FormControl>
-        <FormControl
-          fullWidth
-          variant="standard"
-          className="edit-information-input"
-          required
-        >
-          <InputLabel
-            shrink
-            htmlFor="class-student-select"
-            sx={{ fontWeight: '700' }}
-          >
+        <FormControl fullWidth variant="standard" className="edit-information-input" required>
+          <InputLabel shrink htmlFor="class-student-select" sx={{ fontWeight: "700" }}>
             Pilih Kelas
           </InputLabel>
           <Select
@@ -248,18 +198,13 @@ const GeneralInformation = () => {
             value={kelas}
             input={<SelectInputStyled />}
           >
-            <MenuItem value={'tujuh'}>Kelas VII</MenuItem>
-            <MenuItem value={'delapan'}>Kelas VIII</MenuItem>
-            <MenuItem value={'sembilan'}>Kelas IX</MenuItem>
+            <MenuItem value={"tujuh"}>Kelas VII</MenuItem>
+            <MenuItem value={"delapan"}>Kelas VIII</MenuItem>
+            <MenuItem value={"sembilan"}>Kelas IX</MenuItem>
           </Select>
         </FormControl>
-        <FormControl
-          fullWidth
-          variant="standard"
-          className="edit-information-input"
-          required
-        >
-          <InputLabel shrink htmlFor="nis-input" sx={{ fontWeight: '700' }}>
+        <FormControl fullWidth variant="standard" className="edit-information-input" required>
+          <InputLabel shrink htmlFor="nis-input" sx={{ fontWeight: "700" }}>
             NIS
           </InputLabel>
           <BootstrapedInput
@@ -272,23 +217,18 @@ const GeneralInformation = () => {
             value={nis}
           />
         </FormControl>
-        <FormControl
-          fullWidth
-          variant="standard"
-          className="edit-information-input"
-          required
-        >
-          <InputLabel shrink htmlFor="phone-input" sx={{ fontWeight: '700' }}>
+        <FormControl fullWidth variant="standard" className="edit-information-input" required>
+          <InputLabel shrink htmlFor="phone-input" sx={{ fontWeight: "700" }}>
             Nomor Telepon
           </InputLabel>
           <div className="container-input-adornment">
             <Box
               sx={{
-                p: '0.8rem',
-                border: '1px solid #dcdcdc',
-                borderTopLeftRadius: '0.5rem',
-                borderBottomLeftRadius: '0.5rem',
-                borderRightColor: 'transparent',
+                p: "0.8rem",
+                border: "1px solid #dcdcdc",
+                borderTopLeftRadius: "0.5rem",
+                borderBottomLeftRadius: "0.5rem",
+                borderRightColor: "transparent",
               }}
             >
               +62
@@ -297,7 +237,7 @@ const GeneralInformation = () => {
               id="phone-input"
               variant="outlined"
               sx={{
-                flexGrow: '2',
+                flexGrow: "2",
               }}
               type="text"
               onChange={(e) => {
@@ -307,11 +247,7 @@ const GeneralInformation = () => {
             />
           </div>
         </FormControl>
-        <InputLabel
-          shrink
-          htmlFor="tanggal-lahir-input"
-          sx={{ fontWeight: '700' }}
-        >
+        <InputLabel shrink htmlFor="tanggal-lahir-input" sx={{ fontWeight: "700" }}>
           Tanggal Lahir
         </InputLabel>
         <LocalizationProvider dateAdapter={AdapterDayjs}>
@@ -319,7 +255,7 @@ const GeneralInformation = () => {
             fullWidth
             disableFuture
             openTo="year"
-            views={['year', 'month', 'day']}
+            views={["year", "month", "day"]}
             value={tanggalLahir}
             onChange={(newValue) => {
               setTanggalLahir(newValue);
@@ -327,16 +263,8 @@ const GeneralInformation = () => {
             renderInput={(params) => <TextField fullWidth {...params} />}
           />
         </LocalizationProvider>
-        <FormControl
-          fullWidth
-          variant="standard"
-          className="edit-information-input"
-        >
-          <InputLabel
-            shrink
-            htmlFor="jenis-kelamin-input"
-            sx={{ fontWeight: '700' }}
-          >
+        <FormControl fullWidth variant="standard" className="edit-information-input">
+          <InputLabel shrink htmlFor="jenis-kelamin-input" sx={{ fontWeight: "700" }}>
             Jenis Kelamin
           </InputLabel>
           <RadioGroup
@@ -346,24 +274,16 @@ const GeneralInformation = () => {
             onChange={(e) => {
               setJenisKelamin(e.target.value);
             }}
-            sx={{ marginTop: '1rem' }}
+            sx={{ marginTop: "1rem" }}
           >
-            <FormControlLabel
-              value="male"
-              control={<Radio />}
-              label="Laki-Laki"
-            />
-            <FormControlLabel
-              value="female"
-              control={<Radio />}
-              label="Perempuan"
-            />
+            <FormControlLabel value="male" control={<Radio />} label="Laki-Laki" />
+            <FormControlLabel value="female" control={<Radio />} label="Perempuan" />
           </RadioGroup>
         </FormControl>
         <Button
           color="primary"
           className="bootstraped-button"
-          sx={{ margin: '2.5rem 0' }}
+          sx={{ margin: "2.5rem 0" }}
           fullWidth
           disabled={submitDisable}
           variant="contained"

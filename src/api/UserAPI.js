@@ -1,6 +1,6 @@
-import { useEffect, useState } from 'react';
-import axios from 'axios';
-import { toast } from 'react-toastify';
+import { useEffect, useState } from "react";
+import axios from "axios";
+import { toast } from "react-toastify";
 
 function UserAPI(token) {
   const [isLogged, setIsLogged] = useState(false);
@@ -14,12 +14,9 @@ function UserAPI(token) {
       const getStudent = async () => {
         try {
           setLoading(true);
-          const res = await axios.get(
-            'http://localhost:4000/api/student/profile',
-            {
-              headers: { Authorization: token },
-            }
-          );
+          const res = await axios.get("http://localhost:4000/api/student/profile", {
+            headers: { Authorization: token },
+          });
           setIsLogged(true);
           setList(res.data.student.enrolled);
           setUser(res.data.student);
@@ -34,7 +31,7 @@ function UserAPI(token) {
 
   const addList = async (course) => {
     if (!isLogged) {
-      return alert('Please Login or Registration to Continue Buying');
+      return alert("Please Login or Registration to Continue Buying");
     }
 
     const check = list.every((item) => {
@@ -45,15 +42,15 @@ function UserAPI(token) {
       setList([...list, { ...course }]);
 
       await axios.patch(
-        'http://localhost:4000/api/course/enroll',
+        "http://localhost:4000/api/course/enroll",
         { enrolled: [...list, { ...course }] },
         {
           headers: { Authorization: token },
         }
       );
-      toast.success('Successfully Enrolled');
+      toast.success("Successfully Enrolled");
     } else {
-      toast.warn('Already Enrolled in This Course');
+      toast.warn("Already Enrolled in This Course");
     }
   };
 

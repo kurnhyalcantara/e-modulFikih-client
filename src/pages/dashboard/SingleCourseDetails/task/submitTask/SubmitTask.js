@@ -1,18 +1,18 @@
-import React, { useContext, useEffect, useState } from 'react';
-import { Button, Container } from '@mui/material';
-import { useParams } from 'react-router-dom';
-import { GlobalState } from '../../../../../GlobalState';
-import axios from 'axios';
-import Editor from '../../../../../components/editor/Editor';
-import { toast } from 'react-toastify';
-import { useNavigate } from 'react-router-dom';
+import React, { useContext, useEffect, useState } from "react";
+import { Button, Container } from "@mui/material";
+import { useParams } from "react-router-dom";
+import { GlobalState } from "../../../../../GlobalState";
+import axios from "axios";
+import Editor from "../../../../../components/editor/Editor";
+import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 const SubmitTask = () => {
   const state = useContext(GlobalState);
   const [token] = state.token;
   const [task, setTask] = useState({});
   const { taskId } = useParams();
-  const [answer, setAnswer] = useState('');
+  const [answer, setAnswer] = useState("");
   const history = useNavigate();
 
   useEffect(() => {
@@ -43,7 +43,7 @@ const SubmitTask = () => {
           headers: { Authorization: token },
         }
       );
-      toast.success('Task Submitted');
+      toast.success("Task Submitted");
       history(-1);
     } catch (error) {
       toast.error(error.response.data.msg);
@@ -51,11 +51,9 @@ const SubmitTask = () => {
   };
 
   return (
-    <div style={{ background: '#fff9f9' }}>
+    <div style={{ background: "#fff9f9" }}>
       <Container maxWidth="xl" sx={{ py: 6 }}>
-        <div
-          style={{ background: '#fff', padding: '30px', borderRadius: '10px' }}
-        >
+        <div style={{ background: "#fff", padding: "30px", borderRadius: "10px" }}>
           <h2>{task?.title}</h2>
           <p>{task?.description}</p>
           <Editor
@@ -68,12 +66,12 @@ const SubmitTask = () => {
             sx={{
               my: 3,
               py: 1,
-              background: '#eb5252',
-              '& .MuiButton-root': {
-                background: '#eb5252',
+              background: "#eb5252",
+              "& .MuiButton-root": {
+                background: "#eb5252",
               },
-              ':hover': {
-                background: '#eb5252',
+              ":hover": {
+                background: "#eb5252",
               },
             }}
             fullWidth

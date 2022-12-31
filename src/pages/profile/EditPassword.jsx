@@ -1,34 +1,28 @@
-import {
-  Box,
-  Button,
-  FormControl,
-  FormHelperText,
-  InputLabel,
-} from '@mui/material';
-import { useContext, useState } from 'react';
-import { GlobalState } from '../../GlobalState';
-import axios from 'axios';
-import { toast } from 'react-toastify';
-import { AdornmentInputPassword } from '../../components/Input/BootstrapedInput';
+import { Box, Button, FormControl, FormHelperText, InputLabel } from "@mui/material";
+import { useContext, useState } from "react";
+import { GlobalState } from "../../GlobalState";
+import axios from "axios";
+import { toast } from "react-toastify";
+import { AdornmentInputPassword } from "../../components/Input/BootstrapedInput";
 
 const GeneralSetting = () => {
   const state = useContext(GlobalState);
   const [token] = state.token;
   const [user] = state.userAPI.user;
 
-  const [oldPassword, setOldPassword] = useState('');
-  const [newPassword, setNewPassword] = useState('');
-  const [confirmNewPassword, setConfirmNewPassword] = useState('');
+  const [oldPassword, setOldPassword] = useState("");
+  const [newPassword, setNewPassword] = useState("");
+  const [confirmNewPassword, setConfirmNewPassword] = useState("");
   const [isErrorOldPassword, setIsErrorOldPassword] = useState(false);
-  const [errorOldPasswordMsg, setErrorOldPasswordMsg] = useState('');
+  const [errorOldPasswordMsg, setErrorOldPasswordMsg] = useState("");
   const [submitDisable, setSubmitDisable] = useState(false);
-  const [submitLabel, setSubmitLabel] = useState('Ganti Password');
+  const [submitLabel, setSubmitLabel] = useState("Ganti Password");
 
   const handleSubmitChangePassword = async (e) => {
     try {
       e.preventDefault();
       setSubmitDisable(true);
-      setSubmitLabel('Loading');
+      setSubmitLabel("Loading");
       await axios
         .put(
           `http://localhost:4000/api/student/profile/update_password/${user._id}`,
@@ -45,14 +39,14 @@ const GeneralSetting = () => {
           if (res.status === 200) {
             toast.success(res.data.msg);
             setSubmitDisable(false);
-            setSubmitLabel('Ganti Password');
+            setSubmitLabel("Ganti Password");
           }
         });
     } catch (error) {
       setSubmitDisable(false);
-      setSubmitLabel('Ganti Password');
+      setSubmitLabel("Ganti Password");
       if (error.response.status === 400) {
-        if (error.response.data.id === 'old-password-not-match') {
+        if (error.response.data.id === "old-password-not-match") {
           setIsErrorOldPassword(true);
           setErrorOldPasswordMsg(error.response.data.msg);
         }
@@ -71,7 +65,7 @@ const GeneralSetting = () => {
           error={isErrorOldPassword} //TODO: Menambahkan error state handling untuk password lama
           required
         >
-          <InputLabel shrink htmlFor="old-password" sx={{ fontWeight: '700' }}>
+          <InputLabel shrink htmlFor="old-password" sx={{ fontWeight: "700" }}>
             Password Lama
           </InputLabel>
           <div className="container-input-adornment">
@@ -94,13 +88,8 @@ const GeneralSetting = () => {
             {errorOldPasswordMsg}
           </FormHelperText>
         </FormControl>
-        <FormControl
-          fullWidth
-          variant="standard"
-          className="edit-information-input"
-          required
-        >
-          <InputLabel shrink htmlFor="new-password" sx={{ fontWeight: '700' }}>
+        <FormControl fullWidth variant="standard" className="edit-information-input" required>
+          <InputLabel shrink htmlFor="new-password" sx={{ fontWeight: "700" }}>
             Password Baru
           </InputLabel>
           <div className="container-input-adornment">
@@ -116,17 +105,8 @@ const GeneralSetting = () => {
             />
           </div>
         </FormControl>
-        <FormControl
-          fullWidth
-          variant="standard"
-          className="edit-information-input"
-          required
-        >
-          <InputLabel
-            shrink
-            htmlFor="confirm-new-password"
-            sx={{ fontWeight: '700' }}
-          >
+        <FormControl fullWidth variant="standard" className="edit-information-input" required>
+          <InputLabel shrink htmlFor="confirm-new-password" sx={{ fontWeight: "700" }}>
             Konfirmasi Password Baru
           </InputLabel>
           <div className="container-input-adornment">

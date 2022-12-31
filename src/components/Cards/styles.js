@@ -8,11 +8,10 @@ export const useStyle = makeStyles({
     boxShadow: "rgba(27, 31, 35, 0.04) 0px 1px 0px, rgba(255, 255, 255, 0.25) 0px 1px 0px inset;",
   },
   cardmain: {
-    height: '100%',
+    height: "100%",
   },
   cardimg: {
     height: "150px",
-
   },
   tag: {
     backgroundColor: "#FFA400",
@@ -20,7 +19,7 @@ export const useStyle = makeStyles({
     border: "none",
     borderRadius: "3px",
     padding: "5px",
-    marginLeft: "8px"
+    marginLeft: "8px",
   },
   heading: {
     whiteSpace: "nowrap",
@@ -38,7 +37,7 @@ export const useStyle = makeStyles({
     color: "#5B6A72",
     fontWeight: 500,
     fontSize: "10px",
-    height: "15px"
+    height: "15px",
   },
   avatarimg: {
     marginLeft: "5px",
@@ -49,12 +48,12 @@ export const useStyle = makeStyles({
   flexitem: {
     marginBottom: "12px",
     display: "flex",
-    alignItems: "center"
+    alignItems: "center",
   },
   flexitems: {
     marginBottom: "12px",
     display: "flex",
-    alignItems: "end"
+    alignItems: "end",
   },
   star: {
     color: "#FFA400",
@@ -104,6 +103,5 @@ export const useStyle = makeStyles({
     display: "flex",
     alignItems: "center",
     textDecoration: "line-through",
-
   },
-})
+});

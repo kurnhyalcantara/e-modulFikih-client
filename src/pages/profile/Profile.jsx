@@ -1,10 +1,10 @@
-import { Box, Container, Tab, Tabs } from '@mui/material';
-import PropTypes from 'prop-types';
-import { useState } from 'react';
-import GeneralInformation from './GeneralInformation';
-import EditPassword from './EditPassword';
-import './Profile.css';
-import Transition from '../../components/transition/Transition';
+import { Box, Container, Tab, Tabs } from "@mui/material";
+import PropTypes from "prop-types";
+import { useState } from "react";
+import GeneralInformation from "./GeneralInformation";
+import EditPassword from "./EditPassword";
+import "./Profile.css";
+import Transition from "../../components/transition/Transition";
 
 const TabPanel = ({ children, value, index, ...other }) => {
   return (
@@ -29,11 +29,11 @@ const Profile = () => {
         <Box
           sx={{
             borderBottom: 1,
-            borderColor: 'divider',
-            position: 'sticky',
-            top: { xs: '70px', md: '102px' },
-            zIndex: '24',
-            background: '#fff',
+            borderColor: "divider",
+            position: "sticky",
+            top: { xs: "70px", md: "102px" },
+            zIndex: "24",
+            background: "#fff",
           }}
         >
           <Tabs

@@ -6,7 +6,7 @@ export const JobDetailsList = [
   {
     id: 1,
     title: "Date",
-    icon:   <CalendarTodayIcon />,
+    icon: <CalendarTodayIcon />,
   },
   {
     id: 2,

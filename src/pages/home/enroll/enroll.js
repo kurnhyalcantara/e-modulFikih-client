@@ -1,35 +1,27 @@
-import {
-  Backdrop,
-  Box,
-  Button,
-  Divider,
-  Fade,
-  Modal,
-  Typography,
-} from '@mui/material';
-import { CardElement, Elements } from '@stripe/react-stripe-js';
-import { loadStripe } from '@stripe/stripe-js';
-import axios from 'axios';
-import React, { useContext, useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
-import { GlobalState } from '../../../GlobalState';
-import { useStyles } from './styles';
+import { Backdrop, Box, Button, Divider, Fade, Modal, Typography } from "@mui/material";
+import { CardElement, Elements } from "@stripe/react-stripe-js";
+import { loadStripe } from "@stripe/stripe-js";
+import axios from "axios";
+import React, { useContext, useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import { GlobalState } from "../../../GlobalState";
+import { useStyles } from "./styles";
 
 const style = {
-  position: 'absolute',
-  top: '50%',
-  left: '50%',
-  transform: 'translate(-50%, -50%)',
+  position: "absolute",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
   width: 400,
-  bgcolor: 'background.paper',
-  border: '2px solid #fff',
+  bgcolor: "background.paper",
+  border: "2px solid #fff",
   boxShadow: 24,
-  borderRadius: '6px',
+  borderRadius: "6px",
   p: 4,
 };
 
 const stripePromise = loadStripe(
-  'pk_test_51JIDmDAcmD9cnihVfUC3Z06F9HJyqVKaUIl6UhDBF5HcbgR8T5PKLnPiDhjJf6wz4H1Lk7ZMiAWAW50Th3VwA6Q600zZG1YIim'
+  "pk_test_51JIDmDAcmD9cnihVfUC3Z06F9HJyqVKaUIl6UhDBF5HcbgR8T5PKLnPiDhjJf6wz4H1Lk7ZMiAWAW50Th3VwA6Q600zZG1YIim"
 );
 
 // const handleSubmit = (stripe, elements) => async () => {
@@ -57,11 +49,11 @@ const PaymentForm = ({ addList, classes, course, enrolled }) => {
       {/*<button onClick={handleSubmit(stripe, elements)}>Buy</button>*/}
       <Button
         style={{
-          backgroundColor: '#EA5252',
-          padding: '18px 25px',
-          fontSize: '17px',
-          textTransform: 'none',
-          marginTop: '55px',
+          backgroundColor: "#EA5252",
+          padding: "18px 25px",
+          fontSize: "17px",
+          textTransform: "none",
+          marginTop: "55px",
         }}
         className={classes.button}
         variant="contained"
@@ -70,7 +62,7 @@ const PaymentForm = ({ addList, classes, course, enrolled }) => {
           addList(course);
         }}
       >
-        {enrolled ? 'Enrolled' : 'Confirm Enroll'}
+        {enrolled ? "Enrolled" : "Confirm Enroll"}
       </Button>
     </>
   );
@@ -136,11 +128,7 @@ const EnrollStudent = () => {
           <Divider />
           <br></br>
           <div className={classes.section}>
-            <img
-              src={course?.courseDetails?.banner?.url}
-              className={classes.banner}
-              alt="banner"
-            />
+            <img src={course?.courseDetails?.banner?.url} className={classes.banner} alt="banner" />
             <div className={classes.section2}>
               <Typography variant="h6" className={classes.title}>
                 {course?.courseDetails?.title}
@@ -168,11 +156,11 @@ const EnrollStudent = () => {
 
           <Button
             style={{
-              backgroundColor: '#EA5252',
-              padding: '10px 25px',
-              fontSize: '17px',
-              textTransform: 'none',
-              marginTop: '25px',
+              backgroundColor: "#EA5252",
+              padding: "10px 25px",
+              fontSize: "17px",
+              textTransform: "none",
+              marginTop: "25px",
             }}
             className={classes.button}
             variant="contained"
@@ -196,13 +184,8 @@ const EnrollStudent = () => {
       >
         <Fade in={open}>
           <Box sx={style}>
-            <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
-              <Typography
-                sx={{ pb: 5 }}
-                id="transition-modal-title"
-                variant="h5"
-                component="h1"
-              >
+            <Box sx={{ display: "flex", justifyContent: "space-between" }}>
+              <Typography sx={{ pb: 5 }} id="transition-modal-title" variant="h5" component="h1">
                 Payment
               </Typography>
               <Typography
@@ -216,12 +199,7 @@ const EnrollStudent = () => {
               </Typography>
             </Box>
             <Elements stripe={stripePromise}>
-              <PaymentForm
-                addList={addList}
-                course={courses}
-                classes={classes}
-                enrolled={enrolled}
-              />
+              <PaymentForm addList={addList} course={courses} classes={classes} enrolled={enrolled} />
             </Elements>
           </Box>
         </Fade>

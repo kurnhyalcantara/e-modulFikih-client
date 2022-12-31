@@ -5,17 +5,7 @@ import PersonIcon from "@mui/icons-material/Person";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import AttachMoneyIcon from "@mui/icons-material/AttachMoney";
 import Typography from "@mui/material/Typography";
-import {
-  Card,
-  Container,
-  Grid,
-  Button,
-  CardHeader,
-  Modal,
-  Box,
-  Divider,
-  TextField,
-} from "@mui/material";
+import { Card, Container, Grid, Button, CardHeader, Modal, Box, Divider, TextField } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import FlagIcon from "@mui/icons-material/Flag";
 import LocationCityIcon from "@mui/icons-material/LocationCity";
@@ -90,11 +80,9 @@ const JobDetails = () => {
                 View All Jobs
               </h4>
               <Typography className="section" component="p">
-                React is a free and open-source front-end JavaScript library for
-                building user interfaces based on UI components. It is
-                maintained by Meta and a community of individual developers and
-                companies. React can be used as a base in the development of
-                single-page or mobile applications
+                React is a free and open-source front-end JavaScript library for building user interfaces based on UI
+                components. It is maintained by Meta and a community of individual developers and companies. React can
+                be used as a base in the development of single-page or mobile applications
               </Typography>
               <Button
                 variant="contained"
@@ -114,13 +102,7 @@ const JobDetails = () => {
                 Apply for this Position
               </Button>
             </Grid>
-            <Grid
-              item
-              md={3}
-              xs={12}
-              className={classes.side}
-              sx={{ margin: "30px 0px 50px" }}
-            >
+            <Grid item md={3} xs={12} className={classes.side} sx={{ margin: "30px 0px 50px" }}>
               <h2 className={classes.sideHeading}>Job Overview</h2>
 
               <CardHeader
@@ -128,36 +110,16 @@ const JobDetails = () => {
                 title="Date Posted"
                 subheader="30th Apr, 2022"
               />
-              <CardHeader
-                avatar={<FlagIcon className={classes.icon2} />}
-                title="Country"
-                subheader="Bangladesh"
-              />
-              <CardHeader
-                avatar={<LocationCityIcon className={classes.icon2} />}
-                title="City"
-                subheader="Dhaka"
-              />
-              <CardHeader
-                avatar={<PersonIcon className={classes.icon2} />}
-                title="Vacancy"
-                subheader="2"
-              />
+              <CardHeader avatar={<FlagIcon className={classes.icon2} />} title="Country" subheader="Bangladesh" />
+              <CardHeader avatar={<LocationCityIcon className={classes.icon2} />} title="City" subheader="Dhaka" />
+              <CardHeader avatar={<PersonIcon className={classes.icon2} />} title="Vacancy" subheader="2" />
               <CardHeader
                 avatar={<AttachMoneyIcon className={classes.icon2} />}
                 title="Offered Salary"
                 subheader="2k-5k monthly"
               />
-              <CardHeader
-                avatar={<ExplicitIcon className={classes.icon2} />}
-                title="Education"
-                subheader="2 years"
-              />
-              <CardHeader
-                avatar={<SchoolIcon className={classes.icon2} />}
-                title="Qualification"
-                subheader="B.S.C"
-              />
+              <CardHeader avatar={<ExplicitIcon className={classes.icon2} />} title="Education" subheader="2 years" />
+              <CardHeader avatar={<SchoolIcon className={classes.icon2} />} title="Qualification" subheader="B.S.C" />
             </Grid>
           </Grid>
         </Card>
@@ -178,53 +140,23 @@ const JobDetails = () => {
           <br></br>
           <Grid container spacing={5}>
             <Grid item md={6} xs={12}>
-              <TextField
-                id="outlined-basic"
-                label="FirstName"
-                variant="outlined"
-                fullWidth
-              />
+              <TextField id="outlined-basic" label="FirstName" variant="outlined" fullWidth />
             </Grid>
             <Grid item md={6} xs={12}>
-              <TextField
-                id="outlined-basic"
-                label="LastName"
-                variant="outlined"
-                fullWidth
-              />
+              <TextField id="outlined-basic" label="LastName" variant="outlined" fullWidth />
             </Grid>
             <Grid item md={6} xs={12}>
-              <TextField
-                id="outlined-basic"
-                label="Email"
-                variant="outlined"
-                fullWidth
-              />
+              <TextField id="outlined-basic" label="Email" variant="outlined" fullWidth />
             </Grid>
             <Grid item md={6} xs={12}>
-              <TextField
-                id="outlined-basic"
-                label="Phone Number"
-                variant="outlined"
-                fullWidth
-              />
+              <TextField id="outlined-basic" label="Phone Number" variant="outlined" fullWidth />
             </Grid>
 
             <Grid item md={6} xs={12}>
-              <TextField
-                id="outlined-basic"
-                label="Country"
-                variant="outlined"
-                fullWidth
-              />
+              <TextField id="outlined-basic" label="Country" variant="outlined" fullWidth />
             </Grid>
             <Grid item md={6} xs={12}>
-              <TextField
-                id="outlined-basic"
-                label="City"
-                variant="outlined"
-                fullWidth
-              />
+              <TextField id="outlined-basic" label="City" variant="outlined" fullWidth />
             </Grid>
 
             <Grid item xs={12} md={12} className={classes.file}>
@@ -234,9 +166,7 @@ const JobDetails = () => {
             </Grid>
           </Grid>
 
-          <h4 className={classes.info}>
-            ** Upload your CV
-          </h4>
+          <h4 className={classes.info}>** Upload your CV</h4>
           <Button
             variant="contained"
             fullWidth
