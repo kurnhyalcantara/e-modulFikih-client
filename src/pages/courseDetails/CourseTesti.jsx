@@ -1,4 +1,5 @@
 import { Avatar, Box, Paper, Rating, Typography } from '@mui/material';
+import PropTypes from 'prop-types';
 
 const CourseTesti = ({ item }) => {
   return (
@@ -35,6 +36,10 @@ const CourseTesti = ({ item }) => {
       </Box>
     </Paper>
   );
+};
+
+CourseTesti.propTypes = {
+  item: PropTypes.object,
 };
 
 export default CourseTesti;

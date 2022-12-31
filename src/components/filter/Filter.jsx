@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import { useContext } from 'react';
 import { FormControl, Grid, MenuItem, Select } from '@mui/material';
 import { GlobalState } from '../../GlobalState';
 import { BootstrapedInput, SelectInputStyled } from '../Input/BootstrapedInput';
@@ -9,7 +9,7 @@ const Filter = () => {
   const [kelas, setKelas] = useState('all');
   const [search, setSearch] = state.courseAPI.search;
 
-  const filterCategory = async (e) => {};
+  const filterCategory = async () => {};
   return (
     <Grid container spacing={4} sx={{ mb: 6 }}>
       <Grid item md={3} xs={12}>

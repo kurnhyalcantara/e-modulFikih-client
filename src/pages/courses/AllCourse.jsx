@@ -1,5 +1,5 @@
 import { Box, Button, Container, Grid, Grow } from '@mui/material';
-import React, { useContext } from 'react';
+import { useContext } from 'react';
 import Filter from '../../components/filter/Filter';
 import { GlobalState } from '../../GlobalState';
 import Cards from '../../components/Cards/Card';

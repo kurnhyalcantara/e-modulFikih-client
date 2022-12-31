@@ -1,5 +1,5 @@
 import { Box, Container, Tab, Tabs } from '@mui/material';
-import React from 'react';
+import PropTypes from 'prop-types';
 import { useState } from 'react';
 import GeneralInformation from './GeneralInformation';
 import EditPassword from './EditPassword';
@@ -12,6 +12,12 @@ const TabPanel = ({ children, value, index, ...other }) => {
       {value === index && <Box>{children}</Box>}
     </div>
   );
+};
+
+TabPanel.propTypes = {
+  children: PropTypes.element,
+  value: PropTypes.number,
+  index: PropTypes.number,
 };
 
 const Profile = () => {

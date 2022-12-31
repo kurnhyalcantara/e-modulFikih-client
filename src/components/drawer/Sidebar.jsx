@@ -1,4 +1,5 @@
-import React, { useContext } from 'react';
+import { useContext } from 'react';
+import PropTypes from 'prop-types';
 import Typography from '@mui/material/Typography';
 import { IconButton, Button, useTheme, ListItemButton } from '@mui/material';
 import Box from '@mui/material/Box';
@@ -17,6 +18,7 @@ import {
   ArticleRounded,
   DashboardRounded,
 } from '@mui/icons-material';
+import { Fragment } from 'react';
 
 const mainMenu = [
   {
@@ -113,7 +115,7 @@ const Sidebar = ({ toggleDrawer, drawer }) => {
   );
 
   return (
-    <React.Fragment>
+    <Fragment>
       <IconButton onClick={toggleDrawer('left', true)}>
         <Menu />
       </IconButton>
@@ -174,12 +176,16 @@ const Sidebar = ({ toggleDrawer, drawer }) => {
             textAlign="center"
           >
             Powered by Kurniawan &copy; {getYear()} <br />
-            Mahasiswa IAI As'adiyah Sengkang
+            Mahasiswa IAI As&apos;adiyah Sengkang
           </Typography>
         </Box>
       </Drawer>
-    </React.Fragment>
+    </Fragment>
   );
 };
 
+Sidebar.propTypes = {
+  toggleDrawer: PropTypes.func,
+  drawer: PropTypes.object,
+};
 export default Sidebar;

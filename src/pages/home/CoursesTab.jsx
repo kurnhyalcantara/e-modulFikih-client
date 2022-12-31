@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import {
   Card,
   CardContent,
@@ -12,6 +12,7 @@ import {
   useTheme,
 } from '@mui/material';
 import axios from 'axios';
+import PropTypes from 'prop-types';
 import Box from '@mui/material/Box';
 import Tab from '@mui/material/Tab';
 import CardCourse from '../../components/Cards/Card';
@@ -29,6 +30,12 @@ const CoursesTab = () => {
         {value === index && <Box>{children}</Box>}
       </div>
     );
+  };
+
+  TabPanel.propTypes = {
+    children: PropTypes.element,
+    value: PropTypes.number,
+    index: PropTypes.number,
   };
 
   useEffect(() => {

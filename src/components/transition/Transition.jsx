@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion/dist/framer-motion';
+import PropTypes from 'prop-types';
 
 const animationConfiguration = {
   initial: { opacity: 0 },
@@ -17,6 +18,10 @@ const Transition = ({ children }) => {
       {children}
     </motion.div>
   );
+};
+
+Transition.propTypes = {
+  children: PropTypes.element,
 };
 
 export default Transition;

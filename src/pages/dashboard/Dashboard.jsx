@@ -1,5 +1,4 @@
 import { Box, Container, Grid, Typography } from '@mui/material';
-import React from 'react';
 import Transition from '../../components/transition/Transition';
 import './Dashboard.css';
 

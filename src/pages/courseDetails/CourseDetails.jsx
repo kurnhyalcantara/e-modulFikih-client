@@ -22,7 +22,8 @@ import Tab from '@mui/material/Tab';
 import Tabs from '@mui/material/Tabs';
 
 import axios from 'axios';
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
 import { useNavigate, useParams } from 'react-router-dom';
 import Transition from '../../components/transition/Transition';
 import DeskripsiCourse from './CourseDescription';
@@ -38,8 +39,14 @@ const TabPanel = ({ children, value, index, ...other }) => {
   );
 };
 
+TabPanel.propTypes = {
+  children: PropTypes.element,
+  value: PropTypes.number,
+  index: PropTypes.number,
+};
+
 const CourseDetails = () => {
-  const [value, setValue] = React.useState(0);
+  const [value, setValue] = useState(0);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);

@@ -1,4 +1,5 @@
-import React, { createContext, useEffect, useState } from 'react';
+import { createContext, useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
 import axios from 'axios';
 import UserAPI from './api/UserAPI';
 import CourseCategoriesAPI from './api/CourseCategoryAPI';
@@ -12,9 +13,7 @@ export const DataProvider = ({ children }) => {
   const [token, setToken] = useState(false);
 
   const refreshToken = async () => {
-    const res = await axios.get(
-      'http://localhost:4000/api/refresh_token'
-    );
+    const res = await axios.get('http://localhost:4000/api/refresh_token');
     setToken(res.data.accessToken);
   };
 
@@ -31,4 +30,8 @@ export const DataProvider = ({ children }) => {
     blogAPI: BlogAPI(),
   };
   return <GlobalState.Provider value={state}>{children}</GlobalState.Provider>;
+};
+
+DataProvider.propTypes = {
+  children: PropTypes.element,
 };

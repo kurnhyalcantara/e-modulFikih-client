@@ -1,4 +1,5 @@
-import React, { useContext, useState } from 'react';
+import { useContext, useState } from 'react';
+import PropTypes from 'prop-types';
 import Box from '@mui/material/Box';
 import Avatar from '@mui/material/Avatar';
 import Menu from '@mui/material/Menu';
@@ -17,8 +18,9 @@ import {
 
 import { GlobalState } from '../../GlobalState';
 import { LogoutRounded, SettingsRounded } from '@mui/icons-material';
+import { Fragment } from 'react';
 
-const AccountMenu = ({ logOut }) => {
+export const AccountMenu = ({ logOut }) => {
   const state = useContext(GlobalState);
   const theme = useTheme();
   const [user] = state.userAPI.user;
@@ -33,7 +35,7 @@ const AccountMenu = ({ logOut }) => {
   };
 
   return (
-    <React.Fragment>
+    <Fragment>
       <Box sx={{ display: 'flex', alignItems: 'center', textAlign: 'center' }}>
         <Tooltip title="Account settings">
           <IconButton
@@ -136,8 +138,10 @@ const AccountMenu = ({ logOut }) => {
           </ListItemText>
         </MenuItem>
       </Menu>
-    </React.Fragment>
+    </Fragment>
   );
 };
 
-export default AccountMenu;
+AccountMenu.propTypes = {
+  logOut: PropTypes.func,
+};

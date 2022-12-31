@@ -44,7 +44,7 @@ const Home = () => {
               </Typography>
               <Typography color={theme.palette.text.secondary}>
                 Modul Pembelajaran Fikih Berbasis <em>Progressive Web Apps </em>
-                untuk siswa MTs As'adiyah No. 2 Bontouse
+                untuk siswa MTs As&apos;adiyah No. 2 Bontouse
               </Typography>
               <Grid container spacing={1} sx={{ marginY: '1.5rem' }}>
                 <Grid item xs={6}>
