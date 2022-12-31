@@ -100,9 +100,15 @@ const AccountMenu = ({ logOut }) => {
         <MenuItem>
           <ListItemAvatar>
             <Avatar
-              src="../../assets/avatar.svg"
-              sx={{ width: 40, height: 40 }}
-            />
+              src={user?.image?.url ?? ''}
+              alt={user?.namaLengkap}
+              sx={{
+                width: 40,
+                height: 40,
+              }}
+            >
+              {user?.avatarLetter}
+            </Avatar>
           </ListItemAvatar>
           <ListItemText
             primary={user.namaLengkap}
