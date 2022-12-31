@@ -30,6 +30,8 @@ const Login = () => {
   const [errorMobile, setErrorMobile] = useState(false);
   const [errorMobileMsg, setErrorMobileMsg] = useState('');
   const [password, setPassword] = useState('');
+  const [errorPassword, setErrorPassword] = useState(false);
+  const [errorHelperPassword, setErrorHelperPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [labelSubmit, setLabelSubmit] = useState('Masuk');
   const [submitDisable, setSubmitDisable] = useState(false);
@@ -67,9 +69,17 @@ const Login = () => {
     } catch (error) {
       setSubmitDisable(false);
       setLabelSubmit('Masuk');
-      if (error.response.data.id === 'account_not_registered') {
-        setErrorMobile(true);
-        setErrorMobileMsg(error.response.data.msg);
+      switch (error.response.data.id) {
+        case 'account_not_registered':
+          setErrorMobile(true);
+          setErrorMobileMsg(error.response.data.msg);
+          break;
+        case 'wrong_password':
+          setErrorPassword(true);
+          setErrorHelperPassword(error.response.data.msg);
+          break;
+        default:
+          break;
       }
     }
   };
@@ -155,8 +165,14 @@ const Login = () => {
                       value={mobile}
                       autoFocus
                       error={errorMobile}
+                      onFocus={() => {
+                        setErrorMobile(false);
+                      }}
                     />
-                    <FormHelperText id="componentMobileInput">
+                    <FormHelperText
+                      id="componentMobileInput"
+                      hidden={!errorMobile}
+                    >
                       {errorMobileMsg}
                     </FormHelperText>
                   </FormControl>
@@ -164,6 +180,7 @@ const Login = () => {
                     fullWidth
                     variant="standard"
                     sx={{ marginTop: '1rem' }}
+                    error={errorPassword}
                   >
                     <InputLabel
                       shrink
@@ -182,6 +199,10 @@ const Login = () => {
                         }}
                         value={password}
                         type={!showPassword ? 'password' : 'text'}
+                        error={errorPassword}
+                        onFocus={() => {
+                          setErrorPassword(false);
+                        }}
                       />
                       <Box>
                         <IconButton
@@ -194,6 +215,12 @@ const Login = () => {
                         </IconButton>
                       </Box>
                     </div>
+                    <FormHelperText
+                      id="helper-password"
+                      hidden={!errorPassword}
+                    >
+                      {errorHelperPassword}
+                    </FormHelperText>
                   </FormControl>
 
                   <Button

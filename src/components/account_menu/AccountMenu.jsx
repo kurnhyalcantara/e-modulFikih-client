@@ -45,13 +45,15 @@ const AccountMenu = ({ logOut }) => {
             <Box className="avatar-penampung">
               <Avatar
                 className="avatar-navbar"
-                src={user?.image?.url}
+                src={user?.image?.url ?? ''}
                 alt={user?.namaLengkap}
                 sx={{
                   width: { xs: '2rem', md: '2.5rem' },
                   height: { xs: '2rem', md: '2.5rem' },
                 }}
-              ></Avatar>
+              >
+                {user?.avatarLetter}
+              </Avatar>
             </Box>
           </IconButton>
         </Tooltip>

@@ -42,6 +42,7 @@ const GeneralInformation = () => {
   const [tanggalLahir, setTanggalLahir] = useState(dayjs('2010-01-01'));
   const [jenisKelamin, setJenisKelamin] = useState('');
   const [image, setImage] = useState({});
+  const [avatarLetter, setAvatarLetter] = useState('');
   const [labelSubmit, setLabelSubmit] = useState('Simpan');
   const [submitDisable, setSubmitDisable] = useState(false);
 
@@ -119,6 +120,7 @@ const GeneralInformation = () => {
       setTanggalLahir(user.tanggalLahir);
       setJenisKelamin(user.jenisKelamin);
       setImage(user.image);
+      setAvatarLetter(user.avatarLetter);
     }
   }, [user]);
 
@@ -147,10 +149,12 @@ const GeneralInformation = () => {
           }
         >
           <Avatar
-            alt={user.name}
+            alt={namaLengkap}
             src={image ? image.url : '../../../assets/avatar.svg'}
             sx={{ width: '5rem', height: '5rem' }}
-          />
+          >
+            {avatarLetter}
+          </Avatar>
         </Badge>
       </Box>
       <form
