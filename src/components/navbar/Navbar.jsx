@@ -1,5 +1,15 @@
 /* eslint-disable no-unused-vars */
-import { AppBar, Box, Button, Container, InputBase, Toolbar, Typography, Divider, Avatar } from "@mui/material";
+import {
+  AppBar,
+  Box,
+  Button,
+  Container,
+  InputBase,
+  Toolbar,
+  Typography,
+  Divider,
+  Avatar,
+} from "@mui/material";
 import axios from "axios";
 import React, { Fragment, useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
@@ -33,7 +43,10 @@ const Navbar = () => {
   };
 
   const toggleDrawer = (anchor, open) => (event) => {
-    if (event.type === "keydown" && (event.key === "Tab" || event.key === "Shift")) {
+    if (
+      event.type === "keydown" &&
+      (event.key === "Tab" || event.key === "Shift")
+    ) {
       return;
     }
 
@@ -48,7 +61,10 @@ const Navbar = () => {
   return (
     <AppBar elevation={0} color="inherit" className="appBar">
       <Container maxWidth="xl">
-        <Toolbar disableGutters sx={{ justifyContent: { xs: "flex-start", md: "center" } }}>
+        <Toolbar
+          disableGutters
+          sx={{ justifyContent: { xs: "flex-start", md: "center" } }}
+        >
           <Box sx={{ display: { xs: "flex", md: "none" } }}>
             <Sidebar drawer={drawer} toggleDrawer={toggleDrawer} />
           </Box>
@@ -62,7 +78,11 @@ const Navbar = () => {
           >
             <Box sx={{ alignItems: "center", display: "flex" }}>
               <Link to="/" display="inline-block">
-                <img style={{ padding: "12px", width: "40px", height: "40px" }} src={logo} alt="logo" />
+                <img
+                  style={{ padding: "12px", width: "40px", height: "40px" }}
+                  src={logo}
+                  alt="logo"
+                />
               </Link>
               <Typography
                 color={theme.palette.primary.main}
@@ -112,7 +132,10 @@ const Navbar = () => {
             >
               Materi
             </Typography>
-            <BootstrapedInput onChange={handleChange} placeholder="Cari materi" />
+            <BootstrapedInput
+              onChange={handleChange}
+              placeholder="Cari materi"
+            />
             <Typography
               className="menuButton-Navbar"
               color={theme.palette.text.primary}

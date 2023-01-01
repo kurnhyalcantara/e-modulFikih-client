@@ -119,14 +119,32 @@ const Registration = () => {
                 }}
               >
                 <form id="signup-submit" onSubmit={handleSubmit}>
-                  <Typography variant="h4" fontWeight="700" color={theme.palette.text.primary} textAlign="center">
+                  <Typography
+                    variant="h4"
+                    fontWeight="700"
+                    color={theme.palette.text.primary}
+                    textAlign="center"
+                  >
                     Yuk, Daftar!
                   </Typography>
-                  <Typography color={theme.palette.text.secondary} marginBottom={3} textAlign="center">
+                  <Typography
+                    color={theme.palette.text.secondary}
+                    marginBottom={3}
+                    textAlign="center"
+                  >
                     Belajar dan wujudkan mimpi kamu
                   </Typography>
-                  <FormControl fullWidth variant="standard" className="registration-input" required>
-                    <InputLabel shrink htmlFor="nama-lengkap-input" sx={{ fontWeight: "700" }}>
+                  <FormControl
+                    fullWidth
+                    variant="standard"
+                    className="registration-input"
+                    required
+                  >
+                    <InputLabel
+                      shrink
+                      htmlFor="nama-lengkap-input"
+                      sx={{ fontWeight: "700" }}
+                    >
                       Nama Lengkap
                     </InputLabel>
                     <BootstrapedInput
@@ -139,8 +157,17 @@ const Registration = () => {
                       value={namaLengkap}
                     />
                   </FormControl>
-                  <FormControl fullWidth variant="standard" className="registration-input" required>
-                    <InputLabel shrink htmlFor="nis-input" sx={{ fontWeight: "700" }}>
+                  <FormControl
+                    fullWidth
+                    variant="standard"
+                    className="registration-input"
+                    required
+                  >
+                    <InputLabel
+                      shrink
+                      htmlFor="nis-input"
+                      sx={{ fontWeight: "700" }}
+                    >
                       NIS
                     </InputLabel>
                     <BootstrapedInput
@@ -153,8 +180,17 @@ const Registration = () => {
                       value={nis}
                     />
                   </FormControl>
-                  <FormControl fullWidth variant="standard" className="registration-input" required>
-                    <InputLabel shrink htmlFor="class-student-select" sx={{ fontWeight: "700" }}>
+                  <FormControl
+                    fullWidth
+                    variant="standard"
+                    className="registration-input"
+                    required
+                  >
+                    <InputLabel
+                      shrink
+                      htmlFor="class-student-select"
+                      sx={{ fontWeight: "700" }}
+                    >
                       Pilih Kelas
                     </InputLabel>
                     <Select
@@ -171,8 +207,17 @@ const Registration = () => {
                       <MenuItem value={"sembilan"}>Kelas IX</MenuItem>
                     </Select>
                   </FormControl>
-                  <FormControl fullWidth variant="standard" className="registration-input" required>
-                    <InputLabel shrink htmlFor="phone-input" sx={{ fontWeight: "700" }}>
+                  <FormControl
+                    fullWidth
+                    variant="standard"
+                    className="registration-input"
+                    required
+                  >
+                    <InputLabel
+                      shrink
+                      htmlFor="phone-input"
+                      sx={{ fontWeight: "700" }}
+                    >
                       Nomor Telepon
                     </InputLabel>
                     <div className="container-input-adornment-register">
@@ -201,8 +246,16 @@ const Registration = () => {
                       />
                     </div>
                   </FormControl>
-                  <FormControl fullWidth variant="standard" className="registration-input">
-                    <InputLabel shrink htmlFor="password-input" sx={{ fontWeight: "700" }}>
+                  <FormControl
+                    fullWidth
+                    variant="standard"
+                    className="registration-input"
+                  >
+                    <InputLabel
+                      shrink
+                      htmlFor="password-input"
+                      sx={{ fontWeight: "700" }}
+                    >
                       Password
                     </InputLabel>
                     <div className="container-input-adornment-register">
@@ -227,7 +280,9 @@ const Registration = () => {
                         </IconButton>
                       </Box>
                     </div>
-                    <FormHelperText id="helper-password">Password minimal 4 karakter</FormHelperText>
+                    <FormHelperText id="helper-password">
+                      Password minimal 4 karakter
+                    </FormHelperText>
                   </FormControl>
 
                   <Button
@@ -241,7 +296,10 @@ const Registration = () => {
                   >
                     {labelSubmit}
                   </Button>
-                  <Typography color={theme.palette.text.secondary} sx={{ textAlign: "center" }}>
+                  <Typography
+                    color={theme.palette.text.secondary}
+                    sx={{ textAlign: "center" }}
+                  >
                     Sudah punya akun? <Link to="/login">Login</Link>
                   </Typography>
                 </form>

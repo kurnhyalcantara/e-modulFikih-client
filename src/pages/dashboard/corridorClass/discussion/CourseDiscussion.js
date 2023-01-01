@@ -103,15 +103,19 @@ const CourseDiscussion = ({ discussion, getData }) => {
             {discussion &&
               discussion?.length > 0 &&
               discussion?.map((item) => (
-                <ListItemButton component={Link} to={`/course_discussion/${item?._id}`} key={item._id}>
+                <ListItemButton
+                  component={Link}
+                  to={`/course_discussion/${item?._id}`}
+                  key={item._id}
+                >
                   <ListItemIcon>
                     <StarBorder />
                   </ListItemIcon>
                   <ListItemText
                     primary={item?.question}
-                    secondary={`${item?.user?.name}(${item?.user?.type}) • Posted ${new Date(
-                      item?.createdAt
-                    ).toDateString()}`}
+                    secondary={`${item?.user?.name}(${
+                      item?.user?.type
+                    }) • Posted ${new Date(item?.createdAt).toDateString()}`}
                   />
                   <ListItemText
                     sx={{

@@ -1,5 +1,12 @@
 import StarBorder from "@mui/icons-material/StarBorder";
-import { Button, Container, ListItemButton, ListItemIcon, ListItemText, TextField } from "@mui/material";
+import {
+  Button,
+  Container,
+  ListItemButton,
+  ListItemIcon,
+  ListItemText,
+  TextField,
+} from "@mui/material";
 import { Box } from "@mui/system";
 import axios from "axios";
 import { useContext, useEffect, useState } from "react";
@@ -67,9 +74,9 @@ const CourseDiscussion = () => {
           <Box className={classes.discription}>
             <ListItemText
               primary={discussion?.question}
-              secondary={`${discussion?.user?.name}(${discussion?.user?.type}) • Posted ${new Date(
-                discussion?.createdAt
-              ).toDateString()}`}
+              secondary={`${discussion?.user?.name}(${
+                discussion?.user?.type
+              }) • Posted ${new Date(discussion?.createdAt).toDateString()}`}
               sx={{ pb: 2 }}
             />
             <TextField
@@ -114,13 +121,18 @@ const CourseDiscussion = () => {
                   <ListItemIcon>
                     <StarBorder />
                   </ListItemIcon>
-                  <ListItemText primary={`${item?.user?.name}(${item?.user?.type})`} secondary={item?.answer} />
+                  <ListItemText
+                    primary={`${item?.user?.name}(${item?.user?.type})`}
+                    secondary={item?.answer}
+                  />
                   <ListItemText
                     sx={{
                       display: "flex",
                       justifyContent: "end",
                     }}
-                    primary={`Posted ${new Date(item?.createdAt).toDateString()}`}
+                    primary={`Posted ${new Date(
+                      item?.createdAt
+                    ).toDateString()}`}
                   />
                 </ListItemButton>
               </Box>

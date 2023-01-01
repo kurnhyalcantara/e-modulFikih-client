@@ -53,7 +53,9 @@ const SubmitTask = () => {
   return (
     <div style={{ background: "#fff9f9" }}>
       <Container maxWidth="xl" sx={{ py: 6 }}>
-        <div style={{ background: "#fff", padding: "30px", borderRadius: "10px" }}>
+        <div
+          style={{ background: "#fff", padding: "30px", borderRadius: "10px" }}
+        >
           <h2>{task?.title}</h2>
           <p>{task?.description}</p>
           <Editor

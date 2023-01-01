@@ -49,7 +49,10 @@ const ParentCourseShow = () => {
               courses?.length > 0 &&
               courses?.map((item, i) => (
                 <Grid key={i} item md={3} sm={12} xs={12}>
-                  <Cards item={item?.courseDetails} type="parent_course_details" />
+                  <Cards
+                    item={item?.courseDetails}
+                    type="parent_course_details"
+                  />
                 </Grid>
               ))}
           </Grid>

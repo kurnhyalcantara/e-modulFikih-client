@@ -10,11 +10,13 @@ const fasility = [
   },
   {
     name: "Video Penjelasan",
-    brief: "Beberapa materi disajikan dengan video penjelasan agar mempermudah pemahaman peserta didik",
+    brief:
+      "Beberapa materi disajikan dengan video penjelasan agar mempermudah pemahaman peserta didik",
   },
   {
     name: "Kuis",
-    brief: "Di sela-sela pembelajaran, akan ada beberapa soal yang akan dijawab oleh peserta didik",
+    brief:
+      "Di sela-sela pembelajaran, akan ada beberapa soal yang akan dijawab oleh peserta didik",
   },
   {
     name: "Ujian",
@@ -27,16 +29,22 @@ const DeskripsiCourse = ({ item }) => {
     <Paper className="container-detail-course">
       <Box className="container-description">
         <h2>Deskripsi</h2>
-        {item?.courseDetails?.description && parse(item?.courseDetails?.description)}
+        {item?.courseDetails?.description &&
+          parse(item?.courseDetails?.description)}
       </Box>
       <Box className="container-description">
         <h2>Tujuan Pembelajaran</h2>
-        <p>Setelah mengikuti pembelajaran pada materi ini, diakhir peserta didik diharapkan:</p>
+        <p>
+          Setelah mengikuti pembelajaran pada materi ini, diakhir peserta didik
+          diharapkan:
+        </p>
         <ul>
           {item?.courseDetails?.indikatorPencapaianKompetensi &&
-            item?.courseDetails?.indikatorPencapaianKompetensi.map((ipk, index) => {
-              return <li key={index}>{ipk}</li>;
-            })}
+            item?.courseDetails?.indikatorPencapaianKompetensi.map(
+              (ipk, index) => {
+                return <li key={index}>{ipk}</li>;
+              }
+            )}
         </ul>
       </Box>
       <Box className="container-description">

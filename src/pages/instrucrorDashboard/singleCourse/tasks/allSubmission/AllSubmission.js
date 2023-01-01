@@ -83,10 +83,15 @@ const AllSubmission = () => {
           {submissions &&
             submissions.length > 0 &&
             submissions?.map((item, i) => (
-              <Accordion key={i} style={{ marginBottom: "6px", borderRadius: "5px" }}>
+              <Accordion
+                key={i}
+                style={{ marginBottom: "6px", borderRadius: "5px" }}
+              >
                 <AccordionSummary expandIcon={<ExpandMoreIcon />}>
                   <div className={classes.headingWrapper}>
-                    <Typography className={classes.heading}>Student Name : {item?.student?.name}</Typography>
+                    <Typography className={classes.heading}>
+                      Student Name : {item?.student?.name}
+                    </Typography>
                     <div className={classes.mark}>Mark : {item?.marks} </div>
                   </div>
                 </AccordionSummary>

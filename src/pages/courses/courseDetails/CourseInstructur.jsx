@@ -17,11 +17,17 @@ const CourseInstructur = ({ item }) => {
           />
           <Grid item md={9} xs={12} marginTop="1.5rem">
             <strong>Nama</strong>
-            <Typography marginBottom="1rem">{item?.courseDetails?.instructor?.name}</Typography>
+            <Typography marginBottom="1rem">
+              {item?.courseDetails?.instructor?.name}
+            </Typography>
             <strong>Nomor Telepon</strong>
-            <Typography marginBottom="1rem">{item?.courseDetails?.instructor?.mobile}</Typography>
+            <Typography marginBottom="1rem">
+              {item?.courseDetails?.instructor?.mobile}
+            </Typography>
             <strong>Alamat</strong>
-            <Typography marginBottom="1rem">{item?.courseDetails?.instructor?.address}</Typography>
+            <Typography marginBottom="1rem">
+              {item?.courseDetails?.instructor?.address}
+            </Typography>
           </Grid>
         </Grid>
       </Grid>

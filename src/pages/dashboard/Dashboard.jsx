@@ -16,7 +16,12 @@ const Dashboard = () => {
       <Box className="dashboardContainer">
         <Box className="jumbotron">
           <Container maxWidth="lg">
-            <Typography variant="h4" fontWeight="800" color="#fff" marginY="0.2rem">
+            <Typography
+              variant="h4"
+              fontWeight="800"
+              color="#fff"
+              marginY="0.2rem"
+            >
               Selamat Datang {user?.namaPanggilan ?? user.namaLengkap}
             </Typography>
             <Typography color="#fff" component="p">
@@ -29,7 +34,9 @@ const Dashboard = () => {
             <Grid item xs={12} md={6}>
               <Box className="learningPath">
                 <Box className="headingCard" display="flex" alignItems="center">
-                  <LocalActivityRounded sx={{ marginRight: "0.5rem" }}></LocalActivityRounded>
+                  <LocalActivityRounded
+                    sx={{ marginRight: "0.5rem" }}
+                  ></LocalActivityRounded>
                   <Typography>Aktivitas Belajar</Typography>
                 </Box>
                 <Box className="contentCard">
@@ -40,10 +47,16 @@ const Dashboard = () => {
                           <Typography fontSize="14px" fontWeight="700">
                             Sedang Dipelajari
                           </Typography>
-                          <Typography>{enrolled?.courseDetails?.title}</Typography>
+                          <Typography>
+                            {enrolled?.courseDetails?.title}
+                          </Typography>
                         </Box>
                         <Box id="open-enrolled">
-                          <Typography color="primary" component={Link}>
+                          <Typography
+                            color="primary"
+                            component={Link}
+                            to={`/corridor/${enrolled?.courseDetails._id}`}
+                          >
                             Lanjutkan
                           </Typography>
                         </Box>

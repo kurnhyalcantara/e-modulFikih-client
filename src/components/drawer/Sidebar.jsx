@@ -75,7 +75,9 @@ const Sidebar = ({ toggleDrawer, drawer }) => {
       <List>
         {mainMenu.map((list, i) => (
           <ListItemButton component={Link} to={list.route} key={i}>
-            <ListItemIcon sx={{ color: `${theme.palette.primary.main}` }}>{list.icon}</ListItemIcon>
+            <ListItemIcon sx={{ color: `${theme.palette.primary.main}` }}>
+              {list.icon}
+            </ListItemIcon>
             <ListItemText>
               <Typography color={theme.palette.text.primary} fontWeight="700">
                 {list.name}
@@ -98,7 +100,9 @@ const Sidebar = ({ toggleDrawer, drawer }) => {
         {joinMenu.map((list, i) => {
           return (
             <ListItemButton component={Link} to={list.route} key={i}>
-              <ListItemIcon sx={{ color: `${theme.palette.primary.main}` }}>{list.icon}</ListItemIcon>
+              <ListItemIcon sx={{ color: `${theme.palette.primary.main}` }}>
+                {list.icon}
+              </ListItemIcon>
               <ListItemText>
                 <Typography color={theme.palette.text.primary} fontWeight="700">
                   {list.name}
@@ -116,14 +120,27 @@ const Sidebar = ({ toggleDrawer, drawer }) => {
       <IconButton onClick={toggleDrawer("left", true)}>
         <Menu />
       </IconButton>
-      <Drawer anchor={"left"} open={drawer["left"]} onClose={toggleDrawer("left", false)}>
+      <Drawer
+        anchor={"left"}
+        open={drawer["left"]}
+        onClose={toggleDrawer("left", false)}
+      >
         <Box display="flex" alignItems="center" paddingY={1.5}>
-          <img style={{ padding: "12px", width: "40px", height: "40px" }} src={logo} alt="logo" />
+          <img
+            style={{ padding: "12px", width: "40px", height: "40px" }}
+            src={logo}
+            alt="logo"
+          />
           <Box display="flex" flexDirection="column">
             <Typography color={theme.palette.primary.main} fontWeight="900">
               Fikih MTs Bontouse
             </Typography>
-            <Typography id="version" color={theme.palette.text.primary} fontSize="12px" fontWeight="700">
+            <Typography
+              id="version"
+              color={theme.palette.text.primary}
+              fontSize="12px"
+              fontWeight="700"
+            >
               versi 0.1.0 (testing)
             </Typography>
           </Box>
@@ -154,7 +171,11 @@ const Sidebar = ({ toggleDrawer, drawer }) => {
             padding: "0.8rem",
           }}
         >
-          <Typography color={theme.palette.text.secondary} fontSize="12px" textAlign="center">
+          <Typography
+            color={theme.palette.text.secondary}
+            fontSize="12px"
+            textAlign="center"
+          >
             Powered by Kurniawan &copy; {getYear()} <br />
             Mahasiswa IAI As&apos;adiyah Sengkang
           </Typography>

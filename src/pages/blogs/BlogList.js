@@ -1,6 +1,15 @@
 import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
-import { Button, Container, IconButton, Table, TableBody, TableCell, TableContainer, TableHead } from "@mui/material";
+import {
+  Button,
+  Container,
+  IconButton,
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+} from "@mui/material";
 import axios from "axios";
 import { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
@@ -69,7 +78,9 @@ const Blogs = () => {
               <TableBody key={i}>
                 <TableCell>{++i}</TableCell>
                 <TableCell>{item?.title}</TableCell>
-                <TableCell>{new Date(item?.createdAt).toDateString()}</TableCell>
+                <TableCell>
+                  {new Date(item?.createdAt).toDateString()}
+                </TableCell>
                 <TableCell>
                   <IconButton component={Link} to={`/edit_blogs/${item?._id}`}>
                     <EditIcon />

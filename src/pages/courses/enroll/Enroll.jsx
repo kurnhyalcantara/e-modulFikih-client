@@ -79,9 +79,15 @@ const EnrollStudent = () => {
           </Typography>
           <Divider />
           <div className="section-enroll">
-            <img src={course?.courseDetails?.banner?.url} className={classes.banner} alt="banner" />
+            <img
+              src={course?.courseDetails?.banner?.url}
+              className={classes.banner}
+              alt="banner"
+            />
             <div className={classes.section2}>
-              <Typography variant="h6">{course?.courseDetails?.title}</Typography>
+              <Typography variant="h6">
+                {course?.courseDetails?.title}
+              </Typography>
               <Typography variant="subtitle2" color="text.secondary">
                 {course?.courseDetails?.category}
               </Typography>
@@ -90,7 +96,9 @@ const EnrollStudent = () => {
           <Typography variant="subtitle2" color="text.secondary">
             Pengajar
           </Typography>
-          <Typography variant="h6">{course?.courseDetails?.instructor?.name}</Typography>
+          <Typography variant="h6">
+            {course?.courseDetails?.instructor?.name}
+          </Typography>
           <Typography>{course?.courseDetails?.instructor?.mobile}</Typography>
           <Typography>{course?.courseDetails?.instructor?.address}</Typography>
           <Box display="flex" alignItems="center" margin="1rem 0">
@@ -102,7 +110,12 @@ const EnrollStudent = () => {
                 setToken(e.target.value);
               }}
             ></BootstrapedInput>
-            <Button className="bootstraped-button" variant="contained" onClick={handleEnroll} sx={{ flexGrow: 2 }}>
+            <Button
+              className="bootstraped-button"
+              variant="contained"
+              onClick={handleEnroll}
+              sx={{ flexGrow: 2 }}
+            >
               {enrolled ? "Sukses" : "Proses"}
             </Button>
           </Box>

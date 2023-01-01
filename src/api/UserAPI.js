@@ -14,9 +14,12 @@ function UserAPI(token) {
       const getStudent = async () => {
         try {
           setLoading(true);
-          const res = await axios.get("http://localhost:4000/api/student/profile", {
-            headers: { Authorization: token },
-          });
+          const res = await axios.get(
+            "http://localhost:4000/api/student/profile",
+            {
+              headers: { Authorization: token },
+            }
+          );
           setIsLogged(true);
           setList(res.data.student.enrolled);
           setUser(res.data.student);

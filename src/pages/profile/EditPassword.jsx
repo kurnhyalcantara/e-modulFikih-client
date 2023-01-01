@@ -1,4 +1,10 @@
-import { Box, Button, FormControl, FormHelperText, InputLabel } from "@mui/material";
+import {
+  Box,
+  Button,
+  FormControl,
+  FormHelperText,
+  InputLabel,
+} from "@mui/material";
 import { useContext, useState } from "react";
 import { GlobalState } from "../../GlobalState";
 import axios from "axios";
@@ -88,7 +94,12 @@ const GeneralSetting = () => {
             {errorOldPasswordMsg}
           </FormHelperText>
         </FormControl>
-        <FormControl fullWidth variant="standard" className="edit-information-input" required>
+        <FormControl
+          fullWidth
+          variant="standard"
+          className="edit-information-input"
+          required
+        >
           <InputLabel shrink htmlFor="new-password" sx={{ fontWeight: "700" }}>
             Password Baru
           </InputLabel>
@@ -105,8 +116,17 @@ const GeneralSetting = () => {
             />
           </div>
         </FormControl>
-        <FormControl fullWidth variant="standard" className="edit-information-input" required>
-          <InputLabel shrink htmlFor="confirm-new-password" sx={{ fontWeight: "700" }}>
+        <FormControl
+          fullWidth
+          variant="standard"
+          className="edit-information-input"
+          required
+        >
+          <InputLabel
+            shrink
+            htmlFor="confirm-new-password"
+            sx={{ fontWeight: "700" }}
+          >
             Konfirmasi Password Baru
           </InputLabel>
           <div className="container-input-adornment">

@@ -9,7 +9,8 @@ const Editor = ({ name, contents, onChange, height }) => {
     rtl: false,
     katex: "window.katex",
     height: height || 300,
-    imageGalleryUrl: "https://etyswjpn79.execute-api.ap-northeast-1.amazonaws.com/suneditor-demo",
+    imageGalleryUrl:
+      "https://etyswjpn79.execute-api.ap-northeast-1.amazonaws.com/suneditor-demo",
     videoFileInput: false,
     tabDisable: false,
     buttonList: [
@@ -73,7 +74,11 @@ const Editor = ({ name, contents, onChange, height }) => {
 
   return (
     <div>
-      <SunEditor setOptions={options} onChange={handleChange} setContents={editorState} />
+      <SunEditor
+        setOptions={options}
+        onChange={handleChange}
+        setContents={editorState}
+      />
     </div>
   );
 };

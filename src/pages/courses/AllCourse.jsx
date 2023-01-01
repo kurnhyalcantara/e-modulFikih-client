@@ -48,7 +48,11 @@ const AllCourse = () => {
             {result < page * 8 ? (
               ""
             ) : (
-              <Button color="primary" sx={{ marginTop: "2.5rem" }} onClick={() => setPage(page + 1)}>
+              <Button
+                color="primary"
+                sx={{ marginTop: "2.5rem" }}
+                onClick={() => setPage(page + 1)}
+              >
                 Load more
               </Button>
             )}

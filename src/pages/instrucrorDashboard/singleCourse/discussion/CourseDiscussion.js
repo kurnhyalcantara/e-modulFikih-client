@@ -150,9 +150,9 @@ const CourseDiscussion = ({ discussion, getData }) => {
                       history(`/course_discussion/${item?._id}`);
                     }}
                     primary={item?.question}
-                    secondary={`${item?.user?.name}(${item?.user?.type}) • Posted ${new Date(
-                      item?.createdAt
-                    ).toDateString()}`}
+                    secondary={`${item?.user?.name}(${
+                      item?.user?.type
+                    }) • Posted ${new Date(item?.createdAt).toDateString()}`}
                   />
                   <ListItemText
                     sx={{

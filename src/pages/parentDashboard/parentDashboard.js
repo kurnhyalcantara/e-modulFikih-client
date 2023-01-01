@@ -1,4 +1,11 @@
-import { Card, CardActionArea, CardContent, Container, Grid, Typography } from "@mui/material";
+import {
+  Card,
+  CardActionArea,
+  CardContent,
+  Container,
+  Grid,
+  Typography,
+} from "@mui/material";
 import Avatar from "@mui/material/Avatar";
 import { Box } from "@mui/system";
 import axios from "axios";
@@ -40,7 +47,10 @@ const ParentDashboard = () => {
             child?.map((item, i) => (
               <Grid item key={i} md={3} sm={12} xs={12}>
                 <Box id={item?._id}>
-                  <Card className={classes.card} style={{ background: "#2196f3", color: "white" }}>
+                  <Card
+                    className={classes.card}
+                    style={{ background: "#2196f3", color: "white" }}
+                  >
                     <CardActionArea>
                       <CardContent>
                         <Avatar src="/broken-image.jpg" sx={{ mb: 5 }} />
@@ -52,7 +62,9 @@ const ParentDashboard = () => {
                         >
                           {item?.name}
                         </Typography>
-                        <Typography>Joined: {new Date(item?.createdAt).toDateString()}</Typography>
+                        <Typography>
+                          Joined: {new Date(item?.createdAt).toDateString()}
+                        </Typography>
                       </CardContent>
                     </CardActionArea>
                   </Card>

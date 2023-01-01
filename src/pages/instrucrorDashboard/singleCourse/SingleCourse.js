@@ -33,17 +33,19 @@ const SingleCourse = () => {
 
   const getData = async () => {
     setLoading(true);
-    await axios.get(`http://localhost:4000/api/course_details/${courseId}`).then((res) => {
-      if (res.status === 200) {
-        setCourse(res.data);
-        setLessons(res.data.lessons);
-        setObjective(res.data.courseDetails.objective);
-        setReq(res.data.courseDetails.requirements);
-        setTask(res.data.tasks);
-        setDiscussion(res.data.discussion);
-        setLoading(false);
-      }
-    });
+    await axios
+      .get(`http://localhost:4000/api/course_details/${courseId}`)
+      .then((res) => {
+        if (res.status === 200) {
+          setCourse(res.data);
+          setLessons(res.data.lessons);
+          setObjective(res.data.courseDetails.objective);
+          setReq(res.data.courseDetails.requirements);
+          setTask(res.data.tasks);
+          setDiscussion(res.data.discussion);
+          setLoading(false);
+        }
+      });
   };
 
   useEffect(() => {
@@ -168,7 +170,11 @@ const SingleCourse = () => {
             </span>
           </div>
           <Grid container>
-            <img src={course?.courseDetails?.banner.url} className={classes.banner} alt="..." />
+            <img
+              src={course?.courseDetails?.banner.url}
+              className={classes.banner}
+              alt="..."
+            />
           </Grid>
           <Grid className={classes.contains} container spacing={2}>
             <Grid item xs={12} md={6}>
@@ -186,7 +192,8 @@ const SingleCourse = () => {
                   marginTop: "25px",
                 }}
               >
-                <GroupsOutlinedIcon className={classes.icon} /> Total enrolled : {course?.courseDetails?.enrolled}
+                <GroupsOutlinedIcon className={classes.icon} /> Total enrolled :{" "}
+                {course?.courseDetails?.enrolled}
               </Typography>
             </Grid>
             <Grid item xs={12}>
@@ -206,8 +213,12 @@ const SingleCourse = () => {
                     lg={6}
                     style={{ display: "flex", alignItems: "center" }}
                   >
-                    <Typography component="p" style={{ display: "flex", alignItems: "center" }}>
-                      <CheckIcon className={classes.icon} /> {objective.objective}
+                    <Typography
+                      component="p"
+                      style={{ display: "flex", alignItems: "center" }}
+                    >
+                      <CheckIcon className={classes.icon} />{" "}
+                      {objective.objective}
                     </Typography>
                   </Grid>
                 ))}
@@ -219,7 +230,10 @@ const SingleCourse = () => {
               <Grid className={classes.container} container spacing={3}>
                 {req.map((req, index) => (
                   <Grid item key={index} xs={12} md={6} lg={6}>
-                    <Typography component="p" style={{ display: "flex", alignItems: "center" }}>
+                    <Typography
+                      component="p"
+                      style={{ display: "flex", alignItems: "center" }}
+                    >
                       <CreateIcon className={classes.icon} /> {req?.requrement}
                     </Typography>
                   </Grid>
@@ -244,16 +258,32 @@ const SingleCourse = () => {
                       style: { background: "red" },
                     }}
                   >
-                    <Tab label="Lessons" value="lesson" style={{ minWidth: "33%" }} />
-                    <Tab label="Task" value="task" style={{ minWidth: "34%" }} />
-                    <Tab label="Discussion" value="discussion" style={{ minWidth: "33%" }} />
+                    <Tab
+                      label="Lessons"
+                      value="lesson"
+                      style={{ minWidth: "33%" }}
+                    />
+                    <Tab
+                      label="Task"
+                      value="task"
+                      style={{ minWidth: "34%" }}
+                    />
+                    <Tab
+                      label="Discussion"
+                      value="discussion"
+                      style={{ minWidth: "33%" }}
+                    />
                   </TabList>
                 </Box>
                 <TabPanel value="lesson">
                   {/* map lesson  */}
                   <div className={classes.lessonWrapper}>
                     {lessons.map((lesson) => (
-                      <Lesson getData={getData} lessons={lesson} key={lesson._id} />
+                      <Lesson
+                        getData={getData}
+                        lessons={lesson}
+                        key={lesson._id}
+                      />
                     ))}
                   </div>
                 </TabPanel>

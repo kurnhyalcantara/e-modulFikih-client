@@ -1,6 +1,11 @@
 import axios from "axios";
 import { useContext } from "react";
-import { BrowserRouter as Router, Route, Routes, useLocation } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Route,
+  Routes,
+  useLocation,
+} from "react-router-dom";
 import { AnimatePresence } from "framer-motion/dist/framer-motion";
 import "./App.scss";
 import Navbar from "./components/navbar/Navbar";
@@ -22,8 +27,8 @@ import AddTask from "./pages/instrucrorDashboard/singleCourse/addTask/AddTask";
 import SingleCourse from "./pages/instrucrorDashboard/singleCourse/SingleCourse";
 import AllSubmission from "./pages/instrucrorDashboard/singleCourse/tasks/allSubmission/AllSubmission";
 import NotFound from "./pages/notFound/NotFound";
-import SingleCourseDetails from "./pages/dashboard/SingleCourseDetails/SinglecourseDetails";
-import SubmitTask from "./pages/dashboard/SingleCourseDetails/task/submitTask/SubmitTask";
+import SingleCourseDetails from "./pages/dashboard/corridorClass/SinglecourseDetails";
+import SubmitTask from "./pages/dashboard/corridorClass/task/submitTask/SubmitTask";
 import Dashboard from "./pages/dashboard/Dashboard";
 import ParentDashboard from "./pages/parentDashboard/parentDashboard";
 import ParentCourseShow from "./pages/parentDashboard/parentCourseShow/parentCourseShow";
@@ -37,6 +42,7 @@ import VideoStream from "./pages/videoStraming/VideoStream";
 import { ThemeProvider } from "@mui/material/styles";
 import { useTheme } from "./styles/Theme";
 import ScrollToTop from "./utils/ScrollToTop";
+import CorridorClass from "./pages/dashboard/corridorClass/CorridorClass";
 
 axios.defaults.withCredentials = true;
 
@@ -50,65 +56,140 @@ const AnimationRoutes = () => {
       <Routes location={location} key={location.pathname}>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={isLogged ? <Dashboard /> : <Login />} />
-        <Route path="/registration" element={isLogged ? <Dashboard /> : <Registration />} />
+        <Route
+          path="/registration"
+          element={isLogged ? <Dashboard /> : <Registration />}
+        />
         <Route path="/profile" element={<Profile />} />
         <Route path="/courses" element={<AllCourse />} />
         <Route path="/details/:courseId" element={<CourseDetails />} />
         <Route path="/dashboard" element={<Dashboard />} />
-        <Route path="/single_course_details/:courseId" element={<SingleCourseDetails />} />
+        <Route path="/corridor/:courseId" element={<CorridorClass />} />
+        <Route
+          path="/single_course_details/:courseId"
+          element={<SingleCourseDetails />}
+        />
         <Route path="/logout" element={<Home />} />
-        <Route path="/instructor_dashboard" element={isLogged ? <InstructorDashboard /> : <NotFound />} />
+        <Route
+          path="/instructor_dashboard"
+          element={isLogged ? <InstructorDashboard /> : <NotFound />}
+        />
         <Route path="/create_course" element={<CreateCourse />} />
         <Route path="/course_details/:courseId" element={<SingleCourse />} />
         <Route path="/course_edit/:courseId" element={<CreateCourse />} />
         <Route
           path="/create_lesson/:courseId"
-          element={isLogged && user.type === "instructor" && user.status ? <AddLesson /> : <NotFound />}
+          element={
+            isLogged && user.type === "instructor" && user.status ? (
+              <AddLesson />
+            ) : (
+              <NotFound />
+            )
+          }
         />
         <Route
           path="/update_lesson/:lessonId"
-          element={isLogged && user.type === "instructor" && user.status ? <AddLesson /> : <NotFound />}
+          element={
+            isLogged && user.type === "instructor" && user.status ? (
+              <AddLesson />
+            ) : (
+              <NotFound />
+            )
+          }
         />
 
-        <Route path="/enroll_page_student/:courseId" element={<EnrollStudent />} />
+        <Route
+          path="/enroll_page_student/:courseId"
+          element={<EnrollStudent />}
+        />
 
         <Route
           path="/course_task/:courseId"
-          element={isLogged && user.type === "instructor" && user?.status ? <AddTask /> : <NotFound />}
+          element={
+            isLogged && user.type === "instructor" && user?.status ? (
+              <AddTask />
+            ) : (
+              <NotFound />
+            )
+          }
         />
         <Route
           path="/update_task/:taskId/"
-          element={isLogged && user.type === "instructor" && user?.status ? <AddTask /> : <NotFound />}
+          element={
+            isLogged && user.type === "instructor" && user?.status ? (
+              <AddTask />
+            ) : (
+              <NotFound />
+            )
+          }
         />
         <Route
           path="/create_blog"
-          element={isLogged && user.type === "instructor" && user?.status ? <CreateBlog /> : <NotFound />}
+          element={
+            isLogged && user.type === "instructor" && user?.status ? (
+              <CreateBlog />
+            ) : (
+              <NotFound />
+            )
+          }
         />
         <Route
           path="/edit_blogs/:blogId"
-          element={isLogged && user.type === "instructor" && user?.status ? <CreateBlog /> : <NotFound />}
+          element={
+            isLogged && user.type === "instructor" && user?.status ? (
+              <CreateBlog />
+            ) : (
+              <NotFound />
+            )
+          }
         />
         <Route
           path="/blog"
-          element={isLogged && user.type === "instructor" && user?.status ? <BlogList /> : <NotFound />}
+          element={
+            isLogged && user.type === "instructor" && user?.status ? (
+              <BlogList />
+            ) : (
+              <NotFound />
+            )
+          }
         />
         <Route
           path="/all_submission/:taskId"
-          element={isLogged && user.type === "instructor" && user?.status ? <AllSubmission /> : <NotFound />}
+          element={
+            isLogged && user.type === "instructor" && user?.status ? (
+              <AllSubmission />
+            ) : (
+              <NotFound />
+            )
+          }
         />
         <Route
           path="/task_submission/:taskId"
-          element={isLogged && user.type === "student" ? <SubmitTask /> : <NotFound />}
+          element={
+            isLogged && user.type === "student" ? <SubmitTask /> : <NotFound />
+          }
         />
         <Route path="/blogs" element={<Blogs />} />
         <Route path="/blog_details/:blogId" element={<BlogDetails />} />
-        <Route path="/parent_dashboard" element={isLogged ? <ParentDashboard /> : <NotFound />} />
+        <Route
+          path="/parent_dashboard"
+          element={isLogged ? <ParentDashboard /> : <NotFound />}
+        />
         <Route path="/child_course/:studentId" element={<ParentCourseShow />} />
-        <Route path="/parent_course_details/:courseId" element={<ParentCourseDetails />} />
-        <Route path="/course_discussion/:discussionId" element={<CourseDiscussion />} />
+        <Route
+          path="/parent_course_details/:courseId"
+          element={<ParentCourseDetails />}
+        />
+        <Route
+          path="/course_discussion/:discussionId"
+          element={<CourseDiscussion />}
+        />
 
         <Route path="*" element={<NotFound />} />
-        <Route path="/video-stream/:streamId" element={isLogged ? <VideoStream /> : <NotFound />} />
+        <Route
+          path="/video-stream/:streamId"
+          element={isLogged ? <VideoStream /> : <NotFound />}
+        />
 
         <Route path="/job_view" element={<JobView />} />
         <Route path="/job_details" element={<JobDetails />} />

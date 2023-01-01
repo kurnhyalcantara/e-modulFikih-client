@@ -109,12 +109,16 @@ const CreateCourse = () => {
       let formData = new FormData();
       formData.append("file", file);
       setLoading(true);
-      const res = await axios.post("http://localhost:4000/api/upload", formData, {
-        headers: {
-          "content-type": "multipart/form-data",
-          Authorization: token,
-        },
-      });
+      const res = await axios.post(
+        "http://localhost:4000/api/upload",
+        formData,
+        {
+          headers: {
+            "content-type": "multipart/form-data",
+            Authorization: token,
+          },
+        }
+      );
       setLoading(false);
       setImage(res.data);
     } catch (error) {
@@ -206,19 +210,21 @@ const CreateCourse = () => {
       // get course details
       const getCourseDetails = async () => {
         if (courseId) {
-          await axios.get(`http://localhost:4000/api/course_details/${courseId}`).then((res) => {
-            if (res.status === 200) {
-              const { courseDetails } = res.data;
-              setImage(courseDetails?.banner);
-              setTitle(courseDetails?.title);
-              setPrice(courseDetails?.price);
-              setCategory(courseDetails?.category);
-              setDescription(courseDetails?.description);
-              setAbout(courseDetails?.about);
-              setObjectives(courseDetails?.objective);
-              setRequirements(courseDetails?.requirements);
-            }
-          });
+          await axios
+            .get(`http://localhost:4000/api/course_details/${courseId}`)
+            .then((res) => {
+              if (res.status === 200) {
+                const { courseDetails } = res.data;
+                setImage(courseDetails?.banner);
+                setTitle(courseDetails?.title);
+                setPrice(courseDetails?.price);
+                setCategory(courseDetails?.category);
+                setDescription(courseDetails?.description);
+                setAbout(courseDetails?.about);
+                setObjectives(courseDetails?.objective);
+                setRequirements(courseDetails?.requirements);
+              }
+            });
         } else {
           setImage(false);
           setTitle("");
@@ -252,7 +258,12 @@ const CreateCourse = () => {
           <Grid container spacing={4}>
             <Grid item xs={12} sm={12} lg={12} md={12}>
               <div className="upload">
-                <input type="file" name="file" id="file_up" onChange={handleUpload} />
+                <input
+                  type="file"
+                  name="file"
+                  id="file_up"
+                  onChange={handleUpload}
+                />
                 {loading ? (
                   // <LoadingScreen
                   //   loading={loading}
@@ -352,7 +363,11 @@ const CreateCourse = () => {
             </Grid>
             <Grid item xs={12} sm={12} lg={6} md={6}>
               {objectives.map((objective, index) => (
-                <div key={index} className={classes.fullWidth} style={{ display: "flex" }}>
+                <div
+                  key={index}
+                  className={classes.fullWidth}
+                  style={{ display: "flex" }}
+                >
                   <TextField
                     id="outlined-basic"
                     label="Objective"
@@ -361,7 +376,9 @@ const CreateCourse = () => {
                     color="warning"
                     style={{ width: "100%" }}
                     value={objective.objective}
-                    onChange={(event) => handleChangeObjective(objective.id, event)}
+                    onChange={(event) =>
+                      handleChangeObjective(objective.id, event)
+                    }
                   />
                   <IconButton
                     style={{ marginLeft: "15px" }}
@@ -386,7 +403,11 @@ const CreateCourse = () => {
             </Grid>
             <Grid item xs={12} sm={12} lg={6} md={6}>
               {requirements.map((requirement, index) => (
-                <div key={index} className={classes.fullWidth} style={{ display: "flex" }}>
+                <div
+                  key={index}
+                  className={classes.fullWidth}
+                  style={{ display: "flex" }}
+                >
                   <TextField
                     id="outlined-basic"
                     label="Requirement"
@@ -395,7 +416,9 @@ const CreateCourse = () => {
                     color="warning"
                     style={{ width: "100%" }}
                     value={requirement.requrement}
-                    onChange={(event) => handleChangeRequirement(requirement.id, event)}
+                    onChange={(event) =>
+                      handleChangeRequirement(requirement.id, event)
+                    }
                   />
                   <IconButton
                     style={{ marginLeft: "15px" }}

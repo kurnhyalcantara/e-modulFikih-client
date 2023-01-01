@@ -9,7 +9,12 @@ const InstructionCoursesCard = ({ course }) => {
     <div>
       <div className={classes.root}>
         <Card sx={{ border: "none", boxShadow: "none" }}>
-          <img className={classes.cardimg} width="100%" src={course?.banner?.url} alt={course?.title} />
+          <img
+            className={classes.cardimg}
+            width="100%"
+            src={course?.banner?.url}
+            alt={course?.title}
+          />
           <button className={classes.tag}>{course?.category}</button>
           <h1 className={classes.heading}>
             <Typography component={Link} to={`/course_details/${course?._id}`}>
