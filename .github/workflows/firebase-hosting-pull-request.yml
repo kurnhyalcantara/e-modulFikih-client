@@ -16,12 +16,12 @@ jobs:
           node-version: 16.x
 
       - name: Install Dependencies
-        uses: borales/actions-yarn@v4
+        uses: Borales/actions-yarn@v4
         with:
           cmd: install
 
       - name: Build Production
-        uses: borales/action-yarn@v4
+        uses: Borales/actions-yarn@v4
         with:
           cmd: build
 
