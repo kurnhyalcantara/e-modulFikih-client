@@ -12,14 +12,18 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: Install Dependencies and Build
+      - name: Install Dependencies
         uses: borales/action-yarn@v4
-        with: 
+        with:
           cmd: install
+
+      - name: Build Production
         uses: borales/action-yarn@v4
         with:
           cmd: build
-      - uses: FirebaseExtended/action-hosting-deploy@v0
+
+      - name: Deploy Production
+        uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: "${{ secrets.GITHUB_TOKEN }}"
           firebaseServiceAccount: "${{ secrets.FIREBASE_SERVICE_ACCOUNT_FIKIH_MTSBONTOUSE }}"
