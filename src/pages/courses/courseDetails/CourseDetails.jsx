@@ -20,11 +20,11 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import { useNavigate, useParams } from "react-router-dom";
-import Transition from "../../components/transition/Transition";
 import DeskripsiCourse from "./CourseDescription";
 import "./CourseDetail.css";
 import CourseInstructur from "./CourseInstructur";
 import CourseTesti from "./CourseTesti";
+import Transition from "../../../components/transition/Transition";
 
 const TabPanel = ({ children, value, index, ...other }) => {
   return (
@@ -65,7 +65,8 @@ const CourseDetails = () => {
 
               setCourse(res.data);
               setLoading(false);
-              const ratings = courseDetails?.comments.map((rating) => rating.rating);
+              const ratings = courseDetails?.comments.map((comment) => comment.rating);
+              console.log(courseDetails);
               const total = ratings.reduce((acc, item) => (acc += item), 0).toFixed(1);
               const rating = total / ratings.length;
               if (rating > 0) {
