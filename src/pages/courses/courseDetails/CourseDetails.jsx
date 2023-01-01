@@ -48,7 +48,7 @@ const CourseDetails = () => {
   };
 
   const { courseId } = useParams();
-  const [course, setCourse] = useState([]);
+  const [course, setCourse] = useState({});
   const [rating, setRating] = useState(0);
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
@@ -62,7 +62,6 @@ const CourseDetails = () => {
           .then((res) => {
             if (res.status === 200) {
               const { courseDetails } = res.data;
-
               setCourse(res.data);
               setLoading(false);
               const ratings = courseDetails?.comments.map((comment) => comment.rating);

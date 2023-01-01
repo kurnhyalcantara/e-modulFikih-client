@@ -32,6 +32,7 @@
     "eslint-plugin-react-hooks": "^4.6.0",
     "firebase-tools": "^11.19.0",
     "framer-motion": "6.2.4",
+    "html-parser-react": "^1.1.2",
     "html-react-parser": "^1.4.8",
     "moment": "^2.29.1",
     "prettier": "^2.8.1",

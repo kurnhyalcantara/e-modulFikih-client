@@ -12,10 +12,10 @@ import Registration from "./pages/auth/registration/Registration";
 import Profile from "./pages/profile/Profile";
 import AllCourse from "./pages/courses/AllCourse";
 import CourseDetails from "./pages/courses/courseDetails/CourseDetails";
+import EnrollStudent from "./pages/courses/enroll/Enroll";
 import Blogs from "./pages/blogs/allBlogs/Blogs";
 import BlogDetails from "./pages/blogs/blogDetails/BlogDetails";
 import CreateCourse from "./pages/createCourse/CreateCourse";
-import EnrollStudent from "./pages/home/enroll/enroll";
 import InstructorDashboard from "./pages/instrucrorDashboard/InstructorDashboard";
 import AddLesson from "./pages/instrucrorDashboard/singleCourse/addLesson/AddLesson";
 import AddTask from "./pages/instrucrorDashboard/singleCourse/addTask/AddTask";
@@ -119,7 +119,6 @@ const AnimationRoutes = () => {
 
 function App() {
   const theme = useTheme;
-
   return (
     <ThemeProvider theme={theme}>
       <Router>

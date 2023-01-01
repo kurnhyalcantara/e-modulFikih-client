@@ -2,12 +2,11 @@ import StarRateIcon from "@mui/icons-material/StarRate";
 import { Avatar, Box, CardContent, CardMedia, Divider, Typography, useTheme } from "@mui/material";
 import Card from "@mui/material/Card";
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import "./Card.css";
 import { AccessTimeTwoTone } from "@mui/icons-material";
 
-const Cards = ({ item, type }) => {
+const Cards = ({ item }) => {
   const theme = useTheme();
   const [rating, setRating] = useState(0);
 
@@ -45,7 +44,7 @@ const Cards = ({ item, type }) => {
             </button>
           );
         })}
-        <Typography variant="h5" component={Link} className="heading" to={`/${type}/${item?._id}`}>
+        <Typography variant="h5" className="heading" fontWeight="700">
           {item?.title}
         </Typography>
         <Box className="instructor">

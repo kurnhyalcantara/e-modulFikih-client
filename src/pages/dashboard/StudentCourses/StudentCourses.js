@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import { useContext } from "react";
 import Carousel from "react-grid-carousel";
 import { GlobalState } from "../../../GlobalState";
 import StudentCoursesCard from "../StudentCoursesCard/StudentCoursesCard";

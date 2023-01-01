@@ -8115,6 +8115,11 @@ html-minifier-terser@^5.0.1:
     relateurl "^0.2.7"
     terser "^4.6.3"
 
+html-parser-react@^1.1.2:
+  version "1.1.2"
+  resolved "https://registry.yarnpkg.com/html-parser-react/-/html-parser-react-1.1.2.tgz#7eca73a2a757506f22ce16a8895daf6ecaaaecf2"
+  integrity sha512-nXQnwtGlEQjqW6bsGzbOuK/rIbJUS3GNn9yRNMbf03NtMxNElmeMNr2jGx6luvVmGmviYMojn2PXoM5HGU1OWw==
+
 html-react-parser@^1.4.8:
   version "1.4.14"
   resolved "https://registry.yarnpkg.com/html-react-parser/-/html-react-parser-1.4.14.tgz#577b7a90be0c61eebbbc488d914ad08398c79ef5"

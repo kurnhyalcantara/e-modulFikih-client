@@ -16,6 +16,7 @@ import PropTypes from "prop-types";
 import Box from "@mui/material/Box";
 import Tab from "@mui/material/Tab";
 import CardCourse from "../../components/Cards/Card";
+import { Link } from "react-router-dom";
 
 const CoursesTab = () => {
   const theme = useTheme();
@@ -106,8 +107,15 @@ const CoursesTab = () => {
                           .filter((item) => item.kelas === tab)
                           .slice(0, 4)
                           .map((item, i) => (
-                            <Grid item key={`course${i}`} md={3} sx={{ mt: "1.5rem" }}>
-                              <CardCourse key={i} item={item} type="details" />
+                            <Grid
+                              item
+                              key={`course${i}`}
+                              md={3}
+                              sx={{ mt: "1.5rem" }}
+                              component={Link}
+                              to={`/details/${item._id}`}
+                            >
+                              <CardCourse key={i} item={item} />
                             </Grid>
                           ))}
                     </Grid>
