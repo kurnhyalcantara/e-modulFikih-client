@@ -43,6 +43,7 @@ import { ThemeProvider } from "@mui/material/styles";
 import { useTheme } from "./styles/Theme";
 import ScrollToTop from "./utils/ScrollToTop";
 import CorridorClass from "./pages/dashboard/corridorClass/CorridorClass";
+import SingleMateri from "./pages/dashboard/corridorClass/SingleMateri";
 
 axios.defaults.withCredentials = true;
 
@@ -65,11 +66,12 @@ const AnimationRoutes = () => {
         <Route path="/details/:courseId" element={<CourseDetails />} />
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/corridor/:courseId" element={<CorridorClass />} />
+        <Route path="/logout" element={<Home />} />
+        <Route path="/materi/:courseId" element={<SingleMateri />} />
         <Route
           path="/single_course_details/:courseId"
           element={<SingleCourseDetails />}
         />
-        <Route path="/logout" element={<Home />} />
         <Route
           path="/instructor_dashboard"
           element={isLogged ? <InstructorDashboard /> : <NotFound />}

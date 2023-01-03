@@ -1,0 +1,11 @@
+.heading-materi {
+  display: flex;
+  align-items: center;
+  height: 50px;
+  padding-left: 2rem;
+}
+
+.content-materi {
+  padding: 2rem;
+  width: 100%;
+}
