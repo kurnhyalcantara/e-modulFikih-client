@@ -36,11 +36,11 @@ const GeneralInformation = () => {
   const [namaLengkap, setNamaLengkap] = useState("");
   const [namaPanggilan, setNamaPanggilan] = useState("");
   const [sekolah, setSekolah] = useState("");
-  const [kelas, setKelas] = useState("tujuh");
+  const [kelas, setKelas] = useState("");
   const [nis, setNis] = useState("");
   const [mobile, setMobile] = useState("");
   const [tanggalLahir, setTanggalLahir] = useState(dayjs("2010-01-01"));
-  const [jenisKelamin, setJenisKelamin] = useState("");
+  const [jenisKelamin, setJenisKelamin] = useState("male");
   const [image, setImage] = useState({});
   const [avatarLetter, setAvatarLetter] = useState("");
   const [labelSubmit, setLabelSubmit] = useState("Simpan");

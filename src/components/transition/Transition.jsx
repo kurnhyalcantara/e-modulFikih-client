@@ -21,7 +21,7 @@ const Transition = ({ children }) => {
 };
 
 Transition.propTypes = {
-  children: PropTypes.array,
+  children: PropTypes.element,
 };
 
 export default Transition;

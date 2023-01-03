@@ -27,6 +27,9 @@ const GeneralSetting = () => {
   const handleSubmitChangePassword = async (e) => {
     try {
       e.preventDefault();
+      if (newPassword !== confirmNewPassword) {
+        return toast.error("Password baru dan konfirmasinya tidak cocok");
+      }
       setSubmitDisable(true);
       setSubmitLabel("Loading");
       await axios

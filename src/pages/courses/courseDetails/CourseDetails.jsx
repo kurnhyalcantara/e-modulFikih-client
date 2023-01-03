@@ -69,7 +69,7 @@ const CourseDetails = () => {
               const { courseDetails } = res.data;
               setCourse(res.data);
               setLoading(false);
-              const ratings = courseDetails?.comments.map(
+              const ratings = courseDetails?.testimoni.map(
                 (comment) => comment.rating
               );
               console.log(courseDetails);
