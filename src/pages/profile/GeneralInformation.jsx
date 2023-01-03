@@ -24,9 +24,10 @@ import {
   BootstrapedInput,
   SelectInputStyled,
 } from "../../components/Input/BootstrapedInput";
-import { DatePicker, LocalizationProvider } from "@mui/lab";
-import AdapterDayjs from "@mui/lab/AdapterDayjs";
 import { toCapitalize } from "../../utils/StringModify";
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
+import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 
 const GeneralInformation = () => {
   const state = useContext(GlobalState);
