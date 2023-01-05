@@ -67,7 +67,7 @@
     "workbox": "^0.0.0"
   },
   "scripts": {
-    "dev": "react-scripts start",
+    "dev": "react-scripts --openssl-legacy-provider start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "fix": "concurrently npm:fix:*",

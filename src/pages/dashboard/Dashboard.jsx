@@ -39,31 +39,37 @@ const Dashboard = () => {
                   ></LocalActivityRounded>
                   <Typography>Aktivitas Belajar</Typography>
                 </Box>
-                <Box className="contentCard">
-                  {list.map((enrolled, index) => {
-                    return (
-                      <Box className="course-enrolled" key={index}>
-                        <Box id="status-enrolled">
-                          <Typography fontSize="14px" fontWeight="700">
-                            Sedang Dipelajari
-                          </Typography>
-                          <Typography>
-                            {enrolled?.courseDetails?.title}
-                          </Typography>
+                {list.length ? (
+                  <Box className="contentCard">
+                    {list.map((enrolled, index) => {
+                      return (
+                        <Box className="course-enrolled" key={index}>
+                          <Box id="status-enrolled">
+                            <Typography fontSize="14px" fontWeight="700">
+                              Sedang Dipelajari
+                            </Typography>
+                            <Typography>
+                              {enrolled?.courseDetails?.title}
+                            </Typography>
+                          </Box>
+                          <Box id="open-enrolled">
+                            <Typography
+                              color="primary"
+                              component={Link}
+                              to={`/corridor/${enrolled?.courseDetails._id}`}
+                            >
+                              Lanjutkan
+                            </Typography>
+                          </Box>
                         </Box>
-                        <Box id="open-enrolled">
-                          <Typography
-                            color="primary"
-                            component={Link}
-                            to={`/corridor/${enrolled?.courseDetails._id}`}
-                          >
-                            Lanjutkan
-                          </Typography>
-                        </Box>
-                      </Box>
-                    );
-                  })}
-                </Box>
+                      );
+                    })}
+                  </Box>
+                ) : (
+                  <Box className="contentCard">
+                    <Link to={`/courses`}>Cari Materi</Link>
+                  </Box>
+                )}
               </Box>
             </Grid>
             <Grid item xs={12} md={6}>

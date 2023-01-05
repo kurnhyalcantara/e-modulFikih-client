@@ -163,7 +163,6 @@ const Login = () => {
                         setMobile(e.target.value);
                       }}
                       value={mobile}
-                      autoFocus
                       error={errorMobile}
                       onFocus={() => {
                         setErrorMobile(false);

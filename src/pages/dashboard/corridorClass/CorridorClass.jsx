@@ -58,6 +58,14 @@ const CorridorClass = () => {
             >
               Lanjut Belajar
             </Button>
+            <Button
+              className="rounded-button"
+              sx={{ marginY: "1rem", marginLeft: "1rem" }}
+              component={Link}
+              to={`/lesson/${course?._id}`}
+            >
+              Ambil ujian
+            </Button>
           </Box>
           <Divider />
           <Box className="student-activity">
