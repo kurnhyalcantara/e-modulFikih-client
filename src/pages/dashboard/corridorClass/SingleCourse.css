@@ -1,0 +1,14 @@
+.content-materi {
+  padding: 2rem;
+  text-align: justify;
+}
+
+.stepper-flow {
+  width: calc(100% - 32px);
+  z-index: 99;
+  position: fixed;
+  bottom: 0;
+  padding: 1rem;
+  filter: drop-shadow(0 8px 15px rgb(0 14 61 / 40%));
+  background-color: #fff;
+}

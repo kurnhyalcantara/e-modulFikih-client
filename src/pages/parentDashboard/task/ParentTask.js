@@ -72,7 +72,9 @@ const ParentTask = ({ item }) => {
           </div>
         </div>
         <Typography sx={{ mt: 5 }}>Submitted Answer: </Typography>
-        {mark[0]?.answer && <Typography>{mark[0]?.answer && parse(mark[0]?.answer)}</Typography>}
+        {mark[0]?.answer && (
+          <Typography>{mark[0]?.answer && parse(mark[0]?.answer)}</Typography>
+        )}
       </div>
     </div>
   );

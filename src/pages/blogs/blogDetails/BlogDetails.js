@@ -16,12 +16,14 @@ const BlogDetails = () => {
     if (blogId) {
       const getBlogDetail = async () => {
         setLoading(true);
-        await axios.get(`http://localhost:4000/api/admin/blog/${blogId}`).then((res) => {
-          if (res.status === 200) {
-            setBlog(res.data);
-            setLoading(false);
-          }
-        });
+        await axios
+          .get(`http://localhost:4000/api/admin/blog/${blogId}`)
+          .then((res) => {
+            if (res.status === 200) {
+              setBlog(res.data);
+              setLoading(false);
+            }
+          });
       };
       getBlogDetail();
     }
@@ -37,11 +39,18 @@ const BlogDetails = () => {
           <h1 className={classes.title}>{blog?.title}</h1>
           <p className={classes.cardTxt}>
             <small className={classes.titleFooter}>
-              <PersonOutlineIcon /> Elearning • {new Date(blog?.createdAt).toDateString()}
+              <PersonOutlineIcon /> Elearning •{" "}
+              {new Date(blog?.createdAt).toDateString()}
             </small>
           </p>
-          <img className={classes.image} src={blog?.images?.url} alt={blog?.title} />
-          <p className="border-top mt-4 py-4">{blog?.description && parse(blog?.description)}</p>
+          <img
+            className={classes.image}
+            src={blog?.images?.url}
+            alt={blog?.title}
+          />
+          <p className="border-top mt-4 py-4">
+            {blog?.description && parse(blog?.description)}
+          </p>
         </Container>
       )}
     </div>

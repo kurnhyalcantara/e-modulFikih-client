@@ -6,7 +6,9 @@ function BlogCategoryAPI() {
   const [callback, setCallback] = useState(false);
 
   const getCategory = async () => {
-    const res = await axios.get("http://localhost:4000/api/admin/blog_cetegory");
+    const res = await axios.get(
+      "http://localhost:4000/api/admin/blog_cetegory"
+    );
     setCategories(res.data.categories);
   };
   useEffect(() => {

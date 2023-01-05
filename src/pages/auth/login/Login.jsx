@@ -16,7 +16,10 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
-import { AdornmentInputPassword, BootstrapedInput } from "../../../components/Input/BootstrapedInput";
+import {
+  AdornmentInputPassword,
+  BootstrapedInput,
+} from "../../../components/Input/BootstrapedInput";
 import "./Login.css";
 import Transition from "../../../components/transition/Transition";
 import { useEffect } from "react";
@@ -124,14 +127,32 @@ const Login = () => {
                 }}
               >
                 <form id="login-submit">
-                  <Typography variant="h4" fontWeight="700" color={theme.palette.text.primary} textAlign="center">
+                  <Typography
+                    variant="h4"
+                    fontWeight="700"
+                    color={theme.palette.text.primary}
+                    textAlign="center"
+                  >
                     Halo!
                   </Typography>
-                  <Typography color={theme.palette.text.secondary} textAlign="center" marginBottom={5}>
+                  <Typography
+                    color={theme.palette.text.secondary}
+                    textAlign="center"
+                    marginBottom={5}
+                  >
                     Masuk untuk belajar sekarang
                   </Typography>
-                  <FormControl fullWidth variant="standard" error={errorMobile} sx={{ marginTop: "1rem" }}>
-                    <InputLabel shrink htmlFor="nis-login-input" sx={{ fontWeight: "700" }}>
+                  <FormControl
+                    fullWidth
+                    variant="standard"
+                    error={errorMobile}
+                    sx={{ marginTop: "1rem" }}
+                  >
+                    <InputLabel
+                      shrink
+                      htmlFor="nis-login-input"
+                      sx={{ fontWeight: "700" }}
+                    >
                       No. HP
                     </InputLabel>
                     <BootstrapedInput
@@ -148,12 +169,24 @@ const Login = () => {
                         setErrorMobile(false);
                       }}
                     />
-                    <FormHelperText id="componentMobileInput" hidden={!errorMobile}>
+                    <FormHelperText
+                      id="componentMobileInput"
+                      hidden={!errorMobile}
+                    >
                       {errorMobileMsg}
                     </FormHelperText>
                   </FormControl>
-                  <FormControl fullWidth variant="standard" sx={{ marginTop: "1rem" }} error={errorPassword}>
-                    <InputLabel shrink htmlFor="password-input" sx={{ fontWeight: "700" }}>
+                  <FormControl
+                    fullWidth
+                    variant="standard"
+                    sx={{ marginTop: "1rem" }}
+                    error={errorPassword}
+                  >
+                    <InputLabel
+                      shrink
+                      htmlFor="password-input"
+                      sx={{ fontWeight: "700" }}
+                    >
                       Password
                     </InputLabel>
                     <div className="container-input-adornment">
@@ -182,7 +215,10 @@ const Login = () => {
                         </IconButton>
                       </Box>
                     </div>
-                    <FormHelperText id="helper-password" hidden={!errorPassword}>
+                    <FormHelperText
+                      id="helper-password"
+                      hidden={!errorPassword}
+                    >
                       {errorHelperPassword}
                     </FormHelperText>
                   </FormControl>
@@ -198,7 +234,10 @@ const Login = () => {
                   >
                     {labelSubmit}
                   </Button>
-                  <Typography color={theme.palette.text.secondary} sx={{ textAlign: "center" }}>
+                  <Typography
+                    color={theme.palette.text.secondary}
+                    sx={{ textAlign: "center" }}
+                  >
                     Belum punya akun? <Link to="/registration">Daftar</Link>
                   </Typography>
                 </form>

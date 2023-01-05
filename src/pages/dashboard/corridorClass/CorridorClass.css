@@ -1,0 +1,15 @@
+.corridor-container {
+  padding: 0.8rem 1.5rem;
+}
+
+.student-activity {
+  background: #f4f4f4;
+  padding: 1.5rem;
+}
+
+.activity-card {
+  padding: 1.5rem;
+  border-radius: 1rem;
+  background-color: #fff;
+  border: 1px solid #e5e5e5;
+}

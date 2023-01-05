@@ -19,10 +19,15 @@ import axios from "axios";
 import dayjs from "dayjs";
 import { toast } from "react-toastify";
 import { PhotoCamera } from "@mui/icons-material";
-import { AdornmentInputPhone, BootstrapedInput, SelectInputStyled } from "../../components/Input/BootstrapedInput";
-import { DatePicker, LocalizationProvider } from "@mui/lab";
-import AdapterDayjs from "@mui/lab/AdapterDayjs";
+import {
+  AdornmentInputPhone,
+  BootstrapedInput,
+  SelectInputStyled,
+} from "../../components/Input/BootstrapedInput";
 import { toCapitalize } from "../../utils/StringModify";
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
+import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 
 const GeneralInformation = () => {
   const state = useContext(GlobalState);
@@ -31,11 +36,11 @@ const GeneralInformation = () => {
   const [namaLengkap, setNamaLengkap] = useState("");
   const [namaPanggilan, setNamaPanggilan] = useState("");
   const [sekolah, setSekolah] = useState("");
-  const [kelas, setKelas] = useState("tujuh");
+  const [kelas, setKelas] = useState("");
   const [nis, setNis] = useState("");
   const [mobile, setMobile] = useState("");
   const [tanggalLahir, setTanggalLahir] = useState(dayjs("2010-01-01"));
-  const [jenisKelamin, setJenisKelamin] = useState("");
+  const [jenisKelamin, setJenisKelamin] = useState("male");
   const [image, setImage] = useState({});
   const [avatarLetter, setAvatarLetter] = useState("");
   const [labelSubmit, setLabelSubmit] = useState("Simpan");
@@ -126,8 +131,19 @@ const GeneralInformation = () => {
           overlap="circular"
           anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
           badgeContent={
-            <IconButton color="primary" aria-label="Upload Foto Profile" component="label">
-              <input hidden accept="image/*" type="file" name="file" id="user_file_up" onChange={handleUpload} />
+            <IconButton
+              color="primary"
+              aria-label="Upload Foto Profile"
+              component="label"
+            >
+              <input
+                hidden
+                accept="image/*"
+                type="file"
+                name="file"
+                id="user_file_up"
+                onChange={handleUpload}
+              />
               <PhotoCamera />
             </IconButton>
           }
@@ -141,9 +157,22 @@ const GeneralInformation = () => {
           </Avatar>
         </Badge>
       </Box>
-      <form id="edit-profile-form" className="edit-information-container" onSubmit={handleSubmit}>
-        <FormControl fullWidth variant="standard" className="edit-information-input" required>
-          <InputLabel shrink htmlFor="nama-lengkap-input" sx={{ fontWeight: "700" }}>
+      <form
+        id="edit-profile-form"
+        className="edit-information-container"
+        onSubmit={handleSubmit}
+      >
+        <FormControl
+          fullWidth
+          variant="standard"
+          className="edit-information-input"
+          required
+        >
+          <InputLabel
+            shrink
+            htmlFor="nama-lengkap-input"
+            sx={{ fontWeight: "700" }}
+          >
             Nama Lengkap
           </InputLabel>
           <BootstrapedInput
@@ -156,8 +185,16 @@ const GeneralInformation = () => {
             value={namaLengkap}
           />
         </FormControl>
-        <FormControl fullWidth variant="standard" className="edit-information-input">
-          <InputLabel shrink htmlFor="nama-panggilan-input" sx={{ fontWeight: "700" }}>
+        <FormControl
+          fullWidth
+          variant="standard"
+          className="edit-information-input"
+        >
+          <InputLabel
+            shrink
+            htmlFor="nama-panggilan-input"
+            sx={{ fontWeight: "700" }}
+          >
             Nama Panggilan
           </InputLabel>
           <BootstrapedInput
@@ -170,7 +207,12 @@ const GeneralInformation = () => {
             value={namaPanggilan}
           />
         </FormControl>
-        <FormControl fullWidth variant="standard" className="edit-information-input" required>
+        <FormControl
+          fullWidth
+          variant="standard"
+          className="edit-information-input"
+          required
+        >
           <InputLabel shrink htmlFor="sekolah-input" sx={{ fontWeight: "700" }}>
             Sekolah
           </InputLabel>
@@ -185,8 +227,17 @@ const GeneralInformation = () => {
             className="edit-information-input"
           />
         </FormControl>
-        <FormControl fullWidth variant="standard" className="edit-information-input" required>
-          <InputLabel shrink htmlFor="class-student-select" sx={{ fontWeight: "700" }}>
+        <FormControl
+          fullWidth
+          variant="standard"
+          className="edit-information-input"
+          required
+        >
+          <InputLabel
+            shrink
+            htmlFor="class-student-select"
+            sx={{ fontWeight: "700" }}
+          >
             Pilih Kelas
           </InputLabel>
           <Select
@@ -203,7 +254,12 @@ const GeneralInformation = () => {
             <MenuItem value={"sembilan"}>Kelas IX</MenuItem>
           </Select>
         </FormControl>
-        <FormControl fullWidth variant="standard" className="edit-information-input" required>
+        <FormControl
+          fullWidth
+          variant="standard"
+          className="edit-information-input"
+          required
+        >
           <InputLabel shrink htmlFor="nis-input" sx={{ fontWeight: "700" }}>
             NIS
           </InputLabel>
@@ -217,7 +273,12 @@ const GeneralInformation = () => {
             value={nis}
           />
         </FormControl>
-        <FormControl fullWidth variant="standard" className="edit-information-input" required>
+        <FormControl
+          fullWidth
+          variant="standard"
+          className="edit-information-input"
+          required
+        >
           <InputLabel shrink htmlFor="phone-input" sx={{ fontWeight: "700" }}>
             Nomor Telepon
           </InputLabel>
@@ -247,7 +308,11 @@ const GeneralInformation = () => {
             />
           </div>
         </FormControl>
-        <InputLabel shrink htmlFor="tanggal-lahir-input" sx={{ fontWeight: "700" }}>
+        <InputLabel
+          shrink
+          htmlFor="tanggal-lahir-input"
+          sx={{ fontWeight: "700" }}
+        >
           Tanggal Lahir
         </InputLabel>
         <LocalizationProvider dateAdapter={AdapterDayjs}>
@@ -263,8 +328,16 @@ const GeneralInformation = () => {
             renderInput={(params) => <TextField fullWidth {...params} />}
           />
         </LocalizationProvider>
-        <FormControl fullWidth variant="standard" className="edit-information-input">
-          <InputLabel shrink htmlFor="jenis-kelamin-input" sx={{ fontWeight: "700" }}>
+        <FormControl
+          fullWidth
+          variant="standard"
+          className="edit-information-input"
+        >
+          <InputLabel
+            shrink
+            htmlFor="jenis-kelamin-input"
+            sx={{ fontWeight: "700" }}
+          >
             Jenis Kelamin
           </InputLabel>
           <RadioGroup
@@ -276,8 +349,16 @@ const GeneralInformation = () => {
             }}
             sx={{ marginTop: "1rem" }}
           >
-            <FormControlLabel value="male" control={<Radio />} label="Laki-Laki" />
-            <FormControlLabel value="female" control={<Radio />} label="Perempuan" />
+            <FormControlLabel
+              value="male"
+              control={<Radio />}
+              label="Laki-Laki"
+            />
+            <FormControlLabel
+              value="female"
+              control={<Radio />}
+              label="Perempuan"
+            />
           </RadioGroup>
         </FormControl>
         <Button

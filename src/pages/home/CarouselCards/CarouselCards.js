@@ -1,4 +1,11 @@
-import { CardActionArea, CardContent, Grid, Grow, Skeleton, Typography } from "@mui/material";
+import {
+  CardActionArea,
+  CardContent,
+  Grid,
+  Grow,
+  Skeleton,
+  Typography,
+} from "@mui/material";
 import React, { useContext } from "react";
 import Carousel from "react-grid-carousel";
 import Card from "../../../components/Cards/Card";
@@ -25,7 +32,11 @@ const CarouselCards = ({ courseList }) => {
                       <Typography gutterBottom variant="h5" component="h2">
                         <Skeleton height={20} width="100%" />
                       </Typography>
-                      <Typography variant="body2" color="textSecondary" component="p">
+                      <Typography
+                        variant="body2"
+                        color="textSecondary"
+                        component="p"
+                      >
                         <Skeleton height={10} width="100%" count={5} />
                       </Typography>
                     </CardContent>
