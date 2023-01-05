@@ -67,7 +67,7 @@ const AnimationRoutes = () => {
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/corridor/:courseId" element={<CorridorClass />} />
         <Route path="/logout" element={<Home />} />
-        <Route path="/materi/:courseId" element={<SingleMateri />} />
+        <Route path="/lesson/:courseId" element={<SingleMateri />} />
         <Route
           path="/single_course_details/:courseId"
           element={<SingleCourseDetails />}

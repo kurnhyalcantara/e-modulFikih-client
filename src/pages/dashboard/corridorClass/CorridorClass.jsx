@@ -11,7 +11,7 @@ import {
 import axios from "axios";
 import PropTypes from "prop-types";
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import Transition from "../../../components/transition/Transition";
 import "./CorridorClass.css";
 
@@ -53,6 +53,8 @@ const CorridorClass = () => {
               className="bootstraped-button"
               variant="contained"
               sx={{ marginY: "1rem" }}
+              component={Link}
+              to={`/lesson/${course?._id}`}
             >
               Lanjut Belajar
             </Button>
