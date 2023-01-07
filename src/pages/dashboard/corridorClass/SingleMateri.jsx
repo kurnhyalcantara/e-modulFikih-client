@@ -14,7 +14,6 @@ const SingleMateri = () => {
   const theme = useTheme();
   const { courseId } = useParams();
   const [activeStep, setActiveStep] = useState(0);
-  let maxStep = 0;
   const [lesson, setLesson] = useState([]);
   const [loading, setLoading] = useState(false);
 
@@ -46,8 +45,6 @@ const SingleMateri = () => {
     setActiveStep((prevActiveStep) => prevActiveStep - 1);
   };
 
-  maxStep = lesson.length;
-
   return (
     <Transition>
       {loading ? (
@@ -60,7 +57,7 @@ const SingleMateri = () => {
           <Box className="stepper-flow">
             <MobileStepper
               variant="text"
-              steps={maxStep}
+              steps={lesson.length}
               position="static"
               activeStep={activeStep}
               backButton={
@@ -80,7 +77,7 @@ const SingleMateri = () => {
               nextButton={
                 <Button
                   size="small"
-                  disabled={activeStep === maxStep - 1}
+                  disabled={activeStep === lesson.length - 1}
                   onClick={handleNext}
                 >
                   Next

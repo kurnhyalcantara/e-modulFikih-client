@@ -56,13 +56,13 @@ const CorridorClass = () => {
               component={Link}
               to={`/lesson/${course?._id}`}
             >
-              Lanjut Belajar
+              Materi
             </Button>
             <Button
               className="rounded-button"
               sx={{ marginY: "1rem", marginLeft: "1rem" }}
               component={Link}
-              to={`/lesson/${course?._id}`}
+              to={`/submission/${course?._id}`}
             >
               Ambil ujian
             </Button>
