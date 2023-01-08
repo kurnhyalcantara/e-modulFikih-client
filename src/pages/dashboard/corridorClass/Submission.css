@@ -31,3 +31,39 @@
   filter: drop-shadow(0 8px 15px rgb(0 14 61 / 40%));
   background-color: #fff;
 }
+
+.soal {
+  margin-bottom: 0.8rem;
+}
+
+.opsi-container {
+  margin-top: 1.2rem;
+  margin-left: -40px;
+}
+
+.opsi-jawaban {
+  text-decoration: none;
+  list-style: none;
+  border-radius: 1rem;
+  border: 1px solid #e6e6e6;
+  padding: 0.8rem;
+  margin-top: 0.9rem;
+  cursor: pointer;
+  background: transparent;
+}
+
+.selected-answer {
+  background: rgba(1, 124, 32, 0.705);
+  transition: 0.3s 0s ease;
+  text-decoration: none;
+  list-style: none;
+  border-radius: 1rem;
+  border: 1px solid #15a545;
+  padding: 0.8rem;
+  margin-top: 0.9rem;
+  cursor: pointer;
+}
+
+.button-next {
+  text-align: right;
+}

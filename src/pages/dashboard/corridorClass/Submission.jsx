@@ -2,8 +2,10 @@ import {
   Box,
   Button,
   Divider,
-  Grid,
+  FormControlLabel,
   MobileStepper,
+  Radio,
+  RadioGroup,
   Typography,
   useTheme,
 } from "@mui/material";
@@ -15,6 +17,8 @@ import {
   KeyboardArrowLeftRounded,
   KeyboardArrowRightRounded,
 } from "@mui/icons-material";
+import { useParams } from "react-router-dom";
+import axios from "axios";
 
 const BoxSoal = ({ active, children }) => {
   return (
@@ -37,15 +41,29 @@ BoxSoal.propTypes = {
 
 const Submission = () => {
   const theme = useTheme();
-  const [[mins, secs], setTime] = useState([15, 0]);
+  const { courseId } = useParams();
+  const [[mins, secs], setTime] = useState([10, 0]);
   const [activeStep, setActiveStep] = useState(0);
+  const [submission, setSubmission] = useState([]);
+  const [jawaban, setJawaban] = useState("");
+  const [loading, setLoading] = useState(false);
+  const submissionLen = submission.length;
+  const nomorSoal = new Array(submissionLen);
+  const [result, setResult] = useState({
+    score: 0,
+  });
+
+  for (let i = submissionLen; i > 0; i--) {
+    nomorSoal[i - 1] = i;
+  }
 
   const handleNext = () => {
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
-  };
-
-  const handleBack = () => {
-    setActiveStep((prevActiveStep) => prevActiveStep - 1);
+    if (jawaban === submission[activeStep]?.kunci) {
+      setResult({
+        score: result.score + 1 * 10,
+      });
+    }
   };
 
   useEffect(() => {
@@ -59,74 +77,101 @@ const Submission = () => {
     return () => clearInterval(timerInterval);
   });
 
-  const numSoal = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15];
+  useEffect(() => {
+    console.log(result);
+  }, [result]);
+
+  useEffect(() => {
+    const getTaskLesson = async () => {
+      if (courseId) {
+        setLoading(true);
+        await axios
+          .get(`http://localhost:4000/api/task/${courseId}`)
+          .then((res) => {
+            const submission = res.data.tasks[0].submission;
+            setSubmission(submission);
+            setLoading(false);
+          })
+          .catch((err) => {
+            console.log(err.response.data.msg);
+          });
+      }
+    };
+    getTaskLesson();
+  }, [courseId]);
+
   return (
     <Transition>
-      <Box className="submission-container">
-        <Box className="timer-submission">
-          <Button className="timer" type="button" color="error">
-            Sisa Waktu{" "}
-            {`${mins.toString().padStart(2, "0")}:${secs
-              .toString()
-              .padStart(2, "0")}`}
-          </Button>
-        </Box>
-        <Divider></Divider>
-        <Box className="category-submission">
-          <Typography fontWeight="700">Soal kategori</Typography>
-        </Box>
-        <Box className="number-submission">
-          <Grid container spacing={1}>
-            {numSoal.map((num, index) => {
-              return (
-                <Grid item key={index}>
-                  <BoxSoal>{num}</BoxSoal>
-                </Grid>
-              );
-            })}
-          </Grid>
-        </Box>
-        <Divider></Divider>
-        <Box className="soal-submission">
-          <Typography className="soal"></Typography>
-        </Box>
-        <Box className="stepper-flow">
-          <MobileStepper
-            variant="text"
-            steps={15}
-            position="static"
-            activeStep={activeStep}
-            backButton={
-              <Button
-                size="small"
-                onClick={handleBack}
-                disabled={activeStep === 0}
+      {loading ? (
+        <div className="loading">Loading&#8230;</div>
+      ) : (
+        <Box className="submission-container">
+          <Box className="timer-submission">
+            <Button className="timer" type="button" color="error">
+              Sisa Waktu{" "}
+              {`${mins.toString().padStart(2, "0")}:${secs
+                .toString()
+                .padStart(2, "0")}`}
+            </Button>
+          </Box>
+          <Box className="number-submission">
+            {/* <Grid container spacing={1}>
+              {nomorSoal.map((num, index) => {
+                return (
+                  <Grid item key={index}>
+                    <BoxSoal active={mark}>{num}</BoxSoal>
+                  </Grid>
+                );
+              })}
+            </Grid> */}
+            <Typography sx={{ marginTop: "1rem" }}>
+              Skor Anda: {result.score}
+            </Typography>
+          </Box>
+          <Divider></Divider>
+          <Box className="soal-submission">
+            <Typography className="soal">
+              {submission[activeStep]?.soal}
+            </Typography>
+            <Box className="jawaban">
+              <RadioGroup
+                name="opsi-jawaban-radio-group"
+                onChange={(e) => setJawaban(e.target.value)}
               >
-                {theme.direction === "rtl" ? (
-                  <KeyboardArrowRightRounded />
-                ) : (
-                  <KeyboardArrowLeftRounded />
-                )}
-                Back
-              </Button>
-            }
-            nextButton={
-              <Button
-                size="small"
-                disabled={activeStep === 15 - 1}
-                onClick={handleNext}
-              >
-                Next
-                {theme.direction === "rtl" ? (
-                  <KeyboardArrowLeftRounded />
-                ) : (
-                  <KeyboardArrowRightRounded />
-                )}
-              </Button>
-            }
-          ></MobileStepper>
+                {submission[activeStep]?.opsi.map((op, index) => {
+                  return (
+                    <FormControlLabel
+                      value={op}
+                      label={op}
+                      name={submission[activeStep]?.no}
+                      key={index}
+                      control={<Radio />}
+                    ></FormControlLabel>
+                  );
+                })}
+              </RadioGroup>
+            </Box>
+          </Box>
+          <Box className="stepper-flow">
+            <MobileStepper
+              variant="text"
+              steps={nomorSoal.length}
+              position="static"
+              activeStep={activeStep}
+              nextButton={
+                <Button size="small" onClick={handleNext}>
+                  {activeStep === nomorSoal.length - 1 ? "Finish" : "Next"}
+                  {theme.direction === "rtl" ? (
+                    <KeyboardArrowLeftRounded />
+                  ) : (
+                    <KeyboardArrowRightRounded />
+                  )}
+                </Button>
+              }
+            ></MobileStepper>
+          </Box>
         </Box>
-      </Box>
+      )}
     </Transition>
   );
 };
