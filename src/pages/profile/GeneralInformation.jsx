@@ -54,12 +54,16 @@ const GeneralInformation = () => {
       formData.append("file", file);
       await toast.promise(
         axios
-          .post("http://localhost:4000/api/upload", formData, {
-            headers: {
-              "content-type": "multipart/form-data",
-              Authorization: token,
-            },
-          })
+          .post(
+            "https://api-fikih-mts-bontouse.herokuapp.com/api/upload",
+            formData,
+            {
+              headers: {
+                "content-type": "multipart/form-data",
+                Authorization: token,
+              },
+            }
+          )
           .then((res) => {
             setImage(res.data);
           }),
@@ -80,7 +84,7 @@ const GeneralInformation = () => {
     setLabelSubmit("Loading");
     await axios
       .put(
-        `http://localhost:4000/api/student/profile/update_data/${user._id}`,
+        `https://api-fikih-mts-bontouse.herokuapp.com/api/student/profile/update_data/${user._id}`,
         {
           namaLengkap: toCapitalize(namaLengkap),
           namaPanggilan: toCapitalize(namaPanggilan),

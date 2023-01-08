@@ -30,9 +30,12 @@ const CourseDiscussion = () => {
       const getList = async () => {
         setLoading(true);
         await axios
-          .get(`http://localhost:4000/api/discussion/single/${discussionId}`, {
-            headers: { Authorization: token },
-          })
+          .get(
+            `https://api-fikih-mts-bontouse.herokuapp.com/api/discussion/single/${discussionId}`,
+            {
+              headers: { Authorization: token },
+            }
+          )
           .then((res) => {
             if (res.status === 200) {
               const { discussion } = res.data;
@@ -49,7 +52,7 @@ const CourseDiscussion = () => {
     try {
       setLoading(true);
       await axios.put(
-        `http://localhost:4000/api/discussion/single/${discussionId}`,
+        `https://api-fikih-mts-bontouse.herokuapp.com/api/discussion/single/${discussionId}`,
         {
           answer: reply,
           user: user,
