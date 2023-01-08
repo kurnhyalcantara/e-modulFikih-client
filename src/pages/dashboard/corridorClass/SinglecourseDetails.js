@@ -55,7 +55,7 @@ const SingleCourseDetails = () => {
 
   const fetchList = async (list) => {
     await axios.patch(
-      "http://localhost:4000/api/course/enroll",
+      "https://api-fikih-mts-bontouse.herokuapp.com/api/course/enroll",
       { enrolled: list },
       {
         headers: { Authorization: token },
@@ -66,7 +66,9 @@ const SingleCourseDetails = () => {
   const getData = async () => {
     setLoading(true);
     await axios
-      .get(`http://localhost:4000/api/course_details/${courseId}`)
+      .get(
+        `https://api-fikih-mts-bontouse.herokuapp.com/api/course_details/${courseId}`
+      )
       .then((res) => {
         if (res.status === 200) {
           setCourse(res.data);

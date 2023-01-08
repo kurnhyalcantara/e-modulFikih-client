@@ -86,7 +86,9 @@ const Submission = () => {
       if (courseId) {
         setLoading(true);
         await axios
-          .get(`http://localhost:4000/api/task/${courseId}`)
+          .get(
+            `https://api-fikih-mts-bontouse.herokuapp.com/api/task/${courseId}`
+          )
           .then((res) => {
             const submission = res.data.tasks[0].submission;
             setSubmission(submission);

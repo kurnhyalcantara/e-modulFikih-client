@@ -12,7 +12,9 @@ function BlogAPI() {
     const getBlogs = async () => {
       setLoading(true);
       const res = await axios.get(
-        `http://localhost:4000/api/admin/blog?limit=${page * 6}`
+        `https://api-fikih-mts-bontouse.herokuapp.com/api/admin/blog?limit=${
+          page * 6
+        }`
       );
       setBlogs(res.data.blogs);
       setResult(res.data.result);

@@ -25,7 +25,9 @@ const CorridorClass = () => {
       if (courseId) {
         setLoading(true);
         await axios
-          .get(`http://localhost:4000/api/course_details/${courseId}`)
+          .get(
+            `https://api-fikih-mts-bontouse.herokuapp.com/api/course_details/${courseId}`
+          )
           .then((res) => {
             const { courseDetails } = res.data;
             setCourse(courseDetails);
