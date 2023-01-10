@@ -13,7 +13,7 @@ const Dashboard = () => {
 
   return (
     <Transition>
-      <Box className="dashboardContainer">
+      <Box className="dashboard-container">
         <Box className="jumbotron">
           <Container maxWidth="lg">
             <Typography
@@ -29,18 +29,22 @@ const Dashboard = () => {
             </Typography>
           </Container>
         </Box>
-        <Container maxWidth="lg" className="studentActivity">
+        <Container maxWidth="lg" className="student-activity">
           <Grid container spacing={4}>
             <Grid item xs={12} md={6}>
-              <Box className="learningPath">
-                <Box className="headingCard" display="flex" alignItems="center">
+              <Box className="learning-path">
+                <Box
+                  className="heading-card"
+                  display="flex"
+                  alignItems="center"
+                >
                   <LocalActivityRounded
                     sx={{ marginRight: "0.5rem" }}
                   ></LocalActivityRounded>
                   <Typography>Aktivitas Belajar</Typography>
                 </Box>
                 {list.length ? (
-                  <Box className="contentCard">
+                  <Box className="content-card">
                     {list.map((enrolled, index) => {
                       return (
                         <Box className="course-enrolled" key={index}>
@@ -66,16 +70,16 @@ const Dashboard = () => {
                     })}
                   </Box>
                 ) : (
-                  <Box className="contentCard">
+                  <Box className="content-card">
                     <Link to={`/courses`}>Cari Materi</Link>
                   </Box>
                 )}
               </Box>
             </Grid>
             <Grid item xs={12} md={6}>
-              <Box className="otherActivity">
-                <Box className="headingCard">Aktivitas Lain </Box>
-                <Box className="contentCard">Semua Aktivitas</Box>
+              <Box className="other-activity">
+                <Box className="heading-card">Aktivitas Lain </Box>
+                <Box className="content-card">Semua Aktivitas</Box>
               </Box>
             </Grid>
           </Grid>

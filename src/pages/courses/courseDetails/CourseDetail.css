@@ -5,13 +5,13 @@
 
 .rating-and-path,
 .rating,
-.detailCourse,
+.detail-course,
 .path {
   display: flex;
   align-items: center;
 }
 
-.detailCourse {
+.detail-course {
   margin-top: 0.5rem;
 }
 

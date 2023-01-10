@@ -1,7 +1,7 @@
 import { Card, Typography } from "@mui/material";
-import React from "react";
 import { Link } from "react-router-dom";
 import { useStyle } from "./styles";
+import PropTypes from "prop-types";
 
 const StudentCoursesCard = ({ course }) => {
   const classes = useStyle();
@@ -28,6 +28,10 @@ const StudentCoursesCard = ({ course }) => {
       </div>
     </div>
   );
+};
+
+StudentCoursesCard.propTypes = {
+  course: PropTypes.object,
 };
 
 export default StudentCoursesCard;

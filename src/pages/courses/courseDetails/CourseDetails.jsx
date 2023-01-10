@@ -153,7 +153,7 @@ const CourseDetails = () => {
                           </button>
                         );
                       })}
-                      <Box className="detailCourse">
+                      <Box className="detail-course">
                         <Grid container spacing={1}>
                           <Grid
                             item

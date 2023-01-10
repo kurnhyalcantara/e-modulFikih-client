@@ -59,7 +59,7 @@ const Navbar = () => {
   };
 
   return (
-    <AppBar elevation={0} color="inherit" className="appBar">
+    <AppBar elevation={0} color="inherit" className="app-bar">
       <Container maxWidth="xl">
         <Toolbar
           disableGutters
@@ -113,7 +113,7 @@ const Navbar = () => {
               <img src={logo} alt="logo" />
             </Link>
             <Typography
-              className="menuButton-Navbar"
+              className="menu-navbar"
               color={theme.palette.primary.main}
               fontWeight="900"
               fontSize="25px"
@@ -124,7 +124,7 @@ const Navbar = () => {
             </Typography>
             <Divider orientation="vertical" variant="middle" flexItem />
             <Typography
-              className="menuButton-Navbar"
+              className="menu-navbar"
               color={theme.palette.text.primary}
               to="/courses"
               component={Link}
@@ -137,7 +137,7 @@ const Navbar = () => {
               placeholder="Cari materi"
             />
             <Typography
-              className="menuButton-Navbar"
+              className="menu-navbar"
               color={theme.palette.text.primary}
               to="/blogs"
               component={Link}
@@ -146,7 +146,7 @@ const Navbar = () => {
               Blog
             </Typography>
             <Typography
-              className="menuButton-Navbar"
+              className="menu-navbar"
               color={theme.palette.text.primary}
               component={Link}
               to="/job_view"

@@ -53,7 +53,7 @@
 }
 
 .selected-answer {
-  background: rgba(1, 124, 32, 0.705);
+  background: rgb(1 124 32 / 70.5%);
   transition: 0.3s 0s ease;
   text-decoration: none;
   list-style: none;
