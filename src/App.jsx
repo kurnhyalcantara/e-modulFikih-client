@@ -6,7 +6,7 @@ import {
   Routes,
   useLocation,
 } from "react-router-dom";
-import { AnimatePresence } from "framer-motion/dist/framer-motion";
+import { AnimatePresence } from "framer-motion";
 import "./App.scss";
 import Navbar from "./components/navbar/Navbar";
 import Footer from "./components/footer/Footer";
