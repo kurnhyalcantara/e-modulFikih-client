@@ -1,4 +1,4 @@
-import { motion } from "framer-motion/dist/framer-motion";
+import { motion } from "framer-motion";
 import PropTypes from "prop-types";
 
 const animationConfiguration = {
