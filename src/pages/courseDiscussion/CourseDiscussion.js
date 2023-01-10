@@ -1,5 +1,12 @@
 import StarBorder from "@mui/icons-material/StarBorder";
-import { Button, Container, ListItemButton, ListItemIcon, ListItemText, TextField } from "@mui/material";
+import {
+  Button,
+  Container,
+  ListItemButton,
+  ListItemIcon,
+  ListItemText,
+  TextField,
+} from "@mui/material";
 import { Box } from "@mui/system";
 import axios from "axios";
 import { useContext, useEffect, useState } from "react";
@@ -23,9 +30,12 @@ const CourseDiscussion = () => {
       const getList = async () => {
         setLoading(true);
         await axios
-          .get(`http://localhost:4000/api/discussion/single/${discussionId}`, {
-            headers: { Authorization: token },
-          })
+          .get(
+            `https://api-fikih-mts-bontouse.herokuapp.com/api/discussion/single/${discussionId}`,
+            {
+              headers: { Authorization: token },
+            }
+          )
           .then((res) => {
             if (res.status === 200) {
               const { discussion } = res.data;
@@ -42,7 +52,7 @@ const CourseDiscussion = () => {
     try {
       setLoading(true);
       await axios.put(
-        `http://localhost:4000/api/discussion/single/${discussionId}`,
+        `https://api-fikih-mts-bontouse.herokuapp.com/api/discussion/single/${discussionId}`,
         {
           answer: reply,
           user: user,
@@ -67,9 +77,9 @@ const CourseDiscussion = () => {
           <Box className={classes.discription}>
             <ListItemText
               primary={discussion?.question}
-              secondary={`${discussion?.user?.name}(${discussion?.user?.type}) • Posted ${new Date(
-                discussion?.createdAt
-              ).toDateString()}`}
+              secondary={`${discussion?.user?.name}(${
+                discussion?.user?.type
+              }) • Posted ${new Date(discussion?.createdAt).toDateString()}`}
               sx={{ pb: 2 }}
             />
             <TextField
@@ -114,13 +124,18 @@ const CourseDiscussion = () => {
                   <ListItemIcon>
                     <StarBorder />
                   </ListItemIcon>
-                  <ListItemText primary={`${item?.user?.name}(${item?.user?.type})`} secondary={item?.answer} />
+                  <ListItemText
+                    primary={`${item?.user?.name}(${item?.user?.type})`}
+                    secondary={item?.answer}
+                  />
                   <ListItemText
                     sx={{
                       display: "flex",
                       justifyContent: "end",
                     }}
-                    primary={`Posted ${new Date(item?.createdAt).toDateString()}`}
+                    primary={`Posted ${new Date(
+                      item?.createdAt
+                    ).toDateString()}`}
                   />
                 </ListItemButton>
               </Box>

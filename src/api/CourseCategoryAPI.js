@@ -6,7 +6,9 @@ function CourseCategoriesAPI() {
   const [callback, setCallback] = useState(false);
 
   const getCategory = async () => {
-    const res = await axios.get("http://localhost:4000/api/admin/course_cetegory/");
+    const res = await axios.get(
+      "https://api-fikih-mts-bontouse.herokuapp.com/api/admin/course_cetegory/"
+    );
     setCategory(res.data.categories);
   };
 

@@ -1,4 +1,13 @@
-import { Button, Container, FormControl, Grid, InputLabel, MenuItem, Select, TextField } from "@mui/material";
+import {
+  Button,
+  Container,
+  FormControl,
+  Grid,
+  InputLabel,
+  MenuItem,
+  Select,
+  TextField,
+} from "@mui/material";
 import axios from "axios";
 import { useContext, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
@@ -24,9 +33,12 @@ const CreateBlog = () => {
     if (blogId) {
       const getSingleBlog = async () => {
         await axios
-          .get(`http://localhost:4000/api/instructor/blog/${blogId}`, {
-            headers: { Authorization: token },
-          })
+          .get(
+            `https://api-fikih-mts-bontouse.herokuapp.com/api/instructor/blog/${blogId}`,
+            {
+              headers: { Authorization: token },
+            }
+          )
           .then((res) => {
             if (res.status === 200) {
               const { data } = res;
@@ -52,7 +64,7 @@ const CreateBlog = () => {
       if (blogId) {
         setLoading(true);
         await axios.put(
-          `http://localhost:4000/api/instructor/blog/${blogId}`,
+          `https://api-fikih-mts-bontouse.herokuapp.com/api/instructor/blog/${blogId}`,
           {
             title: title,
             category: category,
@@ -67,7 +79,7 @@ const CreateBlog = () => {
       } else {
         setLoading(true);
         await axios.post(
-          "http://localhost:4000/api/instructor/blog",
+          "https://api-fikih-mts-bontouse.herokuapp.com/api/instructor/blog",
           {
             title: title,
             category: category,
@@ -92,12 +104,16 @@ const CreateBlog = () => {
       let formData = new FormData();
       formData.append("file", file);
       setLoading(true);
-      const res = await axios.post("http://localhost:4000/api/upload", formData, {
-        headers: {
-          "content-type": "multipart/form-data",
-          Authorization: token,
-        },
-      });
+      const res = await axios.post(
+        "https://api-fikih-mts-bontouse.herokuapp.com/api/upload",
+        formData,
+        {
+          headers: {
+            "content-type": "multipart/form-data",
+            Authorization: token,
+          },
+        }
+      );
       setLoading(false);
       setImage(res.data);
     } catch (error) {
@@ -109,7 +125,7 @@ const CreateBlog = () => {
     try {
       setLoading(true);
       await axios.post(
-        "http://localhost:4000/api/destroy",
+        "https://api-fikih-mts-bontouse.herokuapp.com/api/destroy",
         { public_id: image.public_id },
         {
           headers: { Authorization: token },
@@ -135,7 +151,12 @@ const CreateBlog = () => {
           <Grid container spacing={3}>
             <Grid item xs={12} sm={12} lg={12} md={12}>
               <div className="upload">
-                <input type="file" name="file" id="file_up" onChange={handleUpload} />
+                <input
+                  type="file"
+                  name="file"
+                  id="file_up"
+                  onChange={handleUpload}
+                />
                 {loading ? (
                   // <LoadingScreen
                   //   loading={loading}

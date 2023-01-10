@@ -4,7 +4,16 @@ import CreateIcon from "@mui/icons-material/Create";
 import GroupsOutlinedIcon from "@mui/icons-material/GroupsOutlined";
 import TabContext from "@mui/lab/TabContext";
 import TabPanel from "@mui/lab/TabPanel";
-import { AppBar, Box, Button, Container, Grid, Tab, Tabs, Typography } from "@mui/material";
+import {
+  AppBar,
+  Box,
+  Button,
+  Container,
+  Grid,
+  Tab,
+  Tabs,
+  Typography,
+} from "@mui/material";
 import axios from "axios";
 import PropTypes from "prop-types";
 import React, { useContext, useEffect, useState } from "react";
@@ -46,7 +55,7 @@ const SingleCourseDetails = () => {
 
   const fetchList = async (list) => {
     await axios.patch(
-      "http://localhost:4000/api/course/enroll",
+      "https://api-fikih-mts-bontouse.herokuapp.com/api/course/enroll",
       { enrolled: list },
       {
         headers: { Authorization: token },
@@ -56,18 +65,22 @@ const SingleCourseDetails = () => {
 
   const getData = async () => {
     setLoading(true);
-    await axios.get(`http://localhost:4000/api/course_details/${courseId}`).then((res) => {
-      if (res.status === 200) {
-        setCourse(res.data);
-        setLessons(res.data.lessons);
-        const { courseDetails, discussion } = res.data;
-        setRequirrements(courseDetails?.requirements);
-        setObjective(courseDetails?.objective);
-        setTask(res.data.tasks);
-        setDiscussion(discussion);
-        setLoading(false);
-      }
-    });
+    await axios
+      .get(
+        `https://api-fikih-mts-bontouse.herokuapp.com/api/course_details/${courseId}`
+      )
+      .then((res) => {
+        if (res.status === 200) {
+          setCourse(res.data);
+          setLessons(res.data.lessons);
+          const { courseDetails, discussion } = res.data;
+          setRequirrements(courseDetails?.requirements);
+          setObjective(courseDetails?.objective);
+          setTask(res.data.tasks);
+          setDiscussion(discussion);
+          setLoading(false);
+        }
+      });
   };
 
   useEffect(() => {
@@ -116,17 +129,31 @@ const SingleCourseDetails = () => {
             <Button onClick={removeCourse} color="error">
               unenroll
             </Button>
-            <Button component={Link} to={`/video-stream/${courseId}`} target="_blank" color="secondary">
+            <Button
+              component={Link}
+              to={`/video-stream/${courseId}`}
+              target="_blank"
+              color="secondary"
+            >
               join meet
             </Button>
           </div>
           <Grid container>
-            <img src={course?.courseDetails?.banner.url} className={classes.banner} alt="..." />
+            <img
+              src={course?.courseDetails?.banner.url}
+              className={classes.banner}
+              alt="..."
+            />
           </Grid>
           <Grid className={classes.contains} container spacing={2}>
             <Grid item xs={12} md={7}>
-              <Typography variant="h4"> {course?.courseDetails?.title}</Typography>
-              <Typography variant="h6">{course?.courseDetails?.category}</Typography>
+              <Typography variant="h4">
+                {" "}
+                {course?.courseDetails?.title}
+              </Typography>
+              <Typography variant="h6">
+                {course?.courseDetails?.category}
+              </Typography>
             </Grid>
             <Grid item xs={12} md={5}>
               <Typography
@@ -137,12 +164,15 @@ const SingleCourseDetails = () => {
                   marginTop: "15px",
                 }}
               >
-                <GroupsOutlinedIcon className={classes.icon} /> Total enrolled : {course?.courseDetails?.enrolled}+
+                <GroupsOutlinedIcon className={classes.icon} /> Total enrolled :{" "}
+                {course?.courseDetails?.enrolled}+
               </Typography>
             </Grid>
             <Grid item xs={12}>
               <h2>About </h2>
-              <Typography component="p">{course?.courseDetails?.about}</Typography>
+              <Typography component="p">
+                {course?.courseDetails?.about}
+              </Typography>
             </Grid>
             <Grid item xs={12} sm={6}>
               <h2>What You’ll Learn</h2>
@@ -150,9 +180,20 @@ const SingleCourseDetails = () => {
                 {objective &&
                   objective?.length > 0 &&
                   objective?.map((objective, i) => (
-                    <Grid item xs={12} md={6} lg={6} key={i} style={{ display: "flex", alignItems: "center" }}>
-                      <Typography component="p" style={{ display: "flex", alignItems: "center" }}>
-                        <CheckIcon className={classes.icon} /> {objective?.objective}
+                    <Grid
+                      item
+                      xs={12}
+                      md={6}
+                      lg={6}
+                      key={i}
+                      style={{ display: "flex", alignItems: "center" }}
+                    >
+                      <Typography
+                        component="p"
+                        style={{ display: "flex", alignItems: "center" }}
+                      >
+                        <CheckIcon className={classes.icon} />{" "}
+                        {objective?.objective}
                       </Typography>
                     </Grid>
                   ))}
@@ -166,8 +207,12 @@ const SingleCourseDetails = () => {
                   requirrements?.length > 0 &&
                   requirrements?.map((req, i) => (
                     <Grid item xs={12} md={6} lg={6} key={i}>
-                      <Typography component="p" style={{ display: "flex", alignItems: "center" }}>
-                        <CreateIcon className={classes.icon} /> {req?.requrement}
+                      <Typography
+                        component="p"
+                        style={{ display: "flex", alignItems: "center" }}
+                      >
+                        <CreateIcon className={classes.icon} />{" "}
+                        {req?.requrement}
                       </Typography>
                     </Grid>
                   ))}
@@ -175,11 +220,15 @@ const SingleCourseDetails = () => {
             </Grid>
             <Grid item xs={12}>
               <h2>Description</h2>
-              <Typography component="p">{course?.courseDetails?.description}</Typography>
+              <Typography component="p">
+                {course?.courseDetails?.description}
+              </Typography>
             </Grid>
             <Grid item xs={12} className={classes.instructor}>
               <h2>Instructor</h2>
-              <Typography variant="h6">{course?.courseDetails?.instructor?.name}</Typography>
+              <Typography variant="h6">
+                {course?.courseDetails?.instructor?.name}
+              </Typography>
             </Grid>
           </Grid>
           {/* tab  */}
@@ -193,8 +242,12 @@ const SingleCourseDetails = () => {
                 className={classes.tabcontainer}
                 aria-label="full width tabs example"
               >
-                {lessons?.length > 0 && <Tab label="Lessons" value={0} {...a11yProps(0)} />}
-                {task?.length > 0 && <Tab label="Task" value={1} {...a11yProps(1)} />}
+                {lessons?.length > 0 && (
+                  <Tab label="Lessons" value={0} {...a11yProps(0)} />
+                )}
+                {task?.length > 0 && (
+                  <Tab label="Task" value={1} {...a11yProps(1)} />
+                )}
                 <Tab label="Discussion" value={2} {...a11yProps(2)} />
               </Tabs>
             </AppBar>

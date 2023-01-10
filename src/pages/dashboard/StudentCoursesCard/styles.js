@@ -5,7 +5,8 @@ export const useStyle = makeStyles({
     maxWidth: "100%",
     marginBottom: "50px",
     border: "none",
-    boxShadow: "rgba(27, 31, 35, 0.04) 0px 1px 0px, rgba(255, 255, 255, 0.25) 0px 1px 0px inset;",
+    boxShadow:
+      "rgba(27, 31, 35, 0.04) 0px 1px 0px, rgba(255, 255, 255, 0.25) 0px 1px 0px inset;",
     "&:hover": {
       opacity: "0.8",
     },

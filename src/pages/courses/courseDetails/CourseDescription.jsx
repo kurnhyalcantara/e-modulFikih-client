@@ -1,8 +1,7 @@
 import { Box, Card, CardContent, Paper, Typography } from "@mui/material";
 import Carousel from "react-grid-carousel";
 import PropTypes from "prop-types";
-import { ReactMarkdown } from "react-markdown/lib/react-markdown";
-import remarkGfm from "remark-gfm";
+import parse from "html-react-parser";
 
 const fasility = [
   {
@@ -11,11 +10,13 @@ const fasility = [
   },
   {
     name: "Video Penjelasan",
-    brief: "Beberapa materi disajikan dengan video penjelasan agar mempermudah pemahaman peserta didik",
+    brief:
+      "Beberapa materi disajikan dengan video penjelasan agar mempermudah pemahaman peserta didik",
   },
   {
     name: "Kuis",
-    brief: "Di sela-sela pembelajaran, akan ada beberapa soal yang akan dijawab oleh peserta didik",
+    brief:
+      "Di sela-sela pembelajaran, akan ada beberapa soal yang akan dijawab oleh peserta didik",
   },
   {
     name: "Ujian",
@@ -24,21 +25,26 @@ const fasility = [
 ];
 
 const DeskripsiCourse = ({ item }) => {
-  const description = `${item?.courseDetails?.description}`;
   return (
     <Paper className="container-detail-course">
       <Box className="container-description">
         <h2>Deskripsi</h2>
-        <ReactMarkdown remarkPlugin={[remarkGfm]}>{description}</ReactMarkdown>
+        {item?.courseDetails?.description &&
+          parse(item?.courseDetails?.description)}
       </Box>
       <Box className="container-description">
         <h2>Tujuan Pembelajaran</h2>
-        <p>Setelah mengikuti pembelajaran pada materi ini, diakhir peserta didik diharapkan:</p>
+        <p>
+          Setelah mengikuti pembelajaran pada materi ini, diakhir peserta didik
+          diharapkan:
+        </p>
         <ul>
           {item?.courseDetails?.indikatorPencapaianKompetensi &&
-            item?.courseDetails?.indikatorPencapaianKompetensi.map((ipk, index) => {
-              return <li key={index}>{ipk}</li>;
-            })}
+            item?.courseDetails?.indikatorPencapaianKompetensi.map(
+              (ipk, index) => {
+                return <li key={index}>{ipk}</li>;
+              }
+            )}
         </ul>
       </Box>
       <Box className="container-description">
@@ -52,7 +58,7 @@ const DeskripsiCourse = ({ item }) => {
       </Box>
       <Box className="container-description">
         <h2>Fasilitas Belajar</h2>
-        <Carousel cols={4} rows={1} gap={20} loop>
+        <Carousel cols={4} rows={1} gap={20}>
           {fasility.map((item, index) => {
             return (
               <Carousel.Item key={index}>
