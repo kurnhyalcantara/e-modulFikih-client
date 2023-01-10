@@ -17,6 +17,11 @@ jobs:
         with:
           cmd: install
 
+      - name: Fix Eslint, Prettier, Stylint
+        uses: Borales/actions-yarn@v4
+        with:
+          cmd: fix
+
       - name: Build Production
         uses: Borales/actions-yarn@v4
         with:

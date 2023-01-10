@@ -110,7 +110,7 @@ const CreateCourse = () => {
       formData.append("file", file);
       setLoading(true);
       const res = await axios.post(
-        "http://localhost:4000/api/upload",
+        "https://api-fikih-mts-bontouse.herokuapp.com/api/upload",
         formData,
         {
           headers: {
@@ -130,7 +130,7 @@ const CreateCourse = () => {
     try {
       setLoading(true);
       await axios.post(
-        "http://localhost:4000/api/destroy",
+        "https://api-fikih-mts-bontouse.herokuapp.com/api/destroy",
         { public_id: image.public_id },
         {
           headers: { Authorization: token },
@@ -151,7 +151,7 @@ const CreateCourse = () => {
     if (courseId) {
       await axios
         .put(
-          `http://localhost:4000/api/course_details/${courseId}`,
+          `https://api-fikih-mts-bontouse.herokuapp.com/api/course_details/${courseId}`,
           {
             title: title,
             price: price,
@@ -178,7 +178,7 @@ const CreateCourse = () => {
     } else {
       await axios
         .post(
-          "http://localhost:4000/api/course",
+          "https://api-fikih-mts-bontouse.herokuapp.com/api/course",
           {
             title: title,
             price: price,
@@ -211,7 +211,9 @@ const CreateCourse = () => {
       const getCourseDetails = async () => {
         if (courseId) {
           await axios
-            .get(`http://localhost:4000/api/course_details/${courseId}`)
+            .get(
+              `https://api-fikih-mts-bontouse.herokuapp.com/api/course_details/${courseId}`
+            )
             .then((res) => {
               if (res.status === 200) {
                 const { courseDetails } = res.data;

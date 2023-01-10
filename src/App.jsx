@@ -44,6 +44,7 @@ import { useTheme } from "./styles/Theme";
 import ScrollToTop from "./utils/ScrollToTop";
 import CorridorClass from "./pages/dashboard/corridorClass/CorridorClass";
 import SingleMateri from "./pages/dashboard/corridorClass/SingleMateri";
+import Submission from "./pages/dashboard/corridorClass/Submission";
 
 axios.defaults.withCredentials = true;
 
@@ -68,6 +69,7 @@ const AnimationRoutes = () => {
         <Route path="/corridor/:courseId" element={<CorridorClass />} />
         <Route path="/logout" element={<Home />} />
         <Route path="/lesson/:courseId" element={<SingleMateri />} />
+        <Route path="/submission/:courseId" element={<Submission />} />
         <Route
           path="/single_course_details/:courseId"
           element={<SingleCourseDetails />}

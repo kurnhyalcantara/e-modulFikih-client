@@ -17,7 +17,9 @@ const BlogDetails = () => {
       const getBlogDetail = async () => {
         setLoading(true);
         await axios
-          .get(`http://localhost:4000/api/admin/blog/${blogId}`)
+          .get(
+            `https://api-fikih-mts-bontouse.herokuapp.com/api/admin/blog/${blogId}`
+          )
           .then((res) => {
             if (res.status === 200) {
               setBlog(res.data);

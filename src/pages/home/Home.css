@@ -74,7 +74,6 @@
   background-color: rgb(230 245 238 / 20%);
   box-shadow: 0 4px 30px rgb(0 0 0 / 10%);
   backdrop-filter: blur(5px);
-  backdrop-filter: blur(5px);
 }
 
 .card-style:hover {
@@ -86,8 +85,9 @@
 .container-coursetab {
   margin-top: 4.5rem;
 }
-
+/* stylelint-disable */
 .Mui-selected {
   color: #006f59;
   font-weight: 600;
 }
+/* stylelint-enable */

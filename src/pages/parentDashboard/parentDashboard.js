@@ -23,7 +23,7 @@ const ParentDashboard = () => {
   useEffect(() => {
     const getChild = async () => {
       await axios
-        .get("http://localhost:4000/api/parent/child/", {
+        .get("https://api-fikih-mts-bontouse.herokuapp.com/api/parent/child/", {
           headers: { Authorization: token },
         })
         .then((res) => {

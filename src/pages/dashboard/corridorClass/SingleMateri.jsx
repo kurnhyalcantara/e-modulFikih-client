@@ -22,7 +22,9 @@ const SingleMateri = () => {
       if (courseId) {
         setLoading(true);
         await axios
-          .get(`http://localhost:4000/api/lesson/${courseId}`)
+          .get(
+            `https://api-fikih-mts-bontouse.herokuapp.com/api/lesson/${courseId}`
+          )
           .then((res) => {
             const { materi } = res.data.lesson;
             setLesson(materi);
@@ -38,11 +40,11 @@ const SingleMateri = () => {
   }, [courseId]);
 
   const handleNext = () => {
-    setActiveStep(activeStep + 1);
+    setActiveStep((prevActiveStep) => prevActiveStep + 1);
   };
 
   const handleBack = () => {
-    setActiveStep(activeStep - 1);
+    setActiveStep((prevActiveStep) => prevActiveStep - 1);
   };
 
   return (
@@ -56,10 +58,10 @@ const SingleMateri = () => {
           </Paper>
           <Box className="stepper-flow">
             <MobileStepper
-              variant="progress"
+              variant="text"
               steps={lesson.length}
-              position="fixed"
-              active={activeStep}
+              position="static"
+              activeStep={activeStep}
               backButton={
                 <Button
                   size="small"
