@@ -1,4 +1,12 @@
-import { Card, CardContent, CardMedia, Grid, Grow, Skeleton, Typography } from "@mui/material";
+import {
+  Card,
+  CardContent,
+  CardMedia,
+  Grid,
+  Grow,
+  Skeleton,
+  Typography,
+} from "@mui/material";
 
 function CourseCard() {
   return (
@@ -8,7 +16,12 @@ function CourseCard() {
           <Grid item xs={12} sm={6} md={4} lg={3} key={i}>
             <Card variant="outlined">
               <CardMedia height={140}>
-                <Skeleton variant="rectangular" animation="wave" height={140} width="100%" />
+                <Skeleton
+                  variant="rectangular"
+                  animation="wave"
+                  height={140}
+                  width="100%"
+                />
               </CardMedia>
               <CardContent>
                 <Typography variant="h5">

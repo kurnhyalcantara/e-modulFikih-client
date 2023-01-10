@@ -1,4 +1,9 @@
-import { AccessTimeTwoTone, BarChartTwoTone, PeopleTwoTone, StarRate } from "@mui/icons-material";
+import {
+  AccessTimeTwoTone,
+  BarChartTwoTone,
+  PeopleTwoTone,
+  StarRate,
+} from "@mui/icons-material";
 
 import {
   Box,
@@ -20,11 +25,11 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import { useNavigate, useParams } from "react-router-dom";
-import Transition from "../../components/transition/Transition";
 import DeskripsiCourse from "./CourseDescription";
 import "./CourseDetail.css";
 import CourseInstructur from "./CourseInstructur";
 import CourseTesti from "./CourseTesti";
+import Transition from "../../../components/transition/Transition";
 
 const TabPanel = ({ children, value, index, ...other }) => {
   return (
@@ -48,7 +53,7 @@ const CourseDetails = () => {
   };
 
   const { courseId } = useParams();
-  const [course, setCourse] = useState([]);
+  const [course, setCourse] = useState({});
   const [rating, setRating] = useState(0);
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
@@ -58,15 +63,21 @@ const CourseDetails = () => {
       if (courseId) {
         setLoading(true);
         await axios
-          .get(`http://localhost:4000/api/course_details/${courseId}`)
+          .get(
+            `https://api-fikih-mts-bontouse.herokuapp.com/api/course_details/${courseId}`
+          )
           .then((res) => {
             if (res.status === 200) {
               const { courseDetails } = res.data;
-
               setCourse(res.data);
               setLoading(false);
-              const ratings = courseDetails?.comments.map((rating) => rating.rating);
-              const total = ratings.reduce((acc, item) => (acc += item), 0).toFixed(1);
+              const ratings = courseDetails?.testimoni.map(
+                (comment) => comment.rating
+              );
+              console.log(courseDetails);
+              const total = ratings
+                .reduce((acc, item) => (acc += item), 0)
+                .toFixed(1);
               const rating = total / ratings.length;
               if (rating > 0) {
                 setRating(rating);
@@ -74,9 +85,6 @@ const CourseDetails = () => {
                 setRating(0);
               }
             }
-          })
-          .catch((error) => {
-            console.log(error);
           });
       }
     };
@@ -102,7 +110,9 @@ const CourseDetails = () => {
                     <Box className="rating-and-path">
                       <Box className="rating">
                         <StarRate className="star-rating"></StarRate>
-                        <Typography className="count-rating">{rating ? rating : "0"}+</Typography>
+                        <Typography className="count-rating">
+                          {rating ? rating : "0"}+
+                        </Typography>
                       </Box>
                       <Box
                         sx={{
@@ -115,7 +125,11 @@ const CourseDetails = () => {
                       </Box>
                       <Box className="path">
                         <Breadcrumbs>
-                          <Link underline="hover" color="inherit" href="/course">
+                          <Link
+                            underline="hover"
+                            color="inherit"
+                            href="/course"
+                          >
                             Fikih
                           </Link>
                           <Link underline="hover" color="inherit" href="">
@@ -125,7 +139,11 @@ const CourseDetails = () => {
                       </Box>
                     </Box>
                     <Box className="title-and-detail">
-                      <Typography variant="h5" fontWeight="700" marginTop="0.5rem">
+                      <Typography
+                        variant="h5"
+                        fontWeight="700"
+                        marginTop="0.5rem"
+                      >
                         {course?.courseDetails?.title}
                       </Typography>
                       {course?.courseDetails?.category.map((tag, i) => {
@@ -135,7 +153,7 @@ const CourseDetails = () => {
                           </button>
                         );
                       })}
-                      <Box className="detailCourse">
+                      <Box className="detail-course">
                         <Grid container spacing={1}>
                           <Grid
                             item
@@ -147,12 +165,18 @@ const CourseDetails = () => {
                               flexGrow: { md: "2", xs: "1" },
                             }}
                           >
-                            <PeopleTwoTone sx={{ marginRight: "0.2rem" }}></PeopleTwoTone>
+                            <PeopleTwoTone
+                              sx={{ marginRight: "0.2rem" }}
+                            ></PeopleTwoTone>
                             <Typography fontSize="14px">
                               {`${course?.courseDetails?.jumlahSiswa} Siswa Bergabung`}
                             </Typography>
                           </Grid>
-                          <Grid item xs={6} sx={{ display: "flex", alignItems: "center" }}>
+                          <Grid
+                            item
+                            xs={6}
+                            sx={{ display: "flex", alignItems: "center" }}
+                          >
                             <AccessTimeTwoTone
                               sx={{
                                 marginRight: "0.2rem",
@@ -235,7 +259,10 @@ const CourseDetails = () => {
               </Grid>
             </Grid>
           </Container>
-          <Box sx={{ display: { xs: "flex", md: "none" } }} className="button-flow">
+          <Box
+            sx={{ display: { xs: "flex", md: "none" } }}
+            className="button-flow"
+          >
             <Button
               className="bootstraped-button"
               variant="contained"

@@ -1,5 +1,13 @@
 /* eslint-disable no-unused-vars */
-import { Container, Grid, Typography, Box, useTheme, Grow, Button } from "@mui/material";
+import {
+  Container,
+  Grid,
+  Typography,
+  Box,
+  useTheme,
+  Grow,
+  Button,
+} from "@mui/material";
 import React, { useContext, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { GlobalState } from "../../GlobalState";
@@ -43,8 +51,16 @@ const Home = () => {
                   <InstallPWA></InstallPWA>
                 </Grid>
                 {isLogged ? null : (
-                  <Grid item xs={6} sx={{ display: { xs: "block", md: "none" } }}>
-                    <Button className="rounded-button login-button" component={Link} to="/login">
+                  <Grid
+                    item
+                    xs={6}
+                    sx={{ display: { xs: "block", md: "none" } }}
+                  >
+                    <Button
+                      className="rounded-button login-button"
+                      component={Link}
+                      to="/login"
+                    >
                       Login
                     </Button>
                   </Grid>
