@@ -14,9 +14,12 @@ function UserAPI(token) {
       const getStudent = async () => {
         try {
           setLoading(true);
-          const res = await axios.get("http://localhost:4000/api/student/profile", {
-            headers: { Authorization: token },
-          });
+          const res = await axios.get(
+            "https://api-fikih-mts-bontouse.herokuapp.com/api/student/profile",
+            {
+              headers: { Authorization: token },
+            }
+          );
           setIsLogged(true);
           setList(res.data.student.enrolled);
           setUser(res.data.student);
@@ -29,29 +32,29 @@ function UserAPI(token) {
     }
   }, [token]);
 
-  const addList = async (course) => {
-    if (!isLogged) {
-      return alert("Please Login or Registration to Continue Buying");
-    }
-
-    const check = list.every((item) => {
-      return item.courseDetails._id !== course.courseDetails._id;
+  const addList = (tokenCourse, course) => {
+    return new Promise((resolve, reject) => {
+      const check = list.every((item) => {
+        return item?.courseDetails?._id !== course.courseDetails._id;
+      });
+      if (check) {
+        setList([...list, { ...course }]);
+        axios
+          .patch(
+            `https://api-fikih-mts-bontouse.herokuapp.com/api/course/enroll/${course.courseDetails._id}`,
+            { enrolled: [...list, { ...course }], token: tokenCourse },
+            {
+              headers: { Authorization: token },
+            }
+          )
+          .then(() => {
+            resolve("Successfully Enrolled");
+          })
+          .catch((err) => {
+            reject(err.response.data.msg);
+          });
+      }
     });
-
-    if (check) {
-      setList([...list, { ...course }]);
-
-      await axios.patch(
-        "http://localhost:4000/api/course/enroll",
-        { enrolled: [...list, { ...course }] },
-        {
-          headers: { Authorization: token },
-        }
-      );
-      toast.success("Successfully Enrolled");
-    } else {
-      toast.warn("Already Enrolled in This Course");
-    }
   };
 
   return {

@@ -30,7 +30,7 @@ const CourseDiscussion = ({ discussion, getData }) => {
   const submitDiscussion = async () => {
     try {
       await axios.post(
-        `http://localhost:4000/api/discussion/${courseId}`,
+        `https://api-fikih-mts-bontouse.herokuapp.com/api/discussion/${courseId}`,
         {
           question: question,
           user: user,
@@ -103,15 +103,19 @@ const CourseDiscussion = ({ discussion, getData }) => {
             {discussion &&
               discussion?.length > 0 &&
               discussion?.map((item) => (
-                <ListItemButton component={Link} to={`/course_discussion/${item?._id}`} key={item._id}>
+                <ListItemButton
+                  component={Link}
+                  to={`/course_discussion/${item?._id}`}
+                  key={item._id}
+                >
                   <ListItemIcon>
                     <StarBorder />
                   </ListItemIcon>
                   <ListItemText
                     primary={item?.question}
-                    secondary={`${item?.user?.name}(${item?.user?.type}) • Posted ${new Date(
-                      item?.createdAt
-                    ).toDateString()}`}
+                    secondary={`${item?.user?.name}(${
+                      item?.user?.type
+                    }) • Posted ${new Date(item?.createdAt).toDateString()}`}
                   />
                   <ListItemText
                     sx={{

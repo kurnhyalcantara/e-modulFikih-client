@@ -9,7 +9,12 @@ import Divider from "@mui/material/Divider";
 import IconButton from "@mui/material/IconButton";
 import Tooltip from "@mui/material/Tooltip";
 import { Link } from "react-router-dom";
-import { ListItemAvatar, ListItemText, Typography, useTheme } from "@mui/material";
+import {
+  ListItemAvatar,
+  ListItemText,
+  Typography,
+  useTheme,
+} from "@mui/material";
 
 import { GlobalState } from "../../GlobalState";
 import { LogoutRounded, SettingsRounded } from "@mui/icons-material";
@@ -107,14 +112,22 @@ const AccountMenu = ({ logOut }) => {
               {user?.avatarLetter}
             </Avatar>
           </ListItemAvatar>
-          <ListItemText primary={user.namaLengkap} secondary={`NIS. ${user.nis}`} className="namaLengkap-sidebar" />
+          <ListItemText
+            primary={user.namaLengkap}
+            secondary={`NIS. ${user.nis}`}
+            className="namaLengkap-sidebar"
+          />
         </MenuItem>
         <Divider />
         <MenuItem component={Link} to="/profile">
           <ListItemIcon>
             <SettingsRounded />
           </ListItemIcon>
-          <ListItemText color={theme.palette.text.secondary} primary="Pengaturan Profil" fontWeight="700" />
+          <ListItemText
+            color={theme.palette.text.secondary}
+            primary="Pengaturan Profil"
+            fontWeight="700"
+          />
         </MenuItem>
         <MenuItem onClick={logOut}>
           <ListItemIcon>

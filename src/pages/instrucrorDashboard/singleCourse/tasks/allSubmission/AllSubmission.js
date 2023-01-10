@@ -24,9 +24,12 @@ const AllSubmission = () => {
 
   const getTask = async () => {
     await axios
-      .get(`http://localhost:4000/api/task_update/${taskId}`, {
-        headers: { Authorization: token },
-      })
+      .get(
+        `https://api-fikih-mts-bontouse.herokuapp.com/api/task_update/${taskId}`,
+        {
+          headers: { Authorization: token },
+        }
+      )
       .then((res) => {
         if (res.status === 200) {
           setTask(res.data.task);
@@ -38,7 +41,7 @@ const AllSubmission = () => {
   const handleMarking = async (id) => {
     try {
       await axios.put(
-        `http://localhost:4000/api/mark_upload/${id}`,
+        `https://api-fikih-mts-bontouse.herokuapp.com/api/mark_upload/${id}`,
         {
           marks: mark,
         },
@@ -57,9 +60,12 @@ const AllSubmission = () => {
     if (taskId) {
       const getTask = async () => {
         await axios
-          .get(`http://localhost:4000/api/task_update/${taskId}`, {
-            headers: { Authorization: token },
-          })
+          .get(
+            `https://api-fikih-mts-bontouse.herokuapp.com/api/task_update/${taskId}`,
+            {
+              headers: { Authorization: token },
+            }
+          )
           .then((res) => {
             if (res.status === 200) {
               setTask(res.data.task);
@@ -83,10 +89,15 @@ const AllSubmission = () => {
           {submissions &&
             submissions.length > 0 &&
             submissions?.map((item, i) => (
-              <Accordion key={i} style={{ marginBottom: "6px", borderRadius: "5px" }}>
+              <Accordion
+                key={i}
+                style={{ marginBottom: "6px", borderRadius: "5px" }}
+              >
                 <AccordionSummary expandIcon={<ExpandMoreIcon />}>
                   <div className={classes.headingWrapper}>
-                    <Typography className={classes.heading}>Student Name : {item?.student?.name}</Typography>
+                    <Typography className={classes.heading}>
+                      Student Name : {item?.student?.name}
+                    </Typography>
                     <div className={classes.mark}>Mark : {item?.marks} </div>
                   </div>
                 </AccordionSummary>

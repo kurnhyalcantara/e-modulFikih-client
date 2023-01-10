@@ -16,6 +16,7 @@ import PropTypes from "prop-types";
 import Box from "@mui/material/Box";
 import Tab from "@mui/material/Tab";
 import CardCourse from "../../components/Cards/Card";
+import { Link } from "react-router-dom";
 
 const CoursesTab = () => {
   const theme = useTheme();
@@ -41,15 +42,17 @@ const CoursesTab = () => {
   useEffect(() => {
     const getCourses = async () => {
       setLoading(true);
-      await axios.get("http://localhost:4000/api/all/course").then((res) => {
-        if (res.status === 200) {
-          const { courses } = res.data;
-          setCourseList(courses);
-          let list = [...new Set(courses.map((item) => item.kelas))];
-          setTabList(list);
-          setLoading(false);
-        }
-      });
+      await axios
+        .get("https://api-fikih-mts-bontouse.herokuapp.com/api/all/course")
+        .then((res) => {
+          if (res.status === 200) {
+            const { courses } = res.data;
+            setCourseList(courses);
+            let list = [...new Set(courses.map((item) => item.kelas))];
+            setTabList(list);
+            setLoading(false);
+          }
+        });
     };
     getCourses();
   }, []);
@@ -57,7 +60,12 @@ const CoursesTab = () => {
   return (
     <Box className="container-section">
       <Container maxWidth="xl">
-        <Typography variant="h4" textAlign="center" fontWeight={700} color={theme.palette.text.primary}>
+        <Typography
+          variant="h4"
+          textAlign="center"
+          fontWeight={700}
+          color={theme.palette.text.primary}
+        >
           Tersedia Materi Untuk Setiap Jenjang Kelas
         </Typography>
         {loading ? (
@@ -67,7 +75,12 @@ const CoursesTab = () => {
                 <Grid item xs={12} sm={6} lg={3} key={i}>
                   <Card variant="outlined">
                     <CardMedia height={140}>
-                      <Skeleton variant="rectangular" animation="wave" height={140} width="100%" />
+                      <Skeleton
+                        variant="rectangular"
+                        animation="wave"
+                        height={140}
+                        width="100%"
+                      />
                     </CardMedia>
                     <CardContent>
                       <Typography variant="h5">
@@ -93,21 +106,35 @@ const CoursesTab = () => {
                 value={tabContext}
                 indicatorColor="primary"
               >
-                {tabList && tabList.map((item, i) => <Tab label={`Kelas ${item}`} key={i} />)}
+                {tabList &&
+                  tabList.map((item, i) => (
+                    <Tab label={`Kelas ${item}`} key={i} />
+                  ))}
               </Tabs>
             </Box>
             {tabList &&
               tabList.map((tab, index) => {
                 return (
-                  <TabPanel key={`tab${index}`} value={tabContext} index={index}>
+                  <TabPanel
+                    key={`tab${index}`}
+                    value={tabContext}
+                    index={index}
+                  >
                     <Grid container spacing={4}>
                       {courseList &&
                         courseList
                           .filter((item) => item.kelas === tab)
                           .slice(0, 4)
                           .map((item, i) => (
-                            <Grid item key={`course${i}`} md={3} sx={{ mt: "1.5rem" }}>
-                              <CardCourse key={i} item={item} type="details" />
+                            <Grid
+                              item
+                              key={`course${i}`}
+                              md={3}
+                              sx={{ mt: "1.5rem" }}
+                              component={Link}
+                              to={`/details/${item._id}`}
+                            >
+                              <CardCourse key={i} item={item} />
                             </Grid>
                           ))}
                     </Grid>

@@ -1,0 +1,23 @@
+.content-materi {
+  padding: 1rem;
+  text-align: justify;
+}
+
+.materi-image {
+  width: calc(100vw - 32px);
+}
+
+.stepper-flow {
+  width: calc(100% - 32px);
+  z-index: 99;
+  position: fixed;
+  bottom: 0;
+  padding: 1rem;
+  filter: drop-shadow(0 8px 15px rgb(0 14 61 / 40%));
+  background-color: #fff;
+}
+
+.materi-list {
+  margin: 0.5rem;
+  padding: 0.5rem;
+}
