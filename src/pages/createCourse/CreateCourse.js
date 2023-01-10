@@ -1,10 +1,10 @@
-import React, { useContext, useEffect, useState } from 'react';
-import Swal from 'sweetalert2';
-import { GlobalState } from '../../GlobalState';
-import { v4 as uuidv4 } from 'uuid';
-import { useStyle } from './styles';
-import { toast } from 'react-toastify';
-import axios from 'axios';
+import { useContext, useEffect, useState } from "react";
+import Swal from "sweetalert2";
+import { GlobalState } from "../../GlobalState";
+import { v4 as uuidv4 } from "uuid";
+import { useStyle } from "./styles";
+import { toast } from "react-toastify";
+import axios from "axios";
 import {
   Button,
   Container,
@@ -15,11 +15,11 @@ import {
   MenuItem,
   Select,
   TextField,
-} from '@mui/material';
-import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
-import AddIcon from '@mui/icons-material/Add';
-import SaveIcon from '@mui/icons-material/Save';
-import { useNavigate, useParams } from 'react-router-dom';
+} from "@mui/material";
+import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
+import AddIcon from "@mui/icons-material/Add";
+import SaveIcon from "@mui/icons-material/Save";
+import { useNavigate, useParams } from "react-router-dom";
 
 const CreateCourse = () => {
   const classes = useStyle();
@@ -30,18 +30,18 @@ const CreateCourse = () => {
   const [categories] = state.courseCategoryAPI.category;
   const [image, setImage] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [title, setTitle] = useState('');
+  const [title, setTitle] = useState("");
   const [price, setPrice] = useState(0);
-  const [description, setDescription] = useState('');
-  const [about, setAbout] = useState('');
-  const [category, setCategory] = useState('');
+  const [description, setDescription] = useState("");
+  const [about, setAbout] = useState("");
+  const [category, setCategory] = useState("");
 
   /*-----------------objective-------------------*/
 
   const [objectives, setObjectives] = useState([
     {
       id: uuidv4(),
-      objective: '',
+      objective: "",
     },
   ]);
 
@@ -57,7 +57,7 @@ const CreateCourse = () => {
   };
 
   const handleAddObjective = () => {
-    setObjectives([...objectives, { id: uuidv4(), objective: '' }]);
+    setObjectives([...objectives, { id: uuidv4(), objective: "" }]);
   };
 
   const handleRemoveObjective = (id) => {
@@ -74,7 +74,7 @@ const CreateCourse = () => {
   const [requirements, setRequirements] = useState([
     {
       id: uuidv4(),
-      requrement: '',
+      requrement: "",
     },
   ]);
 
@@ -90,7 +90,7 @@ const CreateCourse = () => {
   };
 
   const handleAddRequirement = () => {
-    setRequirements([...requirements, { id: uuidv4(), requrement: '' }]);
+    setRequirements([...requirements, { id: uuidv4(), requrement: "" }]);
   };
 
   const handleRemoveRequirements = (id) => {
@@ -107,14 +107,14 @@ const CreateCourse = () => {
     try {
       const file = e.target.files[0];
       let formData = new FormData();
-      formData.append('file', file);
+      formData.append("file", file);
       setLoading(true);
       const res = await axios.post(
-        'http://localhost:4000/api/upload',
+        "https://api-fikih-mts-bontouse.herokuapp.com/api/upload",
         formData,
         {
           headers: {
-            'content-type': 'multipart/form-data',
+            "content-type": "multipart/form-data",
             Authorization: token,
           },
         }
@@ -130,7 +130,7 @@ const CreateCourse = () => {
     try {
       setLoading(true);
       await axios.post(
-        'http://localhost:4000/api/destroy',
+        "https://api-fikih-mts-bontouse.herokuapp.com/api/destroy",
         { public_id: image.public_id },
         {
           headers: { Authorization: token },
@@ -144,14 +144,14 @@ const CreateCourse = () => {
   };
 
   const styleUpload = {
-    display: image ? 'block' : 'none',
+    display: image ? "block" : "none",
   };
 
   const handleSubmit = async () => {
     if (courseId) {
       await axios
         .put(
-          `http://localhost:4000/api/course_details/${courseId}`,
+          `https://api-fikih-mts-bontouse.herokuapp.com/api/course_details/${courseId}`,
           {
             title: title,
             price: price,
@@ -168,7 +168,7 @@ const CreateCourse = () => {
         )
         .then((res) => {
           if (res.status === 200) {
-            Swal.fire('Good job!', 'You Updated this Course!', 'success');
+            Swal.fire("Good job!", "You Updated this Course!", "success");
             history(`/course_details/${courseId}`);
           }
         })
@@ -178,7 +178,7 @@ const CreateCourse = () => {
     } else {
       await axios
         .post(
-          'http://localhost:4000/api/course',
+          "https://api-fikih-mts-bontouse.herokuapp.com/api/course",
           {
             title: title,
             price: price,
@@ -195,8 +195,8 @@ const CreateCourse = () => {
         )
         .then((res) => {
           if (res.status === 200) {
-            Swal.fire('Good job!', 'You Created a Course!', 'success');
-            history('/instructor_dashboard');
+            Swal.fire("Good job!", "You Created a Course!", "success");
+            history("/instructor_dashboard");
           }
         })
         .catch((error) => {
@@ -211,7 +211,9 @@ const CreateCourse = () => {
       const getCourseDetails = async () => {
         if (courseId) {
           await axios
-            .get(`http://localhost:4000/api/course_details/${courseId}`)
+            .get(
+              `https://api-fikih-mts-bontouse.herokuapp.com/api/course_details/${courseId}`
+            )
             .then((res) => {
               if (res.status === 200) {
                 const { courseDetails } = res.data;
@@ -227,21 +229,21 @@ const CreateCourse = () => {
             });
         } else {
           setImage(false);
-          setTitle('');
+          setTitle("");
           setPrice(0);
-          setCategory('');
-          setDescription('');
-          setAbout('');
+          setCategory("");
+          setDescription("");
+          setAbout("");
           setObjectives([
             {
               id: uuidv4(),
-              objective: '',
+              objective: "",
             },
           ]);
           setRequirements([
             {
               id: uuidv4(),
-              requrement: '',
+              requrement: "",
             },
           ]);
         }
@@ -254,7 +256,7 @@ const CreateCourse = () => {
     <div className={classes.root}>
       <Container maxWidth="xl">
         <div className={classes.wrapper}>
-          <h2>{courseId ? 'Update' : 'Create'} Course</h2>
+          <h2>{courseId ? "Update" : "Create"} Course</h2>
           <Grid container spacing={4}>
             <Grid item xs={12} sm={12} lg={12} md={12}>
               <div className="upload">
@@ -272,10 +274,10 @@ const CreateCourse = () => {
                   //   textColor="#676767"
                   //   logoSrc="/logo.png"
                   // />
-                  'loading'
+                  "loading"
                 ) : (
                   <div id="file_img" style={styleUpload}>
-                    <img src={image ? image.url : ''} alt="" />
+                    <img src={image ? image.url : ""} alt="" />
                     <span onClick={handleDestroy}>X</span>
                   </div>
                 )}
@@ -364,9 +366,9 @@ const CreateCourse = () => {
             <Grid item xs={12} sm={12} lg={6} md={6}>
               {objectives.map((objective, index) => (
                 <div
-                  key={objective.id}
+                  key={index}
                   className={classes.fullWidth}
-                  style={{ display: 'flex' }}
+                  style={{ display: "flex" }}
                 >
                   <TextField
                     id="outlined-basic"
@@ -374,14 +376,14 @@ const CreateCourse = () => {
                     name="objective"
                     variant="outlined"
                     color="warning"
-                    style={{ width: '100%' }}
+                    style={{ width: "100%" }}
                     value={objective.objective}
                     onChange={(event) =>
                       handleChangeObjective(objective.id, event)
                     }
                   />
                   <IconButton
-                    style={{ marginLeft: '15px' }}
+                    style={{ marginLeft: "15px" }}
                     variant="contained"
                     color="error"
                     disabled={objectives.length === 1}
@@ -394,7 +396,7 @@ const CreateCourse = () => {
               <Button
                 variant="contained"
                 style={{
-                  backgroundColor: '#EA5252',
+                  backgroundColor: "#EA5252",
                 }}
                 onClick={handleAddObjective}
               >
@@ -404,9 +406,9 @@ const CreateCourse = () => {
             <Grid item xs={12} sm={12} lg={6} md={6}>
               {requirements.map((requirement, index) => (
                 <div
-                  key={requirement.id}
+                  key={index}
                   className={classes.fullWidth}
-                  style={{ display: 'flex' }}
+                  style={{ display: "flex" }}
                 >
                   <TextField
                     id="outlined-basic"
@@ -414,14 +416,14 @@ const CreateCourse = () => {
                     name="requrement"
                     variant="outlined"
                     color="warning"
-                    style={{ width: '100%' }}
+                    style={{ width: "100%" }}
                     value={requirement.requrement}
                     onChange={(event) =>
                       handleChangeRequirement(requirement.id, event)
                     }
                   />
                   <IconButton
-                    style={{ marginLeft: '15px' }}
+                    style={{ marginLeft: "15px" }}
                     variant="contained"
                     color="error"
                     disabled={requirements.length === 1}
@@ -434,7 +436,7 @@ const CreateCourse = () => {
               <Button
                 variant="contained"
                 style={{
-                  backgroundColor: '#EA5252',
+                  backgroundColor: "#EA5252",
                 }}
                 onClick={handleAddRequirement}
               >
@@ -447,12 +449,12 @@ const CreateCourse = () => {
             fullWidth
             variant="contained"
             style={{
-              backgroundColor: '#EA5252',
-              textTransform: 'none',
+              backgroundColor: "#EA5252",
+              textTransform: "none",
             }}
             sx={{ mt: 5 }}
           >
-            <SaveIcon /> {courseId ? 'Update' : ' Save'}
+            <SaveIcon /> {courseId ? "Update" : " Save"}
           </Button>
         </div>
       </Container>

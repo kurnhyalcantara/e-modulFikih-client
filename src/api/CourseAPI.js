@@ -1,11 +1,11 @@
-import { useEffect, useState } from 'react';
-import axios from 'axios';
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 function CourseAPI() {
   const [courses, setCourses] = useState([]);
   const [callback, setCallback] = useState(false);
-  const [category, setCategory] = useState('');
-  const [search, setSearch] = useState('');
+  const [category, setCategory] = useState("");
+  const [search, setSearch] = useState("");
   const [page, setPage] = useState(1);
   const [result, setResult] = useState(0);
   const [loading, setLoading] = useState(false);
@@ -14,7 +14,7 @@ function CourseAPI() {
     const getCourses = async () => {
       setLoading(true);
       const res = await axios.get(
-        `http://localhost:4000/api/all_course?limit=${
+        `https://api-fikih-mts-bontouse.herokuapp.com/api/all_course?limit=${
           page * 8
         }&${category}&title[regex]=${search}`
       );

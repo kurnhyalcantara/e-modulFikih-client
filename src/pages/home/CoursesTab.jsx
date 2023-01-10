@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from "react";
 import {
   Card,
   CardContent,
@@ -10,11 +10,13 @@ import {
   Tabs,
   Typography,
   useTheme,
-} from '@mui/material';
-import axios from 'axios';
-import Box from '@mui/material/Box';
-import Tab from '@mui/material/Tab';
-import CardCourse from '../../components/Cards/Card';
+} from "@mui/material";
+import axios from "axios";
+import PropTypes from "prop-types";
+import Box from "@mui/material/Box";
+import Tab from "@mui/material/Tab";
+import CardCourse from "../../components/Cards/Card";
+import { Link } from "react-router-dom";
 
 const CoursesTab = () => {
   const theme = useTheme();
@@ -31,18 +33,26 @@ const CoursesTab = () => {
     );
   };
 
+  TabPanel.propTypes = {
+    children: PropTypes.element,
+    value: PropTypes.number,
+    index: PropTypes.number,
+  };
+
   useEffect(() => {
     const getCourses = async () => {
       setLoading(true);
-      await axios.get('http://localhost:4000/api/all/course').then((res) => {
-        if (res.status === 200) {
-          const { courses } = res.data;
-          setCourseList(courses);
-          let list = [...new Set(courses.map((item) => item.category))];
-          setTabList(list);
-          setLoading(false);
-        }
-      });
+      await axios
+        .get("https://api-fikih-mts-bontouse.herokuapp.com/api/all/course")
+        .then((res) => {
+          if (res.status === 200) {
+            const { courses } = res.data;
+            setCourseList(courses);
+            let list = [...new Set(courses.map((item) => item.kelas))];
+            setTabList(list);
+            setLoading(false);
+          }
+        });
     };
     getCourses();
   }, []);
@@ -51,7 +61,7 @@ const CoursesTab = () => {
     <Box className="container-section">
       <Container maxWidth="xl">
         <Typography
-          variant="h3"
+          variant="h4"
           textAlign="center"
           fontWeight={700}
           color={theme.palette.text.primary}
@@ -61,7 +71,7 @@ const CoursesTab = () => {
         {loading ? (
           <Grow in>
             <Grid container spacing={4} sx={{ mb: 10, mt: 5 }}>
-              {['1', '2', '3', '4'].map((i) => (
+              {["1", "2", "3", "4"].map((i) => (
                 <Grid item xs={12} sm={6} lg={3} key={i}>
                   <Card variant="outlined">
                     <CardMedia height={140}>
@@ -87,7 +97,7 @@ const CoursesTab = () => {
           </Grow>
         ) : (
           <Box>
-            <Box sx={{ borderBottom: 1, borderColor: 'white', mt: '1rem' }}>
+            <Box sx={{ borderBottom: 1, borderColor: "white", mt: "1rem" }}>
               <Tabs
                 variant="scrollable"
                 onChange={(event, newValue) => {
@@ -97,7 +107,9 @@ const CoursesTab = () => {
                 indicatorColor="primary"
               >
                 {tabList &&
-                  tabList.map((item, i) => <Tab label={item} key={i} />)}
+                  tabList.map((item, i) => (
+                    <Tab label={`Kelas ${item}`} key={i} />
+                  ))}
               </Tabs>
             </Box>
             {tabList &&
@@ -111,16 +123,18 @@ const CoursesTab = () => {
                     <Grid container spacing={4}>
                       {courseList &&
                         courseList
-                          .filter((item) => item.category === tab)
+                          .filter((item) => item.kelas === tab)
                           .slice(0, 4)
                           .map((item, i) => (
                             <Grid
                               item
                               key={`course${i}`}
                               md={3}
-                              sx={{ mt: '1.5rem' }}
+                              sx={{ mt: "1.5rem" }}
+                              component={Link}
+                              to={`/details/${item._id}`}
                             >
-                              <CardCourse key={i} item={item} type="details" />
+                              <CardCourse key={i} item={item} />
                             </Grid>
                           ))}
                     </Grid>

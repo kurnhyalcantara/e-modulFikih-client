@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
-import parse from 'html-react-parser';
-import { Container } from '@mui/material';
-import { useStyle } from './styles';
-import PersonOutlineIcon from '@mui/icons-material/PersonOutline';
-import axios from 'axios';
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import parse from "html-react-parser";
+import { Container } from "@mui/material";
+import { useStyle } from "./styles";
+import PersonOutlineIcon from "@mui/icons-material/PersonOutline";
+import axios from "axios";
 
 const BlogDetails = () => {
   const classes = useStyle();
@@ -17,7 +17,9 @@ const BlogDetails = () => {
       const getBlogDetail = async () => {
         setLoading(true);
         await axios
-          .get(`http://localhost:4000/api/admin/blog/${blogId}`)
+          .get(
+            `https://api-fikih-mts-bontouse.herokuapp.com/api/admin/blog/${blogId}`
+          )
           .then((res) => {
             if (res.status === 200) {
               setBlog(res.data);
@@ -39,7 +41,7 @@ const BlogDetails = () => {
           <h1 className={classes.title}>{blog?.title}</h1>
           <p className={classes.cardTxt}>
             <small className={classes.titleFooter}>
-              <PersonOutlineIcon /> Elearning •{' '}
+              <PersonOutlineIcon /> Elearning •{" "}
               {new Date(blog?.createdAt).toDateString()}
             </small>
           </p>

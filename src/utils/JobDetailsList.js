@@ -1,4 +1,3 @@
-import HomeIcon from "@mui/icons-material/Home";
 import ListIcon from "@mui/icons-material/List";
 import CategoryIcon from "@mui/icons-material/Category";
 
@@ -6,7 +5,6 @@ export const JobDetailsList = [
   {
     id: 1,
     title: "Date",
-    icon:   <CalendarTodayIcon />,
   },
   {
     id: 2,

@@ -234,9 +234,7 @@ const JobDetails = () => {
             </Grid>
           </Grid>
 
-          <h4 className={classes.info}>
-            ** Upload your CV
-          </h4>
+          <h4 className={classes.info}>** Upload your CV</h4>
           <Button
             variant="contained"
             fullWidth

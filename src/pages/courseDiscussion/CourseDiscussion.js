@@ -1,4 +1,4 @@
-import StarBorder from '@mui/icons-material/StarBorder';
+import StarBorder from "@mui/icons-material/StarBorder";
 import {
   Button,
   Container,
@@ -6,14 +6,14 @@ import {
   ListItemIcon,
   ListItemText,
   TextField,
-} from '@mui/material';
-import { Box } from '@mui/system';
-import axios from 'axios';
-import React, { useContext, useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
-import { toast } from 'react-toastify';
-import { GlobalState } from '../../GlobalState';
-import { useStyle } from './styles';
+} from "@mui/material";
+import { Box } from "@mui/system";
+import axios from "axios";
+import { useContext, useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import { toast } from "react-toastify";
+import { GlobalState } from "../../GlobalState";
+import { useStyle } from "./styles";
 
 const CourseDiscussion = () => {
   const classes = useStyle();
@@ -21,7 +21,7 @@ const CourseDiscussion = () => {
   const [token] = state.token;
   const [user] = state.userAPI.user;
   const [discussion, setDiscussion] = useState({});
-  const [reply, setReply] = useState('');
+  const [reply, setReply] = useState("");
   const { discussionId } = useParams();
   const [loading, setLoading] = useState(false);
 
@@ -30,9 +30,12 @@ const CourseDiscussion = () => {
       const getList = async () => {
         setLoading(true);
         await axios
-          .get(`http://localhost:4000/api/discussion/single/${discussionId}`, {
-            headers: { Authorization: token },
-          })
+          .get(
+            `https://api-fikih-mts-bontouse.herokuapp.com/api/discussion/single/${discussionId}`,
+            {
+              headers: { Authorization: token },
+            }
+          )
           .then((res) => {
             if (res.status === 200) {
               const { discussion } = res.data;
@@ -49,7 +52,7 @@ const CourseDiscussion = () => {
     try {
       setLoading(true);
       await axios.put(
-        `http://localhost:4000/api/discussion/single/${discussionId}`,
+        `https://api-fikih-mts-bontouse.herokuapp.com/api/discussion/single/${discussionId}`,
         {
           answer: reply,
           user: user,
@@ -58,7 +61,7 @@ const CourseDiscussion = () => {
           headers: { Authorization: token },
         }
       );
-      toast.success('Submitted');
+      toast.success("Submitted");
       setLoading(false);
     } catch (error) {
       toast.error(error.response.data.msg);
@@ -96,8 +99,8 @@ const CourseDiscussion = () => {
               fullWidth
               variant="contained"
               style={{
-                backgroundColor: '#EA5252',
-                textTransform: 'none',
+                backgroundColor: "#EA5252",
+                textTransform: "none",
               }}
               sx={{ mt: 5 }}
               onClick={submitReply}
@@ -110,11 +113,11 @@ const CourseDiscussion = () => {
             discussion?.submissions?.length > 0 &&
             discussion?.submissions?.map((item, i) => (
               <Box
-                key={item._id}
+                key={i}
                 sx={{
-                  background: '#fff',
-                  margin: '20px 0',
-                  borderRadius: '6px',
+                  background: "#fff",
+                  margin: "20px 0",
+                  borderRadius: "6px",
                 }}
               >
                 <ListItemButton>
@@ -127,8 +130,8 @@ const CourseDiscussion = () => {
                   />
                   <ListItemText
                     sx={{
-                      display: 'flex',
-                      justifyContent: 'end',
+                      display: "flex",
+                      justifyContent: "end",
                     }}
                     primary={`Posted ${new Date(
                       item?.createdAt

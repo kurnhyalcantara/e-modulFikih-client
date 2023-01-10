@@ -1,14 +1,15 @@
-import React, { useContext } from 'react';
-import { FormControl, Grid, MenuItem, Select } from '@mui/material';
-import { GlobalState } from '../../GlobalState';
-import { BootstrapedInput, SelectInputStyled } from '../Input/BootstrapedInput';
-import { useState } from 'react';
+import { useContext } from "react";
+import { FormControl, Grid, MenuItem, Select } from "@mui/material";
+import { GlobalState } from "../../GlobalState";
+import { BootstrapedInput, SelectInputStyled } from "../Input/BootstrapedInput";
+import { useState } from "react";
 
 const Filter = () => {
   const state = useContext(GlobalState);
-  const [kelas, setKelas] = useState('tujuh'); // TODO: we will using state.courseClassAPI.class;
+  const [kelas, setKelas] = useState("all");
   const [search, setSearch] = state.courseAPI.search;
 
+  const filterCategory = async () => {};
   return (
     <Grid container spacing={4} sx={{ mb: 6 }}>
       <Grid item md={3} xs={12}>
@@ -20,10 +21,16 @@ const Filter = () => {
             value={kelas}
             input={<SelectInputStyled />}
           >
-            <MenuItem value={''}>Semua</MenuItem>
-            <MenuItem value={'tujuh'}>Kelas VII</MenuItem>
-            <MenuItem value={'delapan'}>Kelas VIII</MenuItem>
-            <MenuItem value={'sembilan'}>Kelas IX</MenuItem>
+            <MenuItem value={"all"}>Semua</MenuItem>
+            <MenuItem value={"tujuh"} onClick={filterCategory}>
+              Kelas VII
+            </MenuItem>
+            <MenuItem value={"delapan"} onClick={filterCategory}>
+              Kelas VIII
+            </MenuItem>
+            <MenuItem value={"sembilan"} onClick={filterCategory}>
+              Kelas IX
+            </MenuItem>
           </Select>
         </FormControl>
       </Grid>

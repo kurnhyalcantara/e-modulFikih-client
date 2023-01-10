@@ -1,12 +1,12 @@
-import CheckIcon from '@mui/icons-material/Check';
-import CreateIcon from '@mui/icons-material/Create';
-import GroupsOutlinedIcon from '@mui/icons-material/GroupsOutlined';
-import { Box, Container, Grid, Typography } from '@mui/material';
-import axios from 'axios';
-import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
-import ParentTask from '../task/ParentTask';
-import { useStyle } from './styles';
+import CheckIcon from "@mui/icons-material/Check";
+import CreateIcon from "@mui/icons-material/Create";
+import GroupsOutlinedIcon from "@mui/icons-material/GroupsOutlined";
+import { Box, Container, Grid, Typography } from "@mui/material";
+import axios from "axios";
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import ParentTask from "../task/ParentTask";
+import { useStyle } from "./styles";
 
 const ParentCourseDetails = () => {
   const classes = useStyle();
@@ -23,7 +23,9 @@ const ParentCourseDetails = () => {
       if (courseId) {
         setLoading(true);
         await axios
-          .get(`http://localhost:4000/api/course_details/${courseId}`)
+          .get(
+            `https://api-fikih-mts-bontouse.herokuapp.com/api/course_details/${courseId}`
+          )
           .then((res) => {
             if (res.status === 200) {
               setCourse(res.data);
@@ -64,12 +66,12 @@ const ParentCourseDetails = () => {
               <Typography
                 component="p"
                 style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  marginTop: '15px',
+                  display: "flex",
+                  alignItems: "center",
+                  marginTop: "15px",
                 }}
               >
-                <GroupsOutlinedIcon className={classes.icon} /> Total enrolled :{' '}
+                <GroupsOutlinedIcon className={classes.icon} /> Total enrolled :{" "}
                 {course?.courseDetails?.enrolled}+
               </Typography>
             </Grid>
@@ -91,11 +93,11 @@ const ParentCourseDetails = () => {
                       md={6}
                       lg={6}
                       key={i}
-                      style={{ display: 'flex', alignItems: 'center' }}
+                      style={{ display: "flex", alignItems: "center" }}
                     >
                       <Typography
                         component="p"
-                        style={{ display: 'flex', alignItems: 'center' }}
+                        style={{ display: "flex", alignItems: "center" }}
                       >
                         <CheckIcon className={classes.icon} />
                         {objective?.objective}
@@ -114,7 +116,7 @@ const ParentCourseDetails = () => {
                     <Grid item xs={12} md={6} lg={6} key={i}>
                       <Typography
                         component="p"
-                        style={{ display: 'flex', alignItems: 'center' }}
+                        style={{ display: "flex", alignItems: "center" }}
                       >
                         <CreateIcon className={classes.icon} />
                         {req?.requrement}

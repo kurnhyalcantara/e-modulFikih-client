@@ -1,5 +1,6 @@
-.banner-login {
+.banner-auth {
   width: 65%;
+  height: 65%;
 }
 
 .login-container {
@@ -16,5 +17,4 @@
   align-items: center;
   position: relative;
   margin-top: 24px;
-  margin-bottom: 1rem;
 }

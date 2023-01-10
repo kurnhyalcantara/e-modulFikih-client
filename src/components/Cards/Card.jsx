@@ -1,4 +1,4 @@
-import StarRateIcon from '@mui/icons-material/StarRate';
+import StarRateIcon from "@mui/icons-material/StarRate";
 import {
   Avatar,
   Box,
@@ -7,14 +7,14 @@ import {
   Divider,
   Typography,
   useTheme,
-} from '@mui/material';
-import Card from '@mui/material/Card';
-import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
-import './Card.css';
-import { AccessTimeTwoTone } from '@mui/icons-material';
+} from "@mui/material";
+import Card from "@mui/material/Card";
+import { useEffect, useState } from "react";
+import PropTypes from "prop-types";
+import "./Card.css";
+import { AccessTimeTwoTone } from "@mui/icons-material";
 
-const Cards = ({ item, type }) => {
+const Cards = ({ item }) => {
   const theme = useTheme();
   const [rating, setRating] = useState(0);
 
@@ -40,16 +40,16 @@ const Cards = ({ item, type }) => {
     <Card
       className="card"
       variant="outlined"
-      sx={{ width: { md: '300px', xs: '90%' } }}
+      sx={{ width: { md: "300px", xs: "90%" } }}
     >
       <CardMedia
         component="img"
         height={140}
         image={
           item?.banner?.url ??
-          'https://www.pulsecarshalton.co.uk/wp-content/uploads/2016/08/jk-placeholder-image.jpg'
+          "https://www.pulsecarshalton.co.uk/wp-content/uploads/2016/08/jk-placeholder-image.jpg"
         }
-        alt={item?.title ?? 'Card Banner'}
+        alt={item?.title ?? "Card Banner"}
       ></CardMedia>
       <CardContent>
         {item?.category.map((tag, i) => {
@@ -59,12 +59,7 @@ const Cards = ({ item, type }) => {
             </button>
           );
         })}
-        <Typography
-          variant="h5"
-          component={Link}
-          className="heading"
-          to={`/${type}/${item?._id}`}
-        >
+        <Typography variant="h5" className="heading" fontWeight="700">
           {item?.title}
         </Typography>
         <Box className="instructor">
@@ -72,9 +67,9 @@ const Cards = ({ item, type }) => {
             alt={item?.instructor?.name}
             img={
               item?.instructor?.img ??
-              'https://monstar-lab.com/global/wp-content/uploads/sites/11/2019/04/male-placeholder-image.jpeg'
+              "https://monstar-lab.com/global/wp-content/uploads/sites/11/2019/04/male-placeholder-image.jpeg"
             }
-            sx={{ width: '14px', height: '14px' }}
+            sx={{ width: "14px", height: "14px" }}
           ></Avatar>
           <Typography
             component="p"
@@ -89,7 +84,7 @@ const Cards = ({ item, type }) => {
         <Box className="info-detail-pelajaran">
           <Box className="alokasi-waktu">
             <AccessTimeTwoTone
-              sx={{ width: '14px', height: '14px' }}
+              sx={{ width: "14px", height: "14px" }}
               color="disabled"
             ></AccessTimeTwoTone>
             <Typography
@@ -103,8 +98,8 @@ const Cards = ({ item, type }) => {
             </Typography>
           </Box>
           <Box className="rating-pelajaran">
-            <StarRateIcon className="star-rating" />{' '}
-            <span className="count-rating">{rating ? rating : '0'}+</span>
+            <StarRateIcon className="star-rating" />{" "}
+            <span className="count-rating">{rating ? rating : "0"}+</span>
           </Box>
         </Box>
       </CardContent>
@@ -112,4 +107,8 @@ const Cards = ({ item, type }) => {
   );
 };
 
+Cards.propTypes = {
+  item: PropTypes.object,
+  type: PropTypes.string,
+};
 export default Cards;
