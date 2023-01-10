@@ -1,5 +1,5 @@
-import DeleteIcon from '@mui/icons-material/Delete';
-import EditIcon from '@mui/icons-material/Edit';
+import DeleteIcon from "@mui/icons-material/Delete";
+import EditIcon from "@mui/icons-material/Edit";
 import {
   Button,
   Container,
@@ -9,12 +9,12 @@ import {
   TableCell,
   TableContainer,
   TableHead,
-} from '@mui/material';
-import axios from 'axios';
-import React, { useContext, useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
-import { toast } from 'react-toastify';
-import { GlobalState } from '../../GlobalState';
+} from "@mui/material";
+import axios from "axios";
+import { useContext, useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import { toast } from "react-toastify";
+import { GlobalState } from "../../GlobalState";
 
 const Blogs = () => {
   const state = useContext(GlobalState);
@@ -24,9 +24,12 @@ const Blogs = () => {
   useEffect(() => {
     const getBlogs = async () => {
       await axios
-        .get('http://localhost:4000/api/instructor/blog', {
-          headers: { Authorization: token },
-        })
+        .get(
+          "https://api-fikih-mts-bontouse.herokuapp.com/api/instructor/blog",
+          {
+            headers: { Authorization: token },
+          }
+        )
         .then((res) => {
           if (res.status === 200) {
             setBlogs(res.data);
@@ -37,14 +40,17 @@ const Blogs = () => {
   }, [token]);
 
   const deleteBlog = async (id) => {
-    if (window.confirm('want to delete')) {
+    if (window.confirm("want to delete")) {
       await axios
-        .delete(`http://localhost:4000/api/instructor/blog/${id}`, {
-          headers: { Authorization: token },
-        })
+        .delete(
+          `https://api-fikih-mts-bontouse.herokuapp.com/api/instructor/blog/${id}`,
+          {
+            headers: { Authorization: token },
+          }
+        )
         .then((res) => {
           if (res.status === 200) {
-            toast.success('Deleted');
+            toast.success("Deleted");
           }
         });
     }
@@ -54,9 +60,9 @@ const Blogs = () => {
     <Container maxWidth="xl">
       <div
         style={{
-          display: 'flex',
-          justifyContent: 'space-between',
-          alignItems: 'center',
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
         }}
       >
         <h2>Blogs</h2>

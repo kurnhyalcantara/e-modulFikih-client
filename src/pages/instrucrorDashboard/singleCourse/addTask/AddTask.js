@@ -1,21 +1,21 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { Button, Container, Grid, TextField } from '@mui/material';
-import axios from 'axios';
-import moment from 'moment';
-import React, { useContext, useEffect, useState } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
-import { toast } from 'react-toastify';
-import Swal from 'sweetalert2';
-import { GlobalState } from '../../../../GlobalState';
-import { useStyle } from './styles';
+import { Button, Container, Grid, TextField } from "@mui/material";
+import axios from "axios";
+import moment from "moment";
+import { useContext, useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+import { toast } from "react-toastify";
+import Swal from "sweetalert2";
+import { GlobalState } from "../../../../GlobalState";
+import { useStyle } from "./styles";
 
 const AddTask = () => {
   const classes = useStyle();
   const state = useContext(GlobalState);
   const [token] = state.token;
-  const [title, setTitle] = useState('');
+  const [title, setTitle] = useState("");
   const [loading, setLoading] = useState(false);
-  const [description, setDescription] = useState('');
+  const [description, setDescription] = useState("");
   const [startvalue, setStartValue] = useState();
   const [endvalue, setEndValue] = useState();
   const { courseId, taskId } = useParams();
@@ -31,12 +31,16 @@ const AddTask = () => {
     };
     if (courseId) {
       await axios
-        .post(`http://localhost:4000/api/task/${courseId}`, payload, {
-          headers: { Authorization: token },
-        })
+        .post(
+          `https://api-fikih-mts-bontouse.herokuapp.com/api/task/${courseId}`,
+          payload,
+          {
+            headers: { Authorization: token },
+          }
+        )
         .then((res) => {
           if (res.status === 200) {
-            Swal.fire('Good job!', 'You Created a Task!', 'success');
+            Swal.fire("Good job!", "You Created a Task!", "success");
             history(`/course_details/${courseId}`);
           }
         })
@@ -45,12 +49,16 @@ const AddTask = () => {
         });
     } else if (taskId) {
       await axios
-        .put(`http://localhost:4000/api/task_update/${taskId}`, payload, {
-          headers: { Authorization: token },
-        })
+        .put(
+          `https://api-fikih-mts-bontouse.herokuapp.com/api/task_update/${taskId}`,
+          payload,
+          {
+            headers: { Authorization: token },
+          }
+        )
         .then((res) => {
           if (res.status === 200) {
-            Swal.fire('Good job!', 'You updated this Task!', 'success');
+            Swal.fire("Good job!", "You updated this Task!", "success");
             history(-1);
           }
         })
@@ -63,16 +71,19 @@ const AddTask = () => {
   const getSingleTask = async () => {
     setLoading(true);
     await axios
-      .get(`http://localhost:4000/api/task_update/${taskId}`, {
-        headers: { Authorization: token },
-      })
+      .get(
+        `https://api-fikih-mts-bontouse.herokuapp.com/api/task_update/${taskId}`,
+        {
+          headers: { Authorization: token },
+        }
+      )
       .then((res) => {
         if (res.status === 200) {
           const { task } = res.data;
           setTitle(task?.title);
           setDescription(task?.description);
-          setStartValue(moment(task?.start).format('YYYY-MM-DD'));
-          setEndValue(moment(task?.end).format('YYYY-MM-DD'));
+          setStartValue(moment(task?.start).format("YYYY-MM-DD"));
+          setEndValue(moment(task?.end).format("YYYY-MM-DD"));
           setLoading(false);
         }
       });
@@ -92,9 +103,9 @@ const AddTask = () => {
       ) : (
         <Container maxWidth="xl">
           <div className={classes.containers}>
-            <h1>{taskId ? 'Update' : 'Create'} Task</h1>
+            <h1>{taskId ? "Update" : "Create"} Task</h1>
             <Grid container spacing={4} alignItems="center">
-              <Grid item xs={12} sx={{ marginBottom: '12px' }}>
+              <Grid item xs={12} sx={{ marginBottom: "12px" }}>
                 <TextField
                   fullWidth
                   id="outlined-basic"
@@ -124,7 +135,7 @@ const AddTask = () => {
               />
             </Grid>
 
-            <Grid container sx={{ marginTop: '1px' }} spacing={3}>
+            <Grid container sx={{ marginTop: "1px" }} spacing={3}>
               <Grid item xs={12} sm={12} lg={6} md={6}>
                 <TextField
                   type="date"
@@ -161,11 +172,11 @@ const AddTask = () => {
               onClick={handleSubmit}
               variant="contained"
               style={{
-                backgroundColor: '#EA5252',
-                textTransform: 'none',
+                backgroundColor: "#EA5252",
+                textTransform: "none",
               }}
             >
-              {taskId ? 'Update' : 'Create'} Task
+              {taskId ? "Update" : "Create"} Task
             </Button>
           </div>
         </Container>

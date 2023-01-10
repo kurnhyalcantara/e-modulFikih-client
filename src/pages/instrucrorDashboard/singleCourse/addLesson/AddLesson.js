@@ -1,18 +1,18 @@
-import { Button, Container, Grid, TextField } from '@mui/material';
-import { useStyle } from './styles';
-import AddIcon from '@mui/icons-material/Add';
-import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
-import { v4 as uuidv4 } from 'uuid';
-import React, { useContext, useEffect, useState } from 'react';
-import axios from 'axios';
-import { useNavigate, useParams } from 'react-router-dom';
-import { GlobalState } from '../../../../GlobalState';
-import Swal from 'sweetalert2';
-import { toast } from 'react-toastify';
+import { Button, Container, Grid, TextField } from "@mui/material";
+import { useStyle } from "./styles";
+import AddIcon from "@mui/icons-material/Add";
+import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
+import { v4 as uuidv4 } from "uuid";
+import { useContext, useEffect, useState } from "react";
+import axios from "axios";
+import { useNavigate, useParams } from "react-router-dom";
+import { GlobalState } from "../../../../GlobalState";
+import Swal from "sweetalert2";
+import { toast } from "react-toastify";
 
 const AddLesson = () => {
   const classes = useStyle();
-  const [heading, setHeading] = useState('');
+  const [heading, setHeading] = useState("");
   const state = useContext(GlobalState);
   const [token] = state.token;
   const { courseId, lessonId } = useParams();
@@ -24,8 +24,8 @@ const AddLesson = () => {
   const [videos, setVideos] = useState([
     {
       id: uuidv4(),
-      title: '',
-      link: '',
+      title: "",
+      link: "",
       status: false,
     },
   ]);
@@ -46,8 +46,8 @@ const AddLesson = () => {
       ...videos,
       {
         id: uuidv4(),
-        title: '',
-        link: '',
+        title: "",
+        link: "",
         status: false,
       },
     ]);
@@ -66,7 +66,7 @@ const AddLesson = () => {
     if (lessonId) {
       await axios
         .put(
-          `http://localhost:4000/api/lesson/${lessonId}`,
+          `https://api-fikih-mts-bontouse.herokuapp.com/api/lesson/${lessonId}`,
           {
             title: heading,
             videos: videos,
@@ -77,7 +77,7 @@ const AddLesson = () => {
         )
         .then((res) => {
           if (res.status === 200) {
-            Swal.fire('Good job!', 'You updated this Lesson!', 'success');
+            Swal.fire("Good job!", "You updated this Lesson!", "success");
             history(-1);
           }
         })
@@ -87,7 +87,7 @@ const AddLesson = () => {
     } else if (courseId) {
       await axios
         .post(
-          `http://localhost:4000/api/lesson/${courseId}`,
+          `https://api-fikih-mts-bontouse.herokuapp.com/api/lesson/${courseId}`,
           {
             title: heading,
             videos: videos,
@@ -98,7 +98,7 @@ const AddLesson = () => {
         )
         .then((res) => {
           if (res.status === 200) {
-            Swal.fire('Good job!', 'You Created a Lesson!', 'success');
+            Swal.fire("Good job!", "You Created a Lesson!", "success");
             history(`/course_details/${courseId}`);
           }
         })
@@ -113,9 +113,12 @@ const AddLesson = () => {
       if (lessonId) {
         setLoading(true);
         await axios
-          .get(`http://localhost:4000/api/lesson_details/${lessonId}`, {
-            headers: { Authorization: token },
-          })
+          .get(
+            `https://api-fikih-mts-bontouse.herokuapp.com/api/lesson_details/${lessonId}`,
+            {
+              headers: { Authorization: token },
+            }
+          )
           .then((res) => {
             if (res.status === 200) {
               const { lesson } = res.data;
@@ -125,12 +128,12 @@ const AddLesson = () => {
             }
           });
       } else {
-        setHeading('');
+        setHeading("");
         setVideos([
           {
             id: uuidv4(),
-            title: '',
-            link: '',
+            title: "",
+            link: "",
             status: false,
           },
         ]);
@@ -146,7 +149,7 @@ const AddLesson = () => {
       ) : (
         <Container maxWidth="xl">
           <div className={classes.containers}>
-            <h1>{lessonId ? 'Update' : 'Add'} Lesson</h1>
+            <h1>{lessonId ? "Update" : "Add"} Lesson</h1>
             <Grid container spacing={4} alignItems="center">
               <Grid item md={12}>
                 <TextField
@@ -166,8 +169,8 @@ const AddLesson = () => {
             {videos.map((video, index) => (
               <Grid key={index} container spacing={3} alignItems="center">
                 <Grid item xs={12} sm={12} lg={5} md={5}>
-                  <div style={{ display: 'flex', alignItems: 'center' }}>
-                    <h1 style={{ marginRight: '10px' }}>{++index}.</h1>
+                  <div style={{ display: "flex", alignItems: "center" }}>
+                    <h1 style={{ marginRight: "10px" }}>{++index}.</h1>
                     <TextField
                       id="outlined-basic"
                       label="Video Name"
@@ -194,7 +197,7 @@ const AddLesson = () => {
                 </Grid>
                 <Grid item md={2}>
                   <Button
-                    style={{ marginLeft: '15px' }}
+                    style={{ marginLeft: "15px" }}
                     variant="contained"
                     color="error"
                     disabled={videos.length === 1}
@@ -205,7 +208,7 @@ const AddLesson = () => {
                     <DeleteOutlineIcon />
                   </Button>
                   <Button
-                    style={{ marginLeft: '15px' }}
+                    style={{ marginLeft: "15px" }}
                     variant="contained"
                     color="secondary"
                     onClick={handleAddVideos}
@@ -221,11 +224,11 @@ const AddLesson = () => {
               fullWidth
               variant="contained"
               style={{
-                backgroundColor: '#EA5252',
-                textTransform: 'none',
+                backgroundColor: "#EA5252",
+                textTransform: "none",
               }}
             >
-              {lessonId ? 'Update' : 'Add'}
+              {lessonId ? "Update" : "Add"}
             </Button>
           </div>
         </Container>

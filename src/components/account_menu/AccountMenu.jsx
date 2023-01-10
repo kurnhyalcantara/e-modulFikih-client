@@ -1,30 +1,30 @@
-import React, { useContext, useState } from 'react';
-import Box from '@mui/material/Box';
-import Avatar from '@mui/material/Avatar';
-import Menu from '@mui/material/Menu';
-import MenuItem from '@mui/material/MenuItem';
-import ListItemIcon from '@mui/material/ListItemIcon';
-import Divider from '@mui/material/Divider';
-import IconButton from '@mui/material/IconButton';
-import Tooltip from '@mui/material/Tooltip';
-import { Link } from 'react-router-dom';
+import { useContext, useState } from "react";
+import PropTypes from "prop-types";
+import Box from "@mui/material/Box";
+import Avatar from "@mui/material/Avatar";
+import Menu from "@mui/material/Menu";
+import MenuItem from "@mui/material/MenuItem";
+import ListItemIcon from "@mui/material/ListItemIcon";
+import Divider from "@mui/material/Divider";
+import IconButton from "@mui/material/IconButton";
+import Tooltip from "@mui/material/Tooltip";
+import { Link } from "react-router-dom";
 import {
   ListItemAvatar,
   ListItemText,
   Typography,
   useTheme,
-} from '@mui/material';
-import DashboardIcon from '@mui/icons-material/Dashboard';
-import { GlobalState } from '../../GlobalState';
-import { LogoutTwoTone, SettingsTwoTone } from '@mui/icons-material';
-import axios from 'axios';
-import { toast } from 'react-toastify';
+} from "@mui/material";
+
+import { GlobalState } from "../../GlobalState";
+import { LogoutRounded, SettingsRounded } from "@mui/icons-material";
+import { Fragment } from "react";
 
 const AccountMenu = ({ logOut }) => {
   const state = useContext(GlobalState);
   const theme = useTheme();
   const [user] = state.userAPI.user;
-  const [isLogged, setIsLogged] = state.userAPI.isLogged;
+  const [isLogged] = state.userAPI.isLogged;
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
@@ -35,20 +35,28 @@ const AccountMenu = ({ logOut }) => {
   };
 
   return (
-    <React.Fragment>
-      <Box sx={{ display: 'flex', alignItems: 'center', textAlign: 'center' }}>
+    <Fragment>
+      <Box sx={{ display: "flex", alignItems: "center", textAlign: "center" }}>
         <Tooltip title="Account settings">
           <IconButton
             onClick={handleClick}
-            size="large"
-            aria-controls={open ? 'account-menu' : undefined}
+            aria-controls={open ? "account-menu" : undefined}
             aria-haspopup="true"
-            aria-expanded={open ? 'true' : undefined}
+            aria-expanded={open ? "true" : undefined}
           >
-            <Avatar
-              src="../../assets/avatar.svg"
-              sx={{ width: 40, height: 40 }}
-            ></Avatar>
+            <Box className="avatar-penampung">
+              <Avatar
+                className="avatar-navbar"
+                src={user?.image?.url ?? ""}
+                alt={user?.namaLengkap}
+                sx={{
+                  width: { xs: "2rem", md: "2.5rem" },
+                  height: { xs: "2rem", md: "2.5rem" },
+                }}
+              >
+                {user?.avatarLetter}
+              </Avatar>
+            </Box>
           </IconButton>
         </Tooltip>
       </Box>
@@ -61,96 +69,81 @@ const AccountMenu = ({ logOut }) => {
         PaperProps={{
           elevation: 0,
           sx: {
-            overflow: 'visible',
-            filter: 'drop-shadow(0 8px 15px rgba(0,2,12,.19))',
-            p: '1rem',
-            borderBottomRightRadius: '0.5rem',
-            borderBottomLeftRadius: '0.5rem',
-            width: '245px',
+            overflow: "visible",
+            filter: "drop-shadow(0 8px 15px rgba(0,2,12,.19))",
+            p: "1rem",
+            borderBottomRightRadius: "0.5rem",
+            borderBottomLeftRadius: "0.5rem",
+            width: "245px",
             mt: 1.5,
-            '& .MuiAvatar-root': {
+            "& .MuiAvatar-root": {
               width: 32,
               height: 32,
               ml: -0.5,
               mr: 1,
             },
-            '&:before': {
+            "&:before": {
               content: '""',
-              display: 'block',
-              position: 'absolute',
+              display: "block",
+              position: "absolute",
               top: 0,
               right: 14,
               width: 10,
               height: 10,
-              bgcolor: 'background.paper',
-              transform: 'translateY(-50%) rotate(45deg)',
+              bgcolor: "background.paper",
+              transform: "translateY(-50%) rotate(45deg)",
               zIndex: 0,
             },
           },
         }}
-        transformOrigin={{ horizontal: 'right', vertical: 'top' }}
-        anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
+        transformOrigin={{ horizontal: "right", vertical: "top" }}
+        anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
       >
-        {user && user.type === 'student' && (
-          <MenuItem>
-            <ListItemIcon>
-              <DashboardIcon fontSize="small" />
-            </ListItemIcon>
-            <Typography component={Link} to={`/student_dashboard`}>
-              Dashboard
-            </Typography>
-          </MenuItem>
-        )}
-        {user && user.type === 'parent' && (
-          <MenuItem>
-            <ListItemIcon>
-              <DashboardIcon fontSize="small" />
-            </ListItemIcon>
-            <Typography component={Link} to={`/parent_dashboard`}>
-              Dashboard
-            </Typography>
-          </MenuItem>
-        )}
         <MenuItem>
           <ListItemAvatar>
             <Avatar
-              src="../../assets/avatar.svg"
-              sx={{ width: 40, height: 40 }}
-            />
+              src={user?.image?.url ?? ""}
+              alt={user?.namaLengkap}
+              sx={{
+                width: 40,
+                height: 40,
+              }}
+            >
+              {user?.avatarLetter}
+            </Avatar>
           </ListItemAvatar>
-          <ListItemText primary={user.name} secondary={`NIS. ${user.nis}`} />
+          <ListItemText
+            primary={user.namaLengkap}
+            secondary={`NIS. ${user.nis}`}
+            className="namaLengkap-sidebar"
+          />
         </MenuItem>
         <Divider />
-
-        <MenuItem component={Link} to="/profile" button>
+        <MenuItem component={Link} to="/profile">
           <ListItemIcon>
-            <SettingsTwoTone />
+            <SettingsRounded />
           </ListItemIcon>
           <ListItemText
             color={theme.palette.text.secondary}
             primary="Pengaturan Profil"
+            fontWeight="700"
           />
         </MenuItem>
-        <MenuItem
-          button
-          onClick={async () => {
-            await axios.get('http://localhost:4000/api/logout');
-            localStorage.clear();
-            setIsLogged(false);
-            toast.success('Anda telah logout');
-            setTimeout(() => {
-              window.location.href = '/';
-            }, 3000);
-          }}
-        >
+        <MenuItem onClick={logOut}>
           <ListItemIcon>
-            <LogoutTwoTone />
+            <LogoutRounded color="error" />
           </ListItemIcon>
-          <ListItemText color={theme.palette.text.secondary} primary="Keluar" />
+          <ListItemText>
+            <Typography color="error">Keluar</Typography>
+          </ListItemText>
         </MenuItem>
       </Menu>
-    </React.Fragment>
+    </Fragment>
   );
+};
+
+AccountMenu.propTypes = {
+  logOut: PropTypes.func,
 };
 
 export default AccountMenu;

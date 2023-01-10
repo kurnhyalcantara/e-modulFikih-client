@@ -1,7 +1,7 @@
-import React from "react";
 import { Grid, Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import parse from "html-react-parser";
+import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 
 const BlogCard = ({ item }) => {
@@ -54,7 +54,15 @@ const BlogCard = ({ item }) => {
           >
             {item?.description && parse(item?.description)}
           </Typography>
-          <Typography sx={{ border: "1px solid red", padding: "5px 12px", borderRadius: '8px' }} component={Link} to={`/blog_details/${item?._id}`}>
+          <Typography
+            sx={{
+              border: "1px solid red",
+              padding: "5px 12px",
+              borderRadius: "8px",
+            }}
+            component={Link}
+            to={`/blog_details/${item?._id}`}
+          >
             Read More
           </Typography>
         </Grid>
@@ -63,4 +71,7 @@ const BlogCard = ({ item }) => {
   );
 };
 
+BlogCard.propTypes = {
+  item: PropTypes.object,
+};
 export default BlogCard;

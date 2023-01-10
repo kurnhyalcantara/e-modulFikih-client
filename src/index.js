@@ -1,13 +1,13 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
-import { DataProvider } from './GlobalState';
-import { ToastContainer } from 'react-toastify';
-import { StyledEngineProvider } from '@mui/material/styles';
-import 'react-toastify/dist/ReactToastify.css';
-import * as serviceWorkerRegistration from './serviceWorkerRegistration';
+import React from "react";
+import ReactDOM from "react-dom";
+import "./index.css";
+import App from "./App";
+import reportWebVitals from "./reportWebVitals";
+import { DataProvider } from "./GlobalState";
+import { ToastContainer } from "react-toastify";
+import { StyledEngineProvider } from "@mui/material/styles";
+import "react-toastify/dist/ReactToastify.css";
+import * as serviceWorkerRegistration from "./serviceWorkerRegistration";
 // import "sweetalert2/src/sweetalert2.scss";
 
 ReactDOM.render(
@@ -19,7 +19,7 @@ ReactDOM.render(
       </StyledEngineProvider>
     </DataProvider>
   </React.StrictMode>,
-  document.getElementById('root')
+  document.getElementById("root")
 );
 
 // If you want your app to work offline and load faster, you can change

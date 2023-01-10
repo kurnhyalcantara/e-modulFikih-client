@@ -8,16 +8,19 @@ import {
   Toolbar,
   Typography,
   Divider,
-} from '@mui/material';
-import axios from 'axios';
-import React, { Fragment, useContext, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import { GlobalState } from '../../GlobalState';
-import AccountMenu from '../account_menu/AccountMenu';
-import Sidebar from '../sidebar/Sidebar';
-import { useTheme } from '@mui/material/styles';
-import { BootstrapedInput } from '../Input/BootstrapedInput';
-import './Navbar.css';
+  Avatar,
+} from "@mui/material";
+import axios from "axios";
+import React, { Fragment, useContext, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { GlobalState } from "../../GlobalState";
+import AccountMenu from "../account_menu/AccountMenu";
+import Sidebar from "../drawer/Sidebar";
+import { useTheme } from "@mui/material/styles";
+import { BootstrapedInput } from "../Input/BootstrapedInput";
+import "./Navbar.css";
+import { deepOrange } from "@mui/material/colors";
+import { toast } from "react-toastify";
 
 const Navbar = () => {
   const theme = useTheme();
@@ -25,44 +28,24 @@ const Navbar = () => {
   const [isLogged, setIsLogged] = state.userAPI.isLogged;
   const [search, setSearch] = state.courseAPI.search;
   const [user] = state.userAPI.user;
+  const [drawer, setDrawer] = useState({});
   const history = useNavigate();
   const logo =
-    'https://firebasestorage.googleapis.com/v0/b/fikih-mtsbontouse.appspot.com/o/Icons%2Ficon-72x72.png?alt=media&token=7c559bc1-872f-4ba2-b3bd-5d8c0cee5c29';
-
-  const [anchorElNav, setAnchorElNav] = React.useState(null);
-  // const [anchorElUser, setAnchorElUser] = React.useState(null);
-
-  const handleOpenNavMenu = (event) => {
-    setAnchorElNav(event.currentTarget);
-  };
-  // const handleOpenUserMenu = (event) => {
-  //   setAnchorElUser(event.currentTarget);
-  // };
-
-  const handleCloseNavMenu = () => {
-    setAnchorElNav(null);
-  };
-
-  // const handleCloseUserMenu = () => {
-  //   setAnchorElUser(null);
-  // };
+    // eslint-disable-next-line max-len
+    "https://firebasestorage.googleapis.com/v0/b/fikih-mtsbontouse.appspot.com/o/Icons%2Ficon-72x72.png?alt=media&token=7c559bc1-872f-4ba2-b3bd-5d8c0cee5c29";
 
   const logOut = async () => {
-    await axios.get('http://localhost:4000/api/logout');
+    await axios.get("https://api-fikih-mts-bontouse.herokuapp.com/api/logout");
     localStorage.clear();
     setIsLogged(false);
-    window.location.href = '/';
-    // closeMobileMenu();
+    toast.success("Logout berhasil");
+    history("/login");
   };
-
-  const [drawer, setDrawer] = useState({
-    left: false,
-  });
 
   const toggleDrawer = (anchor, open) => (event) => {
     if (
-      event.type === 'keydown' &&
-      (event.key === 'Tab' || event.key === 'Shift')
+      event.type === "keydown" &&
+      (event.key === "Tab" || event.key === "Shift")
     ) {
       return;
     }
@@ -71,62 +54,66 @@ const Navbar = () => {
   };
 
   const handleChange = (e) => {
-    history('/courses');
+    history("/courses");
     setSearch(e.target.value);
   };
 
   return (
-    <AppBar
-      elevation={0}
-      color="inherit"
-      position="fixed"
-      sx={{ filter: 'drop-shadow(0 8px 15px rgba(0,14,61,.08))' }}
-    >
+    <AppBar elevation={0} color="inherit" className="app-bar">
       <Container maxWidth="xl">
         <Toolbar
           disableGutters
-          sx={{ justifyContent: { xs: 'flex-start', md: 'center' } }}
+          sx={{ justifyContent: { xs: "flex-start", md: "center" } }}
         >
-          {/* For Mobile View */}
-          <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
+          <Box sx={{ display: { xs: "flex", md: "none" } }}>
             <Sidebar drawer={drawer} toggleDrawer={toggleDrawer} />
           </Box>
           <Box
             sx={{
-              alignItems: 'center',
-              display: { xs: 'flex', md: 'none' },
+              width: "100%",
+              alignItems: "center",
+              justifyContent: "space-between",
+              display: { xs: "flex", md: "none" },
             }}
           >
-            <Link to="/">
-              <img
-                style={{ padding: '12px', width: '40px', height: '40px' }}
-                src={logo}
-                alt="logo"
-              />
-            </Link>
-            <Typography
-              color={theme.palette.primary.main}
-              fontWeight="900"
-              fontSize="20px"
-              to="/"
-              component={Link}
-            >
-              Fikih MTs Bontouse
-            </Typography>
+            <Box sx={{ alignItems: "center", display: "flex" }}>
+              <Link to="/" display="inline-block">
+                <img
+                  style={{ padding: "12px", width: "40px", height: "40px" }}
+                  src={logo}
+                  alt="logo"
+                />
+              </Link>
+              <Typography
+                color={theme.palette.primary.main}
+                fontWeight="900"
+                fontSize="20px"
+                to="/"
+                component={Link}
+                display="inline-block"
+              >
+                Fikih MTs Bontouse
+              </Typography>
+            </Box>
+            {isLogged ? (
+              <Fragment>
+                <AccountMenu logOut={logOut}></AccountMenu>
+              </Fragment>
+            ) : null}
           </Box>
           {/* For Desktop View */}
           <Box
             sx={{
-              alignItems: 'center',
-              display: { xs: 'none', md: 'flex' },
-              padding: '12px',
+              alignItems: "center",
+              display: { xs: "none", md: "flex" },
+              padding: "12px",
             }}
           >
             <Link to="/">
               <img src={logo} alt="logo" />
             </Link>
             <Typography
-              className="menuButton-Navbar"
+              className="menu-navbar"
               color={theme.palette.primary.main}
               fontWeight="900"
               fontSize="25px"
@@ -137,10 +124,11 @@ const Navbar = () => {
             </Typography>
             <Divider orientation="vertical" variant="middle" flexItem />
             <Typography
-              className="menuButton-Navbar"
-              color={theme.palette.text.secondary}
+              className="menu-navbar"
+              color={theme.palette.text.primary}
               to="/courses"
               component={Link}
+              fontWeight="700"
             >
               Materi
             </Typography>
@@ -149,27 +137,26 @@ const Navbar = () => {
               placeholder="Cari materi"
             />
             <Typography
-              className="menuButton-Navbar"
-              color={theme.palette.text.secondary}
+              className="menu-navbar"
+              color={theme.palette.text.primary}
               to="/blogs"
               component={Link}
+              fontWeight="700"
             >
               Blog
             </Typography>
             <Typography
-              className="menuButton-Navbar"
-              color={theme.palette.text.secondary}
+              className="menu-navbar"
+              color={theme.palette.text.primary}
               component={Link}
               to="/job_view"
+              fontWeight="700"
             >
               Tentang
             </Typography>
             {isLogged ? (
               <Fragment>
                 <AccountMenu logOut={logOut} />
-                {user.type === 'instructor' && user.status === true ? (
-                  <Sidebar drawer={drawer} toggleDrawer={toggleDrawer} />
-                ) : null}
               </Fragment>
             ) : (
               <Button className="rounded-button" component={Link} to="/login">

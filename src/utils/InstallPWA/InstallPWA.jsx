@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { Button } from '@mui/material';
+import { useEffect, useState } from "react";
+import { Button } from "@mui/material";
 
 const InstallPWA = () => {
   const [promptInstall, setPromptInstall] = useState(null);
@@ -7,11 +7,10 @@ const InstallPWA = () => {
   useEffect(() => {
     const handler = (e) => {
       e.preventDefault();
-      console.log('we are being trigerred :D');
       setPromptInstall(e);
     };
-    window.addEventListener('beforeinstallprompt', handler);
-    return () => window.removeEventListener('transitionend', handler);
+    window.addEventListener("beforeinstallprompt", handler);
+    return () => window.removeEventListener("transitionend", handler);
   }, []);
 
   const triggerPrompt = (evt) => {
@@ -23,11 +22,9 @@ const InstallPWA = () => {
   };
 
   return (
-    <div style={{ margin: '1.5rem 0' }}>
-      <Button onClick={triggerPrompt} className="rounded-button download-pwa">
-        Download Aplikasi
-      </Button>
-    </div>
+    <Button onClick={triggerPrompt} className="rounded-button" fullWidth>
+      Download
+    </Button>
   );
 };
 

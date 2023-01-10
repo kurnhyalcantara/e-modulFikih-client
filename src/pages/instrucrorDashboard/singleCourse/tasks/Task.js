@@ -1,13 +1,14 @@
-import React, { useContext } from 'react';
-import { Link } from 'react-router-dom';
-import AssignmentIcon from '@mui/icons-material/Assignment';
-import DeleteIcon from '@mui/icons-material/Delete';
-import ModeEditIcon from '@mui/icons-material/ModeEdit';
-import { Button, IconButton } from '@mui/material';
-import { useStyle } from './styles';
-import Swal from 'sweetalert2';
-import axios from 'axios';
-import { GlobalState } from '../../../../GlobalState';
+import { useContext } from "react";
+import { Link } from "react-router-dom";
+import AssignmentIcon from "@mui/icons-material/Assignment";
+import DeleteIcon from "@mui/icons-material/Delete";
+import ModeEditIcon from "@mui/icons-material/ModeEdit";
+import { Button, IconButton } from "@mui/material";
+import { useStyle } from "./styles";
+import Swal from "sweetalert2";
+import axios from "axios";
+import PropTypes from "prop-types";
+import { GlobalState } from "../../../../GlobalState";
 
 const Task = ({ getData, tasks }) => {
   const classes = useStyle();
@@ -17,28 +18,31 @@ const Task = ({ getData, tasks }) => {
 
   const deleteTask = async () => {
     Swal.fire({
-      title: 'Are you sure?',
-      text: 'to delete this task',
-      icon: 'warning',
+      title: "Are you sure?",
+      text: "to delete this task",
+      icon: "warning",
       showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
-      confirmButtonText: 'Yes, delete it!',
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
     }).then(async (result) => {
       if (result.isConfirmed) {
         await axios
-          .delete(`http://localhost:4000/api/task_update/${_id}`, {
-            headers: { Authorization: token },
-          })
+          .delete(
+            `https://api-fikih-mts-bontouse.herokuapp.com/api/task_update/${_id}`,
+            {
+              headers: { Authorization: token },
+            }
+          )
           .then(async (res) => {
             if (res.status === 200) {
-              Swal.fire('Deleted!', 'Your file has been deleted.', 'success');
+              Swal.fire("Deleted!", "Your file has been deleted.", "success");
               await getData();
             } else {
               Swal.fire({
-                icon: 'error',
-                title: 'Oops...',
-                text: 'Something went wrong!',
+                icon: "error",
+                title: "Oops...",
+                text: "Something went wrong!",
               });
             }
           });
@@ -71,14 +75,14 @@ const Task = ({ getData, tasks }) => {
                 <div className={classes.end}>Ends : {end}</div>
               </div>
               <Button
-                sx={{ my: 1, color: '#000' }}
+                sx={{ my: 1, color: "#000" }}
                 variant="contained"
                 color="primary"
                 component={Link}
                 to={`/all_submission/${_id}`}
                 style={{
-                  backgroundColor: '#EEE',
-                  textTransform: 'none',
+                  backgroundColor: "#EEE",
+                  textTransform: "none",
                 }}
               >
                 All Submission
@@ -91,4 +95,8 @@ const Task = ({ getData, tasks }) => {
   );
 };
 
+Task.propTypes = {
+  getData: PropTypes.func,
+  tasks: PropTypes.object,
+};
 export default Task;

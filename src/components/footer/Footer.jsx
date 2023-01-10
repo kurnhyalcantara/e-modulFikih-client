@@ -1,14 +1,13 @@
-import { Box, Grid, IconButton, Link, Typography } from '@mui/material';
-import React from 'react';
+import { Box, Grid, IconButton, Link, Typography } from "@mui/material";
 
-import { useTheme } from '@mui/material/styles';
-import './Footer.css';
+import { useTheme } from "@mui/material/styles";
+import "./Footer.css";
 import {
   EmailOutlined,
   Instagram,
   LocationOnOutlined,
-  WhatsappOutlined,
-} from '@mui/icons-material';
+  WhatsApp,
+} from "@mui/icons-material";
 
 const getYear = () => {
   return new Date().getFullYear();
@@ -34,7 +33,7 @@ const Footer = () => {
           xs={12}
           md={3}
           className="footer-section"
-          sx={{ borderTop: { md: 'none', xs: '1px solid #e6e6e6' } }}
+          sx={{ borderTop: { md: "none", xs: "1px solid #e6e6e6" } }}
         >
           <Link
             display="block"
@@ -69,23 +68,23 @@ const Footer = () => {
           xs={12}
           md={4}
           className="footer-section"
-          sx={{ borderTop: { md: 'none', xs: '1px solid #e6e6e6' } }}
+          sx={{ borderTop: { md: "none", xs: "1px solid #e6e6e6" } }}
         >
           <Box className="footer-contact">
-            <LocationOnOutlined color="disabled" sx={{ marginRight: '1rem' }} />
+            <LocationOnOutlined color="disabled" sx={{ marginRight: "1rem" }} />
             <Typography color={theme.palette.text.secondary}>
               AWATA Jl. Ujungkessi (Samping Barat Mesjid Zam-Zam) Desa Mannagae
               Kec. Tanasitolo, Wajo SUL-SEL, Indonesia
             </Typography>
           </Box>
           <Box className="footer-contact">
-            <EmailOutlined color="disabled" sx={{ marginRight: '1rem' }} />
+            <EmailOutlined color="disabled" sx={{ marginRight: "1rem" }} />
             <Typography color={theme.palette.text.secondary}>
               kurnhyalcantara@gmail.com
             </Typography>
           </Box>
           <Box className="footer-contact">
-            <WhatsappOutlined color="disabled" sx={{ marginRight: '1rem' }} />
+            <WhatsApp color="disabled" sx={{ marginRight: "1rem" }} />
             <Typography color={theme.palette.text.secondary}>
               +62 823-7252-7221 (chat only)
             </Typography>
@@ -100,7 +99,8 @@ const Footer = () => {
           <IconButton aria-label="@kurnhyalcantara24">
             <Link
               href="https://instagram.com/kurnhyalcantara24"
-              sx={{ color: '#949494' }}
+              sx={{ color: "#949494" }}
+              target="_blank"
             >
               <Instagram></Instagram>
             </Link>

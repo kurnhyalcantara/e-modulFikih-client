@@ -4,17 +4,17 @@
 
 .banner-registration {
   width: 65%;
+  height: 65%;
 }
 
 .registration-input {
-  margin-bottom: 1rem;
+  margin-top: 1rem;
 }
 
-.container-input-adornment {
+.container-input-adornment-register {
   display: flex;
   flex-direction: row;
   align-items: center;
   position: relative;
   margin-top: 24px;
-  margin-bottom: 1rem;
 }
