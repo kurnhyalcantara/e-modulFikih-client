@@ -1,21 +1,20 @@
-import React, { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import AssignmentIcon from "@mui/icons-material/Assignment";
-
+import PropTypes from "prop-types";
 import { useStyle } from "./styles";
 import { Button } from "@mui/material";
 import { GlobalState } from "../../../../GlobalState";
 
-const StudentTask = (props) => {
+const StudentTask = ({ _id, title, description, start, end, submissions }) => {
   const classes = useStyle();
   const state = useContext(GlobalState);
   const [user] = state.userAPI.user;
-  const { _id, title, description, start, end, submissions } = props.tasks;
   const [submitted, setSubmitted] = useState(false);
   const [mark, setMark] = useState("");
 
   useEffect(() => {
-    const found = submissions.filter((item, i) => {
+    const found = submissions.filter((item) => {
       return item.student._id === user._id;
     });
     if (found.length > 0) {
@@ -75,6 +74,15 @@ const StudentTask = (props) => {
       </div>
     </div>
   );
+};
+
+StudentTask.propTypes = {
+  _id: PropTypes.string,
+  title: PropTypes.string,
+  description: PropTypes.string,
+  start: PropTypes.string,
+  end: PropTypes.string,
+  submissions: PropTypes.array,
 };
 
 export default StudentTask;

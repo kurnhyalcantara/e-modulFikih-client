@@ -1,10 +1,11 @@
 import { CircularProgress, Typography } from "@mui/material";
 import { Box } from "@mui/system";
-import React, { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useStyle } from "./styles";
 import AssignmentIcon from "@mui/icons-material/Assignment";
 import { GlobalState } from "../../../GlobalState";
 import parse from "html-react-parser";
+import PropTypes from "prop-types";
 
 const ParentTask = ({ item }) => {
   const classes = useStyle();
@@ -36,7 +37,7 @@ const ParentTask = ({ item }) => {
           }}
         >
           <Typography variant="caption" component="div" color="text.secondary">
-            {`${Math.round(props.value)}`}
+            {`${Math.round(props)}`}
           </Typography>
         </Box>
       </Box>
@@ -71,10 +72,16 @@ const ParentTask = ({ item }) => {
           </div>
         </div>
         <Typography sx={{ mt: 5 }}>Submitted Answer: </Typography>
-        {mark[0]?.answer && <Typography>{mark[0]?.answer && parse(mark[0]?.answer)}</Typography>}
+        {mark[0]?.answer && (
+          <Typography>{mark[0]?.answer && parse(mark[0]?.answer)}</Typography>
+        )}
       </div>
     </div>
   );
+};
+
+ParentTask.propTypes = {
+  item: PropTypes.object,
 };
 
 export default ParentTask;

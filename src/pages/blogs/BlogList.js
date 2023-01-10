@@ -1,8 +1,17 @@
 import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
-import { Button, Container, IconButton, Table, TableBody, TableCell, TableContainer, TableHead } from "@mui/material";
+import {
+  Button,
+  Container,
+  IconButton,
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+} from "@mui/material";
 import axios from "axios";
-import React, { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
 import { GlobalState } from "../../GlobalState";
@@ -15,9 +24,12 @@ const Blogs = () => {
   useEffect(() => {
     const getBlogs = async () => {
       await axios
-        .get("http://localhost:4000/api/instructor/blog", {
-          headers: { Authorization: token },
-        })
+        .get(
+          "https://api-fikih-mts-bontouse.herokuapp.com/api/instructor/blog",
+          {
+            headers: { Authorization: token },
+          }
+        )
         .then((res) => {
           if (res.status === 200) {
             setBlogs(res.data);
@@ -30,9 +42,12 @@ const Blogs = () => {
   const deleteBlog = async (id) => {
     if (window.confirm("want to delete")) {
       await axios
-        .delete(`http://localhost:4000/api/instructor/blog/${id}`, {
-          headers: { Authorization: token },
-        })
+        .delete(
+          `https://api-fikih-mts-bontouse.herokuapp.com/api/instructor/blog/${id}`,
+          {
+            headers: { Authorization: token },
+          }
+        )
         .then((res) => {
           if (res.status === 200) {
             toast.success("Deleted");
@@ -69,7 +84,9 @@ const Blogs = () => {
               <TableBody key={i}>
                 <TableCell>{++i}</TableCell>
                 <TableCell>{item?.title}</TableCell>
-                <TableCell>{new Date(item?.createdAt).toDateString()}</TableCell>
+                <TableCell>
+                  {new Date(item?.createdAt).toDateString()}
+                </TableCell>
                 <TableCell>
                   <IconButton component={Link} to={`/edit_blogs/${item?._id}`}>
                     <EditIcon />

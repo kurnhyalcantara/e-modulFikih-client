@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Button, Container } from "@mui/material";
 import { useParams } from "react-router-dom";
 import { GlobalState } from "../../../../../GlobalState";
@@ -19,9 +19,12 @@ const SubmitTask = () => {
     if (taskId) {
       const getTask = async () => {
         await axios
-          .get(`http://localhost:4000/api/task_update/${taskId}`, {
-            headers: { Authorization: token },
-          })
+          .get(
+            `https://api-fikih-mts-bontouse.herokuapp.com/api/task_update/${taskId}`,
+            {
+              headers: { Authorization: token },
+            }
+          )
           .then((res) => {
             if (res.status === 200) {
               setTask(res.data.task);
@@ -35,7 +38,7 @@ const SubmitTask = () => {
   const submitTask = async () => {
     try {
       await axios.put(
-        `http://localhost:4000/api/task/${taskId}`,
+        `https://api-fikih-mts-bontouse.herokuapp.com/api/task/${taskId}`,
         {
           answer: answer,
         },
@@ -53,7 +56,9 @@ const SubmitTask = () => {
   return (
     <div style={{ background: "#fff9f9" }}>
       <Container maxWidth="xl" sx={{ py: 6 }}>
-        <div style={{ background: "#fff", padding: "30px", borderRadius: "10px" }}>
+        <div
+          style={{ background: "#fff", padding: "30px", borderRadius: "10px" }}
+        >
           <h2>{task?.title}</h2>
           <p>{task?.description}</p>
           <Editor

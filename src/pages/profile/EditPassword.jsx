@@ -1,4 +1,10 @@
-import { Box, Button, FormControl, FormHelperText, InputLabel } from "@mui/material";
+import {
+  Box,
+  Button,
+  FormControl,
+  FormHelperText,
+  InputLabel,
+} from "@mui/material";
 import { useContext, useState } from "react";
 import { GlobalState } from "../../GlobalState";
 import axios from "axios";
@@ -21,11 +27,14 @@ const GeneralSetting = () => {
   const handleSubmitChangePassword = async (e) => {
     try {
       e.preventDefault();
+      if (newPassword !== confirmNewPassword) {
+        return toast.error("Password baru dan konfirmasinya tidak cocok");
+      }
       setSubmitDisable(true);
       setSubmitLabel("Loading");
       await axios
         .put(
-          `http://localhost:4000/api/student/profile/update_password/${user._id}`,
+          `https://api-fikih-mts-bontouse.herokuapp.com/api/student/profile/update_password/${user._id}`,
           {
             oldPassword: oldPassword,
             newPassword: newPassword,
@@ -88,7 +97,12 @@ const GeneralSetting = () => {
             {errorOldPasswordMsg}
           </FormHelperText>
         </FormControl>
-        <FormControl fullWidth variant="standard" className="edit-information-input" required>
+        <FormControl
+          fullWidth
+          variant="standard"
+          className="edit-information-input"
+          required
+        >
           <InputLabel shrink htmlFor="new-password" sx={{ fontWeight: "700" }}>
             Password Baru
           </InputLabel>
@@ -105,8 +119,17 @@ const GeneralSetting = () => {
             />
           </div>
         </FormControl>
-        <FormControl fullWidth variant="standard" className="edit-information-input" required>
-          <InputLabel shrink htmlFor="confirm-new-password" sx={{ fontWeight: "700" }}>
+        <FormControl
+          fullWidth
+          variant="standard"
+          className="edit-information-input"
+          required
+        >
+          <InputLabel
+            shrink
+            htmlFor="confirm-new-password"
+            sx={{ fontWeight: "700" }}
+          >
             Konfirmasi Password Baru
           </InputLabel>
           <div className="container-input-adornment">

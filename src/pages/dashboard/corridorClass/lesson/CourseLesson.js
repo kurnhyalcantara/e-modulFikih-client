@@ -12,8 +12,9 @@ import {
   ListItemText,
   Typography,
 } from "@mui/material";
-import React, { useState } from "react";
+import { useState } from "react";
 import ReactPlayer from "react-player";
+import PropTypes from "prop-types";
 import { useStyle } from "./styles";
 
 const CourseLesson = ({ lessons }) => {
@@ -40,7 +41,8 @@ const CourseLesson = ({ lessons }) => {
               </Typography>
             ) : (
               <Typography variant="h5" className={classes.title}>
-                <i className="far fa-play-circle"></i> Now Playing: <strong>{title}</strong>
+                <i className="far fa-play-circle"></i> Now Playing:{" "}
+                <strong>{title}</strong>
               </Typography>
             )}
           </Grid>
@@ -54,9 +56,9 @@ const CourseLesson = ({ lessons }) => {
             lg={6}
           >
             <div className={classes.rightSide}>
-              {lessons.map((data) => (
+              {lessons.map((data, index) => (
                 // accordion here
-                <Accordion>
+                <Accordion key={index}>
                   <AccordionSummary
                     sx={{
                       backgroundColor: "#eee",
@@ -68,18 +70,33 @@ const CourseLesson = ({ lessons }) => {
                     <Typography>{data.title}</Typography>
                   </AccordionSummary>
                   <AccordionDetails sx={{ padding: "0px" }}>
-                    <List aria-label="main mailbox folders" className={classes.songList}>
-                      {data.videos.map((item) => (
+                    <List
+                      aria-label="main mailbox folders"
+                      className={classes.songList}
+                    >
+                      {data.videos.map((item, index) => (
                         <ListItem
+                          key={index}
                           button
                           selected={selectedIndex === item.title}
-                          onClick={(event) => handleListItemClick(event, item.link, item.link, item.title)}
+                          onClick={(event) =>
+                            handleListItemClick(
+                              event,
+                              item.link,
+                              item.link,
+                              item.title
+                            )
+                          }
                         >
                           <ListItemIcon>
                             {selectedIndex === item.link ? (
-                              <PauseCircleOutlineRoundedIcon className={classes.bgIcon} />
+                              <PauseCircleOutlineRoundedIcon
+                                className={classes.bgIcon}
+                              />
                             ) : (
-                              <PlayCircleOutlineRoundedIcon className={classes.bgIcon} />
+                              <PlayCircleOutlineRoundedIcon
+                                className={classes.bgIcon}
+                              />
                             )}
                           </ListItemIcon>
                           <ListItemText>{item.title}</ListItemText>
@@ -95,6 +112,10 @@ const CourseLesson = ({ lessons }) => {
       </div>
     </div>
   );
+};
+
+CourseLesson.propTypes = {
+  lessons: PropTypes.array,
 };
 
 export default CourseLesson;

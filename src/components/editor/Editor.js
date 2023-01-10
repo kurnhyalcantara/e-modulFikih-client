@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
+import PropTypes from "prop-types";
 import SunEditor from "suneditor-react";
 import "suneditor/dist/css/suneditor.min.css";
 
@@ -8,7 +9,8 @@ const Editor = ({ name, contents, onChange, height }) => {
     rtl: false,
     katex: "window.katex",
     height: height || 300,
-    imageGalleryUrl: "https://etyswjpn79.execute-api.ap-northeast-1.amazonaws.com/suneditor-demo",
+    imageGalleryUrl:
+      "https://etyswjpn79.execute-api.ap-northeast-1.amazonaws.com/suneditor-demo",
     videoFileInput: false,
     tabDisable: false,
     buttonList: [
@@ -72,9 +74,19 @@ const Editor = ({ name, contents, onChange, height }) => {
 
   return (
     <div>
-      <SunEditor setOptions={options} onChange={handleChange} setContents={editorState} />
+      <SunEditor
+        setOptions={options}
+        onChange={handleChange}
+        setContents={editorState}
+      />
     </div>
   );
 };
 
+Editor.propTypes = {
+  name: PropTypes.string,
+  contents: PropTypes.string,
+  onChange: PropTypes.func,
+  height: PropTypes.number,
+};
 export default Editor;

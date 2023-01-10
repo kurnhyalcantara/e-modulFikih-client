@@ -1,0 +1,19 @@
+.enroll-container {
+  background: #f5f5f5;
+  padding: 60px 0 80px;
+}
+
+.form-wrapper {
+  max-width: 600px;
+  margin: 0 auto;
+  border: 1px solid #d6d6d6;
+  padding: 20px;
+  border-radius: 10px;
+  background: #fff;
+}
+
+.section-enroll {
+  display: flex;
+  flex-direction: row;
+  padding: 1.5rem 0;
+}

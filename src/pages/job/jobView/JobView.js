@@ -1,4 +1,3 @@
-import React from "react";
 import Typography from "@mui/material/Typography";
 import { useStyle } from "./styles";
 import { Card, Grid, Container } from "@mui/material";

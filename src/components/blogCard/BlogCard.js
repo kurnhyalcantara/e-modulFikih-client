@@ -1,7 +1,7 @@
-import React from "react";
 import { Grid, Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import parse from "html-react-parser";
+import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 
 const BlogCard = ({ item }) => {
@@ -18,7 +18,11 @@ const BlogCard = ({ item }) => {
       <Grid container spacing={4} sx={{ background: "#fff" }}>
         <Grid item sm={4} md={4} sx={{ pb: 4 }}>
           <div>
-            <img style={{ width: "100%", minHeight: "250px", objectFit: "cover" }} src={item?.images?.url} alt="logo" />
+            <img
+              style={{ width: "100%", minHeight: "250px", objectFit: "cover" }}
+              src={item?.images?.url}
+              alt="logo"
+            />
           </div>
         </Grid>
         <Grid item sm={8} md={8} sx={{ padding: 2 }}>
@@ -51,7 +55,11 @@ const BlogCard = ({ item }) => {
             {item?.description && parse(item?.description)}
           </Typography>
           <Typography
-            sx={{ border: "1px solid red", padding: "5px 12px", borderRadius: "8px" }}
+            sx={{
+              border: "1px solid red",
+              padding: "5px 12px",
+              borderRadius: "8px",
+            }}
             component={Link}
             to={`/blog_details/${item?._id}`}
           >
@@ -63,4 +71,7 @@ const BlogCard = ({ item }) => {
   );
 };
 
+BlogCard.propTypes = {
+  item: PropTypes.object,
+};
 export default BlogCard;

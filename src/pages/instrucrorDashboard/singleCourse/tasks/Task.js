@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import { useContext } from "react";
 import { Link } from "react-router-dom";
 import AssignmentIcon from "@mui/icons-material/Assignment";
 import DeleteIcon from "@mui/icons-material/Delete";
@@ -7,6 +7,7 @@ import { Button, IconButton } from "@mui/material";
 import { useStyle } from "./styles";
 import Swal from "sweetalert2";
 import axios from "axios";
+import PropTypes from "prop-types";
 import { GlobalState } from "../../../../GlobalState";
 
 const Task = ({ getData, tasks }) => {
@@ -27,9 +28,12 @@ const Task = ({ getData, tasks }) => {
     }).then(async (result) => {
       if (result.isConfirmed) {
         await axios
-          .delete(`http://localhost:4000/api/task_update/${_id}`, {
-            headers: { Authorization: token },
-          })
+          .delete(
+            `https://api-fikih-mts-bontouse.herokuapp.com/api/task_update/${_id}`,
+            {
+              headers: { Authorization: token },
+            }
+          )
           .then(async (res) => {
             if (res.status === 200) {
               Swal.fire("Deleted!", "Your file has been deleted.", "success");
@@ -91,4 +95,8 @@ const Task = ({ getData, tasks }) => {
   );
 };
 
+Task.propTypes = {
+  getData: PropTypes.func,
+  tasks: PropTypes.object,
+};
 export default Task;

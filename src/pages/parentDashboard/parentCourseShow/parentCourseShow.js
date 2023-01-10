@@ -1,12 +1,12 @@
 import { Container, Grid, Typography } from "@mui/material";
 import axios from "axios";
-import React, { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Cards from "../../../components/Cards/Card";
 import { GlobalState } from "../../../GlobalState";
 import { useStyle } from "./styles";
 
-const ParentCourseShow = ({ course }) => {
+const ParentCourseShow = () => {
   const classes = useStyle();
   const state = useContext(GlobalState);
   const [token] = state.token;
@@ -19,12 +19,15 @@ const ParentCourseShow = ({ course }) => {
       const getCourses = async () => {
         setLoading(true);
         axios
-          .get(`http://localhost:4000/api/parent/child/${studentId}`, {
-            headers: { Authorization: token },
-          })
+          .get(
+            `https://api-fikih-mts-bontouse.herokuapp.com/api/parent/child/${studentId}`,
+            {
+              headers: { Authorization: token },
+            }
+          )
           .then((res) => {
             if (res.status === 200) {
-              const { enrolled } = res?.data;
+              const { enrolled } = res.data;
               setCourses(enrolled);
               setLoading(false);
             }
@@ -49,7 +52,10 @@ const ParentCourseShow = ({ course }) => {
               courses?.length > 0 &&
               courses?.map((item, i) => (
                 <Grid key={i} item md={3} sm={12} xs={12}>
-                  <Cards item={item?.courseDetails} type="parent_course_details" />
+                  <Cards
+                    item={item?.courseDetails}
+                    type="parent_course_details"
+                  />
                 </Grid>
               ))}
           </Grid>

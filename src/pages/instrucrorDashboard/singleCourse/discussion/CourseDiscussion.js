@@ -14,10 +14,11 @@ import {
   Typography,
 } from "@mui/material";
 import axios from "axios";
-import React, { useContext, useState } from "react";
+import { useContext, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import Swal from "sweetalert2";
+import PropTypes from "prop-types";
 import { GlobalState } from "../../../../GlobalState";
 
 const CourseDiscussion = ({ discussion, getData }) => {
@@ -33,7 +34,7 @@ const CourseDiscussion = ({ discussion, getData }) => {
   const submitDiscussion = async () => {
     try {
       await axios.post(
-        `http://localhost:4000/api/discussion/${courseId}`,
+        `https://api-fikih-mts-bontouse.herokuapp.com/api/discussion/${courseId}`,
         {
           question: question,
           user: user,
@@ -61,9 +62,12 @@ const CourseDiscussion = ({ discussion, getData }) => {
       }).then(async (result) => {
         if (result.isConfirmed) {
           await axios
-            .delete(`http://localhost:4000/api/discussion/single/${id}`, {
-              headers: { Authorization: token },
-            })
+            .delete(
+              `https://api-fikih-mts-bontouse.herokuapp.com/api/discussion/single/${id}`,
+              {
+                headers: { Authorization: token },
+              }
+            )
             .then(async (res) => {
               if (res.status === 200) {
                 Swal.fire("Deleted!", "Your file has been deleted.", "success");
@@ -149,9 +153,9 @@ const CourseDiscussion = ({ discussion, getData }) => {
                       history(`/course_discussion/${item?._id}`);
                     }}
                     primary={item?.question}
-                    secondary={`${item?.user?.name}(${item?.user?.type}) • Posted ${new Date(
-                      item?.createdAt
-                    ).toDateString()}`}
+                    secondary={`${item?.user?.name}(${
+                      item?.user?.type
+                    }) • Posted ${new Date(item?.createdAt).toDateString()}`}
                   />
                   <ListItemText
                     sx={{
@@ -176,6 +180,11 @@ const CourseDiscussion = ({ discussion, getData }) => {
       )}
     </div>
   );
+};
+
+CourseDiscussion.propTypes = {
+  discussion: PropTypes.array,
+  getData: PropTypes.func,
 };
 
 export default CourseDiscussion;

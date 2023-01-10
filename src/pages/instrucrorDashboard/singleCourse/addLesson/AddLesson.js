@@ -3,7 +3,7 @@ import { useStyle } from "./styles";
 import AddIcon from "@mui/icons-material/Add";
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 import { v4 as uuidv4 } from "uuid";
-import React, { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
 import { GlobalState } from "../../../../GlobalState";
@@ -66,7 +66,7 @@ const AddLesson = () => {
     if (lessonId) {
       await axios
         .put(
-          `http://localhost:4000/api/lesson/${lessonId}`,
+          `https://api-fikih-mts-bontouse.herokuapp.com/api/lesson/${lessonId}`,
           {
             title: heading,
             videos: videos,
@@ -87,7 +87,7 @@ const AddLesson = () => {
     } else if (courseId) {
       await axios
         .post(
-          `http://localhost:4000/api/lesson/${courseId}`,
+          `https://api-fikih-mts-bontouse.herokuapp.com/api/lesson/${courseId}`,
           {
             title: heading,
             videos: videos,
@@ -113,9 +113,12 @@ const AddLesson = () => {
       if (lessonId) {
         setLoading(true);
         await axios
-          .get(`http://localhost:4000/api/lesson_details/${lessonId}`, {
-            headers: { Authorization: token },
-          })
+          .get(
+            `https://api-fikih-mts-bontouse.herokuapp.com/api/lesson_details/${lessonId}`,
+            {
+              headers: { Authorization: token },
+            }
+          )
           .then((res) => {
             if (res.status === 200) {
               const { lesson } = res.data;

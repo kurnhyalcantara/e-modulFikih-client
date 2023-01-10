@@ -3,11 +3,12 @@ import ModeEditIcon from "@mui/icons-material/ModeEdit";
 import PlayLessonOutlinedIcon from "@mui/icons-material/PlayLessonOutlined";
 import { IconButton } from "@mui/material";
 import axios from "axios";
-import React, { useContext } from "react";
+import { useContext } from "react";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 import { GlobalState } from "../../../../GlobalState";
 import LessonVideo from "./lessonsVideo/LessonVideo";
+import PropTypes from "prop-types";
 import { useStyle } from "./styles";
 
 const Lesson = ({ lessons, getData }) => {
@@ -28,9 +29,12 @@ const Lesson = ({ lessons, getData }) => {
     }).then(async (result) => {
       if (result.isConfirmed) {
         await axios
-          .delete(`http://localhost:4000/api/lesson_details/${_id}`, {
-            headers: { Authorization: token },
-          })
+          .delete(
+            `https://api-fikih-mts-bontouse.herokuapp.com/api/lesson_details/${_id}`,
+            {
+              headers: { Authorization: token },
+            }
+          )
           .then(async (res) => {
             if (res.status === 200) {
               Swal.fire("Deleted!", "Your file has been deleted.", "success");
@@ -74,6 +78,11 @@ const Lesson = ({ lessons, getData }) => {
       </div>
     </div>
   );
+};
+
+Lesson.propTypes = {
+  lessons: PropTypes.object,
+  getData: PropTypes.func,
 };
 
 export default Lesson;

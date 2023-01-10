@@ -2,7 +2,7 @@
 import { Button, Container, Grid, TextField } from "@mui/material";
 import axios from "axios";
 import moment from "moment";
-import React, { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import Swal from "sweetalert2";
@@ -31,9 +31,13 @@ const AddTask = () => {
     };
     if (courseId) {
       await axios
-        .post(`http://localhost:4000/api/task/${courseId}`, payload, {
-          headers: { Authorization: token },
-        })
+        .post(
+          `https://api-fikih-mts-bontouse.herokuapp.com/api/task/${courseId}`,
+          payload,
+          {
+            headers: { Authorization: token },
+          }
+        )
         .then((res) => {
           if (res.status === 200) {
             Swal.fire("Good job!", "You Created a Task!", "success");
@@ -45,9 +49,13 @@ const AddTask = () => {
         });
     } else if (taskId) {
       await axios
-        .put(`http://localhost:4000/api/task_update/${taskId}`, payload, {
-          headers: { Authorization: token },
-        })
+        .put(
+          `https://api-fikih-mts-bontouse.herokuapp.com/api/task_update/${taskId}`,
+          payload,
+          {
+            headers: { Authorization: token },
+          }
+        )
         .then((res) => {
           if (res.status === 200) {
             Swal.fire("Good job!", "You updated this Task!", "success");
@@ -63,9 +71,12 @@ const AddTask = () => {
   const getSingleTask = async () => {
     setLoading(true);
     await axios
-      .get(`http://localhost:4000/api/task_update/${taskId}`, {
-        headers: { Authorization: token },
-      })
+      .get(
+        `https://api-fikih-mts-bontouse.herokuapp.com/api/task_update/${taskId}`,
+        {
+          headers: { Authorization: token },
+        }
+      )
       .then((res) => {
         if (res.status === 200) {
           const { task } = res.data;

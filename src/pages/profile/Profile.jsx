@@ -24,39 +24,41 @@ const Profile = () => {
   const [tabContext, setTabContext] = useState(0);
   return (
     <Transition>
-      <Box className="pattern-banner">Pengaturan Akun</Box>
-      <Container maxWidth="md">
-        <Box
-          sx={{
-            borderBottom: 1,
-            borderColor: "divider",
-            position: "sticky",
-            top: { xs: "70px", md: "102px" },
-            zIndex: "24",
-            background: "#fff",
-          }}
-        >
-          <Tabs
-            value={tabContext}
-            onChange={(event, newValue) => {
-              setTabContext(newValue);
+      <Box className="profile-container">
+        <Box className="pattern-banner">Pengaturan Akun</Box>
+        <Container maxWidth="md">
+          <Box
+            sx={{
+              borderBottom: 1,
+              borderColor: "divider",
+              position: "sticky",
+              top: { xs: "70px", md: "102px" },
+              zIndex: "24",
+              background: "#fff",
             }}
-            aria-label="Tabs Navigation Profile"
-            variant="fullWidth"
           >
-            <Tab label="Edit Profil"></Tab>
-            <Tab label="Ubah Password"></Tab>
-          </Tabs>
-        </Box>
-        <Box className="box-container-nav-profile">
-          <TabPanel value={tabContext} index={0}>
-            <GeneralInformation />
-          </TabPanel>
-          <TabPanel value={tabContext} index={1}>
-            <EditPassword />
-          </TabPanel>
-        </Box>
-      </Container>
+            <Tabs
+              value={tabContext}
+              onChange={(event, newValue) => {
+                setTabContext(newValue);
+              }}
+              aria-label="Tabs Navigation Profile"
+              variant="fullWidth"
+            >
+              <Tab label="Edit Profil"></Tab>
+              <Tab label="Ubah Password"></Tab>
+            </Tabs>
+          </Box>
+          <Box className="box-container-nav-profile">
+            <TabPanel value={tabContext} index={0}>
+              <GeneralInformation />
+            </TabPanel>
+            <TabPanel value={tabContext} index={1}>
+              <EditPassword />
+            </TabPanel>
+          </Box>
+        </Container>
+      </Box>
     </Transition>
   );
 };
