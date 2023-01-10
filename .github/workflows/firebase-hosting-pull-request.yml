@@ -20,14 +20,12 @@ jobs:
         with:
           cmd: install
 
+      - name: Fix Eslint, Prettier, Stylint
+        uses: Borales/actions-yarn@v4
+        with:
+          cmd: fix
+
       - name: Build Production
         uses: Borales/actions-yarn@v4
         with:
           cmd: build
-
-      - name: Firebase Preview Deploy
-        uses: FirebaseExtended/action-hosting-deploy@v0
-        with:
-          repoToken: "${{ secrets.GITHUB_TOKEN }}"
-          firebaseServiceAccount: "${{ secrets.FIREBASE_SERVICE_ACCOUNT_FIKIH_MTSBONTOUSE }}"
-          projectId: fikih-mtsbontouse
