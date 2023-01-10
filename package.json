@@ -32,7 +32,7 @@
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-react-hooks": "^4.6.0",
     "firebase-tools": "^11.19.0",
-    "framer-motion": "4.1.17",
+    "framer-motion": "6.2.4",
     "html-parser-react": "^1.1.2",
     "html-react-parser": "^3.0.7",
     "moment": "^2.29.1",
