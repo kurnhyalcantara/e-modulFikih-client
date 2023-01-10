@@ -66,7 +66,7 @@ const AddLesson = () => {
     if (lessonId) {
       await axios
         .put(
-          `http://localhost:4000/api/lesson/${lessonId}`,
+          `https://api-fikih-mts-bontouse.herokuapp.com/api/lesson/${lessonId}`,
           {
             title: heading,
             videos: videos,
@@ -87,7 +87,7 @@ const AddLesson = () => {
     } else if (courseId) {
       await axios
         .post(
-          `http://localhost:4000/api/lesson/${courseId}`,
+          `https://api-fikih-mts-bontouse.herokuapp.com/api/lesson/${courseId}`,
           {
             title: heading,
             videos: videos,
@@ -113,9 +113,12 @@ const AddLesson = () => {
       if (lessonId) {
         setLoading(true);
         await axios
-          .get(`http://localhost:4000/api/lesson_details/${lessonId}`, {
-            headers: { Authorization: token },
-          })
+          .get(
+            `https://api-fikih-mts-bontouse.herokuapp.com/api/lesson_details/${lessonId}`,
+            {
+              headers: { Authorization: token },
+            }
+          )
           .then((res) => {
             if (res.status === 200) {
               const { lesson } = res.data;

@@ -13,7 +13,7 @@ const Dashboard = () => {
 
   return (
     <Transition>
-      <Box className="dashboardContainer">
+      <Box className="dashboard-container">
         <Box className="jumbotron">
           <Container maxWidth="lg">
             <Typography
@@ -29,47 +29,57 @@ const Dashboard = () => {
             </Typography>
           </Container>
         </Box>
-        <Container maxWidth="lg" className="studentActivity">
+        <Container maxWidth="lg" className="student-activity">
           <Grid container spacing={4}>
             <Grid item xs={12} md={6}>
-              <Box className="learningPath">
-                <Box className="headingCard" display="flex" alignItems="center">
+              <Box className="learning-path">
+                <Box
+                  className="heading-card"
+                  display="flex"
+                  alignItems="center"
+                >
                   <LocalActivityRounded
                     sx={{ marginRight: "0.5rem" }}
                   ></LocalActivityRounded>
                   <Typography>Aktivitas Belajar</Typography>
                 </Box>
-                <Box className="contentCard">
-                  {list.map((enrolled, index) => {
-                    return (
-                      <Box className="course-enrolled" key={index}>
-                        <Box id="status-enrolled">
-                          <Typography fontSize="14px" fontWeight="700">
-                            Sedang Dipelajari
-                          </Typography>
-                          <Typography>
-                            {enrolled?.courseDetails?.title}
-                          </Typography>
+                {list.length ? (
+                  <Box className="content-card">
+                    {list.map((enrolled, index) => {
+                      return (
+                        <Box className="course-enrolled" key={index}>
+                          <Box id="status-enrolled">
+                            <Typography fontSize="14px" fontWeight="700">
+                              Sedang Dipelajari
+                            </Typography>
+                            <Typography>
+                              {enrolled?.courseDetails?.title}
+                            </Typography>
+                          </Box>
+                          <Box id="open-enrolled">
+                            <Typography
+                              color="primary"
+                              component={Link}
+                              to={`/corridor/${enrolled?.courseDetails._id}`}
+                            >
+                              Lanjutkan
+                            </Typography>
+                          </Box>
                         </Box>
-                        <Box id="open-enrolled">
-                          <Typography
-                            color="primary"
-                            component={Link}
-                            to={`/corridor/${enrolled?.courseDetails._id}`}
-                          >
-                            Lanjutkan
-                          </Typography>
-                        </Box>
-                      </Box>
-                    );
-                  })}
-                </Box>
+                      );
+                    })}
+                  </Box>
+                ) : (
+                  <Box className="content-card">
+                    <Link to={`/courses`}>Cari Materi</Link>
+                  </Box>
+                )}
               </Box>
             </Grid>
             <Grid item xs={12} md={6}>
-              <Box className="otherActivity">
-                <Box className="headingCard">Aktivitas Lain </Box>
-                <Box className="contentCard">Semua Aktivitas</Box>
+              <Box className="other-activity">
+                <Box className="heading-card">Aktivitas Lain </Box>
+                <Box className="content-card">Semua Aktivitas</Box>
               </Box>
             </Grid>
           </Grid>

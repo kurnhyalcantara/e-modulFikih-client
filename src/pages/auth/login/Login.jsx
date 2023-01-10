@@ -50,10 +50,13 @@ const Login = () => {
     setLabelSubmit("Loading");
     try {
       await axios
-        .post("http://localhost:4000/api/student/login", {
-          mobile: mobile,
-          password: password,
-        })
+        .post(
+          "https://api-fikih-mts-bontouse.herokuapp.com/api/student/login",
+          {
+            mobile: mobile,
+            password: password,
+          }
+        )
         .then((res) => {
           if (res.status === 200) {
             const { data } = res;
@@ -163,7 +166,6 @@ const Login = () => {
                         setMobile(e.target.value);
                       }}
                       value={mobile}
-                      autoFocus
                       error={errorMobile}
                       onFocus={() => {
                         setErrorMobile(false);

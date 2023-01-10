@@ -15,7 +15,7 @@ function UserAPI(token) {
         try {
           setLoading(true);
           const res = await axios.get(
-            "http://localhost:4000/api/student/profile",
+            "https://api-fikih-mts-bontouse.herokuapp.com/api/student/profile",
             {
               headers: { Authorization: token },
             }
@@ -41,7 +41,7 @@ function UserAPI(token) {
         setList([...list, { ...course }]);
         axios
           .patch(
-            `http://localhost:4000/api/course/enroll/${course.courseDetails._id}`,
+            `https://api-fikih-mts-bontouse.herokuapp.com/api/course/enroll/${course.courseDetails._id}`,
             { enrolled: [...list, { ...course }], token: tokenCourse },
             {
               headers: { Authorization: token },

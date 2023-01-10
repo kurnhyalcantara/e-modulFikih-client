@@ -1,13 +1,13 @@
-.appBar {
+.app-bar {
   position: fixed;
   filter: drop-shadow(0 8px 15px rgb(0 14 61 / 8%));
 }
 
-.menuButton-Navbar {
+.menu-navbar {
   padding: 0 35px;
 }
 
-.menuButton-Navbar:hover {
+.menu-navbar:hover {
   color: #f08126;
 }
 
@@ -21,7 +21,7 @@
   border: 1px solid #fff;
 }
 
-.namaLengkap-sidebar {
+.namalengkap-sidebar {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
