@@ -71,6 +71,19 @@ function registerValidSW(swUrl, config) {
               // At this point, the updated precached content has been fetched,
               // but the previous service worker will still serve the older
               // content until all client tabs are closed.
+              navigator.serviceWorker.controller.onstatechange = (event) => {
+                if (event.target.state === "redundant") {
+                  if (toast) {
+                    toast.info(
+                      "Versi terbaru telah tersedia, bersedia untuk refresh ulang",
+                      { autoClose: 3000 }
+                    );
+                    setTimeout(() => {
+                      window.location.reload();
+                    }, 3000);
+                  }
+                }
+              };
               console.log(
                 "New content is available and will be used when all " +
                   "tabs for this page are closed. See https://cra.link/PWA."
@@ -84,7 +97,9 @@ function registerValidSW(swUrl, config) {
               // At this point, everything has been precached.
               // It's the perfect time to display a
               // "Content is cached for offline use." message.
-              console.log("Content is cached for offline use.");
+              toast.info(
+                "Caching Completed, anda sudah bisa belajar meski jaringan anda terputus"
+              );
 
               // Execute callback
               if (config && config.onSuccess) {
@@ -98,22 +113,6 @@ function registerValidSW(swUrl, config) {
     .catch((error) => {
       console.error("Error during service worker registration:", error);
     });
-
-  if (navigator.serviceWorker && navigator.serviceWorker.controller) {
-    navigator.serviceWorker.controller.onstatechange = (event) => {
-      if (event.target.state === "redundant") {
-        if (toast) {
-          toast.info(
-            "Versi terbaru telah tersedia, bersedia untuk refresh ulang",
-            { autoClose: 3000 }
-          );
-          setTimeout(() => {
-            window.location.reload();
-          }, 3000);
-        }
-      }
-    };
-  }
 }
 
 function checkValidServiceWorker(swUrl, config) {
