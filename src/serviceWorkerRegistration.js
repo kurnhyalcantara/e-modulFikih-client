@@ -1,6 +1,8 @@
 // This optional code is used to register a service worker.
 // register() is not called by default.
 
+import { toast } from "react-toastify";
+
 // This lets the app load faster on subsequent visits in production, and gives
 // it offline capabilities. However, it also means that developers (and users)
 // will only see deployed updates on subsequent visits to a page, after all the
@@ -96,6 +98,22 @@ function registerValidSW(swUrl, config) {
     .catch((error) => {
       console.error("Error during service worker registration:", error);
     });
+
+  if (navigator.serviceWorker && navigator.serviceWorker.controller) {
+    navigator.serviceWorker.controller.onstatechange = (event) => {
+      if (event.target.state === "redundant") {
+        if (toast) {
+          toast.info(
+            "Versi terbaru telah tersedia, bersedia untuk refresh ulang",
+            { autoClose: 3000 }
+          );
+          setTimeout(() => {
+            window.location.reload();
+          }, 3000);
+        }
+      }
+    };
+  }
 }
 
 function checkValidServiceWorker(swUrl, config) {
