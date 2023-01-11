@@ -1,0 +1,62 @@
+.container-detail-course {
+  padding: 30px 30px 60px;
+  min-height: 90vh;
+}
+
+.rating-and-path,
+.rating,
+.detail-course,
+.path {
+  display: flex;
+  align-items: center;
+}
+
+.detail-course {
+  margin-top: 0.5rem;
+}
+
+.star-rating {
+  color: #ffa400;
+  transform: scale(1.2);
+  margin-right: 0.5rem;
+}
+
+.count-rating {
+  font-weight: 700;
+  font-size: 1rem;
+}
+
+.title-and-tag {
+  margin: 0.8rem 0;
+}
+
+.tag-course {
+  border: 1px solid #ffa400;
+  background-color: transparent;
+  color: #ffa400;
+  text-transform: capitalize;
+  padding: 5px;
+  font-size: 12px;
+  border-radius: 3px;
+  display: inline-block;
+  margin: 0.5rem 0;
+  margin-right: 0.3rem;
+}
+
+.button-flow {
+  width: calc(100% - 32px);
+  z-index: 99;
+  position: fixed;
+  bottom: 0;
+  padding: 1rem;
+  filter: drop-shadow(0 8px 15px rgb(0 14 61 / 40%));
+  background-color: #fff;
+}
+
+.paraghraph {
+  white-space: pre-line;
+}
+
+.metode-ajar-style {
+  list-style-type: circle;
+}

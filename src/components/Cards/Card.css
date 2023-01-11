@@ -1,0 +1,71 @@
+.container {
+  max-width: 100%;
+}
+
+.card {
+  height: 100%;
+}
+
+.tag {
+  background-color: #ffa400;
+  color: #fff;
+  text-transform: capitalize;
+  border: none;
+  padding: 5px;
+  border-radius: 3px;
+  display: inline-block;
+  margin-right: 0.3rem;
+}
+
+.heading {
+  display: block;
+  font-size: 18px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin: 0.8rem 0;
+}
+
+.instructor {
+  display: flex;
+  align-items: center;
+  margin-bottom: 6px;
+}
+
+.info-detail-pelajaran {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 0;
+}
+
+.alokasi-waktu,
+.rating-pelajaran {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+}
+
+.star-rating {
+  color: #ffa400;
+  transform: scale(0.8);
+}
+
+.count-rating {
+  font-weight: 700;
+  font-size: 12px;
+}
+
+.action-detail {
+  display: block;
+  padding: 0.5rem 1rem;
+  color: #006f59;
+  background-color: transparent;
+  font-weight: 700;
+  border-radius: 0.5rem;
+  width: 100%;
+}
+
+.action-detail:hover {
+  background-color: #f7f7f7;
+}

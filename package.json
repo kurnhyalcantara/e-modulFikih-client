@@ -1,0 +1,102 @@
+{
+  "name": "fikih-mtsbontouse",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Project Web App for School Learning Purpose with Fikih Consentration in MTs As'adiyah Bontouse",
+  "author": {
+    "name": "Kurniawan",
+    "email": "kurnhyalcantara@gmail.com"
+  },
+  "dependencies": {
+    "@date-io/date-fns": "2.x",
+    "@emotion/react": "^11.7.0",
+    "@emotion/styled": "^11.6.0",
+    "@jitsi/react-sdk": "^1.0.0",
+    "@material-ui/lab": "^4.0.0-alpha.60",
+    "@mui/icons-material": "^5.2.5",
+    "@mui/lab": "^5.0.0-alpha.62",
+    "@mui/material": "^5.2.5",
+    "@mui/styled-engine-sc": "^5.1.0",
+    "@mui/styles": "^5.2.2",
+    "@mui/x-date-pickers": "^5.0.12",
+    "@stripe/react-stripe-js": "^1.7.0",
+    "@stripe/stripe-js": "^1.23.0",
+    "@testing-library/jest-dom": "^5.11.4",
+    "@testing-library/react": "^12.1.5",
+    "@testing-library/user-event": "^14.4.3",
+    "axios": "^1.2.2",
+    "concurrently": "^7.6.0",
+    "cross-env": "^7.0.3",
+    "date-fns": "^2.28.0",
+    "dayjs": "^1.11.6",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "firebase-tools": "11.20.0",
+    "framer-motion": "6.2.4",
+    "html-parser-react": "^1.1.2",
+    "html-react-parser": "^3.0.7",
+    "jsonwebtoken": "9.0.0",
+    "moment": "^2.29.1",
+    "prettier": "^2.8.1",
+    "prop-types": "^15.8.1",
+    "react": "^17.0.2",
+    "react-country-region-selector": "^3.4.0",
+    "react-countup": "^6.1.0",
+    "react-dom": "^17.0.2",
+    "react-grid-carousel": "^1.0.1",
+    "react-html-parser": "^2.0.2",
+    "react-icons": "^4.3.1",
+    "react-jitsi": "^1.0.4",
+    "react-markdown": "^8.0.4",
+    "react-player": "^2.9.0",
+    "react-router-dom": "^6.2.1",
+    "react-scripts": "5.0.1",
+    "react-stripe-checkout": "^2.6.3",
+    "react-toastify": "^9.1.1",
+    "remark-gfm": "^3.0.1",
+    "sass": "^1.49.8",
+    "scss": "^0.2.4",
+    "styled-components": "^5.3.3",
+    "stylelint": "^14.16.1",
+    "stylelint-config-prettier": "^9.0.4",
+    "stylelint-config-standard": "^29.0.0",
+    "suneditor": "^2.42.0",
+    "suneditor-react": "^3.3.1",
+    "sweetalert2": "^11.3.6",
+    "uuid": "^9.0.0",
+    "web-vitals": "^3.1.1",
+    "workbox": "^0.0.0"
+  },
+  "scripts": {
+    "dev": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "fix": "concurrently npm:fix:*",
+    "fix:eslint": "eslint . --ext .js,.jsx --fix",
+    "fix:prettier": "prettier --write .",
+    "fix:stylelint": "stylelint src/**/*.css --fix",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "eslint": "8.31.0",
+    "eslint-plugin-react": "^7.31.11"
+  }
+}

@@ -1,0 +1,28 @@
+.app-bar {
+  position: fixed;
+  filter: drop-shadow(0 8px 15px rgb(0 14 61 / 8%));
+}
+
+.menu-navbar {
+  padding: 0 35px;
+}
+
+.menu-navbar:hover {
+  color: #f08126;
+}
+
+.avatar-penampung {
+  border-radius: 50%;
+  border: 2px solid #4aaeff;
+  padding: 0.05rem;
+}
+
+.avatar-navbar {
+  border: 1px solid #fff;
+}
+
+.namalengkap-sidebar {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
