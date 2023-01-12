@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Button } from "@mui/material";
+import { toast } from "react-toastify";
 
 const InstallPWA = () => {
   const [promptInstall, setPromptInstall] = useState(null);
@@ -9,14 +10,15 @@ const InstallPWA = () => {
       e.preventDefault();
       setPromptInstall(e);
     };
-    window.addEventListener("beforeinstallprompt", handler);
-    return () => window.removeEventListener("transitionend", handler);
+    return () => window.addEventListener("beforeinstallprompt", handler);
   }, []);
 
   const triggerPrompt = (evt) => {
     evt.preventDefault();
     if (!promptInstall) {
-      return;
+      return toast.warning(
+        "Tidak tersedia untuk saat ini, silahkan coba lagi nanti"
+      );
     }
     promptInstall.prompt();
   };
