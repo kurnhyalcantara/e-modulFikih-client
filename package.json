@@ -70,6 +70,7 @@
   "scripts": {
     "dev": "react-scripts start",
     "build": "react-scripts build",
+    "serve": "serve -s build",
     "test": "react-scripts test",
     "fix": "concurrently npm:fix:*",
     "fix:eslint": "eslint . --ext .js,.jsx --fix",

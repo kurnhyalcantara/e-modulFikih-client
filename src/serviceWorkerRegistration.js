@@ -1,6 +1,8 @@
 // This optional code is used to register a service worker.
 // register() is not called by default.
 
+import { toast } from "react-toastify";
+
 // This lets the app load faster on subsequent visits in production, and gives
 // it offline capabilities. However, it also means that developers (and users)
 // will only see deployed updates on subsequent visits to a page, after all the
@@ -69,6 +71,19 @@ function registerValidSW(swUrl, config) {
               // At this point, the updated precached content has been fetched,
               // but the previous service worker will still serve the older
               // content until all client tabs are closed.
+              navigator.serviceWorker.controller.onstatechange = (event) => {
+                if (event.target.state === "redundant") {
+                  if (toast) {
+                    toast.info(
+                      "Versi terbaru telah tersedia, bersedia untuk refresh ulang",
+                      { autoClose: 3000 }
+                    );
+                    setTimeout(() => {
+                      window.location.reload();
+                    }, 3000);
+                  }
+                }
+              };
               console.log(
                 "New content is available and will be used when all " +
                   "tabs for this page are closed. See https://cra.link/PWA."
@@ -82,7 +97,9 @@ function registerValidSW(swUrl, config) {
               // At this point, everything has been precached.
               // It's the perfect time to display a
               // "Content is cached for offline use." message.
-              console.log("Content is cached for offline use.");
+              toast.info(
+                "Caching Completed, anda sudah bisa belajar meski jaringan anda terputus"
+              );
 
               // Execute callback
               if (config && config.onSuccess) {
