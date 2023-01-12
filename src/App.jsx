@@ -45,6 +45,7 @@ import ScrollToTop from "./utils/ScrollToTop";
 import CorridorClass from "./pages/dashboard/corridorClass/CorridorClass";
 import SingleMateri from "./pages/dashboard/corridorClass/SingleMateri";
 import Submission from "./pages/dashboard/corridorClass/Submission";
+import * as serviceWorkerRegistration from "./serviceWorkerRegistration";
 
 axios.defaults.withCredentials = true;
 
@@ -204,6 +205,8 @@ const AnimationRoutes = () => {
 
 function App() {
   const theme = useTheme;
+  serviceWorkerRegistration.register();
+
   return (
     <ThemeProvider theme={theme}>
       <Router>
