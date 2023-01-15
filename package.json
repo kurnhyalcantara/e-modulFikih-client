@@ -19,7 +19,7 @@
     "@mui/styled-engine-sc": "^5.1.0",
     "@mui/styles": "^5.2.2",
     "@mui/x-date-pickers": "^5.0.12",
-    "@stripe/react-stripe-js": "^1.7.0",
+    "@stripe/react-stripe-js": "^1.16.3",
     "@stripe/stripe-js": "^1.23.0",
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^12.1.5",
@@ -70,6 +70,7 @@
   "scripts": {
     "dev": "react-scripts start",
     "build": "react-scripts build",
+    "serve": "serve -s build",
     "test": "react-scripts test",
     "fix": "concurrently npm:fix:*",
     "fix:eslint": "eslint . --ext .js,.jsx --fix",
