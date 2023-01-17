@@ -34,7 +34,7 @@
     "firebase-tools": "11.20.0",
     "framer-motion": "6.2.4",
     "html-parser-react": "^1.1.2",
-    "html-react-parser": "^3.0.7",
+    "html-react-parser": "^3.0.8",
     "jsonwebtoken": "9.0.0",
     "moment": "^2.29.1",
     "prettier": "^2.8.1",
