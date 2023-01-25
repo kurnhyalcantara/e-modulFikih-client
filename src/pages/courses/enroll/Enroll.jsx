@@ -25,9 +25,11 @@ const EnrollStudent = () => {
     await addList(token, course)
       .then((msg) => {
         toast.success(msg);
+        setEnrolled(true);
         window.location.href = "/dashboard";
       })
       .catch((err) => {
+        setEnrolled(false);
         toast.error(err);
       });
   };
@@ -60,6 +62,7 @@ const EnrollStudent = () => {
         }
       });
     };
+
     getData();
     checkEnroll();
   }, [courseId, list, course?.courseDetails?._id]);
@@ -115,6 +118,7 @@ const EnrollStudent = () => {
             <Button
               className="bootstraped-button"
               variant="contained"
+              disabled={token.length < 5}
               onClick={handleEnroll}
               sx={{ flexGrow: 2 }}
             >
