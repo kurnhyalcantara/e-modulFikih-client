@@ -22,9 +22,7 @@ const SingleMateri = () => {
       if (courseId) {
         setLoading(true);
         await axios
-          .get(
-            `https://api-fikih-mts-bontouse.herokuapp.com/api/lesson/${courseId}`
-          )
+          .get(`http://localhost:4000/api/lesson/${courseId}`)
           .then((res) => {
             const { materi } = res.data.lesson;
             setLesson(materi);

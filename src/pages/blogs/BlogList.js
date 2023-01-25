@@ -24,12 +24,9 @@ const Blogs = () => {
   useEffect(() => {
     const getBlogs = async () => {
       await axios
-        .get(
-          "https://api-fikih-mts-bontouse.herokuapp.com/api/instructor/blog",
-          {
-            headers: { Authorization: token },
-          }
-        )
+        .get("http://localhost:4000/api/instructor/blog", {
+          headers: { Authorization: token },
+        })
         .then((res) => {
           if (res.status === 200) {
             setBlogs(res.data);
@@ -42,12 +39,9 @@ const Blogs = () => {
   const deleteBlog = async (id) => {
     if (window.confirm("want to delete")) {
       await axios
-        .delete(
-          `https://api-fikih-mts-bontouse.herokuapp.com/api/instructor/blog/${id}`,
-          {
-            headers: { Authorization: token },
-          }
-        )
+        .delete(`http://localhost:4000/api/instructor/blog/${id}`, {
+          headers: { Authorization: token },
+        })
         .then((res) => {
           if (res.status === 200) {
             toast.success("Deleted");

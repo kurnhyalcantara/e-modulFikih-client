@@ -29,12 +29,9 @@ const Lesson = ({ lessons, getData }) => {
     }).then(async (result) => {
       if (result.isConfirmed) {
         await axios
-          .delete(
-            `https://api-fikih-mts-bontouse.herokuapp.com/api/lesson_details/${_id}`,
-            {
-              headers: { Authorization: token },
-            }
-          )
+          .delete(`http://localhost:4000/api/lesson_details/${_id}`, {
+            headers: { Authorization: token },
+          })
           .then(async (res) => {
             if (res.status === 200) {
               Swal.fire("Deleted!", "Your file has been deleted.", "success");

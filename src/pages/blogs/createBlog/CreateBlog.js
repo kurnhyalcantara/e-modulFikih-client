@@ -33,12 +33,9 @@ const CreateBlog = () => {
     if (blogId) {
       const getSingleBlog = async () => {
         await axios
-          .get(
-            `https://api-fikih-mts-bontouse.herokuapp.com/api/instructor/blog/${blogId}`,
-            {
-              headers: { Authorization: token },
-            }
-          )
+          .get(`http://localhost:4000/api/instructor/blog/${blogId}`, {
+            headers: { Authorization: token },
+          })
           .then((res) => {
             if (res.status === 200) {
               const { data } = res;
@@ -64,7 +61,7 @@ const CreateBlog = () => {
       if (blogId) {
         setLoading(true);
         await axios.put(
-          `https://api-fikih-mts-bontouse.herokuapp.com/api/instructor/blog/${blogId}`,
+          `http://localhost:4000/api/instructor/blog/${blogId}`,
           {
             title: title,
             category: category,
@@ -79,7 +76,7 @@ const CreateBlog = () => {
       } else {
         setLoading(true);
         await axios.post(
-          "https://api-fikih-mts-bontouse.herokuapp.com/api/instructor/blog",
+          "http://localhost:4000/api/instructor/blog",
           {
             title: title,
             category: category,
@@ -105,7 +102,7 @@ const CreateBlog = () => {
       formData.append("file", file);
       setLoading(true);
       const res = await axios.post(
-        "https://api-fikih-mts-bontouse.herokuapp.com/api/upload",
+        "http://localhost:4000/api/upload",
         formData,
         {
           headers: {
@@ -125,7 +122,7 @@ const CreateBlog = () => {
     try {
       setLoading(true);
       await axios.post(
-        "https://api-fikih-mts-bontouse.herokuapp.com/api/destroy",
+        "http://localhost:4000/api/destroy",
         { public_id: image.public_id },
         {
           headers: { Authorization: token },

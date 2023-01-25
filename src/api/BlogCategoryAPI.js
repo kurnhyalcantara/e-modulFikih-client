@@ -7,7 +7,7 @@ function BlogCategoryAPI() {
 
   const getCategory = async () => {
     const res = await axios.get(
-      "https://api-fikih-mts-bontouse.herokuapp.com/api/admin/blog_cetegory"
+      "http://localhost:4000/api/admin/blog_cetegory"
     );
     setCategories(res.data.categories);
   };

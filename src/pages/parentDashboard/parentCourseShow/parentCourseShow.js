@@ -19,12 +19,9 @@ const ParentCourseShow = () => {
       const getCourses = async () => {
         setLoading(true);
         axios
-          .get(
-            `https://api-fikih-mts-bontouse.herokuapp.com/api/parent/child/${studentId}`,
-            {
-              headers: { Authorization: token },
-            }
-          )
+          .get(`http://localhost:4000/api/parent/child/${studentId}`, {
+            headers: { Authorization: token },
+          })
           .then((res) => {
             if (res.status === 200) {
               const { enrolled } = res.data;

@@ -30,7 +30,7 @@ const CourseDiscussion = ({ discussion, getData }) => {
   const submitDiscussion = async () => {
     try {
       await axios.post(
-        `https://api-fikih-mts-bontouse.herokuapp.com/api/discussion/${courseId}`,
+        `http://localhost:4000/api/discussion/${courseId}`,
         {
           question: question,
           user: user,

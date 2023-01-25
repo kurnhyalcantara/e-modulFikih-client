@@ -50,13 +50,10 @@ const Login = () => {
     setLabelSubmit("Loading");
     try {
       await axios
-        .post(
-          "https://api-fikih-mts-bontouse.herokuapp.com/api/student/login",
-          {
-            mobile: mobile,
-            password: password,
-          }
-        )
+        .post("http://localhost:4000/api/student/login", {
+          mobile: mobile,
+          password: password,
+        })
         .then((res) => {
           if (res.status === 200) {
             const { data } = res;

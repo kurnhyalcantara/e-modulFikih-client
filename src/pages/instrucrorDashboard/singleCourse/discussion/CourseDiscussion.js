@@ -34,7 +34,7 @@ const CourseDiscussion = ({ discussion, getData }) => {
   const submitDiscussion = async () => {
     try {
       await axios.post(
-        `https://api-fikih-mts-bontouse.herokuapp.com/api/discussion/${courseId}`,
+        `http://localhost:4000/api/discussion/${courseId}`,
         {
           question: question,
           user: user,
@@ -62,12 +62,9 @@ const CourseDiscussion = ({ discussion, getData }) => {
       }).then(async (result) => {
         if (result.isConfirmed) {
           await axios
-            .delete(
-              `https://api-fikih-mts-bontouse.herokuapp.com/api/discussion/single/${id}`,
-              {
-                headers: { Authorization: token },
-              }
-            )
+            .delete(`http://localhost:4000/api/discussion/single/${id}`, {
+              headers: { Authorization: token },
+            })
             .then(async (res) => {
               if (res.status === 200) {
                 Swal.fire("Deleted!", "Your file has been deleted.", "success");

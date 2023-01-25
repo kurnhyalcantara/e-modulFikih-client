@@ -25,9 +25,11 @@ const EnrollStudent = () => {
     await addList(token, course)
       .then((msg) => {
         toast.success(msg);
+        setEnrolled(true);
         window.location.href = "/dashboard";
       })
       .catch((err) => {
+        setEnrolled(false);
         toast.error(err);
       });
   };
@@ -37,9 +39,7 @@ const EnrollStudent = () => {
       if (courseId) {
         setLoading(true);
         await axios
-          .get(
-            `https://api-fikih-mts-bontouse.herokuapp.com/api/course_details/${courseId}`
-          )
+          .get(`http://localhost:4000/api/course_details/${courseId}`)
           .then((res) => {
             if (res.status === 200) {
               setCourse(res.data);

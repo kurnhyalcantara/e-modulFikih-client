@@ -54,16 +54,13 @@ const Registration = () => {
     setLabelSubmit("Loading");
     try {
       await axios
-        .post(
-          "https://api-fikih-mts-bontouse.herokuapp.com/api/student/register",
-          {
-            namaLengkap: toCapitalize(namaLengkap),
-            nis: nis,
-            kelas: kelas,
-            mobile: mobile,
-            password: password,
-          }
-        )
+        .post("http://localhost:4000/api/student/register", {
+          namaLengkap: toCapitalize(namaLengkap),
+          nis: nis,
+          kelas: kelas,
+          mobile: mobile,
+          password: password,
+        })
         .then((res) => {
           if (res.status === 200) {
             const { data } = res;

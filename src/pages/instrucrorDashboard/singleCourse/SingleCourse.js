@@ -34,9 +34,7 @@ const SingleCourse = () => {
   const getData = async () => {
     setLoading(true);
     await axios
-      .get(
-        `https://api-fikih-mts-bontouse.herokuapp.com/api/course_details/${courseId}`
-      )
+      .get(`http://localhost:4000/api/course_details/${courseId}`)
       .then((res) => {
         if (res.status === 200) {
           setCourse(res.data);
@@ -68,12 +66,9 @@ const SingleCourse = () => {
     }).then(async (result) => {
       if (result.isConfirmed) {
         await axios
-          .delete(
-            `https://api-fikih-mts-bontouse.herokuapp.com/api/course_details/${courseId}`,
-            {
-              headers: { Authorization: token },
-            }
-          )
+          .delete(`http://localhost:4000/api/course_details/${courseId}`, {
+            headers: { Authorization: token },
+          })
           .then((res) => {
             if (res.status === 200) {
               Swal.fire("Deleted!", "Your file has been deleted.", "success");

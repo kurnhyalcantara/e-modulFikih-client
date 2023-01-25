@@ -34,7 +34,7 @@ const GeneralSetting = () => {
       setSubmitLabel("Loading");
       await axios
         .put(
-          `https://api-fikih-mts-bontouse.herokuapp.com/api/student/profile/update_password/${user._id}`,
+          `http://localhost:4000/api/student/profile/update_password/${user._id}`,
           {
             oldPassword: oldPassword,
             newPassword: newPassword,
