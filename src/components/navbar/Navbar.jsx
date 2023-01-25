@@ -35,7 +35,7 @@ const Navbar = () => {
     "https://firebasestorage.googleapis.com/v0/b/fikih-mtsbontouse.appspot.com/o/Icons%2Ficon-72x72.png?alt=media&token=7c559bc1-872f-4ba2-b3bd-5d8c0cee5c29";
 
   const logOut = async () => {
-    await axios.get("http://localhost:4000/api/logout");
+    await axios.get("https://api-fikih-mts-bontouse.herokuapp.com/api/logout");
     localStorage.clear();
     setIsLogged(false);
     toast.success("Logout berhasil");

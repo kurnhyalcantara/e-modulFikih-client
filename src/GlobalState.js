@@ -14,7 +14,7 @@ export const DataProvider = ({ children }) => {
 
   const refreshToken = async () => {
     await axios
-      .get("http://localhost:4000/api/refresh_token")
+      .get("https://api-fikih-mts-bontouse.herokuapp.com/api/refresh_token")
       .then((res) => {
         setToken(res.data.accessToken);
       })
