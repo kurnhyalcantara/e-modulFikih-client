@@ -46,7 +46,7 @@ const Submission = () => {
   const state = useContext(GlobalState);
   const [token] = state.token;
   const { courseId } = useParams();
-  const [[mins, secs], setTime] = useState([10, 0]);
+  const [[mins, secs], setTime] = useState([25, 0]);
   const [activeStep, setActiveStep] = useState(0);
   const [submission, setSubmission] = useState([]);
   const [jawaban, setJawaban] = useState("");
@@ -91,8 +91,8 @@ const Submission = () => {
   };
 
   const handleViewScore = async () => {
-    await axios
-      .patch(
+    await toast.promise(
+      axios.patch(
         `https://api-fikih-mts-bontouse.herokuapp.com/api/task/${courseId}`,
         {
           score: result.score,
@@ -100,10 +100,12 @@ const Submission = () => {
         {
           headers: { Authorization: token },
         }
-      )
-      .then((res) => {
-        toast.success(res.data.msg);
-      });
+      ),
+      {
+        pending: "Memproses nilai anda",
+        success: `Score anda ${result.score}`,
+      }
+    );
   };
 
   // const handleBack = () => {
