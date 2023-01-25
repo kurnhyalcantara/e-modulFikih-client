@@ -60,6 +60,7 @@ const EnrollStudent = () => {
         }
       });
     };
+
     getData();
     checkEnroll();
   }, [courseId, list, course?.courseDetails?._id]);
@@ -115,6 +116,7 @@ const EnrollStudent = () => {
             <Button
               className="bootstraped-button"
               variant="contained"
+              disabled={token.length < 5}
               onClick={handleEnroll}
               sx={{ flexGrow: 2 }}
             >

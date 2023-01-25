@@ -9,7 +9,7 @@ import {
   Typography,
   useTheme,
 } from "@mui/material";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import Transition from "../../../components/transition/Transition";
 import "./Submission.css";
@@ -19,6 +19,8 @@ import {
 } from "@mui/icons-material";
 import { useParams } from "react-router-dom";
 import axios from "axios";
+import { GlobalState } from "../../../GlobalState";
+import { toast } from "react-toastify";
 
 const BoxSoal = ({ active, children }) => {
   return (
@@ -41,12 +43,20 @@ BoxSoal.propTypes = {
 
 const Submission = () => {
   const theme = useTheme();
+  const state = useContext(GlobalState);
+  const [token] = state.token;
   const { courseId } = useParams();
   const [[mins, secs], setTime] = useState([10, 0]);
   const [activeStep, setActiveStep] = useState(0);
   const [submission, setSubmission] = useState([]);
   const [jawaban, setJawaban] = useState("");
   const [loading, setLoading] = useState(false);
+  const [listJawaban, setListJawaban] = useState([
+    {
+      activeStep: activeStep,
+      jawaban: "",
+    },
+  ]);
   const submissionLen = submission.length;
   const nomorSoal = new Array(submissionLen);
   const [result, setResult] = useState({
@@ -57,14 +67,48 @@ const Submission = () => {
     nomorSoal[i - 1] = i;
   }
 
-  const handleNext = () => {
+  const handleNext = async () => {
+    let newJawaban = {
+      activeStep: activeStep,
+      jawaban: jawaban,
+    };
+    const checkDuplicate = listJawaban.every((jawaban) => {
+      return newJawaban.activeStep !== jawaban.activeStep;
+    });
+    if (checkDuplicate || activeStep === 0) {
+      if (activeStep === 0) {
+        listJawaban.pop();
+      }
+      setListJawaban([...listJawaban, { ...newJawaban }]);
+      setJawaban("");
+    }
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
     if (jawaban === submission[activeStep]?.kunci) {
       setResult({
-        score: result.score + 1 * 10,
+        score: result.score + 1 * 5,
       });
     }
   };
+
+  const handleViewScore = async () => {
+    await axios
+      .patch(
+        `http://localhost:4000/api/task/${courseId}`,
+        {
+          score: result.score,
+        },
+        {
+          headers: { Authorization: token },
+        }
+      )
+      .then((res) => {
+        toast.success(res.data.msg);
+      });
+  };
+
+  // const handleBack = () => {
+  //   setActiveStep((prevActiveStep) => prevActiveStep - 1);
+  // };
 
   useEffect(() => {
     const timerInterval = setInterval(() => {
@@ -76,6 +120,12 @@ const Submission = () => {
     }, 1000);
     return () => clearInterval(timerInterval);
   });
+
+  useEffect(() => {
+    if (listJawaban) {
+      console.log(listJawaban);
+    }
+  }, [listJawaban]);
 
   useEffect(() => {
     console.log(result);
@@ -124,9 +174,6 @@ const Submission = () => {
                 );
               })}
             </Grid> */}
-            <Typography sx={{ marginTop: "1rem" }}>
-              Skor Anda: {result.score}
-            </Typography>
           </Box>
           <Divider></Divider>
           <Box className="soal-submission">
@@ -153,22 +200,46 @@ const Submission = () => {
             </Box>
           </Box>
           <Box className="stepper-flow">
-            <MobileStepper
-              variant="text"
-              steps={nomorSoal.length}
-              position="static"
-              activeStep={activeStep}
-              nextButton={
-                <Button size="small" onClick={handleNext}>
-                  {activeStep === nomorSoal.length - 1 ? "Finish" : "Next"}
-                  {theme.direction === "rtl" ? (
-                    <KeyboardArrowLeftRounded />
-                  ) : (
-                    <KeyboardArrowRightRounded />
-                  )}
-                </Button>
-              }
-            ></MobileStepper>
+            {activeStep === nomorSoal.length ? (
+              <Button
+                onClick={handleViewScore}
+                className="bootstraped-button"
+                variant="contained"
+              >
+                Lihat Hasil
+              </Button>
+            ) : (
+              <MobileStepper
+                variant="text"
+                steps={nomorSoal.length}
+                position="static"
+                activeStep={activeStep}
+                nextButton={
+                  <Button size="small" onClick={handleNext}>
+                    {activeStep === nomorSoal.length - 1 ? "Finish" : "Next"}
+                    {theme.direction === "rtl" ? (
+                      <KeyboardArrowLeftRounded />
+                    ) : (
+                      <KeyboardArrowRightRounded />
+                    )}
+                  </Button>
+                }
+                // backButton={
+                //   <Button
+                //     size="small"
+                //     onClick={handleBack}
+                //     disabled={activeStep === 0}
+                //   >
+                //     {theme.direction === "rtl" ? (
+                //       <KeyboardArrowRightRounded />
+                //     ) : (
+                //       <KeyboardArrowLeftRounded />
+                //     )}
+                //     Back
+                //   </Button>
+                // }
+              ></MobileStepper>
+            )}
           </Box>
         </Box>
       )}

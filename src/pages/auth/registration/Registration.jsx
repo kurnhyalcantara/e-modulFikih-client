@@ -161,7 +161,6 @@ const Registration = () => {
                     fullWidth
                     variant="standard"
                     className="registration-input"
-                    required
                   >
                     <InputLabel
                       shrink

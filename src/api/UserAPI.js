@@ -57,12 +57,34 @@ function UserAPI(token) {
     });
   };
 
+  const addScore = (course, score) => {
+    return new Promise((resolve, reject) => {
+      axios
+        .patch(
+          `http://localhost:4000/api/task/${course}`,
+          {
+            score: score,
+          },
+          {
+            headers: { Authorization: token },
+          }
+        )
+        .then(() => {
+          resolve("Terima kasih telah mengerjakan soal");
+        })
+        .catch((err) => {
+          reject(err.response.data.msg);
+        });
+    });
+  };
+
   return {
     isLogged: [isLogged, setIsLogged],
     callback: [callback, setCallback],
     user: [user, setUser],
     loading: [loading, setLoading],
     addList: addList,
+    addScore: addScore,
     list: [list, setList],
   };
 }
