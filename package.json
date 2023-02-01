@@ -7,6 +7,21 @@
     "name": "Kurniawan",
     "email": "kurnhyalcantara@gmail.com"
   },
+  "scripts": {
+    "dev": "react-scripts start",
+    "build": "react-scripts build",
+    "serve": "serve -s build",
+    "test": "react-scripts test",
+    "fix": "concurrently npm:fix:*",
+    "fix:eslint": "eslint . --ext .js,.jsx --fix",
+    "fix:prettier": "prettier --write .",
+    "fix:stylelint": "stylelint src/**/*.css --fix",
+    "lint": "concurrently npm:lint:*",
+    "lint:eslint": "eslint . --ext .jsx --ext .js",
+    "lint:prettier": "prettier --check .",
+    "lint:stylelint": "stylelint src/**/*.css",
+    "eject": "react-scripts eject"
+  },
   "dependencies": {
     "@date-io/date-fns": "2.x",
     "@emotion/react": "^11.7.0",
@@ -66,17 +81,6 @@
     "uuid": "^9.0.0",
     "web-vitals": "^3.1.1",
     "workbox": "^0.0.0"
-  },
-  "scripts": {
-    "dev": "react-scripts start",
-    "build": "react-scripts build",
-    "serve": "serve -s build",
-    "test": "react-scripts test",
-    "fix": "concurrently npm:fix:*",
-    "fix:eslint": "eslint . --ext .js,.jsx --fix",
-    "fix:prettier": "prettier --write .",
-    "fix:stylelint": "stylelint src/**/*.css --fix",
-    "eject": "react-scripts eject"
   },
   "eslintConfig": {
     "extends": [
