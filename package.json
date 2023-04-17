@@ -30,7 +30,7 @@
     "@material-ui/lab": "^4.0.0-alpha.60",
     "@mui/icons-material": "^5.2.5",
     "@mui/lab": "^5.0.0-alpha.117",
-    "@mui/material": "^5.2.5",
+    "@mui/material": "^5.12.1",
     "@mui/styled-engine-sc": "^5.1.0",
     "@mui/styles": "^5.2.2",
     "@mui/x-date-pickers": "^5.0.15",
